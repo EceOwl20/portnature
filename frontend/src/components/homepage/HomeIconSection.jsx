@@ -8,7 +8,7 @@ import EntertainmentSvg from "../../svg/EntertainmentSvg.jsx"
 const HomeIconSection = () => {
   return (
     <div className='flex bg-white w-screen h-auto items-center justify-center'>
-      <div className='flex w-[70%] gap-[10%] items-center justify-between font-monserrat text-[14px] font-bold leading-normal text-[#000000CC] text-center py-[6%]'>
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:flex-row lg:flex w-[80%] md:w-[70%] gap-[10%] items-center justify-center lg:justify-between font-monserrat text-[14px] font-bold leading-normal text-[#000000CC] text-center py-[6%]'>
         <div className='flex flex-col items-center justify-center gap-[10px]'>
           <LocationSvg className="flex" width={30.12} height={47.63}/>
           <p >BELEK . ANTALYA</p>

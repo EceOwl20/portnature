@@ -5,6 +5,7 @@ import img3 from "../../public/images/PortCover41.png"
 import HomeCarousel from '../components/homepage/HomeCarousel'
 import Reservation from '../components/homepage/Reservation'
 import HomeIconSection from '../components/homepage/HomeIconSection'
+import AllInclusive from '../components/homepage/AllInclusive'
 
 const images =[img1,img2,img3];
 
@@ -14,6 +15,7 @@ const Homepage = () => {
       <HomeCarousel images={images}/>
       <Reservation/>
       <HomeIconSection/>
+      <AllInclusive/>
     </div>
   )
 }
