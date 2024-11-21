@@ -9,6 +9,7 @@ import AllInclusive from '../components/homepage/AllInclusive'
 import SubCarousel from '../components/homepage/SubCarousel'
 import HolidayImageSection from '../components/homepage/HolidayImageSection'
 import Accommodation from '../components/homepage/Accommodation'
+import ChildrenSection from '../components/homepage/ChildrenSection'
 
 const images =[img1,img2,img3];
 
