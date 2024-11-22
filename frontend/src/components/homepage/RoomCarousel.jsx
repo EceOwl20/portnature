@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 import useCarousel from "embla-carousel-react";
 
-export function RoomCarousel({ images, text, header }) {
+export function RoomCarousel({ images, header }) {
 
   const [emblaRef, emblaApi] = useCarousel({
     loop: true,
@@ -44,8 +44,7 @@ export function RoomCarousel({ images, text, header }) {
 
 
   return (
-    <div className="flex flex-col lg:w-11/12 xl:w-11/12 w-full h-screen items-center mt-[50px]">
-      <text className="text-[18px] lg:text-[40px] uppercase leading-normal text-center text-stoneLight tracking-[3.6px] lg:tracking-[8px] font-medium w-11/12 mb-[36px] lg:mb-[60px]">other</text>
+    <div className="flex flex-col lg:w-11/12 xl:w-11/12 w-full h-auto items-center justify-center">
       <div className="overflow-hidden relative h-auto" ref={emblaRef}>
           <div className="flex grid-flow-col">
             {images.map((image, index) => (
