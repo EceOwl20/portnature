@@ -1,14 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import UnderLine from "../../svg/UnderLine/UnderLine";
+import ArrowSvg from "../../svg/ArrowSvg";
 
 const Header = () => {
   return (
-    <header className="bg-[#233038] w-full h-[92px] flex items-center px-10 justify-between">
-      <Link to="/">
+    <header className="bg-[#233038] w-full h-[92px] flex items-center justify-center">
+     <div className="flex items-center justify-between w-[90%]">
+     <Link to="/">
         <img src="/header/Logo Port small.png" alt="Logo" />
       </Link>
-      <nav className="text-white flex gap-[35px] h-[20px] font-monserrat text-[16px] text-center items-center justify-center">
+      <nav className="text-white hidden lg:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[16px] text-center items-center justify-around">
         <div className="relative group">
           <Link to="/" className="flex items-center">
             ACCOMMODATION
@@ -27,61 +29,6 @@ const Header = () => {
               SUITE ROOM
               <UnderLine />
             </Link>
-            <Link
-              to="/accommodation/standart-room"
-              className="block px-4 py-2 whitespace-nowrap justify-center"
-            >
-              STANDARD ROOM
-              <UnderLine />
-            </Link>
-          </div>
-        </div>
-
-        <div className="relative group">
-          <Link to="/" className="flex items-center">
-            ACCOMMODATION 2
-            <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
-              <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
-            </svg>
-          </Link>
-
-          {/* Alt menü */}
-          <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
-            <Link to="/accommodation/family-room" className="block px-4 py-2 relative">
-              FAMILY ROOM
-            </Link>
-            <Link to="/accommodation/suite-room" className="block px-4 py-2">
-              SUITE ROOM
-              <UnderLine />
-            </Link>
-            <Link
-              to="/accommodation/standart-room"
-              className="block px-4 py-2 whitespace-nowrap justify-center"
-            >
-              STANDARD ROOM
-              <UnderLine />
-            </Link>
-          </div>
-        </div>
-
-        <div className="relative group">
-          <Link to="/" className="flex items-center">
-            ACCOMMODATION
-            <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
-              <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
-            </svg>
-          </Link>
-          <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
-            <Link to="/accommodation/family-room" className="block px-4 py-2">
-              FAMILY ROOM
-              {/* <UnderLine/> */}
-            </Link>
-
-            <Link to="/accommodation/suite-room" className="block px-4 py-2">
-              SUITE ROOM
-              <UnderLine />
-            </Link>
-
             <Link
               to="/accommodation/standart-room"
               className="block px-4 py-2 whitespace-nowrap justify-center"
@@ -95,11 +42,16 @@ const Header = () => {
         <Link>ENTERTAINMENT</Link>
         <Link>CONTACTS</Link>
         <Link>SPA</Link>
-        <Link>MEETING & CONGRESS</Link>
+        <Link className=" whitespace-nowrap">MEETING & CONGRESS</Link>
         <button className="bg-white text-black font-bold w-[172px] h-[50px] ">
           Book Now
         </button>
       </nav>
+      <div className="flex items-center gap-[9px]">
+        <span className="text-white text-[16px] font-monserrat leading-normal font-normal">EN </span>
+        <ArrowSvg className="flex" width={9} height={4}/>
+      </div>
+     </div>
     </header>
   );
 };

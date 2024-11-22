@@ -19,7 +19,7 @@ const HomeCarousel = ({ images }) => {
   }, [emblaApi]);
 
   return (
-    <div className="flex w-full min-h-screen overflow-visible">
+    <div className="flex w-screen min-h-screen overflow-visible">
       <div
       className=" overflow-hidden relative flex w-full"
       ref={emblaRef}
