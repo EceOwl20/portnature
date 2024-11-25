@@ -5,6 +5,9 @@ export default {
 ],
   theme: {
     extend: {
+      minHeight: {
+        'content': 'fit-content',
+      },
       fontFamily: {
         monserrat: ['Montserrat', 'sans-serif'],
         lora: ['Lora', 'serif'],
