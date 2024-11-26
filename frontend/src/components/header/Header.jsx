@@ -137,11 +137,11 @@ const Header = () => {
          
            <div className="flex flex-row items-center justify-between w-[90%] ">
            <div className="flex gap-4">
-           <CrossSvg width={24} height={24}/>
+          <button  onClick={toggleSidebar}> <CrossSvg width={24} height={24} className="flex"/></button>
            <img src={darklogo} alt="logo dark" width={darklogo.width} height={darklogo.height}/>
            </div>
             <div className="flex gap-4">
-            <PhoneSvg width={19.889} height={19.928} color="#233038" />
+            <PhoneSvg width={19.889} height={19.928} color="#233038" fill="#233038" />
             <div className="flex items-center gap-[9px] justify-center">
               <span className="text-[#233038] text-[16px] font-monserrat leading-normal font-normal">
                 EN{" "}
