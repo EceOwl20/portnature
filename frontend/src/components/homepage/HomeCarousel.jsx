@@ -2,6 +2,7 @@
 import React, {useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import portlogo from "../../../public/images/LogoPortbig.png"
 
 
 const HomeCarousel = ({ images }) => {
@@ -18,15 +19,21 @@ const HomeCarousel = ({ images }) => {
   }, [emblaApi]);
 
   return (
-    <div className="flex w-full min-h-screen overflow-visible">
+    <div className="flex w-screen min-h-screen overflow-visible">
       <div
       className=" overflow-hidden relative flex w-full"
       ref={emblaRef}
     >
       <div className="flex grid-flow-col min-h-screen w-full">
         {images.map((image, index) => (
-          <div className="flex-[0_0_auto] h-screen w-full" key={index}>
+          <div className="flex-[0_0_auto] h-screen w-full relative" key={index}>
             <img src={image} style={{objectFit:'cover'}} width={image.width} height={image.height} alt={`Slide ${index + 1}`} className=" flex h-screen w-full"/>
+
+            <div className="absolute flex flex-col text-center top-[30%] -translate-y-1/2 left-[50%] transform -translate-x-1/2">
+                  <span className="text-[28px] lg:text-[40px] leading-normal text-white uppercase font-medium font-lora mb-[10px] lg:mb-[20px]">WELCOME TO</span>
+                  <img src={portlogo} alt="logo" width={portlogo.width} height={portlogo.height} className="hidden lg:flex"/>
+                  <img src={portlogo} alt="logo" width={280.94} height={110.68} className="flex lg:hidden"/>
+             </div>
           </div>
         ))}
       </div>
