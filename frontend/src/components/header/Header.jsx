@@ -1,58 +1,202 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import UnderLine from "../../svg/UnderLine/UnderLine";
 import ArrowSvg from "../../svg/ArrowSvg";
+import logo from "/header/Logo Port small.png";
+import MenuBar from "../../svg/MenuBar";
+import PhoneSvg from "../../svg/PhoneSvg";
+import darklogo from "../../../public/images/homepage/LogoPortDark.png"
+import YoutubeSvg from "../../svg/YoutubeSvg";
+import FacebookSvg from "../../svg/FacebookSvg";
+import InstagramSvg from "../../svg/InstagramSvg";
+import WkSvg from "../../svg/WkSvg";
+import TrivagoSvg from "../../svg/TrivagoSvg";
+import CrossSvg from "../../svg/CrossSvg";
 
 const Header = () => {
-  return (
-    <header className="bg-[#233038] w-full h-[92px] flex items-center justify-center">
-     <div className="flex items-center justify-between w-[90%]">
-     <Link to="/">
-        <img src="/header/Logo Port small.png" alt="Logo" />
-      </Link>
-      <nav className="text-white hidden lg:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[16px] text-center items-center justify-around">
-        <div className="relative group">
-          <Link to="/" className="flex items-center">
-            ACCOMMODATION
-            <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
-              <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
-            </svg>
-          </Link>
+  const [isSticky, setIsSticky] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-          {/* Alt menü */}
-          <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
-            <Link to="/accommodation/family-room" className="block px-4 py-2">
-              FAMILY ROOM
-              <UnderLine />
-            </Link>
-            <Link to="/accommodation/suite-room" className="block px-4 py-2">
-              SUITE ROOM
-              <UnderLine />
-            </Link>
-            <Link
-              to="/accommodation/standart-room"
-              className="block px-4 py-2 whitespace-nowrap justify-center"
-            >
-              STANDARD ROOM
-              <UnderLine />
+  const sidebarRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  return (
+    <>
+      <header
+        className={`${
+          isSticky
+            ? "bg-[#233038]/50 w-full h-[92px] flex items-center justify-center sticky top-0 z-[9999]"
+            : "bg-[#233038] w-full h-[92px] flex items-center justify-center sticky top-0 z-[9999]"
+        }`}
+      >
+        <div className="flex items-center justify-between w-[90%]">
+          <div className="flex items-center justify-center gap-[14.98px]">
+            <button className="flex lg:hidden" onClick={toggleSidebar}>
+              <MenuBar
+                width={16}
+                height={14}
+                className="flex"
+                onClick={toggleSidebar}
+              />
+            </button>
+            <Link to="/">
+              <img
+                src={logo}
+                alt="Logo"
+                width={197.315}
+                height={111.838}
+                className="hidden lg:flex"
+              />
+              <img
+                src={logo}
+                alt="Logo"
+                width={120.973}
+                height={68.762}
+                className="flex lg:hidden"
+              />
             </Link>
           </div>
-        </div>
+          <nav className="text-white hidden lg:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[16px] text-center items-center justify-around">
+            <div className="relative group">
+              <Link to="/" className="flex items-center">
+                ACCOMMODATION
+                <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
+                </svg>
+              </Link>
 
-        <Link>ENTERTAINMENT</Link>
-        <Link>CONTACTS</Link>
-        <Link>SPA</Link>
-        <Link className=" whitespace-nowrap">MEETING & CONGRESS</Link>
-        <button className="bg-white text-black font-bold w-[172px] h-[50px] ">
-          Book Now
-        </button>
-      </nav>
-      <div className="flex items-center gap-[9px]">
-        <span className="text-white text-[16px] font-monserrat leading-normal font-normal">EN </span>
-        <ArrowSvg className="flex" width={9} height={4}/>
+              {/* Alt menü */}
+              <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
+                <Link
+                  to="/accommodation/family-room"
+                  className="block px-4 py-2"
+                >
+                  FAMILY ROOM
+                  <UnderLine />
+                </Link>
+                <Link
+                  to="/accommodation/suite-room"
+                  className="block px-4 py-2"
+                >
+                  SUITE ROOM
+                  <UnderLine />
+                </Link>
+                <Link
+                  to="/accommodation/standart-room"
+                  className="block px-4 py-2 whitespace-nowrap justify-center"
+                >
+                  STANDARD ROOM
+                  <UnderLine />
+                </Link>
+              </div>
+            </div>
+
+            <Link>ENTERTAINMENT</Link>
+            <Link>CONTACTS</Link>
+            <Link>SPA</Link>
+            <Link className=" whitespace-nowrap">MEETING & CONGRESS</Link>
+            <button className="bg-white text-black font-bold w-[172px] h-[50px] ">
+              Book Now
+            </button>
+          </nav>
+          <div className="flex items-center gap-[9px]">
+            <span className="text-white text-[16px] font-monserrat leading-normal font-normal">
+              EN{" "}
+            </span>
+            <ArrowSvg className="flex" width={9} height={4} />
+          </div>
+        </div>
+      </header>
+
+      {/* Sidebar */}
+      <div
+  className={`flex fixed top-0 left-0 w-[100%] h-screen z-[9999] bg-[#fff] text-[#233038] transition-all duration-300 ease-in-out ${
+    sidebarOpen ? "translate-x-0" : "-translate-x-full"
+  }`}
+>
+        <div className="flex flex-col w-[100%] pt-[30px] items-center justify-between text-[#233038]">
+         
+           <div className="flex flex-row items-center justify-between w-[90%] ">
+           <div className="flex gap-4">
+           <CrossSvg width={24} height={24}/>
+           <img src={darklogo} alt="logo dark" width={darklogo.width} height={darklogo.height}/>
+           </div>
+            <div className="flex gap-4">
+            <PhoneSvg width={19.889} height={19.928} color="#233038" />
+            <div className="flex items-center gap-[9px] justify-center">
+              <span className="text-[#233038] text-[16px] font-monserrat leading-normal font-normal">
+                EN{" "}
+              </span>
+              <ArrowSvg className="flex" width={9} height={4} />
+            </div>
+            </div>
+           </div>
+          
+          <nav className="flex flex-col w-[75%] text-[16px] font-normal leading-normal uppercase font-monserrat text-start gap-[20px]">
+            <Link to="/" onClick={toggleSidebar}>
+            ACCOMMODATION
+            </Link>
+            <div className="flex bg-[#DDD] h-[1px] w-full" ></div>
+            <Link to="/" onClick={toggleSidebar}>
+            CHILDREN
+            </Link>
+            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+            <Link to="/" onClick={toggleSidebar}>
+            OFFERS 2023
+            </Link>
+            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+            <Link to="/" onClick={toggleSidebar}>
+            FOOD & DRINK
+            </Link>
+            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+            <Link to="/" onClick={toggleSidebar}>
+            ENTERTAINMENT
+            </Link>
+            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+            <Link to="/" onClick={toggleSidebar}>
+            CONTACTS
+            </Link>
+            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+            <Link to="/" onClick={toggleSidebar}>
+            SPA
+            </Link>
+            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+            <Link to="/" onClick={toggleSidebar}>
+            MEETING & CONGRESS
+            </Link>
+          </nav>
+
+          <div className="flex w-[80%] items-center justify-between">
+            <YoutubeSvg width={34} height={24} color="#233038cc"/>
+            <FacebookSvg width={34} height={24} color="#233038cc"/>
+            <InstagramSvg width={34} height={24} color="#233038cc"/>
+            <WkSvg width={34} height={24} color="#233038cc"/>
+            <TrivagoSvg width={34} height={24} color="#233038cc"/>
+          </div>
+
+          <button className="flex w-full text-center py-[28px] items-center justify-center text-[20px] font-monserrat font-bold leading-normal text-[#f8f8f8] bg-[#233038]">Book Now</button>
+        </div>
       </div>
-     </div>
-    </header>
+    </>
   );
 };
 

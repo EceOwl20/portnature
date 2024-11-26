@@ -19,7 +19,7 @@ const images = [img1, img2,img4, img5, img6, img7, img8, img9,img10,img11];
 
 const ChildrenSection = () => {
   return (
-    <div className='flex flex-col w-screen items-center justify-center gap-[50px] mb-[200px]'>
+    <div className='flex flex-col w-screen items-center justify-center gap-[50px] '>
       <div className='flex flex-col w-[90%] lg:w-[60%] gap-[30px] items-center justify-center text-center'>
         <h2 className='text-[#233038] text-[25px] lg:text-[40px] font-lora font-medium leading-normal'>CHILDREN</h2>
         <div className='flex w-screen'>

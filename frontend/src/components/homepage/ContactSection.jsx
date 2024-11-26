@@ -33,7 +33,7 @@ const ContactSection = () => {
           <span className='lg:text-[20px] text-[12px] font-bold text-[#233038CC] leading-normal'>Or online booking</span>
           <div className='grid grid-cols-2 lg:flex lg:flex-col w-[90%] items-center justify-center gap-[20px]'>
             <div className='flex items-center justify-start w-[90%] gap-[7%]'>
-              <PhoneSvg className="flex" width={18} height={19}/>
+              <PhoneSvg className="flex" width={18} height={19} color="#64A4FF"/>
               <p className='lg:text-[20px] text-[12px] font-normal leading-[30px]'>+ 90 (242) 731 11 77</p>
             </div>
             <div className='flex items-center justify-start w-[90%] gap-[7%]'>
@@ -41,7 +41,7 @@ const ContactSection = () => {
               <p className='lg:text-[20px] text-[12px] font-normal leading-[30px]'>info@portnature.com.tr</p>
             </div>
             <div className='flex items-center justify-start w-[90%] gap-[7%]'>
-              <PhoneSvg className="flex" width={18} height={19}/>
+              <PhoneSvg className="flex" width={18} height={19} color="#64A4FF"/>
               <p className='lg:text-[20px] text-[12px] font-normal leading-[30px]'>+ 90 (242) 731 07 07</p>
             </div>
             

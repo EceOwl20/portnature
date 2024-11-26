@@ -5,6 +5,13 @@ export default {
 ],
   theme: {
     extend: {
+      colors: {
+        customGray: '#233038',
+        customGray80:'#233038cc'
+      },
+      inset: {
+        'fullreverse': '-100%', // left: -100% için özel sınıf
+      },
       minHeight: {
         'content': 'fit-content',
       },

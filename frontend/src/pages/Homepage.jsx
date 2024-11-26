@@ -31,6 +31,7 @@ import bath from "../../public/images/homepage/TurkishBath3.png"
 import meeting from "../../public/images/homepage/meeting-restaurant.png"
 import davidoff from "../../public/images/homepage/davidoff2.png"
 import AlacarteSection from '../components/homepage/AlacarteSection'
+import SpecialOffersCarousel from '../components/homepage/SpecialOffersCarousel'
 
 const images =[img1,img2,img3];
 const instagramImages=[followus1,followus2,followus3,followus4,followus5,followus6,followus7];
@@ -42,7 +43,7 @@ const linksBar=["/","/","/","/"]
 
 const Homepage = () => {
   return (
-    <div className='flex flex-col items-center justify-center'>""
+    <div className='flex flex-col items-center justify-center'>
       <HomeCarousel images={images}/>
       <Reservation/>
       <HomeIconSection/>
@@ -57,6 +58,7 @@ const Homepage = () => {
       <Accommodation/>
       <ChildrenSection/>
       <ImageBackgroundSection/>
+      <SpecialOffersCarousel/>
       <AlacarteSection/>
       <BarLoungeCarousel images={barImages} subImages={subImages} headers={headersBar} texts={textsBar} links={linksBar}/>
       <ContactSection/>
