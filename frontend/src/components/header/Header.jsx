@@ -48,8 +48,8 @@ const Header = () => {
             : "bg-[#233038] w-full h-[92px] flex items-center justify-center sticky top-0 z-[9999]"
         }`}
       >
-        <div className="flex items-center justify-between w-[90%]">
-          <div className="flex items-center justify-center gap-[14.98px]">
+        <div className="flex items-center justify-between w-[92%] lg:w-[97%]">
+          <div className="flex items-center justify-center gap-[14.98px] sm:gap-[30px]">
             <button className="flex lg:hidden" onClick={toggleSidebar}>
               <MenuBar
                 width={16}
@@ -64,18 +64,18 @@ const Header = () => {
                 alt="Logo"
                 width={197.315}
                 height={111.838}
-                className="hidden lg:flex"
+                className="hidden xl:flex"
               />
               <img
                 src={logo}
                 alt="Logo"
                 width={120.973}
                 height={68.762}
-                className="flex lg:hidden"
+                className="flex xl:hidden"
               />
             </Link>
           </div>
-          <nav className="text-white hidden lg:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[16px] text-center items-center justify-around">
+          <nav className="text-white hidden lg:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[14px] text-center items-center justify-between w-[72%]">
             <div className="relative group">
               <Link to="/" className="flex items-center">
                 ACCOMMODATION
@@ -109,16 +109,26 @@ const Header = () => {
                 </Link>
               </div>
             </div>
-
+            <Link>KIDS CONCEPT</Link>
+            <Link>OFFERS 2023</Link>
+            <Link>FOOD & DRINK</Link>
             <Link>ENTERTAINMENT</Link>
             <Link>CONTACTS</Link>
             <Link>SPA</Link>
             <Link className=" whitespace-nowrap">MEETING & CONGRESS</Link>
-            <button className="bg-white text-black font-bold w-[172px] h-[50px] ">
+            <div className="flex items-center gap-[9px]">
+            <span className="text-white text-[16px] font-monserrat leading-normal font-normal">
+              EN{" "}
+            </span>
+            <ArrowSvg className="flex" width={9} height={4} />
+          </div>
+
+          </nav>
+          <button className="hidden lg:flex bg-white text-black font-bold w-[10%] h-[50px] ">
               Book Now
             </button>
-          </nav>
-          <div className="flex items-center gap-[9px]">
+
+          <div className="flex lg:hidden items-center gap-[9px]">
             <span className="text-white text-[16px] font-monserrat leading-normal font-normal">
               EN{" "}
             </span>

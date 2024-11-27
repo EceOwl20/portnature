@@ -6,14 +6,14 @@
 
 /* Takvim genel görünümü */
 .custom-calendar {
-  @apply bg-white border border-gray-300 rounded-lg shadow-lg;
+  @apply bg-white border border-gray-300 rounded-lg shadow-lg font-monserrat;
 }
 
 /* Günlerin hizalanması (grid yapısı) */
 .react-datepicker__week {
   display: grid;
   grid-template-columns: repeat(7, 1fr); /* 7 sütun */
-  gap: 0.5rem; /* Hücreler arasına boşluk */
+  gap: 0rem; /* Hücreler arasına boşluk */
 }
 
 /* Günlerin görünümü */
@@ -43,12 +43,12 @@
 
 /* Başlık (Ay ve Yıl) */
 .react-datepicker__header {
-  @apply bg-white text-gray-800 font-semibold rounded-t-lg p-1;
+  @apply bg-white text-customGray font-semibold rounded-t-lg p-1;
 }
 
 /* Ay ve Yıl yazısı */
 .react-datepicker__current-month {
-  @apply text-lg font-bold text-gray-800;
+  @apply text-[14px] font-semibold leading-normal text-gray-800;
 }
 
 /* Gün isimleri (Su, Mo, Tu, ...) */
@@ -56,10 +56,13 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr); /* 7 sütun */
   text-align: center;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+  font-weight: 400;
+  margin-bottom:2px;
+  margin-top:2px;
   margin-left: 10px;
-  gap:13px;
+  gap: 0rem;
+  font-size: 11px;
+  color: rgba(35, 48, 56, 0.80);
 }
 
 

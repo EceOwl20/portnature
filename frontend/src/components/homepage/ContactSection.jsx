@@ -31,21 +31,21 @@ const ContactSection = () => {
         <div className='flex flex-col w-[100%] md:w-[60%] lg:w-[40%] items-center justify-center text-center lg:justify-start lg:items-start lg:text-start gap-[20px]'>
           <h3 className='lg:text-[28px] text-[25px]  font-lora font-medium leading-[23px]'>Free contact call center</h3>
           <span className='lg:text-[20px] text-[12px] font-bold text-[#233038CC] leading-normal'>Or online booking</span>
-          <div className='grid grid-cols-2 lg:flex lg:flex-col w-[90%] items-center justify-center gap-[20px]'>
-            <div className='flex items-center justify-start w-[90%] gap-[7%]'>
+          <div className='flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col w-[90%] items-center justify-center gap-[10px] sm:gap-[20px]'>
+            <div className='flex items-center justify-center sm:justify-start w-[90%] gap-[7%]'>
               <PhoneSvg className="flex" width={18} height={19} color="#64A4FF" fill="none"/>
               <p className='lg:text-[20px] text-[12px] font-normal leading-[30px]'>+ 90 (242) 731 11 77</p>
             </div>
-            <div className='flex items-center justify-start w-[90%] gap-[7%]'>
+            <div className='flex items-center  justify-center sm:justify-start w-[90%] gap-[7%]'>
               <MessageSvg className="flex" width={21} height={17}/>
               <p className='lg:text-[20px] text-[12px] font-normal leading-[30px]'>info@portnature.com.tr</p>
             </div>
-            <div className='flex items-center justify-start w-[90%] gap-[7%]'>
+            <div className='flex items-center  justify-center sm:justify-start w-[90%] gap-[7%]'>
               <PhoneSvg className="flex" width={18} height={19} color="#64A4FF" fill="none"/>
               <p className='lg:text-[20px] text-[12px] font-normal leading-[30px]'>+ 90 (242) 731 07 07</p>
             </div>
             
-            <div className='flex items-center justify-start w-[90%] gap-[7%]'>
+            <div className='flex items-center  justify-center sm:justify-start w-[90%] gap-[7%]'>
               <WhatsappSvg className="flex" width={19.393} height={19.395} color="#64A4FF"/>
               <p className='lg:text-[20px] text-[12px] font-bold leading-[30px] text-[#64A4FF]'>Whatsapp</p>
             </div>
