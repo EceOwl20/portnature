@@ -9,23 +9,31 @@ import { HelmetProvider } from "react-helmet-async";
 import { useSelector } from "react-redux";
 import ChildrenSection from "./components/homepage/ChildrenSection";
 import Login from "./pages/Login";
+import HeaderDgtl from "./components/header/HeaderDgtl";
+import Register from "./pages/Register";
+import Panel from "./pages/PanelPages/Panel";
 
 const App = () => {
-  //const { activeUser } = useSelector((state) => state.user);
+ const { activeUser } = useSelector((state) => state.user);
 
   return (
     <>
       <HelmetProvider>
         <BrowserRouter>
-      <>
-      <Header/>
-      </>
+        {activeUser ? (
+            <HeaderDgtl />
+          ) : (
+            <>
+              <Header />
+            </>
+          )}
       
           <main>
            <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/a" element={<ChildrenSection />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/giris" element={<Login />} />
+            <Route path="/kayit-ol" element={<Register />} />
+            <Route path="/panel" element={<Panel />} />
            </Routes>
           </main>
           <BookPhoneSection/>
