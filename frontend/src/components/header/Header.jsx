@@ -12,6 +12,7 @@ import InstagramSvg from "../../svg/InstagramSvg";
 import WkSvg from "../../svg/WkSvg";
 import TrivagoSvg from "../../svg/TrivagoSvg";
 import CrossSvg from "../../svg/CrossSvg";
+import NewUnderline from "../../svg/NewUnderline";
 
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -77,7 +78,7 @@ const Header = () => {
           </div>
           <nav className="text-white hidden lg:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[14px] text-center items-center justify-between w-[72%]">
             <div className="relative group">
-              <Link to="/" className="flex items-center">
+              <Link to="/rooms" className="flex items-center">
                 ACCOMMODATION
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
@@ -90,32 +91,203 @@ const Header = () => {
                   to="/accommodation/family-room"
                   className="block px-4 py-2"
                 >
-                  FAMILY ROOM
-                  <UnderLine />
+                  Family Room
+                  <NewUnderline />
                 </Link>
                 <Link
                   to="/accommodation/suite-room"
                   className="block px-4 py-2"
                 >
-                  SUITE ROOM
-                  <UnderLine />
+                  Suite Room
+                  <NewUnderline />
                 </Link>
                 <Link
                   to="/accommodation/standart-room"
                   className="block px-4 py-2 whitespace-nowrap justify-center"
                 >
-                  STANDARD ROOM
-                  <UnderLine />
+                  Standard Room
+                  <NewUnderline />
                 </Link>
               </div>
             </div>
-            <Link>KIDS CONCEPT</Link>
+            <div className="relative group">
+              <Link to="/" className="flex items-center">
+              KIDS CONCEPT
+                <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
+                </svg>
+              </Link>
+
+              {/* Alt menü */}
+              <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
+                <Link
+                  to="/accommodation/family-room"
+                  className="block px-4 py-2"
+                >
+                  Mini Club
+                  <NewUnderline />
+                </Link>
+                <Link
+                  to="/accommodation/suite-room"
+                  className="block px-4 py-2"
+                >
+                  Aquapark
+                  <NewUnderline />
+                </Link>
+                
+              </div>
+            </div>
             <Link>OFFERS 2023</Link>
-            <Link>FOOD & DRINK</Link>
-            <Link>ENTERTAINMENT</Link>
+            <div className="relative group">
+              <Link to="/" className="flex items-center">
+              FOOD & DRINK
+                <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
+                </svg>
+              </Link>
+
+              {/* Alt menü */}
+              <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
+                <Link
+                  to="/accommodation/family-room"
+                  className="block px-4 py-2"
+                >
+                  A'la Carte
+                  <NewUnderline />
+                </Link>
+                <Link
+                  to="/accommodation/suite-room"
+                  className="block px-4 py-2"
+                >
+                  Bars & Cafes
+                  <NewUnderline />
+                </Link>
+                <Link
+                  to="/accommodation/suite-room"
+                  className="block px-4 py-2"
+                >
+                  Main Restaurant
+                  <NewUnderline />
+                </Link>
+                <Link
+                  to="/accommodation/suite-room"
+                  className="block px-4 py-2"
+                >
+                  Davidoff Cafe
+                  <NewUnderline />
+                </Link>
+                
+              </div>
+            </div>
+
+            <div className="relative group">
+              <Link to="/" className="flex items-center">
+              ENTERTAINMENT
+                <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
+                </svg>
+              </Link>
+
+              {/* Alt menü */}
+              <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
+                <Link
+                  to="/accommodation/family-room"
+                  className="block px-4 py-2"
+                >
+                  Concerts
+                  <NewUnderline />
+                </Link>
+                <Link
+                  to="/accommodation/suite-room"
+                  className="block px-4 py-2"
+                >
+                  Activities
+                  <NewUnderline />
+                </Link>
+                <Link
+                  to="/accommodation/suite-room"
+                  className="block px-4 py-2"
+                >
+                  Beach
+                  <NewUnderline />
+                </Link>
+                
+              </div>
+            </div>
+            
             <Link>CONTACTS</Link>
-            <Link>SPA</Link>
-            <Link className=" whitespace-nowrap">MEETING & CONGRESS</Link>
+            <div className="relative group">
+              <Link to="/" className="flex items-center">
+              SPA
+                <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
+                </svg>
+              </Link>
+
+              {/* Alt menü */}
+              <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
+                <Link
+                  to="/accommodation/family-room"
+                  className="block px-4 py-2"
+                >
+                  Spa & Wellness
+                  <NewUnderline />
+                </Link>
+                <Link
+                  to="/accommodation/suite-room"
+                  className="block px-4 py-2"
+                >
+                  Indoor Pool
+                  <NewUnderline />
+                </Link>
+                
+                
+              </div>
+            </div>
+
+            <div className="relative group">
+              <Link to="/" className="flex items-center">
+              MEETING & CONGRESS
+                <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
+                </svg>
+              </Link>
+
+              {/* Alt menü */}
+              <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
+                <Link
+                  to="/accommodation/family-room"
+                  className="block px-4 py-2"
+                >
+                  Thermessos
+                  <NewUnderline />
+                </Link>
+                <Link
+                  to="/accommodation/suite-room"
+                  className="block px-4 py-2"
+                >
+                  Aspendos
+                  <NewUnderline />
+                </Link>
+                <Link
+                  to="/accommodation/suite-room"
+                  className="block px-4 py-2"
+                >
+                  Perge
+                  <NewUnderline />
+                </Link>
+                <Link
+                  to="/accommodation/suite-room"
+                  className="block px-4 py-2"
+                >
+                  Olympos
+                  <NewUnderline />
+                </Link>
+                
+                
+              </div>
+            </div>
+            
             <div className="flex items-center gap-[9px]">
             <span className="text-white text-[16px] font-monserrat leading-normal font-normal">
               EN{" "}
@@ -124,7 +296,7 @@ const Header = () => {
           </div>
 
           </nav>
-          <button className="hidden lg:flex bg-white text-black font-bold w-[10%] h-[50px] ">
+          <button className="hidden lg:flex bg-white text-[#233038] font-bold w-[10%] h-[50px] text-center justify-center items-center">
               Book Now
             </button>
 

@@ -1,4 +1,4 @@
-import React, {useCallback } from "react";
+import React, {useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import NewUnderline from "../../svg/NewUnderline";
@@ -22,14 +22,38 @@ const AlacarteSection = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 3000 }),
   ]);
+  const [curr, setCurr] = useState(0);
 
   const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
+    if (emblaApi && emblaApi.scrollPrev) emblaApi.scrollPrev();
+    setCurr((curr) => (curr === 0 ? alacarteImages.length - 1 : curr - 1));
+    //setCurr(newIndex);
+  }, [emblaApi, curr, alacarteImages.length]);
 
   const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
+    if (emblaApi && emblaApi.scrollNext) emblaApi.scrollNext();
+    setCurr((curr) => (curr === alacarteImages.length - 1 ? 0 : curr + 1));
+    //setCurr(newIndex);
+  }, [emblaApi, curr, alacarteImages.length]);
+
+  const handleJump = useCallback(
+    (index) => {
+      if (emblaApi && emblaApi.scrollTo) emblaApi.scrollTo(index);
+      setCurr(index);
+    },
+    [emblaApi]
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setCurr(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on("select", onSelect);
+    return () => emblaApi.off("select", onSelect);
+  }, [emblaApi, onSelect]);
 
   return (
     <div className="flex flex-col items-center justify-center h-auto my-[50px] w-screen gap-[40px]">
@@ -69,7 +93,7 @@ const AlacarteSection = () => {
 
 
 
-      <div className="flex items-center justify-center h-[572px] w-screen bg-cover bg-center " style={{ backgroundImage: `url(${alacarteBackground})` }}>
+      <div className="hidden md:flex items-center justify-center h-[572px] w-screen bg-cover bg-center " style={{ backgroundImage: `url(${alacarteBackground})` }}>
       <div className="flex w-[85%] min-h-[515px] overflow-visible  items-center justify-start">
       <div
       className=" overflow-hidden relative flex w-[90%] h-full items-center justify-center"
@@ -80,9 +104,9 @@ const AlacarteSection = () => {
           <div className="flex-[0_0_auto] flex-row flex items-center justify-between h-auto w-full relative" key={index}>
             <img src={image} style={{objectFit:'cover'}} width={image.width} height={image.height} alt={`Slide ${index + 1}`} className=" flex h-auto w-[60%]"/>
 
-                <div className="flex flex-col w-[30%] text-start items-center justify-center text-white">
-                <h3 className=" text-[25px] font-lora leading-normal font-medium">{alacarteHeaders[index]}</h3>
-                <NewUnderline width={100} height={1}/>
+                <div className="flex flex-col w-[30%] text-start items-start justify-center text-white gap-[15px]">
+                <h3 className=" text-[25px] font-lora leading-normal font-medium ">{alacarteHeaders[index]}</h3>
+                <NewUnderline width={100} height={1} className="mb-[15px]"/>
                 <div className="flex items-center justify-start gap-[10px]">
                 <ClockSvg width={23} height={23}/>
                   <span className="text-[12px]">At any working time</span>
@@ -91,8 +115,8 @@ const AlacarteSection = () => {
                   <CheckSvg width={19} height={18}/>
                   <span className="text-[12px]">Booking is not required</span>
                 </div>
-                <button className="absolute bottom-12 bg-transparent text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-white border border-[#fff] py-[12px] px-[32px] hover:bg-white hover:text-[#233038]">
-                    <text >More About</text>
+                <button className="absolute bottom-12 mt-[20px] bg-transparent text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-white border border-[#fff] py-[12px] px-[32px] hover:bg-white hover:text-[#233038]">
+                    <text>More About</text>
                 </button>
                 </div>
 
@@ -105,6 +129,58 @@ const AlacarteSection = () => {
 
     </div>
       </div>
+
+      <div className="flex md:hidden flex-col lg:w-11/12 xl:w-11/12 w-full h-auto items-center justify-center">
+      <div className="overflow-hidden relative h-auto" ref={emblaRef}>
+          <div className="flex grid-flow-col">
+            {alacarteImages.map((image, index) => (
+              <div className="flex-[0_0_auto] mx-1 md:mx-2 md:w-[calc(33.3%-1rem)] lg:mx-4 xl:mx-12 lg:w-[calc(33.3%-1rem)] xl:w-[calc(33.3%-5rem)] w-full flex justify-center relative group" key={index}>
+                <img
+                  className="cursor-pointer overflow-hidden object-cover"
+                  height={image.height}
+                  width={image.width}
+                  layout="responsive"
+                  src={image}
+                  alt={`Slide ${index + 1}`}
+                />
+                <div className="absolute flex flex-col top-1 text-start items-center justify-center w-[90%] h-full">
+                <div className="flex flex-col w-[100%] md:w-[30%] text-start items-start justify-center text-white md:gap-[15px]">
+                <h3 className=" text-[25px] font-lora leading-normal font-medium ">{alacarteHeaders[index]}</h3>
+                <NewUnderline width={100} height={1} className="mb-[15px] md:flex hidden"/>
+                <div className="flex items-center justify-start gap-[10px] mb-1">
+                <ClockSvg width={23} height={23}/>
+                  <span className="text-[12px]">At any working time</span>
+                </div>
+                <div className="flex items-center justify-start gap-[10px]">
+                  <CheckSvg width={19} height={18}/>
+                  <span className="text-[12px]">Booking is not required</span>
+                </div>
+                <button className="absolute hidden md:flex bottom-12 mt-[20px] bg-transparent text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-white border border-[#fff] py-[12px] px-[32px] hover:bg-white hover:text-[#233038]">
+                    <text>More About</text>
+                </button>
+                </div>
+                </div>
+              </div>
+            ))}
+          </div>
+      </div>
+      <div className="flex items-center justify-center gap-2 w-11/12 md:w-3/4">
+            {alacarteImages.map((_, i) => (
+              <div
+                key={i}
+                className={`transition-all mt-8 w-[6px] h-[6px] bg-slate-300 rounded-full ${
+                  curr === i ? "p-1" : "bg-slate-200"
+                }`}
+                onClick={() => handleJump(i)}
+              />
+            ))}
+          </div>
+          <button className="flex items-center justify-center gap-2 md:hidden bottom-12 mt-[20px] bg-transparent text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-[#2233038] border border-[#868686] py-[12px] px-[32px] hover:bg-white hover:text-[#233038]">
+                    <text>More About</text>
+                </button>
+      
+    </div>
+
     </div>
   );
 };

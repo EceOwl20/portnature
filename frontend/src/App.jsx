@@ -12,6 +12,14 @@ import Login from "./pages/Login";
 import HeaderDgtl from "./components/header/HeaderDgtl";
 import Register from "./pages/Register";
 import Panel from "./pages/PanelPages/Panel";
+import HomeCarousel from "./components/homepage/HomeCarousel";
+import img1 from "../public/images/PortCover1.png"
+import img2 from "../public/images/PortCover31.png"
+import img3 from "../public/images/PortCover41.png"
+import Reservation from "./components/homepage/Reservation";
+import HomeIconSection from "./components/homepage/HomeIconSection";
+import "./App.css"
+import Rooms from "./pages/Accommodation/Rooms";
 
 const App = () => {
  const { activeUser } = useSelector((state) => state.user);
@@ -31,6 +39,7 @@ const App = () => {
           <main>
            <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/rooms" element={<Rooms/>}/>
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
             <Route path="/panel" element={<Panel />} />

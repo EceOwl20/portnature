@@ -19,8 +19,15 @@ const ContactSection = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const [isChecked, setIsChecked] = useState(false);
+
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
   return (
-    <div className='flex w-screen items-center justify-center bg-[#F8F8F8] py-[46px]'>
+    <div className='flex w-screen items-center justify-center bg-[#F8F8F8] py-[76px]'>
       <div className='flex flex-col lg:flex-row w-[95%] lg:w-[90%] xl:max-w-[1669px] items-center justify-center font-monserrat text-[#233038] gap-[20px] lg:gap-[0px]'>
         {/* <CallCenterSvg className="flex lg:hidden" width={134} height={119.63}/>
         <CallCenterSvg className="hidden lg:flex"  width={317} height={283}/> */}
@@ -90,6 +97,33 @@ const ContactSection = () => {
               placeholder='Message'
               required
             />
+
+        <label className="items-start inline-flex relative cursor-pointer text-[16px] text-[#212529] font-normal leading-normal text-start w-full">
+        <input 
+          type="checkbox" 
+          checked={isChecked} 
+          onChange={handleCheckboxChange} 
+          className="peer hidden"
+        />
+       <span
+    className="w-6 h-6 bg-gray-300 rounded-md mr-2 transition-colors duration-300 ease-in-out peer-checked:bg-green-500 peer-hover:bg-gray-400 relative flex items-center justify-center"
+  >
+    {/* Tik işareti */}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-4 h-4 text-white hidden peer-checked:block z-20"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  </span>
+  <span>Ben robot değilim</span>
+        {/* <span className=" w-[20px] h-[20px] rounded-[4px] mr-[8px] transition-colors ease-in-out duration-300 border border-[#CFCFCF] bg-white hover:bg-[#64A4FF]"></span>
+          I accept the <a href="/" className="text-[#000000] underline"> Terms and Conditions</a> */}
+          </label>
 
             <button className='flex py-[12px] px-[45px] text-center bg-[#64A4FF] text-white leading-normal text-[14px] font-bold'>Send</button>
           </form>
