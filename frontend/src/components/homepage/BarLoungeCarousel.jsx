@@ -22,7 +22,7 @@ const BarLoungeCarousel = ({ images, subImages, headers, texts, links }) => {
   }, [emblaApi]);
 
   return (
-    <div className="flex w-screen min-h-screen overflow-visible my-[50px]">
+    <div className="flex w-screen min-h-screen overflow-visible mt-[50px]">
       <div className=" overflow-hidden relative flex w-full" ref={emblaRef}>
         <div className="flex grid-flow-col min-h-screen w-full">
           {images.map((image, index) => (

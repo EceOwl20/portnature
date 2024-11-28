@@ -48,7 +48,7 @@ export function ChildrenCarousel({ images }) {
       <div className="overflow-hidden relative h-auto" ref={emblaRef}>
           <div className="flex grid-flow-col">
             {images.map((image, index) => (
-              <div className="flex-[0_0_auto] mx-1 md:mx-2 sm:w-[calc(50%-1rem)] md:w-[calc(33.3%-1rem)] lg:mx-4 xl:mx-3 lg:w-[calc(33.3%-1rem)] xl:w-[calc(33%-5rem)] w-11/12 flex justify-center relative group" key={index}>
+              <div className="flex-[0_0_auto] sm:mx-2 md:mx-3 sm:w-[calc(70%-1rem)] md:w-[calc(33.3%-1rem)] lg:mx-4 xl:mx-3 lg:w-[calc(33.3%-1rem)] xl:w-[calc(33%-5rem)] w-full flex justify-center relative group" key={index}>
                 <img
                   className="cursor-pointer overflow-hidden object-cover"
                   height={image.height}

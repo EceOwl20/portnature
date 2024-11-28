@@ -19,7 +19,6 @@ import followus4 from "../../public/images/homepage/follow4.png"
 import followus5 from "../../public/images/homepage/follow5.png"
 import followus6 from "../../public/images/homepage/follow6.png"
 import followus7 from "../../public/images/homepage/follow7.png"
-import { InstagramSection } from '../components/homepage/InstagramSection'
 import instagramImg from "../../public/images/homepage/newinsta.png"
 import BarLoungeCarousel from '../components/homepage/BarLoungeCarousel'
 import barImage from "../../public/images/homepage/IrishPub.png"
@@ -31,6 +30,8 @@ import bath from "../../public/images/homepage/TurkishBath3.png"
 import meeting from "../../public/images/homepage/meeting-restaurant.png"
 import davidoff from "../../public/images/homepage/davidoff2.png"
 import AlacarteSection from '../components/homepage/AlacarteSection'
+import SpecialOffersCarousel from '../components/homepage/SpecialOffersCarousel'
+// import InstagramSection from "../components/homepage/InstagramSection"
 
 const images =[img1,img2,img3];
 const instagramImages=[followus1,followus2,followus3,followus4,followus5,followus6,followus7];
@@ -42,14 +43,14 @@ const linksBar=["/","/","/","/"]
 
 const Homepage = () => {
   return (
-    <div className='flex flex-col items-center justify-center'>""
+    <div className='flex flex-col items-center justify-center'>
       <HomeCarousel images={images}/>
       <Reservation/>
       <HomeIconSection/>
       <div className='flex w-screen mt-20'>
-      <div class="bg-custom-gradient h-[1px] w-[50%]">
+      <div className="bg-custom-gradient h-[1px] w-[50%]">
       </div>
-      <div class="bg-custom-gradient-reverse h-[1px] w-[50%]">
+      <div className="bg-custom-gradient-reverse h-[1px] w-[50%]">
       </div>
       </div>
       <AllInclusive/>
@@ -57,10 +58,11 @@ const Homepage = () => {
       <Accommodation/>
       <ChildrenSection/>
       <ImageBackgroundSection/>
+      <SpecialOffersCarousel/>
       <AlacarteSection/>
       <BarLoungeCarousel images={barImages} subImages={subImages} headers={headersBar} texts={textsBar} links={linksBar}/>
       <ContactSection/>
-      <InstagramSection images={instagramImages}/>
+      {/* <InstagramSection images={instagramImages}/> */}
       <img src={instagramImg} alt='instagram' width={323.06149} height={630.77972} className='flex md:hidden  '/>
     </div>
   )

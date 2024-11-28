@@ -19,11 +19,11 @@ const Footer = () => {
 
        <div className='flex flex-col w-full lg:w-[30%] items-center justify-center'>
        <div className='flex items-center justify-center py-[36.5px] w-full gap-[9%] lg:gap-[6%]'>
-          <YoutubeSvg width={42} height={29} className="flex"/>
-          <FacebookSvg width={19} height={38} className="flex"/>
-          <InstagramSvg width={35} height={35} className="flex"/>
-          <WkSvg width={47} height={27} className="flex"/>
-          <TrivagoSvg width={43} height={27} className="flex"/>
+          <YoutubeSvg width={42} height={29} className="flex" color="white"/>
+          <FacebookSvg width={19} height={38} className="flex" color="white"/>
+          <InstagramSvg width={35} height={35} className="flex" color="white"/>
+          <WkSvg width={47} height={27} className="flex" color="white"/>
+          <TrivagoSvg width={43} height={27} className="flex" color="white"/>
         </div>
         <div className='flex lg:hidden h-[1px] w-full bg-[#FFFFFF4D]'></div>
         <img src={logo} alt='logo' width={214} height={88} className='flex lg:hidden mt-[32px] mb-[16px] items-center justify-center'/>
