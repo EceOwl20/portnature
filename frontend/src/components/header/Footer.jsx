@@ -13,11 +13,11 @@ import FooterLineSvg from '../../svg/FooterLineSvg'
 
 const Footer = () => {
   return (
-    <footer className='flex flex-col w-screen min-h-[1198px] lg:min-h-content h-auto lg:max-h-[440px] bg-center bg-cover relative items-center justify-start' style={{ backgroundImage: `url(${img})` }}>
+    <footer className='flex flex-col w-screen min-h-[1198px] lg:min-h-[440px] lg:max-h-[490px] bg-center bg-cover relative items-center justify-start' style={{ backgroundImage: `url(${img})` }}>
       <div className='flex absolute inset-0 z-1 bg-black/50'></div>
-      <div className='flex flex-col lg:flex-row w-[95%] lg:w-[98%]  z-10 items-center justify-center text-[#fff] lg:items-center gap-[3%]'>
+      <div className='flex flex-col lg:flex-row w-[95%] lg:w-[100%]  z-10 items-center justify-center text-[#fff] lg:items-center gap-[3%]'>
 
-       <div className='flex flex-col w-full lg:w-[30%] items-center justify-center'>
+       <div className='flex flex-col w-full lg:w-[25%] items-center justify-center'>
        <div className='flex items-center justify-center py-[36.5px] w-full gap-[9%] lg:gap-[6%]'>
           <YoutubeSvg width={42} height={29} className="flex" color="white"/>
           <FacebookSvg width={19} height={38} className="flex" color="white"/>
@@ -45,7 +45,7 @@ const Footer = () => {
        </div>
 
 
-        <div className='grid grid-cols-2 lg:grid-cols-4 items-start justify-between lg:justify-around w-[90%] lg:w-1/2 font-monserrat gap-[10%] lg:gap-[6%] my-[44px]'>
+        <div className='grid grid-cols-2 lg:grid-cols-4 items-start justify-between lg:justify-around w-[90%] lg:w-[68%] font-monserrat gap-[10%] lg:gap-[6%] my-[44px]'>
           <div className='flex flex-col gap-[10px] text-center justify-center items-center lg:items-start'>
             <h4 className='uppercase text-[14px] lg:text-[20px] lg:leading-[42px] font-lora font-medium leading-[20px]'>ACCOMMODATION</h4>
            <FooterLineSvg className="flex lg:hidden" width={200} height={1}/>
@@ -106,7 +106,7 @@ const Footer = () => {
         </div>
       
       </div>
-      <div className='flex w-full h-[1px] bg-white/30 mt-32 mb-[15px] z-10'></div>
+      <div className='flex w-full h-[1px] bg-white/30 my-[4px] z-10'></div>
        <div className='flex flex-col lg:flex-row w-[96%] z-10 items-center justify-center lg:justify-between mb-[20px] text-[13px] lg:text-[14px] lg:leading-normal text-[#CFCFCF] font-normal leading-[19px]'>
        <p className=''>Port Nature Resort © Luxury Resort Hotel & SPA </p>
        <p className=' '>Powered by company © DGTLFace</p>
