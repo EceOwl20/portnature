@@ -1,13 +1,18 @@
 import React from 'react'
 import MainBackgroundRooms from './components/MainBackgroundRooms'
-import img from "../../../public/images/rooms/familyroom-banner.png"
 import SubroomsInfoSection from './components/SubroomsInfoSection'
+import RoomFeatures from './components/RoomFeatures'
+import ContactSection from '../../components/homepage/ContactSection'
+import RoomPlan from './components/RoomPlan'
 
-const SubRooms = () => {
+const SubRooms = ({img,header,text,items,images}) => {
   return (
     <div>
-      <MainBackgroundRooms img={img} header="Family room"/>
-      <SubroomsInfoSection text="A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home"/>
+      <MainBackgroundRooms img={img} header={header}/>
+      <SubroomsInfoSection text={text} images={images} items={items} />
+      <RoomFeatures/>
+      <RoomPlan/>
+      <ContactSection/>
     </div>
   )
 }
