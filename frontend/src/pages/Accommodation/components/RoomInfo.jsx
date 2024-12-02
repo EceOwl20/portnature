@@ -18,9 +18,9 @@ const RoomInfo = () => {
   return (
     <div className='flex flex-col w-screen h-auto my-[50px] items-center justify-center'>
       <div className='flex flex-col gap-5 lg:gap-0 lg:flex-row w-[98%] lg:w-[80%] items-center justify-center lg:justify-around mb-5'>
-       <Link className='flex py-[16px] w-[40%] lg:w-[16%] text-[#233038] border border-black/20 text-[15px] lg:text-[20px] font-monserrat font-light leading-normal text-center items-center justify-center bg-white hover:bg-[#233038] hover:text-white' to="/">Family Room</Link>
-       <Link className='flex py-[16px]  w-[40%] lg:w-[16%] text-[#233038] border border-black/20 text-[15px] lg:text-[20px] font-monserrat font-light leading-normal text-center items-center justify-center bg-white hover:bg-[#233038] hover:text-white' to="/">King Suite Room</Link>
-       <Link className='flex py-[16px]  w-[40%] lg:w-[16%] text-[#233038] border border-black/20 text-[15px] lg:text-[20px] font-monserrat font-light leading-normal text-center items-center justify-center bg-white hover:bg-[#233038] hover:text-white' to="/">Standard Room</Link>
+       <Link className='flex py-[16px] w-[40%] lg:w-[16%] text-[#233038] border border-black/20 text-[15px] lg:text-[20px] font-monserrat font-light leading-normal text-center items-center justify-center bg-white hover:bg-[#233038] hover:text-white' to="/family-room">Family Room</Link>
+       <Link className='flex py-[16px]  w-[40%] lg:w-[16%] text-[#233038] border border-black/20 text-[15px] lg:text-[20px] font-monserrat font-light leading-normal text-center items-center justify-center bg-white hover:bg-[#233038] hover:text-white' to="/king-suite-room">King Suite Room</Link>
+       <Link className='flex py-[16px]  w-[40%] lg:w-[16%] text-[#233038] border border-black/20 text-[15px] lg:text-[20px] font-monserrat font-light leading-normal text-center items-center justify-center bg-white hover:bg-[#233038] hover:text-white' to="/standard-room">Standard Room</Link>
       </div>
     
         <RoomsInfoCarousel images={familyImages} text={familyText}/>

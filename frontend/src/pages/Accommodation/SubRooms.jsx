@@ -4,6 +4,7 @@ import SubroomsInfoSection from './components/SubroomsInfoSection'
 import RoomFeatures from './components/RoomFeatures'
 import ContactSection from '../../components/homepage/ContactSection'
 import RoomPlan from './components/RoomPlan'
+import OtherOptions from './components/OtherOptions'
 
 const SubRooms = ({img,header,text,items,images}) => {
   return (
@@ -13,6 +14,7 @@ const SubRooms = ({img,header,text,items,images}) => {
       <RoomFeatures/>
       <RoomPlan/>
       <ContactSection/>
+      <OtherOptions/>
     </div>
   )
 }
