@@ -95,14 +95,14 @@ const Header = () => {
                   <NewUnderline />
                 </Link>
                 <Link
-                  to="/family-room"
+                  to="/king-suite-room"
                   className="block px-4 py-2"
                 >
-                  Suite Room
+                  King Suite
                   <NewUnderline />
                 </Link>
                 <Link
-                  to="/accommodation/standart-room"
+                  to="/standard-rooms"
                   className="block px-4 py-2 whitespace-nowrap justify-center"
                 >
                   Standard Room

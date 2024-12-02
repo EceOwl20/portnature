@@ -3,6 +3,7 @@ import Header from "./components/header/Header";
 import Homepage from "./pages/Homepage";
 import Footer from "./components/header/Footer";
 import BookPhoneSection from "./components/BookPhoneSection";
+import ScrollToTop from "./components/ScrollToTop"
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -22,16 +23,41 @@ import "./App.css"
 import Rooms from "./pages/Accommodation/Rooms";
 import SubRooms from "./pages/Accommodation/SubRooms";
 import familyroomBanner from "../public/images/rooms/familyroom-banner.png"
+import kingsuiteBanner from "../public/images/rooms/kingsuite-banner.png"
 import familyroom1 from "../public/images/rooms/familyroom1.png"
 import familyroom2 from "../public/images/rooms/familyroom2.png"
 import familyroom3 from "../public/images/rooms/familyroom3.png"
+import kingsuite1 from "../public/images/rooms/kingsuite1.png"
+import kingsuite2 from "../public/images/rooms/kingsuite2.png"
+import kingsuite3 from "../public/images/rooms/kingsuite3.png"
+import familyroomPlan from "../public/images/rooms/familyroomPlan.png"
+import kingPlan from "../public/images/rooms/kingPlan.png"
 import PersonSvg from "./svg/room/PersonSvg"
 import SingleBedSvg from './svg/SingleBedSvg'
 import BedSvg from './svg/BedSvg'
 import AreaSvg from './svg/room/AreaSvg'
 import SeaViewSvg from './svg/SeaViewSvg'
+import allrooms from "../public/images/rooms/Photo-All-Rooms.png"
+import roomsfamily from "../public/images/rooms/familyroom-1.png"
+import roomskingsuite from "../public/images/rooms/kingSuite-1.png"
+import roomsstandardroom from "../public/images/rooms/standardRoom-1.png"
+import standardBanner from "../public/images/rooms/standardroom-banner.png"
+
+const allStandardroomslinks=["/standard-side-view","/standard-sea-view","/standard-land-view"];
+const allStandardroomslinkstext=["Side Sea View","Sea View","Land View"];
+
+const allroomslinks=["/family-room","/king-suite-room","/standard-rooms"];
+const allroomslinkstext=["Family Room","King Suite Room","Standard Room"];
+const roomsFamilyImg = [roomsfamily, roomsfamily, roomsfamily];
+const roomsKingImg = [roomskingsuite, roomskingsuite, roomskingsuite];
+const roomsStandardImg = [roomsstandardroom, roomsstandardroom, roomsstandardroom];
 
 const familyImages = [familyroom1, familyroom2, familyroom3];
+const kingsuiteImages = [kingsuite1, kingsuite2, kingsuite3];
+
+const familyText=["FAMILY ROOM","A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home","2","2","45m2","Corner Sea View",];
+const kingText=["KING SUITE","A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home","1","2","110m2","Sea View",];
+const standardText=["STANDARD ROOM","You will find the unique harmony of modern architecture in comfortable and spacious rooms decorated in pastel colors","1","1","35m2","Side View/Sea View/Land View ",];
 
 const FamilyItems = [
   {
@@ -79,8 +105,10 @@ const App = () => {
           <main>
            <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/rooms" element={<Rooms/>}/>
-            <Route path="/family-room" element={<SubRooms img={familyroomBanner} images={familyImages} header="Family Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems}/>}/>
+            <Route path="/rooms" element={<Rooms img={allrooms} header="Feel every advantage of our rooms" links={allroomslinks} linkstext={allroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
+            <Route path="/family-room" element={<SubRooms img={familyroomBanner} images={familyImages} header="Family Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={familyroomPlan}/>}/>
+            <Route path="/king-suite-room" element={<SubRooms img={kingsuiteBanner} images={kingsuiteImages} header="King Suite Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={kingPlan}/>}/>
+            <Route path="/standard-rooms" element={<Rooms img={standardBanner} header="Standard Rooms" links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
@@ -88,6 +116,7 @@ const App = () => {
            </Routes>
           </main>
           <BookPhoneSection/>
+          <ScrollToTop/>
           <Footer/>
         </BrowserRouter>
       </HelmetProvider>
