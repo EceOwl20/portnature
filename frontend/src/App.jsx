@@ -20,6 +20,7 @@ import Reservation from "./components/homepage/Reservation";
 import HomeIconSection from "./components/homepage/HomeIconSection";
 import "./App.css"
 import Rooms from "./pages/Accommodation/Rooms";
+import SubRooms from "./pages/Accommodation/SubRooms";
 
 const App = () => {
  const { activeUser } = useSelector((state) => state.user);
@@ -40,6 +41,8 @@ const App = () => {
            <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/rooms" element={<Rooms/>}/>
+            <Route path="/family-room" element={<SubRooms/>}/>
+            <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
             <Route path="/panel" element={<Panel />} />

@@ -88,14 +88,14 @@ const Header = () => {
               {/* Alt menü */}
               <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
                 <Link
-                  to="/accommodation/family-room"
+                  to="/family-room"
                   className="block px-4 py-2"
                 >
                   Family Room
                   <NewUnderline />
                 </Link>
                 <Link
-                  to="/accommodation/suite-room"
+                  to="/family-room"
                   className="block px-4 py-2"
                 >
                   Suite Room

@@ -42,12 +42,12 @@ const RoomsInfoCarousel = ({images,text}) => {
               <text className='text-[14px] font-semibold leading-[22.5px] text-start text-stoneLight'>{text[1]}</text>
               <div className="grid grid-cols-3  items-center justify-center w-full">
                 <div className="flex items-center justify-center gap-2">
-                    <BedSvg width={43} height={48}/>
+                    <BedSvg width={43} height={48} color="#3D515E"/>
                     <Cross2Svg width={20} height={20}/>
                    <span className="text-[20px] font-lora font-medium leading-[42px] text-[#3D515E]"> {text[2]}</span>
                 </div>
                 <div className="flex items-center justify-center gap-2">
-                    <SingleBedSvg width={29} height={48}/>
+                    <SingleBedSvg width={29} height={48} color="#3D515E"/>
                     <Cross2Svg width={20} height={20}/>
                    <span className="text-[20px] font-lora font-medium leading-[42px] text-[#3D515E]"> {text[3]}</span>
                 </div>
@@ -55,7 +55,7 @@ const RoomsInfoCarousel = ({images,text}) => {
                    <span className="text-[20px] font-lora font-medium leading-[42px] text-[#3D515E]"> {text[4]} </span>
                 </div>
                 <div className="flex flex-row items-center justify-center gap-2 col-span-3 mt-8">
-                    <SeaViewSvg width={43} height={30}/>
+                    <SeaViewSvg width={43} height={30} color="#233038"/>
                    <span className="text-[20px] font-lora font-medium leading-[42px] text-[#3D515E]"> {text[5]}</span>
                 </div>
               </div>
@@ -71,19 +71,19 @@ const RoomsInfoCarousel = ({images,text}) => {
               <text className='text-[12px] lg:text-[15px] font-normal leading-[22.5px] text-start font-monserrat text-black'>{text[1]}</text>
               <div className="grid grid-cols-3  items-center justify-center w-full">
                 <div className="flex items-center justify-center gap-2">
-                    <BedSvg width={43} height={48} className="hidden lg:flex"/>
+                    <BedSvg width={43} height={48} color="#3D515E" className="hidden lg:flex"/>
                     <Cross2Svg width={20} height={20} className="hidden lg:flex"/>
 
-                    <BedSvg width={26.52} height={29.61} className="flex lg:hidden"/>
+                    <BedSvg width={26.52} height={29.61} color="#3D515E" className="flex lg:hidden"/>
                     <Cross2Svg width={10} height={10} className="flex lg:hidden"/>
 
                    <span className="text-[15px] lg:text-[20px] font-lora font-medium leading-[42px] text-[#3D515E]"> {text[2]}</span>
                 </div>
                 <div className="flex items-center justify-center gap-2">
-                    <SingleBedSvg width={29} height={48} className="hidden lg:flex"/>
+                    <SingleBedSvg width={29} height={48} color="#3D515E" className="hidden lg:flex"/>
                     <Cross2Svg width={20} height={20} className="hidden lg:flex"/>
 
-                    <SingleBedSvg width={17.88} height={29.61} className="flex lg:hidden"/>
+                    <SingleBedSvg width={17.88} height={29.61} color="#3D515E" className="flex lg:hidden"/>
                     <Cross2Svg width={10} height={10} className="flex lg:hidden"/>
                    <span className="text-[15px] lg:text-[20px] font-lora font-medium leading-[42px] text-[#3D515E]"> {text[3]}</span>
                 </div>
@@ -91,8 +91,8 @@ const RoomsInfoCarousel = ({images,text}) => {
                    <span className="text-[15px] lg:text-[20px] font-lora font-medium leading-[42px] text-[#3D515E]"> {text[4]} </span>
                 </div>
                 <div className="flex flex-row items-center justify-center gap-2 col-span-3 mt-8">
-                    <SeaViewSvg width={43} height={30} className="hidden lg:flex"/>
-                    <SeaViewSvg width={36} height={25} className="flex lg:hidden"/>
+                    <SeaViewSvg width={43} height={30} color="#233038" className="hidden lg:flex"/>
+                    <SeaViewSvg width={36} height={25} color="#233038" className="flex lg:hidden"/>
                    <span className="text-[15px] lg:text-[20px] font-lora font-medium leading-[42px] text-[#3D515E]"> {text[5]}</span>
                 </div>
               </div>
