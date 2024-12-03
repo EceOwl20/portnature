@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 import Header from "./components/header/Header";
 import Homepage from "./pages/Homepage";
 import Footer from "./components/header/Footer";
@@ -42,12 +42,14 @@ import roomsfamily from "../public/images/rooms/familyroom-1.png"
 import roomskingsuite from "../public/images/rooms/kingSuite-1.png"
 import roomsstandardroom from "../public/images/rooms/standardRoom-1.png"
 import standardBanner from "../public/images/rooms/standardroom-banner.png"
+import StandardRoomComponent from "./pages/Accommodation/components/StandardRoomComponent";
+import StandardRooms from "./pages/Accommodation/StandardRooms";
 
 const allStandardroomslinks=["/standard-side-view","/standard-sea-view","/standard-land-view"];
-const allStandardroomslinkstext=["Side Sea View","Sea View","Land View"];
+const allStandardroomslinkstexts=["Side Sea View","Sea View","Land View"];
 
 const allroomslinks=["/family-room","/king-suite-room","/standard-rooms"];
-const allroomslinkstext=["Family Room","King Suite Room","Standard Room"];
+const allroomslinkstexts=["Family Room","King Suite Room","Standard Room"];
 const roomsFamilyImg = [roomsfamily, roomsfamily, roomsfamily];
 const roomsKingImg = [roomskingsuite, roomskingsuite, roomskingsuite];
 const roomsStandardImg = [roomsstandardroom, roomsstandardroom, roomsstandardroom];
@@ -101,14 +103,14 @@ const App = () => {
               <Header />
             </>
           )}
-      
           <main>
            <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/rooms" element={<Rooms img={allrooms} header="Feel every advantage of our rooms" links={allroomslinks} linkstext={allroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
+            <Route path="/rooms" element={<Rooms img={allrooms} header="Feel every advantage of our rooms" links={allroomslinks} linkstext={allroomslinkstexts} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
             <Route path="/family-room" element={<SubRooms img={familyroomBanner} images={familyImages} header="Family Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={familyroomPlan}/>}/>
             <Route path="/king-suite-room" element={<SubRooms img={kingsuiteBanner} images={kingsuiteImages} header="King Suite Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={kingPlan}/>}/>
-            <Route path="/standard-rooms" element={<Rooms img={standardBanner} header="Standard Rooms" links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
+            <Route path="/standard-rooms" element={<StandardRooms img={standardBanner} header="Standard Rooms" links={allStandardroomslinks} linkstext={allStandardroomslinkstexts} />}/>
+            {/* links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText} */}
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />

@@ -23,3 +23,4 @@ const Card2Other = () => {
 }
 
 export default Card2Other
+ 

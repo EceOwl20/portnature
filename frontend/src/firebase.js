@@ -5,13 +5,13 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBq_Lsn0uJIK59AG3VSWzvOENkgGqzFw7s",
-  authDomain: "portnature-5bb9e.firebaseapp.com",
-  projectId: "portnature-5bb9e",
-  storageBucket: "portnature-5bb9e.firebasestorage.app",
-  messagingSenderId: "866099162043",
-  appId: "1:866099162043:web:9ae1dc3c0653c5c601b29e"
+  apiKey: "AIzaSyD_1qCJFoi_OhMQQgguZ-2MuK2mN3PbM2Y",
+  authDomain: "mpmatik-d1c9f.firebaseapp.com",
+  projectId: "mpmatik-d1c9f",
+  storageBucket: "mpmatik-d1c9f.appspot.com",
+  messagingSenderId: "482954078589",
+  appId: "1:482954078589:web:570ed508d35d3d4ba50414"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
