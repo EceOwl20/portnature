@@ -20,6 +20,7 @@ const RoomInfo = ({links,linkstext,text1,text2,text3,images1,images2,images3}) =
        <Link className='flex py-[16px]  w-[40%] lg:w-[16%] text-[#233038] border border-black/20 text-[15px] lg:text-[20px] font-monserrat font-light leading-normal text-center items-center justify-center bg-white hover:bg-[#233038] hover:text-white' to={links[2]}>{linkstext[2]}</Link>
       </div>
     
+
         <RoomsInfoCarousel images={images1} text={text1}/>
         <RoomsInfoCarousel images={images2} text={text2}/>
         <RoomsInfoCarousel images={images3} text={text3}/>

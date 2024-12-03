@@ -37,6 +37,7 @@ import SingleBedSvg from './svg/SingleBedSvg'
 import BedSvg from './svg/BedSvg'
 import AreaSvg from './svg/room/AreaSvg'
 import SeaViewSvg from './svg/SeaViewSvg'
+
 import allrooms from "../public/images/rooms/Photo-All-Rooms.png"
 import roomsfamily from "../public/images/rooms/familyroom-1.png"
 import roomskingsuite from "../public/images/rooms/kingSuite-1.png"
@@ -53,6 +54,11 @@ const allroomslinkstexts=["Family Room","King Suite Room","Standard Room"];
 const roomsFamilyImg = [roomsfamily, roomsfamily, roomsfamily];
 const roomsKingImg = [roomskingsuite, roomskingsuite, roomskingsuite];
 const roomsStandardImg = [roomsstandardroom, roomsstandardroom, roomsstandardroom];
+
+import Dashboard from "./pages/PanelPages/Dashboard";
+import BlogEkle from "./pages/PanelPages/BlogEkle";
+import BlogPage from "./pages/BlogPage";
+
 
 const familyImages = [familyroom1, familyroom2, familyroom3];
 const kingsuiteImages = [kingsuite1, kingsuite2, kingsuite3];
@@ -114,7 +120,11 @@ const App = () => {
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
-            <Route path="/panel" element={<Panel />} />
+            <Route path="/panel" element={<Panel />}>
+                <Route path="/panel/dashboard" element={<Dashboard />} />
+                <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
+            </Route>
+            <Route path="/bloglar" element={<BlogPage />} />  
            </Routes>
           </main>
           <BookPhoneSection/>

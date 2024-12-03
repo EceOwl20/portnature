@@ -23,21 +23,21 @@ const PanelSideBar = () => {
   };
 
   return (
-    <section className="flex flex-col">
-      <aside className="flex flex-col items-center w-[10%] bg-[#0e0c1b] p-[15px] h-[100vh]">
+    <section className="flex">
+      <aside className="flex flex-col items-center w-[10%] bg-[#0e0c1b] p-[15px]">
         <nav className="flex flex-col items-start w-full gap-[10px]">
-          <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[20px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel">Panel</NavLink>
-          <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[20px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel">Dashboard</NavLink>
-
-          <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[20px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel">Kullanıcıları Yönet</NavLink>
-          <a className="flex items-center w-[90%] text-white font-monserrat text-[20px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" href="#" onClick={handleLogOut}>
+          <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel">Panel</NavLink>
+          <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel/dashboard">Dashboard</NavLink>
+          <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel/yeniblogekle">Yeni Blog Ekle</NavLink>
+          <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel">Kullanıcıları Yönet</NavLink>
+          <a className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" href="#" onClick={handleLogOut}>
             Çıkış Yap
           </a>
         </nav>
       </aside>
-      <div className="flex w-[100%] bg-[#6b81a5] text-white">
-       
-      </div>
+      <main className="m-0 p-0 border-box w-full ">
+          <Outlet></Outlet>
+      </main>
     </section>
   );
 };

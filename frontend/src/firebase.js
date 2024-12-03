@@ -10,8 +10,10 @@ const firebaseConfig = {
   projectId: "mpmatik-d1c9f",
   storageBucket: "mpmatik-d1c9f.appspot.com",
   messagingSenderId: "482954078589",
+
   appId: "1:482954078589:web:570ed508d35d3d4ba50414"
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+
