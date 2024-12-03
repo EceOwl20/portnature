@@ -30,6 +30,9 @@ import SingleBedSvg from './svg/SingleBedSvg'
 import BedSvg from './svg/BedSvg'
 import AreaSvg from './svg/room/AreaSvg'
 import SeaViewSvg from './svg/SeaViewSvg'
+import Dashboard from "./pages/PanelPages/Dashboard";
+import BlogEkle from "./pages/PanelPages/BlogEkle";
+import BlogPage from "./pages/BlogPage";
 
 const familyImages = [familyroom1, familyroom2, familyroom3];
 
@@ -84,7 +87,11 @@ const App = () => {
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
-            <Route path="/panel" element={<Panel />} />
+            <Route path="/panel" element={<Panel />}>
+                <Route path="/panel/dashboard" element={<Dashboard />} />
+                <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
+            </Route>
+            <Route path="/bloglar" element={<BlogPage />} />  
            </Routes>
           </main>
           <BookPhoneSection/>
