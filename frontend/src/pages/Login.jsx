@@ -33,11 +33,11 @@ const Login = () => {
             return;
         }
         dispatch(loginSuccess(data));
-        navigate("/");
+        navigate("/panel");
     };
 
     return (
-        <section className='w-screen h-[45vh] bg-white text-center flex flex-col items-center justify-center font-monserrat'>
+        <section className='w-screen h- bg-white text-center flex flex-col items-center justify-center font-monserrat'>
             
             <form onSubmit={handleSubmit} className='flex justify-centeritems-center flex-col min-h-content gap-[2%] w-[30%] bg-[#f3f3f3] rounded-[20px] p-[1%]'>
             <h1 className='text-[32px] mb-[5%]'>Giriş Yap</h1>

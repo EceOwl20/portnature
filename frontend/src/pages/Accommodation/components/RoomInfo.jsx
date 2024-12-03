@@ -26,7 +26,6 @@ const RoomInfo = () => {
         <RoomsInfoCarousel images={familyImages} text={familyText}/>
         <RoomsInfoCarousel images={kingImages} text={familyText}/>
         <RoomsInfoCarousel images={standardImages} text={standardText}/>
-
         <RoomFeatures/>
         <ContactSection/>
       
