@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import UnderLine from "../../svg/UnderLine/UnderLine";
 import ArrowSvg from "../../svg/ArrowSvg";
-import logo from "/header/Logo Port small.png";
+import logo from "/header/logo.png";
 import MenuBar from "../../svg/MenuBar";
 import PhoneSvg from "../../svg/PhoneSvg";
 import darklogo from "../../../public/images/homepage/LogoPortDark.png"
@@ -13,12 +13,34 @@ import WkSvg from "../../svg/WkSvg";
 import TrivagoSvg from "../../svg/TrivagoSvg";
 import CrossSvg from "../../svg/CrossSvg";
 import NewUnderline from "../../svg/NewUnderline";
+import { app } from "../../firebase.js";
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const sidebarRef = useRef(null);
+
+  const [headerImages, setHeaderImages] = useState([]);
+
+  useEffect(() => {
+    const fetchHeaderImages = async () => {
+      const storage = getStorage();
+      const storageRef = ref(storage, "images/");
+
+      try {
+        const result = await listAll(storageRef);
+        const urls = await Promise.all(
+          result.items.map((item) => getDownloadURL(item))
+        );
+        setHeaderImages(urls);
+      } catch (error) {
+        console.error("Error fetching header images:", error);
+      }
+    };
+
+    fetchHeaderImages();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,14 +83,14 @@ const Header = () => {
             </button>
             <Link to="/">
               <img
-                src={logo}
+                src={headerImages[0]}
                 alt="Logo"
                 width={197.315}
                 height={111.838}
                 className="hidden xl:flex"
               />
               <img
-                src={logo}
+                src={headerImages[0]}
                 alt="Logo"
                 width={120.973}
                 height={68.762}
@@ -95,14 +117,14 @@ const Header = () => {
                   <NewUnderline />
                 </Link>
                 <Link
-                  to="/family-room"
+                  to="/king-suite-room"
                   className="block px-4 py-2"
                 >
-                  Suite Room
+                  King Suite
                   <NewUnderline />
                 </Link>
                 <Link
-                  to="/accommodation/standart-room"
+                  to="/standard-rooms"
                   className="block px-4 py-2 whitespace-nowrap justify-center"
                 >
                   Standard Room
