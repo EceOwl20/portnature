@@ -59,6 +59,7 @@ import Dashboard from "./pages/PanelPages/Dashboard";
 import BlogEkle from "./pages/PanelPages/BlogEkle";
 import BlogPage from "./pages/BlogPage";
 import BlogDetails from "./pages/BlogDetails";
+import FoodDrinkPage from "./pages/Food/FoodDrinkPage";
 
 
 const familyImages = [familyroom1, familyroom2, familyroom3];
@@ -118,6 +119,7 @@ const App = () => {
             <Route path="/king-suite-room" element={<SubRooms img={kingsuiteBanner} images={kingsuiteImages} header="King Suite Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={kingPlan}/>}/>
             <Route path="/standard-rooms" element={<StandardRooms img={standardBanner} header="Standard Rooms" links={allStandardroomslinks} linkstext={allStandardroomslinkstexts} />}/>
             {/* links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText} */}
+            <Route path="/food-drinks" element={<FoodDrinkPage/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
