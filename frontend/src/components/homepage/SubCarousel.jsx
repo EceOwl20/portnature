@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import useCarousel from "embla-carousel-react";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
+import Autoplay from "embla-carousel-autoplay";
 
 const SubCarousel = ({images}) => {
   const [emblaRef, emblaApi] = useCarousel({
     loop: true,
     align: "start",
     startIndex: 0,
-  });
+  }, [
+    Autoplay({ delay: 4000 }),
+  ]
+);
 
   const [curr, setCurr] = useState(0);
 

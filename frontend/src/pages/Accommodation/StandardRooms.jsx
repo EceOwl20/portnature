@@ -2,11 +2,11 @@ import React from 'react'
 import MainBackgroundRooms from './components/MainBackgroundRooms'
 import sideview from "../../../public/images/rooms/sideview.png"
 import landview from "../../../public/images/rooms/landview.png"
-
 import RoomInfo from './components/RoomInfo'
 import StandardRoomComponent from './components/StandardRoomComponent'
 import { Link } from 'react-router-dom'
 import ContactSection from '../../components/homepage/ContactSection'
+import RoomFeatures from './components/RoomFeatures'
 
 const StandardRooms = ({img,header,links,linkstext}) => {
   return (
@@ -21,6 +21,7 @@ const StandardRooms = ({img,header,links,linkstext}) => {
         <StandardRoomComponent roomtypeImg={sideview} roomheader="Side View" roomP="A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home n the comfort of your own home"/>
         <StandardRoomComponent roomtypeImg={sideview} roomheader="Sea View" roomP="A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home n the comfort of your own home"/>
         <StandardRoomComponent roomtypeImg={landview} roomheader="Land View" roomP="A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home n the comfort of your own home"/>
+        <RoomFeatures/>
         <ContactSection/>
     </div>
   )

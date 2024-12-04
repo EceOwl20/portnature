@@ -7,6 +7,7 @@ import BedSvg from "../../../svg/BedSvg"
 import SingleBedSvg from "../../../svg/SingleBedSvg"
 import SeaViewSvg from "../../../svg/SeaViewSvg"
 import Cross2Svg from "../../../svg/Cross2Svg"
+import BigBirdSvg from "../../../svg/room/BigBirdSvg"
 
 const RoomsInfoCarousel = ({images,text}) => {
     const [emblaRef, emblaApi] = useCarousel({
@@ -35,9 +36,9 @@ const RoomsInfoCarousel = ({images,text}) => {
       }, [emblaApi]);
     
       return (
-        <div className='flex flex-col mt-0 lg:mt-10 w-screen mb-[20px] lg:mb-[66px]'>
+        <div className='flex flex-col mt-0 lg:mt-10 w-screen mb-[20px] lg:mb-[66px] relative'>
           <div className='flex flex-col gap-[20px] items-center justify-center w-full text-[#233038]'>
-            <div className=' flex-col hidden gap-[23px] text-center  text-darkB w-full items-center justify-center'>
+            <div className=' flex-col hidden gap-[23px] text-center text-darkB w-full items-center justify-center'>
               <span className='text-[20px] tracking-[5px] leading-normal font-lora uppercase font-medium mb-[25px]'>{text[0]}</span>
               <text className='text-[14px] font-semibold leading-[22.5px] text-start text-stoneLight'>{text[1]}</text>
               <div className="grid grid-cols-3  items-center justify-center w-full">
@@ -121,6 +122,7 @@ const RoomsInfoCarousel = ({images,text}) => {
           </div>
         </div>
           </div>
+          {/* <BigBirdSvg width={1013.992} height={746.28} className="hidden lg:flex absolute top-0 left-[-100] scale-x-[-1]"/> */}
         </div>
       )
 }
