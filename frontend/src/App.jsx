@@ -58,6 +58,7 @@ const roomsStandardImg = [roomsstandardroom, roomsstandardroom, roomsstandardroo
 import Dashboard from "./pages/PanelPages/Dashboard";
 import BlogEkle from "./pages/PanelPages/BlogEkle";
 import BlogPage from "./pages/BlogPage";
+import BlogDetails from "./pages/BlogDetails";
 
 
 const familyImages = [familyroom1, familyroom2, familyroom3];
@@ -124,7 +125,8 @@ const App = () => {
                 <Route path="/panel/dashboard" element={<Dashboard />} />
                 <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
             </Route>
-            <Route path="/bloglar" element={<BlogPage />} />  
+            <Route path="/bloglar" element={<BlogPage />} />
+            <Route path="/blog/:url" element={<BlogDetails />} /> 
            </Routes>
           </main>
           <BookPhoneSection/>
