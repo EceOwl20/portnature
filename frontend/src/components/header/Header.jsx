@@ -5,7 +5,7 @@ import ArrowSvg from "../../svg/ArrowSvg";
 import logo from "/header/logo.png";
 import MenuBar from "../../svg/MenuBar";
 import PhoneSvg from "../../svg/PhoneSvg";
-import darklogo from "../../../public/images/homepage/LogoPortDark.png"
+import darklogo from "../../../public/images/homepage/LogoPortDark.png";
 import YoutubeSvg from "../../svg/YoutubeSvg";
 import FacebookSvg from "../../svg/FacebookSvg";
 import InstagramSvg from "../../svg/InstagramSvg";
@@ -26,7 +26,7 @@ const Header = () => {
   useEffect(() => {
     const fetchHeaderImages = async () => {
       const storage = getStorage();
-      const storageRef = ref(storage, "images/");
+      const storageRef = ref(storage, "images/header");
 
       try {
         const result = await listAll(storageRef);
@@ -83,14 +83,14 @@ const Header = () => {
             </button>
             <Link to="/">
               <img
-                src={headerImages[0]}
+                src={headerImages[1]}
                 alt="Logo"
                 width={197.315}
                 height={111.838}
                 className="hidden xl:flex"
               />
               <img
-                src={headerImages[0]}
+                src={headerImages[1]}
                 alt="Logo"
                 width={120.973}
                 height={68.762}
@@ -109,32 +109,35 @@ const Header = () => {
 
               {/* Alt menü */}
               <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
-                <Link
-                  to="/family-room"
-                  className="block px-4 py-2"
-                >
+                <Link to="/family-room" className="block px-4 py-2">
                   Family Room
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
-                <Link
-                  to="/king-suite-room"
-                  className="block px-4 py-2"
-                >
+                <Link to="/king-suite-room" className="block px-4 py-2">
                   King Suite
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
                 <Link
                   to="/standard-rooms"
                   className="block px-4 py-2 whitespace-nowrap justify-center"
                 >
                   Standard Room
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
               </div>
             </div>
             <div className="relative group">
               <Link to="/" className="flex items-center">
-              KIDS CONCEPT
+                KIDS CONCEPT
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
                 </svg>
@@ -147,22 +150,27 @@ const Header = () => {
                   className="block px-4 py-2"
                 >
                   Mini Club
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
                 <Link
                   to="/accommodation/suite-room"
                   className="block px-4 py-2"
                 >
                   Aquapark
-                  <NewUnderline />
+                  <div className="flex">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
-                
               </div>
             </div>
             <Link>OFFERS 2023</Link>
             <div className="relative group">
               <Link to="/" className="flex items-center">
-              FOOD & DRINK
+                FOOD & DRINK
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
                 </svg>
@@ -175,36 +183,47 @@ const Header = () => {
                   className="block px-4 py-2"
                 >
                   A'la Carte
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
                 <Link
                   to="/accommodation/suite-room"
                   className="block px-4 py-2"
                 >
                   Bars & Cafes
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
                 <Link
                   to="/accommodation/suite-room"
                   className="block px-4 py-2"
                 >
                   Main Restaurant
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
                 <Link
                   to="/accommodation/suite-room"
                   className="block px-4 py-2"
                 >
                   Davidoff Cafe
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
-                
               </div>
             </div>
 
             <div className="relative group">
               <Link to="/" className="flex items-center">
-              ENTERTAINMENT
+                ENTERTAINMENT
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
                 </svg>
@@ -217,30 +236,38 @@ const Header = () => {
                   className="block px-4 py-2"
                 >
                   Concerts
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
                 <Link
                   to="/accommodation/suite-room"
                   className="block px-4 py-2"
                 >
                   Activities
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
                 <Link
                   to="/accommodation/suite-room"
                   className="block px-4 py-2"
                 >
                   Beach
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
-                
               </div>
             </div>
-            
+
             <Link>CONTACTS</Link>
             <div className="relative group">
               <Link to="/" className="flex items-center">
-              SPA
+                SPA
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
                 </svg>
@@ -253,23 +280,27 @@ const Header = () => {
                   className="block px-4 py-2"
                 >
                   Spa & Wellness
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
                 <Link
                   to="/accommodation/suite-room"
                   className="block px-4 py-2"
                 >
                   Indoor Pool
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
-                
-                
               </div>
             </div>
 
             <div className="relative group">
               <Link to="/" className="flex items-center">
-              MEETING & CONGRESS
+                MEETING & CONGRESS
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
                 </svg>
@@ -282,45 +313,54 @@ const Header = () => {
                   className="block px-4 py-2"
                 >
                   Thermessos
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
                 <Link
                   to="/accommodation/suite-room"
                   className="block px-4 py-2"
                 >
                   Aspendos
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
                 <Link
                   to="/accommodation/suite-room"
                   className="block px-4 py-2"
                 >
                   Perge
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
                 <Link
                   to="/accommodation/suite-room"
                   className="block px-4 py-2"
                 >
                   Olympos
-                  <NewUnderline />
+                  <div className="flex  ">
+                    <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+                    <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+                  </div>
                 </Link>
-                
-                
               </div>
             </div>
-            
-            <div className="flex items-center gap-[9px]">
-            <span className="text-white text-[16px] font-monserrat leading-normal font-normal">
-              EN{" "}
-            </span>
-            <ArrowSvg className="flex" width={9} height={4} />
-          </div>
 
+            <div className="flex items-center gap-[9px]">
+              <span className="text-white text-[16px] font-monserrat leading-normal font-normal">
+                EN{" "}
+              </span>
+              <ArrowSvg className="flex" width={9} height={4} />
+            </div>
           </nav>
           <button className="hidden lg:flex bg-white text-[#233038] font-bold w-[10%] h-[50px] text-center justify-center items-center">
-              Book Now
-            </button>
+            Book Now
+          </button>
 
           <div className="flex lg:hidden items-center gap-[9px]">
             <span className="text-white text-[16px] font-monserrat leading-normal font-normal">
@@ -333,71 +373,85 @@ const Header = () => {
 
       {/* Sidebar */}
       <div
-  className={`flex fixed top-0 left-0 w-[100%] h-screen z-[9999] bg-[#fff] text-[#233038] transition-all duration-300 ease-in-out ${
-    sidebarOpen ? "translate-x-0" : "-translate-x-full"
-  }`}
->
+        className={`flex fixed top-0 left-0 w-[100%] h-screen z-[9999] bg-[#fff] text-[#233038] transition-all duration-300 ease-in-out ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
         <div className="flex flex-col w-[100%] pt-[30px] items-center justify-between text-[#233038]">
-         
-           <div className="flex flex-row items-center justify-between w-[90%] ">
-           <div className="flex gap-4">
-          <button  onClick={toggleSidebar}> <CrossSvg width={24} height={24} className="flex"/></button>
-           <img src={darklogo} alt="logo dark" width={darklogo.width} height={darklogo.height}/>
-           </div>
+          <div className="flex flex-row items-center justify-between w-[90%] ">
             <div className="flex gap-4">
-            <PhoneSvg width={19.889} height={19.928} color="#233038" fill="#233038" />
-            <div className="flex items-center gap-[9px] justify-center">
-              <span className="text-[#233038] text-[16px] font-monserrat leading-normal font-normal">
-                EN{" "}
-              </span>
-              <ArrowSvg className="flex" width={9} height={4} />
+              <button onClick={toggleSidebar}>
+                {" "}
+                <CrossSvg width={24} height={24} className="flex" />
+              </button>
+              <img
+                src={darklogo}
+                alt="logo dark"
+                width={darklogo.width}
+                height={darklogo.height}
+              />
             </div>
+            <div className="flex gap-4">
+              <PhoneSvg
+                width={19.889}
+                height={19.928}
+                color="#233038"
+                fill="#233038"
+              />
+              <div className="flex items-center gap-[9px] justify-center">
+                <span className="text-[#233038] text-[16px] font-monserrat leading-normal font-normal">
+                  EN{" "}
+                </span>
+                <ArrowSvg className="flex" width={9} height={4} />
+              </div>
             </div>
-           </div>
-          
+          </div>
+
           <nav className="flex flex-col w-[75%] text-[16px] font-normal leading-normal uppercase font-monserrat text-start gap-[20px]">
             <Link to="/" onClick={toggleSidebar}>
-            ACCOMMODATION
-            </Link>
-            <div className="flex bg-[#DDD] h-[1px] w-full" ></div>
-            <Link to="/" onClick={toggleSidebar}>
-            CHILDREN
+              ACCOMMODATION
             </Link>
             <div className="flex bg-[#DDD] h-[1px] w-full"></div>
             <Link to="/" onClick={toggleSidebar}>
-            OFFERS 2023
+              CHILDREN
             </Link>
             <div className="flex bg-[#DDD] h-[1px] w-full"></div>
             <Link to="/" onClick={toggleSidebar}>
-            FOOD & DRINK
+              OFFERS 2023
             </Link>
             <div className="flex bg-[#DDD] h-[1px] w-full"></div>
             <Link to="/" onClick={toggleSidebar}>
-            ENTERTAINMENT
+              FOOD & DRINK
             </Link>
             <div className="flex bg-[#DDD] h-[1px] w-full"></div>
             <Link to="/" onClick={toggleSidebar}>
-            CONTACTS
+              ENTERTAINMENT
             </Link>
             <div className="flex bg-[#DDD] h-[1px] w-full"></div>
             <Link to="/" onClick={toggleSidebar}>
-            SPA
+              CONTACTS
             </Link>
             <div className="flex bg-[#DDD] h-[1px] w-full"></div>
             <Link to="/" onClick={toggleSidebar}>
-            MEETING & CONGRESS
+              SPA
+            </Link>
+            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+            <Link to="/" onClick={toggleSidebar}>
+              MEETING & CONGRESS
             </Link>
           </nav>
 
           <div className="flex w-[80%] items-center justify-between">
-            <YoutubeSvg width={34} height={24} color="#233038cc"/>
-            <FacebookSvg width={34} height={24} color="#233038cc"/>
-            <InstagramSvg width={34} height={24} color="#233038cc"/>
-            <WkSvg width={34} height={24} color="#233038cc"/>
-            <TrivagoSvg width={34} height={24} color="#233038cc"/>
+            <YoutubeSvg width={34} height={24} color="#233038cc" />
+            <FacebookSvg width={34} height={24} color="#233038cc" />
+            <InstagramSvg width={34} height={24} color="#233038cc" />
+            <WkSvg width={34} height={24} color="#233038cc" />
+            <TrivagoSvg width={34} height={24} color="#233038cc" />
           </div>
 
-          <button className="flex w-full text-center py-[28px] items-center justify-center text-[20px] font-monserrat font-bold leading-normal text-[#f8f8f8] bg-[#233038]">Book Now</button>
+          <button className="flex w-full text-center py-[28px] items-center justify-center text-[20px] font-monserrat font-bold leading-normal text-[#f8f8f8] bg-[#233038]">
+            Book Now
+          </button>
         </div>
       </div>
     </>

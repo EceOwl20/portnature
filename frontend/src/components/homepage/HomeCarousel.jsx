@@ -4,8 +4,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import portlogo from "../../../public/images/LogoPortbig.png"
 
-
-
 const HomeCarousel = ({ images }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 2000 }),

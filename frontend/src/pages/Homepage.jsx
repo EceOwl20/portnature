@@ -31,6 +31,7 @@ import meeting from "../../public/images/homepage/meeting-restaurant.png"
 import davidoff from "../../public/images/homepage/davidoff2.png"
 import AlacarteSection from '../components/homepage/AlacarteSection'
 import SpecialOffersCarousel from '../components/homepage/SpecialOffersCarousel'
+import BorderCarousel from '../components/BorderCarousel'
 // import InstagramSection from "../components/homepage/InstagramSection"
 
 const images =[img1,img2,img3];
@@ -62,6 +63,7 @@ const Homepage = () => {
       <AlacarteSection/>
       <BarLoungeCarousel images={barImages} subImages={subImages} headers={headersBar} texts={textsBar} links={linksBar}/>
       <ContactSection/>
+      <BorderCarousel/>
       {/* <InstagramSection images={instagramImages}/> */}
       <img src={instagramImg} alt='instagram' width={323.06149} height={630.77972} className='flex md:hidden  '/>
     </div>

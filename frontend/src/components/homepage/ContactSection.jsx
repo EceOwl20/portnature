@@ -93,7 +93,7 @@ const ContactSection = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full md:w-[60%] py-[12px] px-[16px] border border-[#CFCFCF] "
+              className="w-full md:w-[60%] lg:w-full py-[12px] px-[16px] border border-[#CFCFCF] "
               placeholder='Message'
               required
             />
