@@ -5,6 +5,7 @@ import Reservation from "../components/homepage/Reservation"
 import img1 from "../../public/images/homepage/portnaturehotel1.png"
 import img2 from "../../public/images/homepage/portnaturehotel2.jpeg"
 import img3 from "../../public/images/homepage/portnaturehotel3.png"
+import ContactSection from "../components/homepage/ContactSection";
 
 
 const BlogPage = () => {
@@ -37,6 +38,7 @@ const BlogPage = () => {
   if (loading) return <p>Yükleniyor...</p>;
   if (error) return <p>Hata: {error}</p>;
 
+  
   return (
     <main>
           <HomeCarousel  images={images}/>
@@ -68,7 +70,7 @@ const BlogPage = () => {
                         {blog.sections[language][0].content.substring(0, 50)}...
                       </p>
                       <Link
-                        to={`/blog/${blog._id}`}
+                        to={`/blog/${blog.url}`}
                         className="text-blue-500 hover:underline"
                       >
                         Devamını Oku
@@ -79,12 +81,15 @@ const BlogPage = () => {
                       <p>Bu dil için içerik bulunamadı.</p>
                     </div>
                   )
+                  
                 ))}
               </div>
           </div>
         </div>
+        <ContactSection />
     </main>
   );
 };
+
 
 export default BlogPage;

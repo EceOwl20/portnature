@@ -20,8 +20,13 @@ export const makaleListele = async (req, res, next) => {
 
 export const makaleGetir = async (request, response, next) => {
     try {
-        const blog = await Blog.findOne({url: request.params.url});
-        return response.status(201).json(blog);
+        const { url } = request.params
+        const blog = await Blog.findOne({url});
+        if (blog) {
+            res.status(201).json({ success: true, blog });
+        } else {
+            res.status(404).json ({ success: false, message: "Blog bulunamadı"});
+        }
     } catch (error) {
         next(error);
     }
