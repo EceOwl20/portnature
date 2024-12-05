@@ -59,7 +59,7 @@ const BlogDetails = () => {
   combinedContent.sort((a, b) => a.order - b.order);
 
   return (
-    <div className="container mx-auto px-4 pb-4">
+    <div className=" flex flex-col px-4 pb-4 items-center justify-center">
       <div className="flex justify-center mb-4">
         <button onClick={() => setLanguage("tr")} className="mx-2">
           Türkçe
@@ -79,7 +79,7 @@ const BlogDetails = () => {
         <img
           src={blog.thumbnail}
           alt={sections[0]?.title || "Blog Thumbnail"}
-          className="mb-6 w-full h-64 object-cover"
+          className="mb-6 w-7/12 "
         />
       )}
 
@@ -103,18 +103,18 @@ const BlogDetails = () => {
             const HeadingTag = `h${headingLevel}`;
 
             return (
-              <div key={item._id || `section-${index}`} className="mb-6">
+              <div key={item._id || `section-${index}`} className=" flex  flex-col items-center gap-7 w-7/12 mb-6">
                 {item.title && (
-                  <HeadingTag className="font-bold mb-2">
+                  <HeadingTag className="mb-2 text-[40px] font-lora font-medium">
                     {item.title}
                   </HeadingTag>
                 )}
-                {item.content && <p className="text-lg">{item.content}</p>}
+                {item.content && <p className="text-[14px] font-monserrat">{item.content}</p>}
               </div>
             );
           } else if (item.type === "image") {
             return (
-              <div key={`image-${index}`} className="mb-6">
+              <div key={`image-${index}`} className="w-5/12">
                 <img
                   src={item.src}
                   alt={`Blog Image ${index + 1}`}

@@ -46,9 +46,14 @@ export const makaleGuncelle = async (request, response, next) => {
 
 export const makaleSil = async (request, response, next) => {
     try {
-        const blog = await Blog.findByIdAndDelete(request.params.id)
-        response.status(201).json(blog);
+        const blog = await Blog.findByIdAndDelete(request.params.id);
+        if (blog) {
+            response.status(200).json({ success: true, message: 'Blog başarıyla silindi', blog });
+        } else {
+            response.status(404).json({ success: false, message: 'Blog bulunamadı' });
+        }
     } catch (error) {
-        next(error)
+        console.error('makaleSil Hatası:', error);
+        response.status(500).json({ success: false, message: 'Sunucu hatası' });
     }
-}
+};
