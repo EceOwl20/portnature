@@ -59,12 +59,16 @@ import Dashboard from "./pages/PanelPages/Dashboard";
 import BlogEkle from "./pages/PanelPages/BlogEkle";
 import BlogPage from "./pages/BlogPage";
 import BlogDetails from "./pages/BlogDetails";
+
 import FoodDrinkPage from "./pages/Food/FoodDrinkPage";
 import AlacartePage from "./pages/Food/AlacartePage";
 import food1 from "/images/food1.png"
 import barcafes from "/images/barcafes.png"
 import logo from "/images/hennessy.png"
 import farEast from "/images/FarEastRestaurant 1.png"
+
+import BlogListele from "./pages/PanelPages/BlogListele";
+
 
 const foodFindCardImages=[farEast,farEast];
 
@@ -138,6 +142,7 @@ const App = () => {
             <Route path="/kayit-ol" element={<Register />} />
             <Route path="/panel" element={<Panel />}>
                 <Route path="/panel/dashboard" element={<Dashboard />} />
+                <Route path="/panel/bloglar" element={<BlogListele />} />
                 <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
             </Route>
             <Route path="/bloglar" element={<BlogPage />} />
