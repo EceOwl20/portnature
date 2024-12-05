@@ -169,7 +169,7 @@ const Header = () => {
             </div>
             <Link>OFFERS 2023</Link>
             <div className="relative group">
-              <Link to="/" className="flex items-center">
+              <Link to="/food-drinks" className="flex items-center">
                 FOOD & DRINK
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
@@ -179,7 +179,7 @@ const Header = () => {
               {/* Alt menü */}
               <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
                 <Link
-                  to="/accommodation/family-room"
+                  to="/alacarte-restaurant"
                   className="block px-4 py-2"
                 >
                   A'la Carte

@@ -68,21 +68,21 @@ const AlacarteSection = () => {
         <NewUnderline width={243} height={1} className="flex"/>
         <div className="flex flex-col md:grid md:grid-cols-2 md:gap-5 lg:grid lg:grid-cols-3 items-center justify-center lg:mt-[20px] w-[85%] lg:w-[70%] text-[#233038] ">
             <div className="flex items-start justify-start gap-[2%]">
-                <LeafSvg width={31} height={36}/>
+                <LeafSvg width={31} height={36} color="#233038"/>
                 <div className="flex flex-col gap-[6px]">
                     <h3 className="text-[20px] font-lora italic leading-[42px] font-medium">Top Quality</h3>
                     <p className="text-[13px] font-normal font-monserrat leading-[19px]">We do not work with unknown brands. We offer top quality We do not work with unknown brands. We offer top quality</p>
                 </div>
             </div>
             <div className="flex items-start justify-start gap-[2%]">
-                <LeafSvg width={31} height={36}/>
+                <LeafSvg width={31} height={36} color="#233038"/>
                 <div className="flex flex-col gap-[6px]">
                     <h3 className="text-[20px] font-lora italic leading-[42px] font-medium">Top Quality</h3>
                     <p className="text-[13px] font-normal font-monserrat leading-[19px]">We do not work with unknown brands. We offer top quality We do not work with unknown brands. We offer top quality</p>
                 </div>
             </div>
             <div className="flex items-start justify-start gap-[2%] md:justify-center lg:justify-start md:cols-span-2 lg:col-span-1">
-                <LeafSvg width={31} height={36}/>
+                <LeafSvg width={31} height={36} color="#233038"/>
                 <div className="flex flex-col gap-[6px]">
                     <h3 className="text-[20px] font-lora italic leading-[42px] font-medium">Top Quality</h3>
                     <p className="text-[13px] font-normal font-monserrat leading-[19px]">We do not work with unknown brands. We offer top quality We do not work with unknown brands. We offer top quality</p>

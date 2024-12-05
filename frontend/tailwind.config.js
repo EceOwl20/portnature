@@ -9,6 +9,9 @@ export default {
         customGray: '#233038',
         customGray80:'#233038cc'
       },
+      textShadow: {
+        'custom': '0px 6px 7px rgba(0, 0, 0, 0.25)',
+      },
       inset: {
         'fullreverse': '-100%', // left: -100% için özel sınıf
       },

@@ -71,8 +71,8 @@ const BorderCarousel2 = () => {
                   src={image}
                   alt={`Slide ${index + 1}`}
                 />
-                <div className="flex w-full items-end justify-end">
-                  <div className="flex text-start justify-start items-center pt-[3%] w-[80%]">
+                <div className="flex w-full items-center justify-center">
+                  <div className="flex text-start justify-start items-start pt-[3%] w-[80%]">
                     <p className="text-[12px] text-black font-monserrat font-normal leading-[18px] w-[88%]">
                       A luxurious holiday is waiting for you in Family Rooms, designed in the comfort of your home
                     </p>
@@ -85,7 +85,7 @@ const BorderCarousel2 = () => {
                   {header[index]}
                 </span>
               </div>
-              <div className="absolute top-[8%] left-[18%] border border-[#CFCFCF] h-[55vh] w-[70%] z-1"></div>
+              <div className="absolute top-[8%] left-[18%] border border-[#CFCFCF] h-[55vh] w-[79%] z-1"></div>
             </div>
           ))}
         </div>
