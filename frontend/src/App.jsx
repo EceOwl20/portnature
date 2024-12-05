@@ -59,6 +59,7 @@ import Dashboard from "./pages/PanelPages/Dashboard";
 import BlogEkle from "./pages/PanelPages/BlogEkle";
 import BlogPage from "./pages/BlogPage";
 import BlogDetails from "./pages/BlogDetails";
+import BlogListele from "./pages/PanelPages/BlogListele";
 
 
 const familyImages = [familyroom1, familyroom2, familyroom3];
@@ -123,6 +124,7 @@ const App = () => {
             <Route path="/kayit-ol" element={<Register />} />
             <Route path="/panel" element={<Panel />}>
                 <Route path="/panel/dashboard" element={<Dashboard />} />
+                <Route path="/panel/bloglar" element={<BlogListele />} />
                 <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
             </Route>
             <Route path="/bloglar" element={<BlogPage />} />
