@@ -1,11 +1,10 @@
 import React, { useEffect, useCallback, useState } from "react";
 import useCarousel from "embla-carousel-react";
 import food1 from "/images/food1.png"
-import food2 from "/images/food2.png"
 
 const images=[food1, food1,food1, food1,food1, food1];
 
-const FoodCarousel = () => {
+const FoodCarousel = ({images}) => {
     const [emblaRef, emblaApi] = useCarousel({
         loop: true,
         align:"center",
@@ -52,7 +51,7 @@ const FoodCarousel = () => {
     <div className="overflow-hidden relative h-auto" ref={emblaRef}>
         <div className="flex grid-flow-col">
           {images.map((image, index) => (
-            <div className="z-10 flex-[0_0_auto] sm:mx-2 md:mx-3 sm:w-[calc(70%-1rem)] md:w-[calc(33.3%-1rem)] lg:mx-4 xl:mx-3 lg:w-[calc(33.3%-1rem)] xl:w-[calc(35%-7rem)] w-full flex justify-center group" key={index}>
+            <div className="z-10 flex-[0_0_auto] sm:mx-2 md:mx-3 sm:w-[calc(70%-1rem)] lg:mx-4 xl:mx-3 lg:w-[calc(33.3%-1rem)] xl:w-[calc(35%-7rem)] w-full flex justify-center group" key={index}>
               <img
                 className="cursor-pointer overflow-hidden object-cover"
                 height={image.height}
