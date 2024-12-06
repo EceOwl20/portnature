@@ -68,7 +68,36 @@ import logo from "/images/hennessy.png"
 import farEast from "/images/FarEastRestaurant 1.png"
 
 import BlogListele from "./pages/PanelPages/BlogListele";
+import EastFoodSvg from "./svg/food/EastFoodSvg"
+import CupcakeSvg from "./svg/food/CupcakeSvg"
+import CoffeePage from "./pages/Food/CoffeePage";
+import CoffeeBarsMainPage from "./components/food/CoffeeBarsMainPage";
 
+const findRestaurants = [
+  {
+    header: "FAR EAST A'LA CARTE",
+    text: "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+    link: "/far-east",
+    image: farEast, 
+    icon: { Icon: EastFoodSvg, width: 31, height: 29, color: "red-500" },
+  },
+  {
+    header: "FAR EAST A'LA CARTE",
+    text: "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+    link: "/cupcake",
+    image: farEast, 
+    icon: { Icon: CupcakeSvg, width: 31, height: 29, color: "blue-500" },
+  },
+];
+
+const restaurantIcons = [
+  { Icon: EastFoodSvg, width: 31, height: 29, color: "red-500" },
+  { Icon: CupcakeSvg, width: 31, height: 29, color: "blue-500" },
+];
+
+const findRestaurantHeaders=["FAR EAST A'LA CARTE","FAR EAST A'LA CARTE"]
+const findRestaurantTexts=["We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.","We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."]
+const findRestaurantLinks = ["/","/"]
 
 const foodFindCardImages=[farEast,farEast];
 
@@ -135,7 +164,9 @@ const App = () => {
             <Route path="/king-suite-room" element={<SubRooms img={kingsuiteBanner} images={kingsuiteImages} header="King Suite Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={kingPlan}/>}/>
             <Route path="/standard-rooms" element={<StandardRooms img={standardBanner} header="Standard Rooms" links={allStandardroomslinks} linkstext={allStandardroomslinkstexts} />}/>
             {/* links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText} */}
-            <Route path="/food-drinks" element={<FoodDrinkPage carouselImg={FoodCarouselImages} menuImg={FoodMenuImages} menuLinks={FoodMenuLinks} logoImages={FoodLogoImages} findFoodImages={foodFindCardImages}/>}/>
+            <Route path="/food-drinks" element={<FoodDrinkPage carouselImg={FoodCarouselImages} menuImg={FoodMenuImages} menuLinks={FoodMenuLinks} logoImages={FoodLogoImages} findRestaurants={findRestaurants}/>}/>
+            <Route path="/davidoff-cafe" element={<CoffeePage />}/>
+            <Route path="/bars-cafe" element={<CoffeeBarsMainPage findRestaurants={findRestaurants}/>}/>
             <Route path="/alacarte-restaurant" element={<AlacartePage/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />

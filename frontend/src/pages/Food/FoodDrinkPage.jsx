@@ -5,13 +5,13 @@ import LogoSection from '../../components/LogoSection'
 import ContactSection from '../../components/homepage/ContactSection'
 import FindRestaurantSection from '../../components/food/FindRestaurantSection'
 
-const FoodDrinkPage = ({carouselImg, menuImg, menuLinks,logoImages,findFoodImages}) => {
+const FoodDrinkPage = ({carouselImg, menuImg, menuLinks,logoImages,findRestaurants}) => {
   return (
     <div>
       <FoodCarousel images={carouselImg}/>
       <FoodMenu images={menuImg} links={menuLinks}/>
       <LogoSection images={logoImages}/>
-      <FindRestaurantSection images={findFoodImages}/>
+      <FindRestaurantSection findRestaurants={findRestaurants} />
       <ContactSection/>
     </div>
   )

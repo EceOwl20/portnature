@@ -3,7 +3,7 @@ import farEast from "../../../public/images/FarEastRestaurant 1.png"
 import LocationSvg from "../../svg/LocationSvg"
 import FindRestaurantCard from './FindRestaurantCard'
 
-const FindRestaurantSection = ({findRestaurants}) => {
+const FilterFindCafe = ({findRestaurants}) => {
   return (
     <div className='flex w-screen h-auto py-10 justify-center items-center'>
       <div className='flex flex-col w-[90%] lg:w-[75%] xl:max-w-[1180px] justify-center items-center text-start'>
@@ -29,4 +29,4 @@ const FindRestaurantSection = ({findRestaurants}) => {
   )
 }
 
-export default FindRestaurantSection
+export default FilterFindCafe

@@ -13,26 +13,6 @@ const FoodCarousel = ({images}) => {
     
       const [curr, setCurr] = useState(0);
     
-      const scrollPrev = useCallback(() => {
-        if (emblaApi && emblaApi.scrollPrev) emblaApi.scrollPrev();
-        setCurr((curr) => (curr === 0 ? images.length - 1 : curr - 1));
-        //setCurr(newIndex);
-      }, [emblaApi, curr, images.length]);
-    
-      const scrollNext = useCallback(() => {
-        if (emblaApi && emblaApi.scrollNext) emblaApi.scrollNext();
-        setCurr((curr) => (curr === images.length - 1 ? 0 : curr + 1));
-        //setCurr(newIndex);
-      }, [emblaApi, curr, images.length]);
-    
-      const handleJump = useCallback(
-        (index) => {
-          if (emblaApi && emblaApi.scrollTo) emblaApi.scrollTo(index);
-          setCurr(index);
-        },
-        [emblaApi]
-      );
-    
       const onSelect = useCallback(() => {
         if (!emblaApi) return;
         setCurr(emblaApi.selectedScrollSnap());
@@ -51,7 +31,7 @@ const FoodCarousel = ({images}) => {
     <div className="overflow-hidden relative h-auto" ref={emblaRef}>
         <div className="flex grid-flow-col">
           {images.map((image, index) => (
-            <div className="z-10 flex-[0_0_auto] sm:mx-2 md:mx-3 sm:w-[calc(70%-1rem)] lg:mx-4 xl:mx-3 lg:w-[calc(33.3%-1rem)] xl:w-[calc(35%-7rem)] w-full flex justify-center group" key={index}>
+            <div className="relative z-10 flex-[0_0_auto] sm:mx-2 md:mx-3 sm:w-[calc(70%-1rem)] lg:mx-4 xl:mx-3 lg:w-[calc(33.3%-1rem)] xl:w-[calc(35%-7rem)] w-full flex justify-center group" key={index}>
               <img
                 className="cursor-pointer overflow-hidden object-cover"
                 height={image.height}
@@ -59,6 +39,7 @@ const FoodCarousel = ({images}) => {
                 src={image}
                 alt={`Slide ${index + 1}`}
               />
+              <div className="absolute inset-0 bg-black/30"></div>
             </div>
           ))}        
          
