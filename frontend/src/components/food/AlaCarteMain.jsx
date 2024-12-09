@@ -4,7 +4,7 @@ import LeafSvg from "../../svg/LeafSvg";
 import FreeSvg from "../../svg/FreeSvg";
 import DrinksSvg from "../../svg/DrinksSvg";
 
-const AlaCarteMain = () => {
+const AlaCarteMain = ({images,}) => {
   return (
       <section className="flex w-screen h-[70vh] items-start justify-between bg-white">
         <div className="flex flex-col w-full lg:w-[49%] items-center justify-center lg:gap-[20px] text-center lg:text-start ">

@@ -2,7 +2,7 @@ import React from 'react'
 import davidoffImage from "../../../public/images/food/davidoff2.png"
 import DavidoffSvg from "../../svg/food/DavidoffSvg"
 
-const CoffeeTextSection = () => {
+const CoffeeTextSection = ({image,header,texts,svg}) => {
   return (
     <div className='flex w-screen h-auto my-10 lg:my-24 items-center justify-center'>
       <div className='flex flex-col relative lg:flex-row w-[90%] lg:w-[85%] xl:max-h-[1170px] justify-around items-center'>

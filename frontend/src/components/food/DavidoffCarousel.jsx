@@ -7,7 +7,7 @@ import davidoffLogo from "../../../public/images/food/Davidoff_logo.png"
 const images = [img, img, img, img,img,img];
 const TWEEN_FACTOR_BASE = 0.52;
 
-const DavidoffCarousel = () => {
+const DavidoffCarousel = ({resimler,logo,logoText}) => {
   const [emblaRef, emblaApi] = useCarousel({
     loop: true,
     align: "center",

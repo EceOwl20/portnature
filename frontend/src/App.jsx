@@ -3,7 +3,7 @@ import Header from "./components/header/Header";
 import Homepage from "./pages/Homepage";
 import Footer from "./components/header/Footer";
 import BookPhoneSection from "./components/BookPhoneSection";
-import ScrollToTop from "./components/ScrollToTop"
+import ScrollToTopButton from "./components/ScrollToTopButton"
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -73,6 +73,8 @@ import CupcakeSvg from "./svg/food/CupcakeSvg"
 import CoffeePage from "./pages/Food/CoffeePage";
 import CoffeeBarsMainPage from "./components/food/CoffeeBarsMainPage";
 import alacarte from "../public/images/food/alacarte.png"
+import ScrollToTop from "./components/ScrollToTop";
+import MainRestaurant from "./pages/Food/MainRestaurant";
 
 const restaurants = [
   {
@@ -127,9 +129,9 @@ const filterfindRestaurants = [
     ageLimit:"7"
   },
   {
-    header: "FAR EAST A'LA 2",
+    header: "Davidoff Cafe",
     text: "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
-    link: "/cupcake",
+    link: "/davidoff-cafe",
     image: farEast, 
     icon: { Icon: CupcakeSvg, width: 31, height: 29, color: "blue-500" },
     time:"",
@@ -209,6 +211,7 @@ const App = () => {
             </>
           )}
           <main>
+          <ScrollToTop />
            <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/rooms" element={<Rooms img={allrooms} header="Feel every advantage of our rooms" links={allroomslinks} linkstext={allroomslinkstexts} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
@@ -220,6 +223,7 @@ const App = () => {
             <Route path="/davidoff-cafe" element={<CoffeePage />}/>
             <Route path="/bars-cafes" element={<CoffeeBarsMainPage filterfindRestaurants={filterfindRestaurants}/>}/>
             <Route path="/alacarte-restaurant" element={<AlacartePage findRestaurants={findRestaurants}/>}/>
+            <Route path="/main-restaurant" element={<MainRestaurant/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
@@ -233,7 +237,7 @@ const App = () => {
            </Routes>
           </main>
           <BookPhoneSection/>
-          <ScrollToTop/>
+          <ScrollToTopButton/>
           <Footer/>
         </BrowserRouter>
       </HelmetProvider>
