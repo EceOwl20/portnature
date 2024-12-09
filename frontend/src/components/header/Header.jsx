@@ -98,7 +98,7 @@ const Header = () => {
               />
             </Link>
           </div>
-          <nav className="text-white hidden lg:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[14px] text-center items-center justify-between w-[72%]">
+          <nav className="text-white hidden lgxl-custom:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[14px] text-center items-center justify-between w-[72%]">
             <div className="relative group">
               <Link to="/rooms" className="flex items-center">
                 ACCOMMODATION
@@ -189,7 +189,7 @@ const Header = () => {
                   </div>
                 </Link>
                 <Link
-                  to="/accommodation/suite-room"
+                  to="/bars-cafes"
                   className="block px-4 py-2"
                 >
                   Bars & Cafes
@@ -199,7 +199,7 @@ const Header = () => {
                   </div>
                 </Link>
                 <Link
-                  to="/accommodation/suite-room"
+                  to="/main-restaurant"
                   className="block px-4 py-2"
                 >
                   Main Restaurant
@@ -358,11 +358,11 @@ const Header = () => {
               <ArrowSvg className="flex" width={9} height={4} />
             </div>
           </nav>
-          <button className="hidden lg:flex bg-white text-[#233038] font-bold w-[10%] h-[50px] text-center justify-center items-center">
+          <button className="hidden lgxl-custom:flex bg-white text-[#233038] font-bold w-[10%] h-[50px] text-center justify-center items-center">
             Book Now
           </button>
 
-          <div className="flex lg:hidden items-center gap-[9px]">
+          <div className="flex lgxl-custom:hidden items-center gap-[9px]">
             <span className="text-white text-[16px] font-monserrat leading-normal font-normal">
               EN{" "}
             </span>

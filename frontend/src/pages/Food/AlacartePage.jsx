@@ -3,11 +3,11 @@ import AlaCarteMain from '../../components/food/AlaCarteMain'
 import FindRestaurantSection from '../../components/food/FindRestaurantSection'
 import ContactSection from '../../components/homepage/ContactSection'
 
-const AlacartePage = () => {
+const AlacartePage = ({findRestaurants}) => {
   return (
     <div >
       <AlaCarteMain/>
-      <FindRestaurantSection/>
+      <FindRestaurantSection findRestaurants={findRestaurants}/>
       <ContactSection/>
     </div>
   )

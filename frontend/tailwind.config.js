@@ -5,6 +5,10 @@ export default {
 ],
   theme: {
     extend: {
+      screens: {
+        'lgxl-custom': { 'min': '1200px' }, 
+      },
+
       colors: {
         customGray: '#233038',
         customGray80:'#233038cc'
