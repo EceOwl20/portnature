@@ -72,6 +72,25 @@ import EastFoodSvg from "./svg/food/EastFoodSvg"
 import CupcakeSvg from "./svg/food/CupcakeSvg"
 import CoffeePage from "./pages/Food/CoffeePage";
 import CoffeeBarsMainPage from "./components/food/CoffeeBarsMainPage";
+import alacarte from "../public/images/food/alacarte.png"
+
+const restaurants = [
+  {
+    header: "A'LA CARTE",
+    text: "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+    span:"Enjoy your holiday Enjoy your holiday",
+    link: "/ala-carte",
+    image: alacarte, 
+   
+  },
+  {
+    header: "A'LA CARTE",
+    text: "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+    span:"Enjoy your holiday Enjoy your holiday",
+    link: "/ala-carte",
+    image: alacarte, 
+  },
+];
 
 const findRestaurants = [
   {
@@ -80,6 +99,9 @@ const findRestaurants = [
     link: "/far-east",
     image: farEast, 
     icon: { Icon: EastFoodSvg, width: 31, height: 29, color: "red-500" },
+    time:"",
+    kidsFriendly:false,
+    ageLimit:"+18"
   },
   {
     header: "FAR EAST A'LA CARTE",
@@ -87,6 +109,32 @@ const findRestaurants = [
     link: "/cupcake",
     image: farEast, 
     icon: { Icon: CupcakeSvg, width: 31, height: 29, color: "blue-500" },
+    time:"",
+    kidsFriendly:false,
+    ageLimit:"+18"
+  },
+];
+
+const filterfindRestaurants = [
+  {
+    header: "FAR EAST A'LA CARTE",
+    text: "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+    link: "/far-east",
+    image: farEast, 
+    icon: { Icon: EastFoodSvg, width: 31, height: 29, color: "red-500" },
+    time:"7/24",
+    kidsFriendly:"true",
+    ageLimit:"7"
+  },
+  {
+    header: "FAR EAST A'LA 2",
+    text: "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+    link: "/cupcake",
+    image: farEast, 
+    icon: { Icon: CupcakeSvg, width: 31, height: 29, color: "blue-500" },
+    time:"",
+    kidsFriendly:"false",
+    ageLimit:"+18"
   },
 ];
 
@@ -142,6 +190,10 @@ const FamilyItems = [
   },
 ];
 
+
+
+
+
 const App = () => {
  const { activeUser } = useSelector((state) => state.user);
 
@@ -164,10 +216,10 @@ const App = () => {
             <Route path="/king-suite-room" element={<SubRooms img={kingsuiteBanner} images={kingsuiteImages} header="King Suite Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={kingPlan}/>}/>
             <Route path="/standard-rooms" element={<StandardRooms img={standardBanner} header="Standard Rooms" links={allStandardroomslinks} linkstext={allStandardroomslinkstexts} />}/>
             {/* links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText} */}
-            <Route path="/food-drinks" element={<FoodDrinkPage carouselImg={FoodCarouselImages} menuImg={FoodMenuImages} menuLinks={FoodMenuLinks} logoImages={FoodLogoImages} findRestaurants={findRestaurants}/>}/>
+            <Route path="/food-drinks" element={<FoodDrinkPage carouselImg={FoodCarouselImages} menuImg={FoodMenuImages} menuLinks={FoodMenuLinks} logoImages={FoodLogoImages} findRestaurants={findRestaurants} restaurants={restaurants}/>}/>
             <Route path="/davidoff-cafe" element={<CoffeePage />}/>
-            <Route path="/bars-cafe" element={<CoffeeBarsMainPage findRestaurants={findRestaurants}/>}/>
-            <Route path="/alacarte-restaurant" element={<AlacartePage/>}/>
+            <Route path="/bars-cafes" element={<CoffeeBarsMainPage filterfindRestaurants={filterfindRestaurants}/>}/>
+            <Route path="/alacarte-restaurant" element={<AlacartePage findRestaurants={findRestaurants}/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />

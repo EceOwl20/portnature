@@ -1,11 +1,12 @@
 import React from 'react'
 import pubImage from "../../../public/images/food/IrishPub2.png"
 import FilterFindCafe from './FilterFindCafe'
+import ContactSection from '../homepage/ContactSection'
 
-const CoffeeBarsMainPage = ({findRestaurants}) => {
+const CoffeeBarsMainPage = ({filterfindRestaurants}) => {
   return (
-    <div className='flex flex-col w-screen h-auto items-center justify-center'>
-      <div className='flex w-full h-[50vh] relative items-center justify-center text-center'>
+    <div className='flex flex-col w-screen h-auto items-center justify-center '>
+      <div className='flex w-full h-[50vh] relative items-start justify-center text-center'>
         <img src={pubImage} alt='pub' width={pubImage.width} height={pubImage.height}/>
         <h2 className='absolute bottom-2 left-1/2 -translate-x-1/2 text-[40px] font-lora font-medium leading-normal text-[#F8F8F8]'> BARS & CAFES</h2>
       </div>
@@ -18,7 +19,8 @@ const CoffeeBarsMainPage = ({findRestaurants}) => {
       <div className="bg-custom-gradient-reverse h-[1px] w-[50%]">
       </div>
       </div>
-      <FilterFindCafe findRestaurants={findRestaurants}/>
+      <FilterFindCafe filterfindRestaurants={filterfindRestaurants}/>
+      <ContactSection/>
     </div>
   )
 }
