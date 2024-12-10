@@ -86,6 +86,8 @@ import TedyBearSvg from "./svg/kids/TedyBearSvg";
 import SpoonForkSvg from "./svg/kids/SpoonForkSvg";
 
 import GaleriPage from "./pages/PanelPages/GaleriPage";
+import UploadImage from "./pages/PanelPages/UploadImage";
+import SearchImage from "./pages/PanelPages/SearchImage";
 
 
 const restaurants = [
@@ -272,6 +274,8 @@ const App = () => {
             <Route path="/panel" element={<Panel />}>
                 <Route path="/panel/dashboard" element={<Dashboard />} />
                 <Route path="/panel/galeri" element={<GaleriPage />} />
+                <Route path="/panel/upload-image" element={<UploadImage />} />
+                <Route path="/panel/search-image" element={<SearchImage />} />
                 <Route path="/panel/bloglar" element={<BlogListele />} />
                 <Route path="/panel/blog/guncelle/:id" element={<BlogDüzenle />} />
                 <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
