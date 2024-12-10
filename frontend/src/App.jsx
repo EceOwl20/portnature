@@ -88,6 +88,7 @@ import SpoonForkSvg from "./svg/kids/SpoonForkSvg";
 import GaleriPage from "./pages/PanelPages/GaleriPage";
 import UploadImage from "./pages/PanelPages/UploadImage";
 import SearchImage from "./pages/PanelPages/SearchImage";
+import AquaPark from "./pages/aquapark/AquaPark";
 
 
 const restaurants = [
@@ -268,6 +269,7 @@ const App = () => {
             <Route path="/main-restaurant" element={<MainRestaurant/>}/>
             <Route path="/irish-pub" element={<PubBarPage/>}/>
             <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
+            <Route path="/aquapark" element={<KidsConceptPage items={AquaPark}/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
