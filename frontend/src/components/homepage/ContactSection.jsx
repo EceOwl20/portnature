@@ -62,7 +62,7 @@ const ContactSection = () => {
 
         <div className='flex flex-col w-[95%] lg:w-1/3 items-center justify-center text-center lg:items-start lg:text-start gap-[15px]'>
           <h3 className='text-[28px] font-lora font-medium leading-[32px]'>Send Message</h3>
-          <p className='text-[#233038CC] font-bold leading-normal lg:text-[20px] text-[12px] mb-[30px]'>All your questons, options, suggestions</p>
+          <p className='text-[#233038CC] font-bold leading-normal lg:text-[20px] text-[12px] mb-[30px]'>All your questions, options, suggestions</p>
           <form onSubmit={handleChange} className='flex flex-col w-full items-center lg:items-start justify-center text-[14px] leading-normal font-bold text-[#868686B3] gap-[20px]'>
           <div className='flex flex-col lg:flex-row w-full items-center lg:justify-between gap-[20px]'>
           <input
@@ -106,7 +106,7 @@ const ContactSection = () => {
           className="peer hidden"
         />
        <span
-    className="w-6 h-6 bg-gray-300 rounded-md mr-2 transition-colors duration-300 ease-in-out peer-checked:bg-green-500 peer-hover:bg-gray-400 relative flex items-center justify-center"
+    className="w-6 h-6 bg-gray-300 rounded-md mr-2 transition-colors duration-300 ease-in-out peer-checked:bg-blue-500 peer-hover:bg-gray-400 relative flex items-center justify-center"
   >
     {/* Tik işareti */}
     <svg
