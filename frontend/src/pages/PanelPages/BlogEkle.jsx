@@ -12,7 +12,7 @@ const BlogEkle = () => {
   const { activeUser } = useSelector((state) => state.user);
 
   const [form, setForm] = useState({
-    url: "",
+    urls: { tr: "", en: "", ru: "", de: "" },
     author: activeUser._id,
     thumbnail: "",
     images: [],
@@ -23,12 +23,43 @@ const BlogEkle = () => {
       de: [],
     },
   });
+
   const [error, setError] = useState(false);
   const [wait, setWait] = useState(false);
   const [success, setSuccess] = useState(false);
   const [thumbnail, setThumbnail] = useState(undefined);
   const [imageError, setImageError] = useState(false);
   const [progressBar, setProgressBar] = useState(0);
+
+  // Slug oluşturma fonksiyonu
+  const generateSlug = (title) => {
+    return title
+      .toLowerCase()
+      .replace(/ğ/g, 'g')
+      .replace(/ü/g, 'u')
+      .replace(/ş/g, 's')
+      .replace(/ı/g, 'i')
+      .replace(/ö/g, 'o')
+      .replace(/ç/g, 'c')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  };
+
+  // Dil bazlı URL güncelleme effect
+  useEffect(() => {
+    const newUrls = { ...form.urls };
+    const languages = ["tr", "en", "ru", "de"];
+
+    languages.forEach((lang) => {
+      if (form.sections[lang].length > 0 && form.sections[lang][0].title) {
+        newUrls[lang] = generateSlug(form.sections[lang][0].title);
+      }
+    });
+
+    setForm((prevForm) => ({ ...prevForm, urls: newUrls }));
+    // form.sections değiştiğinde çalışır
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.sections]);
 
   useEffect(() => {
     if (thumbnail) {
@@ -68,9 +99,13 @@ const BlogEkle = () => {
   };
 
   const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    // urls.tr, urls.en gibi alanlar yok, url alanı yok artık
+    // Eğer URL alanlarını manuel değiştirmek isterseniz burada kontrol edebilirsiniz
+    // Ancak biz otomatik oluşturuyoruz diye varsayıyorum, bu yüzden urls için input kullanmıyoruz.
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -79,10 +114,7 @@ const BlogEkle = () => {
       ...prevForm,
       sections: {
         ...prevForm.sections,
-        [language]: [
-          ...prevForm.sections[language],
-          { title: "", content: "" },
-        ],
+        [language]: [...prevForm.sections[language], { title: "", content: "" }],
       },
     }));
   };
@@ -156,7 +188,7 @@ const BlogEkle = () => {
     setWait(true);
 
     try {
-      const response = await fetch("/api/blog/yeni", {
+      const response = await fetch("http://localhost:3000/api/blog/yeni", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -202,14 +234,14 @@ const BlogEkle = () => {
           disabled={wait}
         />
 
-        
-        <input
-          type="text"
-          name="url"
-          placeholder="URL"
-          value={form.url}
-          onChange={handleFormChange}
-        />
+        {/* Burada tek bir URL yerine her dil için ayrı URL gösterimi yapabiliriz */}
+        <div className="bg-white p-2 rounded">
+          <h4 className="font-bold">Oluşan URL'ler:</h4>
+          <p>Türkçe: {form.urls.tr}</p>
+          <p>İngilizce: {form.urls.en}</p>
+          <p>Rusça: {form.urls.ru}</p>
+          <p>Almanca: {form.urls.de}</p>
+        </div>
 
         
         <input
@@ -220,12 +252,12 @@ const BlogEkle = () => {
           disabled={wait}
         />
 
+        {/* Türkçe */}
         <div className="flex bg-white justify-center items-center font-bold font-monserrat w-full rounded-sm">
             <h3 className=" items-center flex">Türkçe</h3>
         </div>
-       
         {form.sections.tr.map((section, index) => (
-          <div key={index} className="flex items-center gap-4">
+          <div key={index} className="flex flex-col gap-2">
             <input
               type="text"
               className="rounded-sm"
@@ -255,14 +287,13 @@ const BlogEkle = () => {
                 Türkçe Bölüm Ekle
             </button>
         </div>
-        
 
-        
+        {/* İngilizce */}
         <div className="flex bg-white justify-center items-center font-bold font-monserrat w-full rounded-sm">
             <h3>İngilizce</h3>
         </div>
         {form.sections.en.map((section, index) => (
-          <div key={index} className="flex items-center gap-4">
+          <div key={index} className="flex flex-col gap-2">
             <input
               type="text"
               className="rounded-sm"
@@ -293,11 +324,12 @@ const BlogEkle = () => {
             </button>
         </div>
 
+        {/* Rusça */}
         <div className="flex bg-white justify-center items-center font-bold font-monserrat w-full rounded-sm">
             <h3>Rusça</h3>
         </div>
         {form.sections.ru.map((section, index) => (
-          <div key={index} className="flex items-center gap-4">
+          <div key={index} className="flex flex-col gap-2">
             <input
               type="text"
               className="rounded-sm"
@@ -328,11 +360,12 @@ const BlogEkle = () => {
             </button>
         </div>
 
+        {/* Almanca */}
         <div className="flex bg-white justify-center items-center font-bold font-monserrat w-full rounded-sm">
             <h3>Almanca</h3>
         </div>
         {form.sections.de.map((section, index) => (
-          <div key={index} className="flex items-center gap-4">
+          <div key={index} className="flex flex-col gap-2">
             <input
               type="text"
               className="rounded-sm"
@@ -362,9 +395,7 @@ const BlogEkle = () => {
             Almanca Bölüm Ekle
             </button>
         </div>
-        
 
-        
         <div className="flex items-center justify-center">
           <button
             type="submit"
@@ -375,7 +406,6 @@ const BlogEkle = () => {
           </button>
         </div>
 
-        
         {error && <p className="text-red-500">{error}</p>}
         {success && <p className="text-green-500">{success}</p>}
       </form>

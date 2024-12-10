@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const sectionSchema = mongoose.Schema({
+const sectionSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -11,13 +11,19 @@ const sectionSchema = mongoose.Schema({
   },
 });
 
-const blogSchema = mongoose.Schema(
+// URLs her dil için ayrı tutuluyor
+// Burada Türkçe URL zorunlu ve unique olabilir.
+// Diğer diller opsiyonel olabilir (gerekirse onlar da required/unique yapılabilir).
+const urlsSchema = new mongoose.Schema({
+  tr: { type: String, required: true, unique: true },
+  en: { type: String, unique: true,  },
+  ru: { type: String, unique: true,  },
+  de: { type: String, unique: true, },
+});
+
+const blogSchema = new mongoose.Schema(
   {
-    url: {
-      type: String,
-      required: true,
-      unique: true,
-    },
+    urls: urlsSchema, // Dil bazlı URL'leri tutan alan
     author: {
       type: String,
       required: true,
@@ -26,17 +32,16 @@ const blogSchema = mongoose.Schema(
       type: String,
       default: "",
     },
-    images: [String], // image, image1, image2, image3 alanlarını tek bir diziye dönüştürdük
+    images: [String],
     gallery: {
       type: [String],
       default: [],
     },
     sections: {
-      tr: [sectionSchema], // Türkçe bölümler
-      en: [sectionSchema], // İngilizce bölümler
+      tr: [sectionSchema],
+      en: [sectionSchema],
       ru: [sectionSchema],
       de: [sectionSchema],
-      // Başka diller eklemek isterseniz buraya ekleyebilirsiniz
     },
   },
   { timestamps: true }
