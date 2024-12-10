@@ -269,7 +269,7 @@ const App = () => {
             <Route path="/main-restaurant" element={<MainRestaurant/>}/>
             <Route path="/irish-pub" element={<PubBarPage/>}/>
             <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
-            <Route path="/aquapark" element={<KidsConceptPage items={AquaPark}/>}/>
+            <Route path="/aquapark" element={<AquaPark />}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />

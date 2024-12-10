@@ -1,6 +1,7 @@
 import React from 'react'
 import AquaLeaf from "../../svg/aquapark/AquaLeaf"
 import AquaparkSvg from '../../svg/AquaparkSvg'
+import SpecialOffers from '../../components/SpecialOffers'
 import ContactSection from '../../components/homepage/ContactSection'
 
 const AquaPark = () => {
@@ -13,7 +14,7 @@ const AquaPark = () => {
           height={582} 
         />
         <img
-          src='../../../public/images/aquaPark/AquaPark.png'
+          src='../../../public/images/aquapark/AquaPark.png'
           alt='Aquapark max-w-[997px] max-h-[868px]'
         />
         <div className='flex flex-col gap-10 items-center border-t border-r border-b border-dotted p-16 border-black relative z-10'>
@@ -46,7 +47,7 @@ const AquaPark = () => {
                 <div className='relative flex-none'>
                   <div className="absolute border border-dotted bottom-10 left-10 w-full h-full"></div>
                   <img 
-                    src='../../../public/images/aquaPark/AquaPark1.png' 
+                    src='../../../public/images/aquapark/AquaPark1.png' 
                     alt='Gallery Image 1' 
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
                   />
@@ -55,7 +56,7 @@ const AquaPark = () => {
                 <div className='relative flex-none'>
                   <div className="absolute border border-dotted bottom-10 left-10 w-full h-full"></div>
                   <img 
-                    src='../../../public/images/aquaPark/AquaPark2.png' 
+                    src='../../../public/images/aquapark/AquaPark2.png' 
                     alt='Gallery Image 2' 
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
                   />
@@ -64,7 +65,7 @@ const AquaPark = () => {
                 <div className='relative flex-none'>
                   <div className="absolute border border-dotted bottom-10 left-10 w-full h-full"></div>
                   <img 
-                    src='../../../public/images/aquaPark/AquaPark3.png' 
+                    src='../../../public/images/aquapark/AquaPark3.png' 
                     alt='Gallery Image 3' 
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
                   />
@@ -73,7 +74,7 @@ const AquaPark = () => {
                 <div className='relative flex-none'>
                   <div className="absolute border border-dotted bottom-10 left-10 w-full h-full"></div>
                   <img 
-                    src='../../../public/images/aquaPark/AquaPark4.png' 
+                    src='../../../public/images/aquapark/AquaPark4.png' 
                     alt='Gallery Image 4' 
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
                   />
@@ -90,7 +91,6 @@ const AquaPark = () => {
             </p>
         </div>
 
-       
         <div className='w-full flex items-center justify-center gap-10 mx-auto'>
           <div className='flex flex-col gap-8 relative' style={{width: '850px', height: '500px'}}>
             <iframe 
@@ -109,11 +109,7 @@ const AquaPark = () => {
         </div>
       </div>
       <ContactSection />
-      <div>
-        
-      </div>
-      
-      
+      <SpecialOffers />
 
       <style jsx>{`
         @keyframes marquee {
