@@ -2,6 +2,7 @@ import React, { useState, useEffect }  from "react";
 import Header from "./components/header/Header";
 import Homepage from "./pages/Homepage";
 import Footer from "./components/header/Footer";
+import BlogDüzenle from "./pages/PanelPages/BlogDüzenle";
 import BookPhoneSection from "./components/BookPhoneSection";
 import ScrollToTopButton from "./components/ScrollToTopButton"
 import { BrowserRouter } from "react-router-dom";
@@ -75,6 +76,7 @@ import CoffeeBarsMainPage from "./components/food/CoffeeBarsMainPage";
 import alacarte from "../public/images/food/alacarte.png"
 import ScrollToTop from "./components/ScrollToTop";
 import MainRestaurant from "./pages/Food/MainRestaurant";
+import GaleriPage from "./pages/PanelPages/GaleriPage";
 
 const restaurants = [
   {
@@ -229,11 +231,13 @@ const App = () => {
             <Route path="/kayit-ol" element={<Register />} />
             <Route path="/panel" element={<Panel />}>
                 <Route path="/panel/dashboard" element={<Dashboard />} />
+                <Route path="/panel/galeri" element={<GaleriPage />} />
                 <Route path="/panel/bloglar" element={<BlogListele />} />
+                <Route path="/panel/blog/guncelle/:id" element={<BlogDüzenle />} />
                 <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
             </Route>
             <Route path="/bloglar" element={<BlogPage />} />
-            <Route path="/blog/:url" element={<BlogDetails />} /> 
+            <Route path="/blog/:lang/:slug" element={<BlogDetails />} />
            </Routes>
           </main>
           <BookPhoneSection/>

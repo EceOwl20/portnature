@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const BlogDetails = () => {
-  const { url } = useParams();
+  const { lang, slug } = useParams(); 
+  const navigate = useNavigate();
+  
   const [blog, setBlog] = useState(null);
-  const [language, setLanguage] = useState("en"); // Varsayılan dil "en"
+  const [language, setLanguage] = useState(lang || "tr"); // Varsayılan olarak URL'deki lang kullanılır, yoksa "tr"
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Dil veya slug değiştiğinde URL'yi güncelle
+  useEffect(() => {
+    if (language && slug) {
+      // URL'de dil veya slug değiştiğinde tekrar yönlendir
+      navigate(`/blog/${language}/${slug}`, { replace: true });
+    }
+  }, [language, slug, navigate]);
 
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        console.log("İstek Yapılan URL:", `/api/blog/getir/${url}`);
-        const response = await fetch(`/api/blog/getir/${url}`);
+        console.log("İstek Yapılan URL:", `http://localhost:3000/api/blog/getir/${lang}/${slug}`);
+        const response = await fetch(`http://localhost:3000/api/blog/getir/${lang}/${slug}`);
         const data = await response.json();
         if (data.success) {
           setBlog(data.blog);
@@ -27,74 +37,72 @@ const BlogDetails = () => {
       }
     };
 
-    fetchBlog();
-  }, [url]);
+    // lang ve slug tanımlıysa isteği at
+    if (lang && slug) {
+      fetchBlog();
+    }
+  }, [lang, slug]);
+
+  useEffect(() => {
+    if (blog && blog.urls && blog.urls[language]) {
+      const newSlug = blog.urls[language];
+      // Eğer mevcut slug ile yeni slug farklı ise navigate yap
+      if (newSlug && newSlug !== slug) {
+        navigate(`/blog/${language}/${newSlug}`, { replace: true });
+      }
+    }
+  }, [language, blog, slug, navigate]);
 
   if (loading) return <p>Yükleniyor...</p>;
   if (error) return <p>Hata: {error}</p>;
   if (!blog) return <p>Blog bulunamadı.</p>;
 
-  // Bölümleri ve resimleri birleştir
   const sections = blog.sections[language] || [];
   const images = blog.images || [];
 
-  // Bölümlere order ekle
   const sectionsWithOrder = sections.map((section, index) => ({
     ...section,
     type: "section",
-    order: index * 2, // Her bölüm için order 0, 2, 4, 6...
+    order: index * 2,
   }));
 
-  // Resimlere order ekle ve aralara yerleştir
   const imagesWithOrder = images.map((image, index) => ({
     src: image,
     type: "image",
-    order: index * 10 + 5, // Resimler için order 1, 3, 5, 7...
+    order: index * 10 + 5,
   }));
 
-  // Bölümleri ve resimleri birleştir
   const combinedContent = [...sectionsWithOrder, ...imagesWithOrder];
-
-  // Order'a göre sırala
   combinedContent.sort((a, b) => a.order - b.order);
 
   return (
-    <div className=" flex flex-col px-4 pb-4 items-center justify-center">
+    <div className="flex flex-col px-4 pb-4 items-center justify-center">
       <div className="flex justify-center mb-4">
-        <button onClick={() => setLanguage("tr")} className="mx-2">
-          Türkçe
-        </button>
-        <button onClick={() => setLanguage("en")} className="mx-2">
-          English
-        </button>
-        <button onClick={() => setLanguage("ru")} className="mx-2">
-          Русский
-        </button>
-        <button onClick={() => setLanguage("de")} className="mx-2">
-          Deutsch
-        </button>
+        <button onClick={() => setLanguage("tr")} className="mx-2">Türkçe</button>
+        <button onClick={() => setLanguage("en")} className="mx-2">English</button>
+        <button onClick={() => setLanguage("ru")} className="mx-2">Русский</button>
+        <button onClick={() => setLanguage("de")} className="mx-2">Deutsch</button>
       </div>
 
       {blog.thumbnail && (
         <img
           src={blog.thumbnail}
           alt={sections[0]?.title || "Blog Thumbnail"}
-          className="mb-6 w-7/12 "
+          className="mb-6 w-7/12"
         />
       )}
 
       {combinedContent.length > 0 ? (
         combinedContent.map((item, index) => {
           if (item.type === "section") {
-            // Başlık seviyesini belirleme
             let headingLevel;
-            if (index >= 0 && index <= 0) {
+            if (index <= 0) {
               headingLevel = 1;
-            } else if (index >= 1 && index <= 4) {
+            } else if (index <= 4) {
               headingLevel = 2;
-            } else if (index >= 5 && index <= 9) {
+            } else if (index <= 9) {
               headingLevel = 3;
-            } else if (index >= 10 && index <= 13) {
+            } else if (index <= 13) {
               headingLevel = 4;
             } else {
               headingLevel = 5;
@@ -103,7 +111,7 @@ const BlogDetails = () => {
             const HeadingTag = `h${headingLevel}`;
 
             return (
-              <div key={item._id || `section-${index}`} className=" flex  flex-col items-center gap-7 w-7/12 mb-6">
+              <div key={item._id || `section-${index}`} className="flex flex-col items-center gap-7 w-7/12 mb-6">
                 {item.title && (
                   <HeadingTag className="mb-2 text-[40px] font-lora font-medium">
                     {item.title}
@@ -114,7 +122,7 @@ const BlogDetails = () => {
             );
           } else if (item.type === "image") {
             return (
-              <div key={`image-${index}`} className="w-5/12">
+              <div key={`image-${index}`} className="w-5/12 mb-6">
                 <img
                   src={item.src}
                   alt={`Blog Image ${index + 1}`}

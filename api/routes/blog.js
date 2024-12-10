@@ -4,9 +4,9 @@ import { makaleGetir, makaleGuncelle, makaleListele, makaleSil, yeniMakale } fro
 const router = exp.Router();
 
 router.post("/yeni", yeniMakale);
-router.post("/guncelle", makaleGuncelle)
+router.post("/guncelle/:id", makaleGuncelle)
 router.get("/liste",makaleListele);
-router.get("/getir/:url",makaleGetir);
+router.get("/getir/:lang/:slug", makaleGetir);
 router.delete("/sil/:id",makaleSil)
 
 
