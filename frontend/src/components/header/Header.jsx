@@ -136,7 +136,7 @@ const Header = () => {
               </div>
             </div>
             <div className="relative group">
-              <Link to="/" className="flex items-center">
+              <Link to="/kids-concept" className="flex items-center">
                 KIDS CONCEPT
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
@@ -209,7 +209,7 @@ const Header = () => {
                   </div>
                 </Link>
                 <Link
-                  to="/accommodation/suite-room"
+                  to="/davidoff-cafe"
                   className="block px-4 py-2"
                 >
                   Davidoff Cafe

@@ -75,6 +75,13 @@ import CoffeeBarsMainPage from "./components/food/CoffeeBarsMainPage";
 import alacarte from "../public/images/food/alacarte.png"
 import ScrollToTop from "./components/ScrollToTop";
 import MainRestaurant from "./pages/Food/MainRestaurant";
+import PubBarPage from "./pages/Food/PubBarPage";
+import KidsConceptPage from "./pages/Kids/KidsConceptPage";
+import AquaparkSvg from "./svg/AquaparkSvg";
+import ConcertSvg from "./svg/ConcertSvg";
+import SpecialSvg from "./svg/kids/SpecialSvg";
+import TedyBearSvg from "./svg/kids/TedyBearSvg";
+import SpoonForkSvg from "./svg/kids/SpoonForkSvg";
 
 const restaurants = [
   {
@@ -192,6 +199,34 @@ const FamilyItems = [
   },
 ];
 
+const KidsConceptItems = [
+  {
+    SvgComponent: SpoonForkSvg,
+    svgProps: { width: 37, height: 41 },
+    text: "MINI A'LA CARTE",
+  },
+  {
+    SvgComponent: TedyBearSvg,
+    svgProps: { width: 39, height: 35, color: "#CFCFCF" },
+    text: 'BABYSITTING',
+  },
+  {
+    SvgComponent: AquaparkSvg,
+    svgProps: { width: 44, height: 45, color: "#CFCFCF" },
+    text: 'AQUAPARK',
+  },
+  {
+    SvgComponent: ConcertSvg,
+    svgProps: { width: 33, height: 46 },
+    text: 'MINI DISCO',
+  },
+  {
+    SvgComponent: SpecialSvg,
+    svgProps: { width: 40, height: 37, color: "#CFCFCF" },
+    text: 'SPECIAL COURSES',
+  },
+];
+
 
 
 
@@ -224,6 +259,8 @@ const App = () => {
             <Route path="/bars-cafes" element={<CoffeeBarsMainPage filterfindRestaurants={filterfindRestaurants}/>}/>
             <Route path="/alacarte-restaurant" element={<AlacartePage findRestaurants={findRestaurants}/>}/>
             <Route path="/main-restaurant" element={<MainRestaurant/>}/>
+            <Route path="/irish-pub" element={<PubBarPage/>}/>
+            <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
