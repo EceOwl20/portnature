@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const BlogListele = () => {
 
@@ -36,16 +37,12 @@ const BlogListele = () => {
                 method: "DELETE"
             });
     
-            
             let data = null;
             try {
                 data = await response.json();
             } catch (e) {
                 console.error('Yanıt JSON formatında değil:', e);
             }
-    
-            console.log('Response status:', response.status);
-            console.log('Response data:', data);
     
             if (response.ok && data && data.success) {
                 setBlogs(blogs.filter((blog) => blog._id !== id));
@@ -71,8 +68,8 @@ const BlogListele = () => {
                 <table className="min-w-full bg-white">
                     <thead>
                         <tr>
-                            <th className="py-2 px-4 border">Başlık</th>
-                            <th className="py-2 px-4 border">URL</th>
+                            <th className="py-2 px-4 border">Başlık (TR)</th>
+                            <th className="py-2 px-4 border">URL'ler</th>
                             <th className="py-2 px-4 border">Diller</th>
                             <th className="py-2 px-4 border">İşlemler</th>
                         </tr>
@@ -83,7 +80,15 @@ const BlogListele = () => {
                                 <td className="py-2 px-4 border">
                                     {blog.sections['tr'][0]?.title || 'Başlık yok'}
                                 </td>
-                                <td className="py-2 px-4 border">{blog.url}</td>
+                                <td className="py-2 px-4 border">
+                                  {/* Her dil için URL gösterimi */}
+                                  <div className="flex flex-col">
+                                    <span><strong>TR:</strong> {blog.urls?.tr || 'Yok'}</span>
+                                    <span><strong>EN:</strong> {blog.urls?.en || 'Yok'}</span>
+                                    <span><strong>RU:</strong> {blog.urls?.ru || 'Yok'}</span>
+                                    <span><strong>DE:</strong> {blog.urls?.de || 'Yok'}</span>
+                                  </div>
+                                </td>
                                 <td className="py-2 px-4 border">
                                     {['tr', 'en', 'ru', 'de'].map((lang) => (
                                         <span
@@ -99,12 +104,17 @@ const BlogListele = () => {
                                     ))}
                                 </td>
                                 <td className="py-2 px-4 border">
-                                    <button
-                                        onClick={() => deleteBlog(blog._id)}
-                                        className="bg-red-500 text-white px-4 py-2 rounded"
-                                    >
-                                        Sil
-                                    </button>
+                                  <Link to={`/panel/blog/guncelle/${blog._id}`}>
+                                      <button className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
+                                          Düzenle
+                                      </button>
+                                  </Link>
+                                  <button
+                                      onClick={() => deleteBlog(blog._id)}
+                                      className="bg-red-500 text-white px-4 py-2 rounded"
+                                  >
+                                      Sil
+                                  </button>
                                 </td>
                             </tr>
                         ))}

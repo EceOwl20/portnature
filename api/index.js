@@ -3,6 +3,7 @@ import mongo from "mongoose";
 import userRoute from "./routes/user.js";
 import loginRegister from "./routes/loginRegister.js";
 import blogRoute from "./routes/blog.js";
+import cors from "cors";
 
 const connect = async () => {
     await mongo.connect("mongodb+srv://smbduknwn:1TL6SUtVqQDyWsnJ@port-nature.jvs90.mongodb.net/?retryWrites=true&w=majority&appName=Port-Nature");
@@ -18,6 +19,7 @@ connect()
 
 const exp = express();
 exp.use(express.json());
+exp.use(cors())
 
 exp.listen(3000, () => {
     console.log("Port Açıldı. Sorun yok");
