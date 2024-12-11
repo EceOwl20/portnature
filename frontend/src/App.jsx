@@ -89,12 +89,16 @@ import GaleriPage from "./pages/PanelPages/GaleriPage";
 import UploadImage from "./pages/PanelPages/UploadImage";
 import SearchImage from "./pages/PanelPages/SearchImage";
 import AquaPark from "./pages/aquapark/AquaPark";
+
 import davidoffImg from "/images/davidoffMain2.png";
 import davidoffLogo from "/images/food/Davidoff_logo.png"
 import davidoffsubimg from "/images/food/davidoff2.png"
 import DavidoffSvg from "./svg/food/DavidoffSvg"
 import Gallery from "./pages/PanelPages/Gallery";
 import EditImage from "./pages/PanelPages/EditImage";
+
+import MiniAlaCarte from "./pages/Kids/MiniAlaCarte";
+
 
 const davidoffCarousel = [davidoffImg, davidoffImg, davidoffImg, davidoffImg,davidoffImg,davidoffImg];
 const davidoffCaroTexts=[" Pleasure in a thing of beauty is the","essence of a happy life","ZINO DAVIDOFF"]
@@ -281,6 +285,7 @@ const App = () => {
             <Route path="/irish-pub" element={<PubBarPage/>}/>
             <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
             <Route path="/aquapark" element={<AquaPark />}/>
+            <Route path='/minialacarte' element={<MiniAlaCarte/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
