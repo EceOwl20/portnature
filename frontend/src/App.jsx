@@ -94,6 +94,7 @@ import davidoffLogo from "/images/food/Davidoff_logo.png"
 import davidoffsubimg from "/images/food/davidoff2.png"
 import DavidoffSvg from "./svg/food/DavidoffSvg"
 import Gallery from "./pages/PanelPages/Gallery";
+import EditImage from "./pages/PanelPages/EditImage";
 
 const davidoffCarousel = [davidoffImg, davidoffImg, davidoffImg, davidoffImg,davidoffImg,davidoffImg];
 const davidoffCaroTexts=[" Pleasure in a thing of beauty is the","essence of a happy life","ZINO DAVIDOFF"]
@@ -289,12 +290,14 @@ const App = () => {
                 <Route path="/panel/upload-image" element={<UploadImage />} />
                 <Route path="/panel/search-image" element={<SearchImage />} />
                 <Route path="/panel/gallery" element={<Gallery />} />
+                
                 <Route path="/panel/bloglar" element={<BlogListele />} />
                 <Route path="/panel/blog/guncelle/:id" element={<BlogDüzenle />} />
                 <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
             </Route>
             <Route path="/bloglar" element={<BlogPage />} />
             <Route path="/blog/:lang/:slug" element={<BlogDetails />} />
+            <Route path="/edit/:id" element={<EditImage />} />
            </Routes>
           </main>
           <BookPhoneSection/>

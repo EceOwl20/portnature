@@ -93,4 +93,46 @@ export const deleteImage = async (req, res) => {
   }
 };
 
+export const updateImage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, altText } = req.body;
+
+    if (!name || !altText) {
+      return res.status(400).json({ message: "Name and Alt Text are required" });
+    }
+
+    const updatedImage = await Image.findByIdAndUpdate(
+      id,
+      { name, altText },
+      { new: true } // Güncellenmiş veriyi döndürür
+    );
+
+    if (!updatedImage) {
+      return res.status(404).json({ message: "Image not found" });
+    }
+
+    res.status(200).json(updatedImage);
+  } catch (error) {
+    console.error("Error updating image:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const getImageById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const image = await Image.findById(id); // ID ile resim arayın
+    if (!image) {
+      return res.status(404).json({ message: "Image not found" });
+    }
+
+    res.status(200).json(image); // Resmi JSON olarak döndür
+  } catch (error) {
+    console.error("Error fetching image by ID:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
 

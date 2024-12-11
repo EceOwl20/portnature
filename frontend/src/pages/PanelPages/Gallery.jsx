@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
@@ -55,7 +56,7 @@ const Gallery = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4">
+    <div className="grid grid-cols-5 gap-4 p-6 bg-slate-500">
       {images.map((image, index) => (
         <div key={index} className="relative group">
           <img
@@ -66,6 +67,10 @@ const Gallery = () => {
           <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-center py-2 opacity-0 group-hover:opacity-100 transition-opacity">
             {image.name.en}
           </div>
+          <button className="absolute top-2 left-2 bg-blue-600 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+            <Link to={`/edit/${image._id}`}>Edit</Link>
+          </button>
+
           <button
             onClick={() => handleDelete(image._id)}
             className="absolute top-2 right-2 bg-red-600 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
