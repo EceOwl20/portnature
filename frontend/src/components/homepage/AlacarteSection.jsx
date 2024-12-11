@@ -116,7 +116,7 @@ const AlacarteSection = () => {
                   <span className="text-[12px]">Booking is not required</span>
                 </div>
                 <button className="absolute bottom-12 mt-[20px] bg-transparent text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-white border border-[#fff] py-[12px] px-[32px] hover:bg-white hover:text-[#233038]">
-                    <text>More About</text>
+                    <p>More About</p>
                 </button>
                 </div>
 
@@ -156,7 +156,7 @@ const AlacarteSection = () => {
                   <span className="text-[12px]">Booking is not required</span>
                 </div>
                 <button className="absolute hidden md:flex bottom-12 mt-[20px] bg-transparent text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-white border border-[#fff] py-[12px] px-[32px] hover:bg-white hover:text-[#233038]">
-                    <text>More About</text>
+                    <p>More About</p>
                 </button>
                 </div>
                 </div>
@@ -176,7 +176,7 @@ const AlacarteSection = () => {
             ))}
           </div>
           <button className="flex items-center justify-center gap-2 md:hidden bottom-12 mt-[20px] bg-transparent text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-[#2233038] border border-[#868686] py-[12px] px-[32px] hover:bg-white hover:text-[#233038]">
-                    <text>More About</text>
+                    <p>More About</p>
                 </button>
       
     </div>

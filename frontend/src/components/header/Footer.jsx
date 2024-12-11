@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import img from "../../../public/images/footerMain.jpeg"
 import YoutubeSvg from '../../svg/YoutubeSvg'
 import FacebookSvg from '../../svg/FacebookSvg'
@@ -12,6 +12,35 @@ import WhatsappSvg from '../../svg/WhatsappSvg'
 import FooterLineSvg from '../../svg/FooterLineSvg'
 
 const Footer = () => {
+  const name="logoGold"
+  const lang="en"
+  const [image, setImage] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/images/searchbyname?names=${name}&lang=${lang}`
+        );
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Image not found");
+        }
+
+        setImage(data[0]); // Tek resim için ilk öğe
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchImage();
+  }, [name, lang]);
+
+  if (error) return <p>Error: {error}</p>;
+  if (!image) return <p>Loading...</p>;
+
   return (
     <footer className='flex flex-col w-screen min-h-[1198px] lg:min-h-[440px] lg:max-h-[490px] bg-center bg-cover relative items-center justify-start' style={{ backgroundImage: `url(${img})` }}>
       <div className='flex absolute inset-0 z-1 bg-black/50'></div>
@@ -26,7 +55,7 @@ const Footer = () => {
           <TrivagoSvg width={43} height={27} className="flex" color="white"/>
         </div>
         <div className='flex lg:hidden h-[1px] w-full bg-[#FFFFFF4D]'></div>
-        <img src={logo} alt='logo' width={214} height={88} className='flex lg:hidden mt-[32px] mb-[16px] items-center justify-center'/>
+        <img src={image.firebaseUrl} alt={image.altText[lang]} width={214} height={88} className='flex lg:hidden mt-[32px] mb-[16px] items-center justify-center'/>
         <img src={logo2} alt='logo' width={logo2.width} height={logo2.height} className='hidden lg:flex items-center justify-center'/>
        </div>
 

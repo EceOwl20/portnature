@@ -35,5 +35,104 @@ export const searchImageByName = async (req, res) => {
   }
 };
 
+export const getImagesByName = async (req, res) => {
+  try {
+    const { names, lang } = req.query; // `names` virgülle ayrılmış isimler
+    const nameArray = names.split(",");
+
+    const images = await Image.find({
+      [`name.${lang}`]: { $in: nameArray },
+    });
+
+    if (!images || images.length === 0) {
+      return res.status(404).json({ message: "No images found" });
+    }
+
+    res.status(200).json(images);
+  } catch (error) {
+    console.error("Error fetching images:", error);
+    res.status(500).json({ message: "Error fetching images", error });
+  }
+};
+
+export const getAllImages = async (req, res) => {
+  try {
+    const images = await Image.find(); // Tüm resimleri getir
+    if (!images || images.length === 0) {
+      return res.status(404).json({ message: "No images found" });
+    }
+    res.status(200).json(images);
+  } catch (error) {
+    console.error("Error fetching all images:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const deleteImage = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // MongoDB'den resmi bul
+    const image = await Image.findById(id);
+    if (!image) {
+      return res.status(404).json({ message: "Image not found" });
+    }
+
+    // // Firebase Storage'dan resmi sil
+    // const storage = getStorage(app);
+    // const imageRef = ref(storage, image.firebaseUrl); // firebaseUrl burada tam dosya yolunu içermeli
+    // await deleteObject(imageRef);
+
+    // MongoDB'den resmi sil
+    await Image.findByIdAndDelete(id);
+
+    res.status(200).json({ message: "Image deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting image:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const updateImage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, altText } = req.body;
+
+    if (!name || !altText) {
+      return res.status(400).json({ message: "Name and Alt Text are required" });
+    }
+
+    const updatedImage = await Image.findByIdAndUpdate(
+      id,
+      { name, altText },
+      { new: true } // Güncellenmiş veriyi döndürür
+    );
+
+    if (!updatedImage) {
+      return res.status(404).json({ message: "Image not found" });
+    }
+
+    res.status(200).json(updatedImage);
+  } catch (error) {
+    console.error("Error updating image:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const getImageById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const image = await Image.findById(id); // ID ile resim arayın
+    if (!image) {
+      return res.status(404).json({ message: "Image not found" });
+    }
+
+    res.status(200).json(image); // Resmi JSON olarak döndür
+  } catch (error) {
+    console.error("Error fetching image by ID:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
 
 

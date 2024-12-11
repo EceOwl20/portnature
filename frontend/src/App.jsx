@@ -89,8 +89,22 @@ import GaleriPage from "./pages/PanelPages/GaleriPage";
 import UploadImage from "./pages/PanelPages/UploadImage";
 import SearchImage from "./pages/PanelPages/SearchImage";
 import AquaPark from "./pages/aquapark/AquaPark";
+
+import davidoffImg from "/images/davidoffMain2.png";
+import davidoffLogo from "/images/food/Davidoff_logo.png"
+import davidoffsubimg from "/images/food/davidoff2.png"
+import DavidoffSvg from "./svg/food/DavidoffSvg"
+import Gallery from "./pages/PanelPages/Gallery";
+import EditImage from "./pages/PanelPages/EditImage";
+
 import MiniAlaCarte from "./pages/Kids/MiniAlaCarte";
 
+
+const davidoffCarousel = [davidoffImg, davidoffImg, davidoffImg, davidoffImg,davidoffImg,davidoffImg];
+const davidoffCaroTexts=[" Pleasure in a thing of beauty is the","essence of a happy life","ZINO DAVIDOFF"]
+const davidoffLogoText="Ищете роскошное кафе, чтобы расслабиться? Смело заходите в Davidoff. Приходите в гости насладиться идеальным сочетанием комфорта, уюта и изысканности в сочетании с уютным ароматом кофейных зерн"
+const davidoffSubHeader="Your zest for life sums up the essence of Davidoff brand. It is what makes DAVIDOFF unique.";
+const davidoffSubTexts=["Memorable tastes are waiting for you in our restaurants, where the most special flavors of the world cuisine are offered and enriched with different themes and in our bars, where 148 kinds of Premium drinks are offered.","Memorable tastes are waiting for you in our restaurants, where the most special flavors of the world cuisine are offered and enriched with"];
 
 const restaurants = [
   {
@@ -264,7 +278,7 @@ const App = () => {
             <Route path="/standard-rooms" element={<StandardRooms img={standardBanner} header="Standard Rooms" links={allStandardroomslinks} linkstext={allStandardroomslinkstexts} />}/>
             {/* links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText} */}
             <Route path="/food-drinks" element={<FoodDrinkPage carouselImg={FoodCarouselImages} menuImg={FoodMenuImages} menuLinks={FoodMenuLinks} logoImages={FoodLogoImages} findRestaurants={findRestaurants} restaurants={restaurants}/>}/>
-            <Route path="/davidoff-cafe" element={<CoffeePage />}/>
+            <Route path="/davidoff-cafe" element={<CoffeePage carouselImg={davidoffCarousel} logo={davidoffLogo} logoText={davidoffLogoText} carouselTexts={davidoffCaroTexts} subheader={davidoffSubHeader} subTexts={davidoffSubTexts} image={davidoffsubimg} children={<DavidoffSvg width={436} height={387} className="absolute top-10 left-[45%] z-1"/>} />}/>
             <Route path="/bars-cafes" element={<CoffeeBarsMainPage filterfindRestaurants={filterfindRestaurants}/>}/>
             <Route path="/alacarte-restaurant" element={<AlacartePage findRestaurants={findRestaurants}/>}/>
             <Route path="/main-restaurant" element={<MainRestaurant/>}/>
@@ -280,12 +294,15 @@ const App = () => {
                 <Route path="/panel/galeri" element={<GaleriPage />} />
                 <Route path="/panel/upload-image" element={<UploadImage />} />
                 <Route path="/panel/search-image" element={<SearchImage />} />
+                <Route path="/panel/gallery" element={<Gallery />} />
+                
                 <Route path="/panel/bloglar" element={<BlogListele />} />
                 <Route path="/panel/blog/guncelle/:id" element={<BlogDüzenle />} />
                 <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
             </Route>
             <Route path="/bloglar" element={<BlogPage />} />
             <Route path="/blog/:lang/:slug" element={<BlogDetails />} />
+            <Route path="/edit/:id" element={<EditImage />} />
            </Routes>
           </main>
           <BookPhoneSection/>
