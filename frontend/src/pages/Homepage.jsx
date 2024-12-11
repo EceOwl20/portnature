@@ -33,6 +33,7 @@ import AlacarteSection from '../components/homepage/AlacarteSection'
 import SpecialOffersCarousel from '../components/homepage/SpecialOffersCarousel'
 import BorderCarousel from '../components/BorderCarousel'
 import BorderCarousel2 from '../components/BorderCarousel2'
+import MultipleImages from '../components/Image/MultipleImages'
 // import InstagramSection from "../components/homepage/InstagramSection"
 
 const images =[img1,img2,img3];
@@ -43,10 +44,13 @@ const headersBar=["Premium Bar & Lounge","Magic Spa","Meetings and congress","Se
 const textsBar=["The new destination for a privileged holiday in Belek,Antalya where you are always special","We have created a magical spa center so that our guests can feel themselves in the clouds of bliss","Together with a professional team, waiting for you to carry out all your special and unforgettable events","No reservation required. A’La Carte Srevice or Take Away"];
 const linksBar=["/","/","/","/"]
 
+const homeCarouselImages = ["portnaturehotel","portnaturehotel2","portnaturehotel3"];
+
 const Homepage = () => {
   return (
     <div className='flex flex-col items-center justify-center'>
-      <HomeCarousel images={images}/>
+      {/* <HomeCarousel images={images}/> */}
+      <HomeCarousel names={homeCarouselImages} lang="en"/>
       <Reservation/>
       <HomeIconSection/>
       <div className='flex w-screen mt-20'>

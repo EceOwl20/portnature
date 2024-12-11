@@ -63,7 +63,7 @@ export function RoomCarousel({ images, header }) {
                 </div>
                 
                 <button className="absolute bottom-12 bg-white text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-black border border-[#000] py-[12px] px-[32px] hover:bg-black hover:text-white">
-                    <text >More About</text>
+                    <p >More About</p>
                 </button>
               </div>
             ))}

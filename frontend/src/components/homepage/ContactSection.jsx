@@ -27,11 +27,11 @@ const ContactSection = () => {
   };
 
   return (
-    <div className='flex w-screen items-center justify-center bg-[#F8F8F8] py-[76px]'>
+    <div className='flex w-screen items-center justify-center  py-[76px]'>
       <div className='flex flex-col lg:flex-row w-[95%] lg:w-[90%] xl:max-w-[1669px] items-center justify-center font-monserrat text-[#233038] gap-[20px] lg:gap-[0px]'>
         {/* <CallCenterSvg className="flex lg:hidden" width={134} height={119.63}/>
         <CallCenterSvg className="hidden lg:flex"  width={317} height={283}/> */}
-        <div className='flex flex-col lg:flex-row-reverse w-[100%] lg:w-2/3 items-center justify-center'>
+        <div className='flex flex-col lg:flex-row-reverse w-[100%] lg:w-[64%] items-center justify-center '>
         <img src={image} alt='callcenter' width={image.width} height={image.height} className='flex lg:hidden w-[60%] h-auto  max-w-[317px] max-h-[283px]'/>
         <img src={image} alt='callcenter' width={317} height={283} className='hidden lg:flex w-[40%] max-w-[317px] max-h-[283px] '/>
 
@@ -60,7 +60,7 @@ const ContactSection = () => {
         </div>
         </div>
 
-        <div className='flex flex-col w-[95%] lg:w-1/3 items-center justify-center text-center lg:items-start lg:text-start gap-[15px]'>
+        <div className='flex flex-col w-[95%] lg:w-[32%] items-center justify-center text-center lg:items-start lg:text-start gap-[15px]'>
           <h3 className='text-[28px] font-lora font-medium leading-[32px]'>Send Message</h3>
           <p className='text-[#233038CC] font-bold leading-normal lg:text-[20px] text-[12px] mb-[30px]'>All your questions, options, suggestions</p>
           <form onSubmit={handleChange} className='flex flex-col w-full items-center lg:items-start justify-center text-[14px] leading-normal font-bold text-[#868686B3] gap-[20px]'>

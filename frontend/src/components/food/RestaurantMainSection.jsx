@@ -91,8 +91,8 @@ const RestaurantMainSection = ({img}) => {
         </div>
       
       <div className="absolute -bottom-10 left-1/2 flex flex-col w-auto h-auto">
-      <LineVerticalSvg width={1} height={150}/>
-      <LineVertical2Svg width={1} height={150}/>
+      <LineVerticalSvg width={1} height={120}/>
+      <LineVertical2Svg width={1} height={120}/>
       </div>
       </section>
      

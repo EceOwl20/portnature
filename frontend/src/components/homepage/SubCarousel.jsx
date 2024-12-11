@@ -15,18 +15,6 @@ const SubCarousel = ({images}) => {
 
   const [curr, setCurr] = useState(0);
 
-  const scrollPrev = useCallback(() => {
-    if (emblaApi && emblaApi.scrollPrev) emblaApi.scrollPrev();
-    setCurr((curr) => (curr === 0 ? images.length - 1 : curr - 1));
-    //setCurr(newIndex);
-  }, [emblaApi, curr, images.length]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi && emblaApi.scrollNext) emblaApi.scrollNext();
-    setCurr((curr) => (curr === images.length - 1 ? 0 : curr + 1));
-    //setCurr(newIndex);
-  }, [emblaApi, curr, images.length]);
-
   const handleJump = useCallback(
     (index) => {
       if (emblaApi && emblaApi.scrollTo) emblaApi.scrollTo(index);
@@ -61,7 +49,7 @@ const SubCarousel = ({images}) => {
                 width={image.width}
                 height={image.height}
                 alt={`Slide ${index + 1}`}
-                objectPosition="center"
+               // objectPosition="center"
                 className="flex w-full"
               />
               
