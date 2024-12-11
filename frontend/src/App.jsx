@@ -89,6 +89,7 @@ import GaleriPage from "./pages/PanelPages/GaleriPage";
 import UploadImage from "./pages/PanelPages/UploadImage";
 import SearchImage from "./pages/PanelPages/SearchImage";
 import AquaPark from "./pages/aquapark/AquaPark";
+import MiniAlaCarte from "./pages/Kids/MiniAlaCarte";
 
 
 const restaurants = [
@@ -270,6 +271,7 @@ const App = () => {
             <Route path="/irish-pub" element={<PubBarPage/>}/>
             <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
             <Route path="/aquapark" element={<AquaPark />}/>
+            <Route path='/minialacarte' element={<MiniAlaCarte/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
