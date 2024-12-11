@@ -156,7 +156,7 @@ const Header = () => {
                   </div>
                 </Link>
                 <Link
-                  to="/accommodation/suite-room"
+                  to="/aquapark"
                   className="block px-4 py-2"
                 >
                   Aquapark

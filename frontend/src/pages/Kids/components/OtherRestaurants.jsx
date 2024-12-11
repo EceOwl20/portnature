@@ -3,10 +3,10 @@ import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 
 const imageData = [
-  { src: '/images/child1.png', title: 'MINI CLUB' },
-  { src: '/images/child3.png', title: 'GAME MACHINES' },
-  { src: '/images/jumpingtrack.png', title: 'JUMPING TRACK' },
-  { src: '/images/babysitting.png', title: 'BABAYSITTING' }
+  { src: '/images/minialacarte/alldaydinning.png', title: 'ALL DAY DINNING' },
+  { src: '/images/minialacarte/seaside.png', title: 'SEA SIDE' },
+  { src: '/images/minialacarte/farEast.png', title: 'FAR EAST' },
+  { src: '/images/minialacarte/french.png', title: 'FRENCH' }
 ]
 
 const repeatedImages = [
@@ -17,7 +17,7 @@ const repeatedImages = [
   ...imageData
 ]
 
-const SpecialOffers = () => {
+const OtherRestaurants = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: 'start' },
     [Autoplay({ delay: 3000 })]
@@ -39,7 +39,7 @@ const SpecialOffers = () => {
     <section className="my-24">
       <div className="flex mb-11 w-3/4 ml-auto justify-start">
         <h2 className="text-[28px] leading-10 italic font-lora font-normal text-black">
-          Special Offer
+        Other restaurants
         </h2>
       </div>
       
@@ -68,4 +68,4 @@ const SpecialOffers = () => {
   )
 }
 
-export default SpecialOffers
+export default OtherRestaurants
