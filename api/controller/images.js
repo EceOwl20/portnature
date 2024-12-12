@@ -9,7 +9,7 @@ export const uploadImage = async (req, res) => {
     const { name, altText, firebaseUrl } = req.body;
 
     const newImage = new Image({ name, altText, firebaseUrl });
-    await newImage.save();
+    await newImage.save(); 
 
     res.status(201).json({ message: "Image saved successfully!", newImage });
   } catch (error) {
@@ -100,12 +100,12 @@ export const deleteImage = async (req, res) => {
 export const updateImage = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, altText } = req.body;
+    const { name, altText, firebaseUrl } = req.body;
 
-    // name ve altText nesneleri kontrol edilir
     if (
       !name ||
       !altText ||
+      !firebaseUrl ||
       !name.en ||
       !name.tr ||
       !name.ru ||
@@ -117,14 +117,13 @@ export const updateImage = async (req, res) => {
     ) {
       return res
         .status(400)
-        .json({ message: "All languages for name and altText are required" });
+        .json({ message: "All fields are required, including firebaseUrl" });
     }
 
-    // Resmi güncelle
     const updatedImage = await Image.findByIdAndUpdate(
       id,
-      { name, altText },
-      { new: true, runValidators: true } // Güncellenmiş veriyi döndürür ve doğrulamaları çalıştırır
+      { name, altText, firebaseUrl },
+      { new: true, runValidators: true }
     );
 
     if (!updatedImage) {

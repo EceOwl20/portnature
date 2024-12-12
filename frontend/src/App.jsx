@@ -96,8 +96,11 @@ import davidoffsubimg from "/images/food/davidoff2.png"
 import DavidoffSvg from "./svg/food/DavidoffSvg"
 import Gallery from "./pages/PanelPages/Gallery";
 import EditImage from "./pages/PanelPages/EditImage";
-
 import MiniAlaCarte from "./pages/Kids/MiniAlaCarte";
+
+import DynamicPage from "./pages/PanelPages/DynamicPage";
+import EditDynamicPage from "./pages/PanelPages/EditDynamicPage";
+import EditPage from "./pages/PanelPages/EditPage";
 
 
 const davidoffCarousel = [davidoffImg, davidoffImg, davidoffImg, davidoffImg,davidoffImg,davidoffImg];
@@ -271,6 +274,11 @@ const App = () => {
           <main>
           <ScrollToTop />
            <Routes>
+           <Route path="/homepage" element={<DynamicPage page="homepage" />} />
+           <Route path="/about" element={<DynamicPage page="about" />} />
+           <Route path="/page/:pageName" element={<DynamicPage />} />
+           <Route path="/edit/:pageName" element={<EditPage />} />
+
             <Route path="/" element={<Homepage />} />
             <Route path="/rooms" element={<Rooms img={allrooms} header="Feel every advantage of our rooms" links={allroomslinks} linkstext={allroomslinkstexts} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
             <Route path="/family-room" element={<SubRooms img={familyroomBanner} images={familyImages} header="Family Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={familyroomPlan}/>}/>
@@ -291,7 +299,7 @@ const App = () => {
             <Route path="/kayit-ol" element={<Register />} />
             <Route path="/panel" element={<Panel />}>
                 <Route path="/panel/dashboard" element={<Dashboard />} />
-                <Route path="/panel/galeri" element={<GaleriPage />} />
+                <Route path="/panel/firebase-gallery" element={<GaleriPage />} />
                 <Route path="/panel/upload-image" element={<UploadImage />} />
                 <Route path="/panel/search-image" element={<SearchImage />} />
                 <Route path="/panel/gallery" element={<Gallery />} />
@@ -299,10 +307,13 @@ const App = () => {
                 <Route path="/panel/bloglar" element={<BlogListele />} />
                 <Route path="/panel/blog/guncelle/:id" element={<BlogDüzenle />} />
                 <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
+                <Route path="/panel/edit/:page" element={<EditDynamicPage />} />
+
             </Route>
             <Route path="/bloglar" element={<BlogPage />} />
             <Route path="/blog/:lang/:slug" element={<BlogDetails />} />
             <Route path="/edit/:id" element={<EditImage />} />
+        
            </Routes>
           </main>
           <BookPhoneSection/>
