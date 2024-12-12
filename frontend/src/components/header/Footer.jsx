@@ -29,7 +29,7 @@ const Footer = () => {
           throw new Error(data.message || "Image not found");
         }
 
-        setImage(data[0]); // Tek resim için ilk öğe
+        setImage(data[0]);
       } catch (err) {
         setError(err.message);
       }

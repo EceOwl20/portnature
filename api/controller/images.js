@@ -37,23 +37,27 @@ export const searchImageByName = async (req, res) => {
 
 export const getImagesByName = async (req, res) => {
   try {
-    const { names, lang } = req.query; // `names` virgülle ayrılmış isimler
-    const nameArray = names.split(",");
+    const { names, lang } = req.query; // names virgülle ayrılmış isimler
+    if (!names || !lang) {
+      return res.status(400).json({ message: "Names and lang are required" });
+    }
 
+    const nameArray = names.split(","); // İsimleri virgüle göre ayır
     const images = await Image.find({
-      [`name.${lang}`]: { $in: nameArray },
+      [`name.${lang}`]: { $in: nameArray }, // name.[lang] alanına göre sorgula
     });
 
     if (!images || images.length === 0) {
       return res.status(404).json({ message: "No images found" });
     }
 
-    res.status(200).json(images);
+    res.status(200).json(images); // Resimleri döndür
   } catch (error) {
     console.error("Error fetching images:", error);
     res.status(500).json({ message: "Error fetching images", error });
   }
 };
+
 
 export const getAllImages = async (req, res) => {
   try {
@@ -98,14 +102,29 @@ export const updateImage = async (req, res) => {
     const { id } = req.params;
     const { name, altText } = req.body;
 
-    if (!name || !altText) {
-      return res.status(400).json({ message: "Name and Alt Text are required" });
+    // name ve altText nesneleri kontrol edilir
+    if (
+      !name ||
+      !altText ||
+      !name.en ||
+      !name.tr ||
+      !name.ru ||
+      !name.de ||
+      !altText.en ||
+      !altText.tr ||
+      !altText.ru ||
+      !altText.de
+    ) {
+      return res
+        .status(400)
+        .json({ message: "All languages for name and altText are required" });
     }
 
+    // Resmi güncelle
     const updatedImage = await Image.findByIdAndUpdate(
       id,
       { name, altText },
-      { new: true } // Güncellenmiş veriyi döndürür
+      { new: true, runValidators: true } // Güncellenmiş veriyi döndürür ve doğrulamaları çalıştırır
     );
 
     if (!updatedImage) {
@@ -118,6 +137,7 @@ export const updateImage = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
 
 export const getImageById = async (req, res) => {
   try {
@@ -134,5 +154,3 @@ export const getImageById = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
-
-

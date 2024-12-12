@@ -37,9 +37,14 @@ const EditImage = () => {
 
   const handleInputChange = (e) => {
     const { name, value, dataset } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [dataset.lang]: { ...prev[dataset.lang], [name]: value },
+    const lang = dataset.lang; // Hangi dil olduğunu al
+  
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: {
+        ...prevFormData[name],
+        [lang]: value, // İlgili dili güncelle
+      },
     }));
   };
 
