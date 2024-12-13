@@ -98,6 +98,7 @@ import Gallery from "./pages/PanelPages/Gallery";
 import EditImage from "./pages/PanelPages/EditImage";
 
 import MiniAlaCarte from "./pages/Kids/MiniAlaCarte";
+import MiniClub from "./pages/Kids/MiniClub";
 
 
 const davidoffCarousel = [davidoffImg, davidoffImg, davidoffImg, davidoffImg,davidoffImg,davidoffImg];
@@ -286,6 +287,7 @@ const App = () => {
             <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
             <Route path="/aquapark" element={<AquaPark />}/>
             <Route path='/minialacarte' element={<MiniAlaCarte/>}/>
+            <Route path='/miniclub' element={<MiniClub/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
