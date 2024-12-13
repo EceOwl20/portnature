@@ -29,12 +29,12 @@ const PageDetails = () => {
   if (!pageDetails) return <p>Loading...</p>;
 
   return (
-    <div className="flex flex-col items-center">
-      <h1>Page: {pageDetails.pageName}</h1>
-      <ul>
+    <div className="flex flex-col items-center my-5 gap-7">
+      <h2 className="font-monserrat text-[30px] font-medium">Page: {pageDetails.pageName}</h2>
+      <ul className="flex flex-col w-[90%] items-center justify-center gap-5">
         {pageDetails.components.map((component, index) => (
           <li key={index}>
-            <Link to={`/panel/pages/${pageName}/components/${index}`}>
+            <Link className="font-monserrat text-[20px] font-normal hover:text-[#6b78ad] px-2 py-1 bg-slate-300 border rounded-md" to={`/panel/pages/${pageName}/components/${index}`}>
               {component.type}
             </Link>
           </li>

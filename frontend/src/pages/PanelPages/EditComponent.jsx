@@ -7,6 +7,8 @@ const EditComponent = () => {
   const [componentData, setComponentData] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const fetchComponentData = async () => {
@@ -51,6 +53,26 @@ const EditComponent = () => {
         },
       };
     });
+  };
+
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(`/api/images/search?name=${searchQuery}&lang=en`);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Image not found");
+      }
+
+      setSearchResults([data]);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleReplaceImage = (index, selectedImage) => {
+    handleImageChange(index, "firebaseUrl", selectedImage.firebaseUrl);
+    handleImageChange(index, "altText", selectedImage.altText);
   };
 
   const handleSave = async () => {
@@ -131,6 +153,43 @@ const EditComponent = () => {
                   />
                 </div>
               ))}
+
+              <div className="flex flex-col gap-2">
+                <label>Search for a new image</label>
+                <input
+                  type="text"
+                  placeholder="Enter image name"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="border py-2 px-3"
+                />
+                <button
+                  onClick={handleSearch}
+                  className="bg-blue-500 text-white px-4 py-2 rounded"
+                >
+                  Search
+                </button>
+
+                {searchResults.length > 0 && (
+                  <div className="flex flex-col gap-2 mt-2">
+                    <h4>Search Results</h4>
+                    {searchResults.map((result, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                        onClick={() => handleReplaceImage(index, result)}
+                      >
+                        <img
+                          src={result.firebaseUrl}
+                          alt={result.altText.en}
+                          className="w-16 h-16 object-cover"
+                        />
+                        <p>{result.altText.en}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>

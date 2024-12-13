@@ -27,12 +27,12 @@ const PageList = () => {
   // if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="flex flex-col items-center">
-      <h1>Pages</h1>
-      <ul>
+    <div className="flex flex-col items-center justify-center gap-7 my-5">
+      <h2 className="font-monserrat text-[30px] font-medium">Pages</h2>
+      <ul className="flex flex-col w-[90%] items-start justify-center gap-5">
         {pages.map((page) => (
           <li key={page._id}>
-            <Link to={`/panel/pages/${page.pageName}`}>{page.pageName}</Link>
+            <Link className="font-monserrat text-[20px] font-normal hover:text-[#6b78ad] px-2 py-1 bg-slate-300 border rounded-md" to={`/panel/pages/${page.pageName}`}>{page.pageName}</Link>
           </li>
         ))}
       </ul>
