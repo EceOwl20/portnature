@@ -54,17 +54,19 @@ const Gallery = () => {
 
   if (loading) return <p>Loading images...</p>;
   if (error) return <p>Error: {error}</p>;
-
+//#6eaac3
   return (
-    <div className="grid grid-cols-5 gap-4 p-6 bg-slate-500">
+    <div className="flex flex-col w-full bg-[#6b78ad] items-center justify-start py-6 gap-4 min-h-[70vh]">
+      <h2 className="font-monserrat text-[30px] font-medium">Galeri</h2>
+      <div className="grid grid-cols-5 gap-6 p-6 ">
       {images.map((image, index) => (
-        <div key={index} className="relative group">
+        <div key={index} className="relative group w-[250px] h-[200px] items-center justify-center">
           <img
             src={image.firebaseUrl}
-            alt={image.name.en} // Varsayılan olarak İngilizce isim gösteriliyor
+            alt={image.name.en} //varsayılan en
             className="w-full h-auto rounded-md"
           />
-          <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-center py-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute bottom-1 left-0 right-0 bg-black/70 text-white text-center py-2 opacity-0 group-hover:opacity-100 transition-opacity">
             {image.name.en}
           </div>
           <button className="absolute top-2 left-2 bg-blue-600 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
@@ -79,6 +81,7 @@ const Gallery = () => {
           </button>
         </div>
       ))}
+    </div>
     </div>
   );
 };

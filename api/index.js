@@ -5,6 +5,8 @@ import loginRegister from "./routes/loginRegister.js";
 import blogRoute from "./routes/blog.js";
 import cors from "cors";
 import imageRoute from "./routes/images.js";
+import pageRoute from "./routes/page.js";
+import componentRoute from "./routes/components.js";
 
 const connect = async () => {
     await mongo.connect("mongodb+srv://smbduknwn:1TL6SUtVqQDyWsnJ@port-nature.jvs90.mongodb.net/?retryWrites=true&w=majority&appName=Port-Nature");
@@ -30,6 +32,8 @@ exp.use("/api/giris", loginRegister);
 exp.use("/api/user", userRoute);
 exp.use("/api/blog", blogRoute);
 exp.use("/api/images", imageRoute);
+exp.use("/api/page", pageRoute);
+exp.use("/api/components", componentRoute);
 
 exp.use((error, request, response, next) => {
     const statusCode = error.statusCode || 500;
