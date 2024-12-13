@@ -101,6 +101,9 @@ import MiniAlaCarte from "./pages/Kids/MiniAlaCarte";
 import DynamicPage from "./pages/PanelPages/DynamicPage";
 import EditDynamicPage from "./pages/PanelPages/EditDynamicPage";
 import EditPage from "./pages/PanelPages/EditPage";
+import PageDetails from "./pages/PanelPages/PageDetails";
+import PageList from "./pages/PanelPages/PageList";
+import EditComponent from "./pages/PanelPages/EditComponent";
 
 
 const davidoffCarousel = [davidoffImg, davidoffImg, davidoffImg, davidoffImg,davidoffImg,davidoffImg];
@@ -276,8 +279,7 @@ const App = () => {
            <Routes>
            <Route path="/homepage" element={<DynamicPage page="homepage" />} />
            <Route path="/about" element={<DynamicPage page="about" />} />
-           <Route path="/page/:pageName" element={<DynamicPage />} />
-           <Route path="/edit/:pageName" element={<EditPage />} />
+           <Route path="/page/:pageName" element={<DynamicPage page="homepage"/>} />
 
             <Route path="/" element={<Homepage />} />
             <Route path="/rooms" element={<Rooms img={allrooms} header="Feel every advantage of our rooms" links={allroomslinks} linkstext={allroomslinkstexts} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
@@ -308,6 +310,11 @@ const App = () => {
                 <Route path="/panel/blog/guncelle/:id" element={<BlogDüzenle />} />
                 <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
                 <Route path="/panel/edit/:page" element={<EditDynamicPage />} />
+                
+                <Route path="/panel/pages" element={<PageList />} />
+                <Route path="/panel/pages/:pageName" element={<PageDetails />} />
+                <Route path="/panel/pages/:pageName/components/:componentIndex" element={<EditComponent />} />
+
 
             </Route>
             <Route path="/bloglar" element={<BlogPage />} />

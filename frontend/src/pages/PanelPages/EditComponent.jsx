@@ -1,67 +1,88 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-const EditComponent = ({ componentId }) => {
-  const [component, setComponent] = useState(null);
+const EditComponent = () => {
+  const { pageName, componentIndex } = useParams();
+  const navigate = useNavigate();
+  const [componentData, setComponentData] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    const fetchComponent = async () => {
+    const fetchComponentData = async () => {
       try {
-        const response = await fetch(`/api/components/${componentId}`);
+        const response = await fetch(`/api/page/${pageName}`);
         const data = await response.json();
-        setComponent(data);
-      } catch (error) {
-        setError("Failed to fetch component");
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch component data");
+        }
+
+        setComponentData(data.components[componentIndex]);
+      } catch (err) {
+        setError(err.message);
       }
     };
 
-    fetchComponent();
-  }, [componentId]);
+    fetchComponentData();
+  }, [pageName, componentIndex]);
 
-  const handleUpdate = async () => {
+  const handleInputChange = (field, value) => {
+    setComponentData((prev) => ({
+      ...prev,
+      props: {
+        ...prev.props,
+        [field]: value,
+      },
+    }));
+  };
+
+  const handleSave = async () => {
+    setError(null);
+    setSuccess(false);
+
     try {
-      const response = await fetch(`/api/components/${componentId}`, {
+      const response = await fetch(`/api/page/${pageName}/components/${componentIndex}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ props: component.props }),
+        body: JSON.stringify(componentData),
       });
 
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message);
+      if (!response.ok) {
+        throw new Error("Failed to save component data");
+      }
 
       setSuccess(true);
+      navigate(`/panel/pages/${pageName}`);
     } catch (err) {
       setError(err.message);
     }
   };
 
-  if (!component) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
+  if (!componentData) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h3>Edit {component.type}</h3>
-      {Object.keys(component.props).map((key) => (
-        <div key={key}>
+    <div className="flex flex-col items-center">
+      <h1>Edit Component: {componentData.type}</h1>
+      {Object.keys(componentData.props).map((key) => (
+        <div key={key} className="flex flex-col gap-2">
           <label>{key}</label>
           <input
             type="text"
-            value={component.props[key]}
-            onChange={(e) =>
-              setComponent((prev) => ({
-                ...prev,
-                props: { ...prev.props, [key]: e.target.value },
-              }))
-            }
+            value={componentData.props[key]}
+            onChange={(e) => handleInputChange(key, e.target.value)}
           />
         </div>
       ))}
-      <button onClick={handleUpdate}>Save</button>
-      {success && <p>Update successful!</p>}
+      <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded">
+        Save Changes
+      </button>
+      {success && <p className="text-green-500">Component updated successfully!</p>}
     </div>
   );
 };
-export default EditComponent
+
+export default EditComponent;

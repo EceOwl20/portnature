@@ -153,3 +153,46 @@ export const getImageById = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
+export const updateImageName = async (req, res) => {
+  try {
+    const { oldName, newName } = req.body;
+
+    if (!oldName || !newName) {
+      return res.status(400).json({ message: "Old name and new name are required" });
+    }
+
+    const updatedImage = await Image.findOneAndUpdate(
+      { "name.en": oldName }, // İngilizce isim üzerinden buluyoruz
+      { $set: { "name.en": newName } }, // Yeni ismi güncelliyoruz
+      { new: true }
+    );
+
+    if (!updatedImage) {
+      return res.status(404).json({ message: "Image not found" });
+    }
+
+    res.status(200).json(updatedImage);
+  } catch (error) {
+    console.error("Error updating image name:", error);
+    res.status(500).json({ message: "Error updating image name", error });
+  }
+};
+
+
+export const getImagesByPage = async (req, res) => {
+  try {
+    const { page } = req.query;
+
+    const images = await Image.find({ page }); // Sayfa adıyla ilişkilendirilmiş resimleri bulur
+
+    if (!images || images.length === 0) {
+      return res.status(404).json({ message: "No images found" });
+    }
+
+    res.status(200).json(images);
+  } catch (error) {
+    console.error("Error fetching images:", error);
+    res.status(500).json({ message: "Error fetching images", error });
+  }
+};
