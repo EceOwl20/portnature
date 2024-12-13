@@ -1,4 +1,6 @@
 import React from 'react'
+import LineVerticalSvg from '../../../svg/LineVerticalSvg'
+import LineVertical2Svg from '../../../svg/LineVertical2Svg'
 
 const MınıClubSection1 = () => {
   return (
