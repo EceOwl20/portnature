@@ -37,6 +37,22 @@ const EditComponent = () => {
     }));
   };
 
+  const handleImageChange = (index, field, value) => {
+    setComponentData((prev) => {
+      const updatedImages = prev.props.images.map((image, i) =>
+        i === index ? { ...image, [field]: value } : image
+      );
+
+      return {
+        ...prev,
+        props: {
+          ...prev.props,
+          images: updatedImages,
+        },
+      };
+    });
+  };
+
   const handleSave = async () => {
     setError(null);
     setSuccess(false);
@@ -67,16 +83,59 @@ const EditComponent = () => {
   return (
     <div className="flex flex-col items-center">
       <h1>Edit Component: {componentData.type}</h1>
-      {Object.keys(componentData.props).map((key) => (
-        <div key={key} className="flex flex-col gap-2">
-          <label>{key}</label>
-          <input
-            type="text"
-            value={componentData.props[key]}
-            onChange={(e) => handleInputChange(key, e.target.value)}
-          />
+
+      {/* General props editing */}
+      {Object.keys(componentData.props).map((key) => {
+        if (key !== "images") {
+          return (
+            <div key={key} className="flex flex-col gap-2">
+              <label>{key}</label>
+              <input
+                type="text"
+                value={componentData.props[key]}
+                onChange={(e) => handleInputChange(key, e.target.value)}
+              />
+            </div>
+          );
+        }
+        return null;
+      })}
+
+      {/* Images editing */}
+      {componentData.props.images && (
+        <div className="flex flex-col gap-4 w-full">
+          <h2>Images</h2>
+          {componentData.props.images.map((image, index) => (
+            <div key={index} className="flex flex-col gap-2 border p-4 rounded-md">
+              <h3>Image {index + 1}</h3>
+              <label>Firebase URL</label>
+              <input
+                type="text"
+                value={image.firebaseUrl}
+                onChange={(e) => handleImageChange(index, "firebaseUrl", e.target.value)}
+              />
+
+              {Object.keys(image.altText).map((lang) => (
+                <div key={lang} className="flex flex-col gap-2">
+                  <label>Alt Text ({lang})</label>
+                  <input
+                    type="text"
+                    value={image.altText[lang]}
+                    onChange={(e) => {
+                      const updatedAltText = {
+                        ...image.altText,
+                        [lang]: e.target.value,
+                      };
+                      handleImageChange(index, "altText", updatedAltText);
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
-      ))}
+      )}
+
       <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded">
         Save Changes
       </button>

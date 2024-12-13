@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import img1 from "../../public/images/PortCover1.png"
 import img2 from "../../public/images/PortCover31.png"
 import img3 from "../../public/images/PortCover41.png"
@@ -47,10 +47,43 @@ const linksBar=["/","/","/","/"]
 const homeCarouselImages = ["portnaturehotel","portnaturehotel2","portnaturehotel3"];
 
 const Homepage = () => {
+  const [carouselData, setCarouselData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCarouselData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/page/homepage");
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch carousel data");
+        }
+
+        const carouselComponent = data.components.find(
+          (comp) => comp.type === "Carousel"
+        );
+
+        if (carouselComponent) {
+          setCarouselData(carouselComponent.props);
+        } else {
+          throw new Error("Carousel data not found in homepage");
+        }
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchCarouselData();
+  }, []);
+
+  if (error) return <p>Error: {error}</p>;
+  if (!carouselData) return <p>Loading...</p>;
+
   return (
     <div className='flex flex-col items-center justify-center'>
       {/* <HomeCarousel images={images}/> */}
-      <HomeCarousel names={homeCarouselImages} lang="en"/>
+      <HomeCarousel {...carouselData} />
       <Reservation/>
       <HomeIconSection/>
       <div className='flex w-screen mt-20'>
