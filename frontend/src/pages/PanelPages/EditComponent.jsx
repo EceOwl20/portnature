@@ -101,6 +101,26 @@ const EditComponent = () => {
     });
   };
 
+  const handleAddItem = (field) => {
+    setComponentData((prev) => ({
+      ...prev,
+      props: {
+        ...prev.props,
+        [field]: [
+          ...prev.props[field],
+          field === "images" || field === "subImages"
+            ? {
+                firebaseUrl: "",
+                altText: { en: "", tr: "", de: "", ru: "" },
+                width: 0,
+                height: 0,
+              }
+            : { en: "", tr: "", de: "", ru: "" },
+        ],
+      },
+    }));
+  };
+
   const handleSearch = async () => {
     try {
       const response = await fetch(`/api/images/search?name=${searchQuery}&lang=en`);
@@ -286,6 +306,12 @@ const EditComponent = () => {
               </div>
             </div>
           ))}
+            <button
+            onClick={() => handleAddItem("images")}
+            className="bg-green-500 text-white px-4 py-2 rounded"
+          >
+            Add New Image
+          </button>
         </div>
       )}
 
@@ -356,7 +382,12 @@ const EditComponent = () => {
               </div>
             </div>
           ))}
-          
+           <button
+            onClick={() => handleAddItem("subImages")}
+            className="bg-green-500 text-white px-4 py-2 rounded"
+          >
+            Add New SubImage
+          </button>
         </div>
       )}
 
