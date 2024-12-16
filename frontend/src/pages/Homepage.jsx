@@ -48,18 +48,20 @@ const homeCarouselImages = ["portnaturehotel","portnaturehotel2","portnaturehote
 
 const Homepage = () => {
   const [carouselData, setCarouselData] = useState(null);
+  const [barLoungeData, setBarLoungeData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchCarouselData = async () => {
+    const fetchPageData = async () => {
       try {
         const response = await fetch("http://localhost:3000/api/page/homepage");
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.message || "Failed to fetch carousel data");
+          throw new Error(data.message || "Failed to fetch page data");
         }
 
+        // Carousel verilerini çek
         const carouselComponent = data.components.find(
           (comp) => comp.type === "Carousel"
         );
@@ -67,18 +69,29 @@ const Homepage = () => {
         if (carouselComponent) {
           setCarouselData(carouselComponent.props);
         } else {
-          throw new Error("Carousel data not found in homepage");
+          console.warn("Carousel data not found in homepage");
+        }
+
+        // BarLoungeCarousel verilerini çek
+        const barLoungeComponent = data.components.find(
+          (comp) => comp.type === "BarLoungeCarousel"
+        );
+
+        if (barLoungeComponent) {
+          setBarLoungeData(barLoungeComponent.props);
+        } else {
+          console.warn("BarLoungeCarousel data not found in homepage");
         }
       } catch (err) {
         setError(err.message);
       }
     };
 
-    fetchCarouselData();
+    fetchPageData();
   }, []);
 
   if (error) return <p>Error: {error}</p>;
-  if (!carouselData) return <p>Loading...</p>;
+  if (!carouselData && !barLoungeData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col items-center justify-center'>
@@ -99,7 +112,7 @@ const Homepage = () => {
       <ImageBackgroundSection/>
       <SpecialOffersCarousel/>
       <AlacarteSection/>
-      <BarLoungeCarousel images={barImages} subImages={subImages} headers={headersBar} texts={textsBar} links={linksBar}/>
+       <BarLoungeCarousel {...barLoungeData} />
       <ContactSection/>
       <BorderCarousel/>
       <BorderCarousel2/>
