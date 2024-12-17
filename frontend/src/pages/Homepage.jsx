@@ -6,7 +6,6 @@ import HomeCarousel from '../components/homepage/HomeCarousel'
 import Reservation from '../components/homepage/Reservation'
 import HomeIconSection from '../components/homepage/HomeIconSection'
 import AllInclusive from '../components/homepage/AllInclusive'
-import SubCarousel from '../components/homepage/SubCarousel'
 import HolidayImageSection from '../components/homepage/HolidayImageSection'
 import Accommodation from '../components/homepage/Accommodation'
 import ChildrenSection from '../components/homepage/ChildrenSection'
@@ -50,6 +49,7 @@ const Homepage = () => {
   const [carouselData, setCarouselData] = useState(null);
   const [barLoungeData, setBarLoungeData] = useState(null);
   const [iconSectionData, setIconSectionData] = useState(null);
+  const [allInclusiveData, setAllInclusiveDataData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -92,7 +92,18 @@ const Homepage = () => {
         if (iconSectionComponent) {
           setIconSectionData(iconSectionComponent.props);
         } else {
-          console.warn("Carousel data not found in homepage");
+          console.warn("iconSection data not found in homepage");
+        }
+
+         // AllIncllusive verilerini çek
+         const allInclusiveComponent = data.components.find(
+          (comp) => comp.type === "AllInclusive"
+        );
+
+        if (allInclusiveComponent) {
+          setAllInclusiveDataData(allInclusiveComponent.props);
+        } else {
+          console.warn("allInclusive data not found in homepage");
         }
 
       } catch (err) {
@@ -104,7 +115,7 @@ const Homepage = () => {
   }, []);
 
   if (error) return <p>Error: {error}</p>;
-  if (!carouselData && !barLoungeData && !iconSectionData) return <p>Loading...</p>;
+  if (!carouselData && !barLoungeData && !iconSectionData && !allInclusiveData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col items-center justify-center'>
@@ -118,7 +129,7 @@ const Homepage = () => {
       <div className="bg-custom-gradient-reverse h-[1px] w-[50%]">
       </div>
       </div>
-      <AllInclusive/>
+      <AllInclusive {...allInclusiveData}/>
       <HolidayImageSection/>
       <Accommodation/>
       <ChildrenSection/>

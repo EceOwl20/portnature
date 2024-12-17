@@ -235,18 +235,47 @@ const EditComponent = () => {
     }));
   };
 
-  {/* handleRemoveItem */}
-  {/* Bu fonksiyon, belirtilen index'teki item'ı kaldırıyor. */}
-  const handleRemoveItem = (index) => {
-    setComponentData((prev) => ({
-      ...prev,
-      props: {
-        ...prev.props,
-        items: prev.props.items.filter((_, i) => i !== index),
-      },
-    }));
+  const handleRemoveItem = async (index) => {
+    try {
+      // Sunucuya DELETE isteği gönder
+      const response = await fetch(`/api/page/${pageName}/components/${componentIndex}/items/${index}`, {
+        method: 'DELETE',
+      });
+  
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Failed to delete item");
+      }
+  
+      // İstek başarılıysa local state'i güncelle
+      setComponentData((prev) => ({
+        ...prev,
+        props: {
+          ...prev.props,
+          items: prev.props.items.filter((_, i) => i !== index),
+        },
+      }));
+  
+      console.log("Item deleted from DB successfully!");
+    } catch (err) {
+      console.error("Error deleting item:", err);
+    }
   };
   
+  
+
+  {/* handleRemoveItem */}
+  {/* Bu fonksiyon, belirtilen index'teki item'ı kaldırıyor. */}
+  // const handleRemoveItem = (index) => {
+  //   setComponentData((prev) => ({
+  //     ...prev,
+  //     props: {
+  //       ...prev.props,
+  //       items: prev.props.items.filter((_, i) => i !== index),
+  //     },
+  //   }));
+  // };
+
   //******* */
 
   if (error) return <p>Error: {error}</p>;
@@ -517,12 +546,12 @@ const EditComponent = () => {
                 />
               ))}
 
-              <button onClick={() => handleRemoveItem(index)} className="bg-red-500 text-white py-1 px-3 rounded">
+              <button onClick={() => handleRemoveItem(index)} className="w-1/6 bg-red-600 text-white py-1 px-3 rounded">
                 Remove Item
               </button>
             </div>
           ))}
-          <button onClick={handleAddNewItem} className="bg-green-500 text-white py-2 px-4 rounded mt-4">
+          <button onClick={handleAddNewItem} className="bg-green-700 text-white py-2 px-4 rounded mt-4">
             Add New Item
           </button>
         </div>
