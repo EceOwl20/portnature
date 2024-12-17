@@ -101,6 +101,51 @@ const EditComponent = () => {
     });
   };
 
+  // Tek bir image için URL güncellemesi
+  const handleImageUrlChange = (value) => {
+    setComponentData((prev) => ({
+      ...prev,
+      props: {
+        ...prev.props,
+        image: {
+          ...prev.props.image,
+          firebaseUrl: value,
+        },
+      },
+    }));
+  };
+
+  // Tek bir image altText dil güncellemeleri
+  const handleImageAltTextChange = (lang, value) => {
+    setComponentData((prev) => ({
+      ...prev,
+      props: {
+        ...prev.props,
+        image: {
+          ...prev.props.image,
+          altText: {
+            ...prev.props.image.altText,
+            [lang]: value,
+          },
+        },
+      },
+    }));
+  };
+
+  // header veya text gibi dil bazlı alanlar için güncelleme fonksiyonu
+  const handleLangFieldChange = (field, lang, value) => {
+    setComponentData((prev) => ({
+      ...prev,
+      props: {
+        ...prev.props,
+        [field]: {
+          ...prev.props[field],
+          [lang]: value,
+        },
+      },
+    }));
+  };
+
   const handleAddItem = (field) => {
     setComponentData((prev) => ({
       ...prev,
@@ -258,6 +303,11 @@ const EditComponent = () => {
   if (error) return <p>Error: {error}</p>;
   if (!componentData) return <p>Loading...</p>;
 
+  // NEW SINGLE IMAGE COMPONENT FIELDS
+  const singleImage = componentData.props.image;
+  const singleHeader = componentData.props.header;
+  const singleText = componentData.props.text;
+
   return (
     <div className="flex flex-col items-center font-monserrat">
       <h1 className="text-[25px] font-medium my-4 text-[#0e0c1b]">Edit Component: {componentData.type}</h1>
@@ -272,19 +322,21 @@ const EditComponent = () => {
           key === "headers" ||
           key === "texts" ||
           key === "links" ||
-          key === "items"
+          key === "items" ||
+          key === "image" || // Bu ek satırla image alanını da burada listelemekten kaçındık
+          key === "header" || // aynı şekilde
+          key === "text"     // aynı şekilde
         ) {
           return null;
         }
 
-        // Eğer value dört dilli bir obje ise (en, tr, de, ru var mı kontrol ediyoruz)
+        // Eğer value dört dilli bir obje ise (en, tr, de, ru)
         const isLangObject =
           value &&
           typeof value === "object" &&
           ["en", "tr", "de", "ru"].every((lang) => value.hasOwnProperty(lang));
 
         if (isLangObject) {
-          // Eğer props[key] dört dilli bir object ise her dil için ayrı input çıkar
           return (
             <div key={key} className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full">
               <h3 className="font-bold text-lg">{key} (Multi-language)</h3>
@@ -312,7 +364,6 @@ const EditComponent = () => {
             </div>
           );
         } else {
-          // Aksi takdirde tek dil için normal input
           return (
             <div key={key} className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full">
               <label className="text-[#246cfc] text-[18px] font-semibold">{key}</label>
@@ -325,6 +376,71 @@ const EditComponent = () => {
           );
         }
       })}
+
+      {/* NEW SINGLE IMAGE COMPONENT FIELDS */}
+      {/* Tek bir image alanı varsa düzenleme alanı */}
+      {singleImage && (
+        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+          <h2 className="font-bold text-xl">Single Image</h2>
+          <label className="font-semibold">Firebase URL</label>
+          <input
+            type="text"
+            value={singleImage.firebaseUrl || ""}
+            onChange={(e) => handleImageUrlChange(e.target.value)}
+            className="border p-2"
+          />
+
+          <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
+          {singleImage.altText && Object.keys(singleImage.altText).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label>Alt Text ({lang})</label>
+              <input
+                type="text"
+                value={singleImage.altText[lang]}
+                onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                className="border p-2"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Tek bir header alanı varsa */}
+      {singleHeader && (
+        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+          <h2 className="font-bold text-xl">Header (Multi-language)</h2>
+          {Object.keys(singleHeader).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label>Header ({lang})</label>
+              <input
+                type="text"
+                value={singleHeader[lang]}
+                onChange={(e) => handleLangFieldChange("header", lang, e.target.value)}
+                className="border p-2"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Tek bir text alanı varsa */}
+      {singleText && (
+        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+          <h2 className="font-bold text-xl">Text (Multi-language)</h2>
+          {Object.keys(singleText).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label>Text ({lang})</label>
+              <input
+                type="text"
+                value={singleText[lang]}
+                onChange={(e) => handleLangFieldChange("text", lang, e.target.value)}
+                className="border p-2"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+      {/* END OF NEW SINGLE IMAGE COMPONENT FIELDS */}
 
       {/* Images editing */}
       {componentData.props.images?.length > 0 && (
@@ -506,7 +622,6 @@ const EditComponent = () => {
           </button>
         </div>
       )}
-
 
       {/* Items Editing UI */}
       {componentData.props.items?.length > 0 && (
