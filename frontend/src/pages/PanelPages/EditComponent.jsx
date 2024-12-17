@@ -180,7 +180,6 @@ const EditComponent = () => {
     }
   };
 
-  //*** ***** */
   const handleItemInputChange = (field, index, key, value) => {
     setComponentData((prev) => {
       const updatedItems = [...prev.props.items];
@@ -192,12 +191,10 @@ const EditComponent = () => {
           ...prev.props,
           [field]: updatedItems,
         },
-      }
-    })
+      };
+    });
   };
 
-  {/* handleItemTextChange */}
-  {/* Bu fonksiyon, items içinde text alanlarını diller bazında güncelliyor. */}
   const handleItemTextChange = (field, index, lang, value) => {
     setComponentData((prev) => {
       const updatedItems = [...prev.props.items];
@@ -213,8 +210,6 @@ const EditComponent = () => {
     });
   };
 
-  {/* handleAddNewItem */}
-  {/* Bu fonksiyon, yeni bir item ekliyor. */}
   const handleAddNewItem = () => {
     setComponentData((prev) => ({
       ...prev,
@@ -237,17 +232,15 @@ const EditComponent = () => {
 
   const handleRemoveItem = async (index) => {
     try {
-      // Sunucuya DELETE isteği gönder
       const response = await fetch(`/api/page/${pageName}/components/${componentIndex}/items/${index}`, {
         method: 'DELETE',
       });
-  
+
       if (!response.ok) {
         const data = await response.json();
         throw new Error(data.message || "Failed to delete item");
       }
-  
-      // İstek başarılıysa local state'i güncelle
+
       setComponentData((prev) => ({
         ...prev,
         props: {
@@ -255,49 +248,74 @@ const EditComponent = () => {
           items: prev.props.items.filter((_, i) => i !== index),
         },
       }));
-  
+
       console.log("Item deleted from DB successfully!");
     } catch (err) {
       console.error("Error deleting item:", err);
     }
   };
-  
-  
-
-  {/* handleRemoveItem */}
-  {/* Bu fonksiyon, belirtilen index'teki item'ı kaldırıyor. */}
-  // const handleRemoveItem = (index) => {
-  //   setComponentData((prev) => ({
-  //     ...prev,
-  //     props: {
-  //       ...prev.props,
-  //       items: prev.props.items.filter((_, i) => i !== index),
-  //     },
-  //   }));
-  // };
-
-  //******* */
 
   if (error) return <p>Error: {error}</p>;
   if (!componentData) return <p>Loading...</p>;
 
   return (
     <div className="flex flex-col items-center font-monserrat">
-      <h1>Edit Component: {componentData.type}</h1>
+      <h1 className="text-[25px] font-medium my-4 text-[#0e0c1b]">Edit Component: {componentData.type}</h1>
 
-      {/* General props editing */}
+      {/* General props editing - Güncellenmiş kısım */}
       {Object.keys(componentData.props || {}).map((key) => {
+        const value = componentData.props[key];
+        // Bu alanların düzenlenmesini istenmiyoruz
         if (
-          key !== "images" &&
-          key !== "subImages" &&
-          key !== "headers" &&
-          key !== "texts" &&
-          key !== "links" &&
-          key !== "items"
+          key === "images" ||
+          key === "subImages" ||
+          key === "headers" ||
+          key === "texts" ||
+          key === "links" ||
+          key === "items"
         ) {
+          return null;
+        }
+
+        // Eğer value dört dilli bir obje ise (en, tr, de, ru var mı kontrol ediyoruz)
+        const isLangObject =
+          value &&
+          typeof value === "object" &&
+          ["en", "tr", "de", "ru"].every((lang) => value.hasOwnProperty(lang));
+
+        if (isLangObject) {
+          // Eğer props[key] dört dilli bir object ise her dil için ayrı input çıkar
           return (
-            <div key={key} className="flex flex-col gap-2">
-              <label>{key}</label>
+            <div key={key} className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full">
+              <h3 className="font-bold text-lg">{key} (Multi-language)</h3>
+              {Object.keys(value).map((lang) => (
+                <div key={lang} className="flex flex-col gap-2">
+                  <label className="text-[#246cfc] text-[18px] font-semibold">{key} ({lang})</label>
+                  <input
+                    type="text"
+                    value={value[lang]}
+                    onChange={(e) => {
+                      setComponentData((prev) => ({
+                        ...prev,
+                        props: {
+                          ...prev.props,
+                          [key]: {
+                            ...prev.props[key],
+                            [lang]: e.target.value,
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          );
+        } else {
+          // Aksi takdirde tek dil için normal input
+          return (
+            <div key={key} className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full">
+              <label className="text-[#246cfc] text-[18px] font-semibold">{key}</label>
               <input
                 type="text"
                 value={componentData.props[key]}
@@ -306,7 +324,6 @@ const EditComponent = () => {
             </div>
           );
         }
-        return null;
       })}
 
       {/* Images editing */}
@@ -491,7 +508,6 @@ const EditComponent = () => {
       )}
 
 
-
       {/* Items Editing UI */}
       {componentData.props.items?.length > 0 && (
         <div className="flex flex-col gap-4 w-full mt-8">
@@ -534,7 +550,6 @@ const EditComponent = () => {
                 onChange={(e) => handleItemInputChange("items", index, "smallHeight", e.target.value)}
               />
 
-              {/* Text Editing */}
               <label>Text</label>
               {Object.keys(item.text).map((lang) => (
                 <input
