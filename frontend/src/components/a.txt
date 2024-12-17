@@ -1,3 +1,5 @@
+chat merhaba bir konuda bana yardımcı olur musun , şimdi ilk attığım koda diğer koddaki homeicon editing ekler misin ilk kodda değişiklik yapma lütfen sadece diğerini ekle lütfen.
+ilk kod:
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -15,7 +17,7 @@ const EditComponent = () => {
   useEffect(() => {
     const fetchComponentData = async () => {
       try {
-        const response = await fetch(`/api/page/${pageName}`);
+        const response = await fetch(/api/page/${pageName});
         const data = await response.json();
 
         if (!response.ok) {
@@ -123,7 +125,7 @@ const EditComponent = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`/api/images/search?name=${searchQuery}&lang=en`);
+      const response = await fetch(/api/images/search?name=${searchQuery}&lang=en);
       const data = await response.json();
 
       if (!response.ok) {
@@ -138,7 +140,7 @@ const EditComponent = () => {
 
   const handleSubImageSearch = async () => {
     try {
-      const response = await fetch(`/api/images/search?name=${subImageSearchQuery}&lang=en`);
+      const response = await fetch(/api/images/search?name=${subImageSearchQuery}&lang=en);
       const data = await response.json();
 
       if (!response.ok) {
@@ -161,7 +163,7 @@ const EditComponent = () => {
     setSuccess(false);
 
     try {
-      const response = await fetch(`/api/page/${pageName}/components/${componentIndex}`, {
+      const response = await fetch(/api/page/${pageName}/components/${componentIndex}, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -174,80 +176,11 @@ const EditComponent = () => {
       }
 
       setSuccess(true);
-      navigate(`/panel/pages/${pageName}`);
+      navigate(/panel/pages/${pageName});
     } catch (err) {
       setError(err.message);
     }
   };
-
-  //*** ***** */
-  const handleItemInputChange = (field, index, key, value) => {
-    setComponentData((prev) => {
-      const updatedItems = [...prev.props.items];
-      updatedItems[index] = { ...updatedItems[index], [key]: value };
-
-      return {
-        ...prev,
-        props: {
-          ...prev.props,
-          [field]: updatedItems,
-        },
-      }
-    })
-  };
-
-  {/* handleItemTextChange */}
-  {/* Bu fonksiyon, items içinde text alanlarını diller bazında güncelliyor. */}
-  const handleItemTextChange = (field, index, lang, value) => {
-    setComponentData((prev) => {
-      const updatedItems = [...prev.props.items];
-      updatedItems[index].text = { ...updatedItems[index].text, [lang]: value };
-
-      return {
-        ...prev,
-        props: {
-          ...prev.props,
-          [field]: updatedItems,
-        },
-      };
-    });
-  };
-
-  {/* handleAddNewItem */}
-  {/* Bu fonksiyon, yeni bir item ekliyor. */}
-  const handleAddNewItem = () => {
-    setComponentData((prev) => ({
-      ...prev,
-      props: {
-        ...prev.props,
-        items: [
-          ...(prev.props.items || []),
-          {
-            firebaseUrl: "",
-            text: { en: "", tr: "", de: "", ru: "" },
-            largeWidth: 0,
-            largeHeight: 0,
-            smallWidth: 0,
-            smallHeight: 0,
-          },
-        ],
-      },
-    }));
-  };
-
-  {/* handleRemoveItem */}
-  {/* Bu fonksiyon, belirtilen index'teki item'ı kaldırıyor. */}
-  const handleRemoveItem = (index) => {
-    setComponentData((prev) => ({
-      ...prev,
-      props: {
-        ...prev.props,
-        items: prev.props.items.filter((_, i) => i !== index),
-      },
-    }));
-  };
-  
-  //******* */
 
   if (error) return <p>Error: {error}</p>;
   if (!componentData) return <p>Loading...</p>;
@@ -263,8 +196,7 @@ const EditComponent = () => {
           key !== "subImages" &&
           key !== "headers" &&
           key !== "texts" &&
-          key !== "links" &&
-          key !== "items"
+          key !== "links"
         ) {
           return (
             <div key={key} className="flex flex-col gap-2">
@@ -309,7 +241,7 @@ const EditComponent = () => {
                 </div>
               ))}
 
-              {Object.keys(image.header || {}).map((lang) => (
+        {Object.keys(image.header || {}).map((lang) => (
                 <div key={lang} className="flex flex-col gap-2">
                   <label className="text-[#246cfc] text-[18px] font-semibold">Header ({lang})</label>
                   <input
@@ -334,6 +266,8 @@ const EditComponent = () => {
                   />
                 </div>
               ))}
+
+              
 
               {/* Image search */}
               <div className="flex flex-col gap-2 items-center">
@@ -372,9 +306,11 @@ const EditComponent = () => {
                   </div>
                 )}
               </div>
+
+       
             </div>
           ))}
-          <button
+            <button
             onClick={() => handleAddItem("images")}
             className="bg-green-700 text-white px-4 py-2 rounded w-[20%] my-4"
           >
@@ -401,9 +337,7 @@ const EditComponent = () => {
 
               {Object.keys(subImage.altText || {}).map((lang) => (
                 <div key={lang} className="flex flex-col gap-2">
-                  <label className="text-[#246cfc] text-[18px] font-semibold">
-                    Alt Text ({lang})
-                  </label>
+                  <label className="text-[#246cfc] text-[18px] font-semibold">Alt Text ({lang})</label>
                   <input
                     type="text"
                     value={subImage.altText[lang]}
@@ -452,7 +386,7 @@ const EditComponent = () => {
               </div>
             </div>
           ))}
-          <button
+           <button
             onClick={() => handleAddItem("subImages")}
             className="bg-green-700 text-white px-4 py-2 rounded w-[20%] my-4"
           >
@@ -462,73 +396,197 @@ const EditComponent = () => {
       )}
 
 
-
-      {/* Items Editing UI */}
-      {componentData.props.items?.length > 0 && (
-        <div className="flex flex-col gap-4 w-full mt-8">
-          <h2 className="text-[20px] text-[#0e0c1b] font-semibold ml-2">Items</h2>
-          {componentData.props.items.map((item, index) => (
-            <div key={index} className="border p-4 rounded-md flex flex-col gap-2">
-              <h3>Item {index + 1}</h3>
-              <label>Image URL</label>
-              <input
-                type="text"
-                value={item.firebaseUrl}
-                onChange={(e) => handleItemInputChange("items", index, "firebaseUrl", e.target.value)}
-              />
-
-              <label>Large Dimensions</label>
-              <input
-                type="number"
-                placeholder="Width"
-                value={item.largeWidth}
-                onChange={(e) => handleItemInputChange("items", index, "largeWidth", e.target.value)}
-              />
-              <input
-                type="number"
-                placeholder="Height"
-                value={item.largeHeight}
-                onChange={(e) => handleItemInputChange("items", index, "largeHeight", e.target.value)}
-              />
-
-              <label>Small Dimensions</label>
-              <input
-                type="number"
-                placeholder="Width"
-                value={item.smallWidth}
-                onChange={(e) => handleItemInputChange("items", index, "smallWidth", e.target.value)}
-              />
-              <input
-                type="number"
-                placeholder="Height"
-                value={item.smallHeight}
-                onChange={(e) => handleItemInputChange("items", index, "smallHeight", e.target.value)}
-              />
-
-              {/* Text Editing */}
-              <label>Text</label>
-              {Object.keys(item.text).map((lang) => (
-                <input
-                  key={lang}
-                  type="text"
-                  placeholder={`Text (${lang})`}
-                  value={item.text[lang]}
-                  onChange={(e) => handleItemTextChange("items", index, lang, e.target.value)}
-                />
-              ))}
-
-              <button onClick={() => handleRemoveItem(index)} className="bg-red-500 text-white py-1 px-3 rounded">
-                Remove Item
-              </button>
-            </div>
-          ))}
-          <button onClick={handleAddNewItem} className="bg-green-500 text-white py-2 px-4 rounded mt-4">
-            Add New Item
-          </button>
-        </div>
-      )}
-
       <button onClick={handleSave} className="bg-[#342d64] text-white text-[18px] font-semibold px-4 py-2 rounded my-5">
+        Save Changes
+      </button>
+      {success && <p className="text-green-500">Component updated successfully!</p>}
+    </div>
+  );
+};
+
+export default EditComponent;
+
+-------------
+ikinci kod:
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+
+const EditComponent = () => {
+  const { pageName, componentIndex } = useParams();
+  const navigate = useNavigate();
+  const [componentData, setComponentData] = useState(null);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    const fetchComponentData = async () => {
+      try {
+        const response = await fetch(/api/page/${pageName});
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch component data");
+        }
+
+        setComponentData(data.components[componentIndex]);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchComponentData();
+  }, [pageName, componentIndex]);
+
+  const handleInputChange = (field, index, key, value) => {
+    setComponentData((prev) => {
+      const updatedItems = [...prev.props.items];
+      updatedItems[index] = { ...updatedItems[index], [key]: value };
+
+      return {
+        ...prev,
+        props: {
+          ...prev.props,
+          [field]: updatedItems,
+        },
+      };
+    });
+  };
+
+  const handleTextChange = (field, index, lang, value) => {
+    setComponentData((prev) => {
+      const updatedItems = [...prev.props.items];
+      updatedItems[index].text = { ...updatedItems[index].text, [lang]: value };
+
+      return {
+        ...prev,
+        props: {
+          ...prev.props,
+          [field]: updatedItems,
+        },
+      };
+    });
+  };
+
+  const handleAddItem = () => {
+    setComponentData((prev) => ({
+      ...prev,
+      props: {
+        ...prev.props,
+        items: [
+          ...prev.props.items,
+          {
+            firebaseUrl: "",
+            text: { en: "", tr: "", de: "", ru: "" },
+            largeWidth: 0,
+            largeHeight: 0,
+            smallWidth: 0,
+            smallHeight: 0,
+          },
+        ],
+      },
+    }));
+  };
+
+  const handleRemoveItem = (index) => {
+    setComponentData((prev) => ({
+      ...prev,
+      props: {
+        ...prev.props,
+        items: prev.props.items.filter((_, i) => i !== index),
+      },
+    }));
+  };
+
+  const handleSave = async () => {
+    try {
+      const response = await fetch(/api/page/${pageName}/components/${componentIndex}, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(componentData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save component data");
+      }
+
+      setSuccess(true);
+      navigate(/panel/pages/${pageName});
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  if (error) return <p>Error: {error}</p>;
+  if (!componentData) return <p>Loading...</p>;
+
+  return (
+    <div className="flex flex-col items-center">
+      <h1>Edit Component: {componentData.type}</h1>
+
+      {/* Items Editing */}
+      <div className="flex flex-col gap-4 w-full">
+        {componentData.props.items.map((item, index) => (
+          <div key={index} className="border p-4 rounded-md flex flex-col gap-2">
+            <h3>Item {index + 1}</h3>
+            <label>Image URL</label>
+            <input
+              type="text"
+              value={item.firebaseUrl}
+              onChange={(e) => handleInputChange("items", index, "firebaseUrl", e.target.value)}
+            />
+
+            <label>Large Dimensions</label>
+            <input
+              type="number"
+              placeholder="Width"
+              value={item.largeWidth}
+              onChange={(e) => handleInputChange("items", index, "largeWidth", e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Height"
+              value={item.largeHeight}
+              onChange={(e) => handleInputChange("items", index, "largeHeight", e.target.value)}
+            />
+
+            <label>Small Dimensions</label>
+            <input
+              type="number"
+              placeholder="Width"
+              value={item.smallWidth}
+              onChange={(e) => handleInputChange("items", index, "smallWidth", e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Height"
+              value={item.smallHeight}
+              onChange={(e) => handleInputChange("items", index, "smallHeight", e.target.value)}
+            />
+
+            {/* Text Editing */}
+            <label>Text</label>
+            {Object.keys(item.text).map((lang) => (
+              <input
+                key={lang}
+                type="text"
+                placeholder={Text (${lang})}
+                value={item.text[lang]}
+                onChange={(e) => handleTextChange("items", index, lang, e.target.value)}
+              />
+            ))}
+
+            <button onClick={() => handleRemoveItem(index)} className="bg-red-500 text-white py-1 px-3 rounded">
+              Remove Item
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <button onClick={handleAddItem} className="bg-green-500 text-white py-2 px-4 rounded mt-4">
+        Add New Item
+      </button>
+
+      <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
         Save Changes
       </button>
       {success && <p className="text-green-500">Component updated successfully!</p>}

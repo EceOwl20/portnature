@@ -49,6 +49,7 @@ const homeCarouselImages = ["portnaturehotel","portnaturehotel2","portnaturehote
 const Homepage = () => {
   const [carouselData, setCarouselData] = useState(null);
   const [barLoungeData, setBarLoungeData] = useState(null);
+  const [iconSectionData, setIconSectionData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -82,6 +83,18 @@ const Homepage = () => {
         } else {
           console.warn("BarLoungeCarousel data not found in homepage");
         }
+
+         // Icon verilerini çek
+         const iconSectionComponent = data.components.find(
+          (comp) => comp.type === "HomeIconSection"
+        );
+
+        if (iconSectionComponent) {
+          setIconSectionData(iconSectionComponent.props);
+        } else {
+          console.warn("Carousel data not found in homepage");
+        }
+
       } catch (err) {
         setError(err.message);
       }
@@ -91,14 +104,14 @@ const Homepage = () => {
   }, []);
 
   if (error) return <p>Error: {error}</p>;
-  if (!carouselData && !barLoungeData) return <p>Loading...</p>;
+  if (!carouselData && !barLoungeData && !iconSectionData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col items-center justify-center'>
       {/* <HomeCarousel images={images}/> */}
       <HomeCarousel {...carouselData} />
       <Reservation/>
-      <HomeIconSection/>
+      <HomeIconSection {...iconSectionData}/>
       <div className='flex w-screen mt-20'>
       <div className="bg-custom-gradient h-[1px] w-[50%]">
       </div>
