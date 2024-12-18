@@ -54,7 +54,7 @@ export function ChildrenCarousel({ images }) {
                   height={image.height}
                   width={image.width}
                   layout="responsive"
-                  src={image}
+                  src={image.firebaseUrl}
                   alt={`Slide ${index + 1}`}
                 />
               </div>
