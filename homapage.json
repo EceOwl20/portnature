@@ -543,13 +543,14 @@
       "type": "ImageBackgroundSection",
       "props": {
           "image":{
-              "firebaseUrl":"",
+              "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734528203926beach.png?alt=media&token=aa3e717e-8cf2-4feb-87b2-bc507c3d542a",
               "altText":{
                   "en":"portnaturebeach",
                   "tr":"portnaturebeach",
                   "de":"portnaturebeach",
                   "ru":"portnaturebeach"
-              },
+              }
+          },
               "text":{
                   "en":"We must create a happy environment for parents and his children",
                   "tr":"We must create a happy environment for parents and his children",
@@ -568,7 +569,64 @@
                   "de":"/",
                   "ru":"/"
               }
+          
+  }
+  },
+
+  {
+      "type": "AlacarteSection",
+      "props": {
+         "image":{
+              "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734528203926beach.png?alt=media&token=aa3e717e-8cf2-4feb-87b2-bc507c3d542a",
+              "altText":{
+                  "en":"portnaturebeach",
+                  "tr":"portnaturebeach",
+                  "de":"portnaturebeach",
+                  "ru":"portnaturebeach"
+              }
+          },
+           "images": [
+          {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+            "altText": {
+              "en": "Port Nature Hotel",
+              "tr": "Port Nature Otel",
+              "de": "Port Nature Hotel",
+              "ru": "Порт Натуре Отель"
+            },
+            "width": 1920,
+            "height": 1080,
+
+            "header":{
+                "en":"",
+                "tr":"",
+                "de":"",
+                "ru":""
+            }
+          },
+          {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+            "altText": {
+              "en": "Beach View",
+              "tr": "Plaj Manzarası",
+              "de": "Strandblick",
+              "ru": "Вид на пляж"
+            },
+            "width": 1920,
+            "height": 1080
+          },{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+            "altText": {
+              "en": "Port Nature Hotel",
+              "tr": "Port Nature Otel",
+              "de": "Port Nature Hotel",
+              "ru": "Порт Натуре Отель"
+            },
+            "width": 1920,
+            "height": 1080
           }
+        ]
+          
   }
   }
   
