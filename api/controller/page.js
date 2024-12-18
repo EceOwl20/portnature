@@ -116,3 +116,66 @@ export const updateComponent = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
+export const deleteItemFromComponent = async (req, res) => {
+  const { pageName, componentIndex, itemIndex } = req.params;
+
+  try {
+    const page = await Page.findOne({ pageName });
+    if (!page) {
+      return res.status(404).json({ message: "Page not found" });
+    }
+
+    // İlgili component'e ulaş
+    const component = page.components[componentIndex];
+    if (!component) {
+      return res.status(404).json({ message: "Component not found" });
+    }
+
+    // items yoksa veya itemIndex geçerli değilse hata ver
+    if (!component.props.items || !component.props.items[itemIndex]) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+
+    // Item'ı array'den çıkar
+    component.props.items.splice(itemIndex, 1);
+
+    await page.save();
+    return res.status(200).json({ message: "Item deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting item:", error);
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const deleteImageFromComponent = async (req, res) => {
+  const { pageName, componentIndex, imageIndex } = req.params;
+
+  try {
+    const page = await Page.findOne({ pageName });
+    if (!page) {
+      return res.status(404).json({ message: "Page not found" });
+    }
+
+    // İlgili component'e ulaş
+    const component = page.components[componentIndex];
+    if (!component) {
+      return res.status(404).json({ message: "Component not found" });
+    }
+
+    // images yoksa veya imageIndex geçerli değilse hata ver
+    if (!component.props.images || !component.props.images[imageIndex]) {
+      return res.status(404).json({ message: "Image not found" });
+    }
+
+    // Image'ı array'den çıkar
+    component.props.images.splice(imageIndex, 1);
+
+    await page.save();
+    return res.status(200).json({ message: "Image deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting image:", error);
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
+

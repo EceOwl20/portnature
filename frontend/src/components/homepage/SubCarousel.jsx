@@ -44,11 +44,11 @@ const SubCarousel = ({images}) => {
           {images.map((image, index) => (
             <div className="relative flex md:w-[calc(90%-1rem)] mx-2 flex-[0_0_auto] border-[2px] h-[227px] lg:h-auto border-gray-100 shadow-lg xl:w-[calc(70%-1.4rem)] xl:mx-3 w-full" key={index}>
               <img
-                src={image}
+                src={image.firebaseUrl}
                 layout="cover"
                 width={image.width}
                 height={image.height}
-                alt={`Slide ${index + 1}`}
+                alt={image.altText}
                // objectPosition="center"
                 className="flex w-full"
               />

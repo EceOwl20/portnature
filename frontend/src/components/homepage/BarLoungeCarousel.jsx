@@ -8,7 +8,7 @@ import UnderLine from "../../svg/UnderLine/UnderLine";
 import FooterLineSvg from "../../svg/FooterLineSvg";
 import NewUnderline from "../../svg/NewUnderline";
 
-const BarLoungeCarousel = ({ images, subImages, headers, texts, links }) => {
+const BarLoungeCarousel = ({ images=[], subImages=[],lang="en" }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 2000 }),
   ]);
@@ -31,29 +31,29 @@ const BarLoungeCarousel = ({ images, subImages, headers, texts, links }) => {
               key={index}
             >
               <img
-                src={image}
-                style={{ objectFit: "cover" }}
+                src={image.firebaseUrl}
+                style={{ objectFit: "cover" }}//1920 1079
                 width={image.width}
                 height={image.height}
-                alt={`Slide ${index + 1}`}
+                alt={image.altText[lang]}
                 className=" flex h-screen w-full"
               />
               <div className="flex absolute inset-0 bg-black/50"></div>
 
               <div className="absolute flex flex-col lg:flex-row text-center top-[50%] -translate-y-1/2 left-[50%] transform -translate-x-1/2 w-[80%] gap-[20px] lg:gap-[10%] items-center justify-normal">
                 <img
-                  src={subImages[index]}
-                  alt="logo"
+                  src={subImages[index].firebaseUrl} //608 352
+                  alt={image.altText[lang]}
                   width={subImages[index].width}
                   height={subImages[index].height}
                   className="flex "
                 />
                 <div className="flex flex-col w-[75%] lg:w-[40%] text-[#FFF] gap-[30px] items-center justify-center text-center">
                   <h5 className="text-[25px] font-medium leading-[32px] font-lora lg:text-[28px] lg:leading-[42px]">
-                   {headers[index]}
+                  {image.header[lang]}
                   </h5>
                   <p className="text-[12px] font-monserrat font-bold leading-normal lg:text-[20px] lg:leading-[30px]">
-                   {texts[index]}
+                  {image.text[lang]}
                   </p>
                   <NewUnderline width={100} height={1} className="flex"/>
                   <button className="text-white border border-white flex py-[12px] px-[32px] w-[150px] whitespace-nowrap bg-transparent hover:text-transparent hover:bg-white text-[14px] leading-normal font-bold font-monserrat cursor-pointer">More About</button>

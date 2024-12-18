@@ -6,7 +6,6 @@ import HomeCarousel from '../components/homepage/HomeCarousel'
 import Reservation from '../components/homepage/Reservation'
 import HomeIconSection from '../components/homepage/HomeIconSection'
 import AllInclusive from '../components/homepage/AllInclusive'
-import SubCarousel from '../components/homepage/SubCarousel'
 import HolidayImageSection from '../components/homepage/HolidayImageSection'
 import Accommodation from '../components/homepage/Accommodation'
 import ChildrenSection from '../components/homepage/ChildrenSection'
@@ -48,18 +47,23 @@ const homeCarouselImages = ["portnaturehotel","portnaturehotel2","portnaturehote
 
 const Homepage = () => {
   const [carouselData, setCarouselData] = useState(null);
+  const [barLoungeData, setBarLoungeData] = useState(null);
+  const [iconSectionData, setIconSectionData] = useState(null);
+  const [allInclusiveData, setAllInclusiveDataData] = useState(null);
+  const [holidayImageSectionData, setHolidayImageSectionData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchCarouselData = async () => {
+    const fetchPageData = async () => {
       try {
         const response = await fetch("http://localhost:3000/api/page/homepage");
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.message || "Failed to fetch carousel data");
+          throw new Error(data.message || "Failed to fetch page data");
         }
 
+        // Carousel verilerini çek
         const carouselComponent = data.components.find(
           (comp) => comp.type === "Carousel"
         );
@@ -67,39 +71,85 @@ const Homepage = () => {
         if (carouselComponent) {
           setCarouselData(carouselComponent.props);
         } else {
-          throw new Error("Carousel data not found in homepage");
+          console.warn("Carousel data not found in homepage");
         }
+
+        // BarLoungeCarousel verilerini çek
+        const barLoungeComponent = data.components.find(
+          (comp) => comp.type === "BarLoungeCarousel"
+        );
+
+        if (barLoungeComponent) {
+          setBarLoungeData(barLoungeComponent.props);
+        } else {
+          console.warn("BarLoungeCarousel data not found in homepage");
+        }
+
+         // Icon verilerini çek
+         const iconSectionComponent = data.components.find(
+          (comp) => comp.type === "HomeIconSection"
+        );
+
+        if (iconSectionComponent) {
+          setIconSectionData(iconSectionComponent.props);
+        } else {
+          console.warn("iconSection data not found in homepage");
+        }
+
+         // AllIncllusive verilerini çek
+         const allInclusiveComponent = data.components.find(
+          (comp) => comp.type === "AllInclusive"
+        );
+
+        if (allInclusiveComponent) {
+          setAllInclusiveDataData(allInclusiveComponent.props);
+        } else {
+          console.warn("allInclusive data not found in homepage");
+        }
+
+
+         // HolidayImageSection verilerini çek
+         const holidayImageSectionComponent = data.components.find(
+          (comp) => comp.type === "HolidayImageSection"
+        );
+
+        if (holidayImageSectionComponent) {
+          setHolidayImageSectionData(holidayImageSectionComponent.props);
+        } else {
+          console.warn("allInclusive data not found in homepage");
+        }
+
       } catch (err) {
         setError(err.message);
       }
     };
 
-    fetchCarouselData();
+    fetchPageData();
   }, []);
 
   if (error) return <p>Error: {error}</p>;
-  if (!carouselData) return <p>Loading...</p>;
+  if (!carouselData && !barLoungeData && !iconSectionData && !allInclusiveData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col items-center justify-center'>
       {/* <HomeCarousel images={images}/> */}
       <HomeCarousel {...carouselData} />
       <Reservation/>
-      <HomeIconSection/>
+      <HomeIconSection {...iconSectionData}/>
       <div className='flex w-screen mt-20'>
       <div className="bg-custom-gradient h-[1px] w-[50%]">
       </div>
       <div className="bg-custom-gradient-reverse h-[1px] w-[50%]">
       </div>
       </div>
-      <AllInclusive/>
-      <HolidayImageSection/>
+      <AllInclusive {...allInclusiveData}/>
+      <HolidayImageSection  {...holidayImageSectionData}/>
       <Accommodation/>
       <ChildrenSection/>
       <ImageBackgroundSection/>
       <SpecialOffersCarousel/>
       <AlacarteSection/>
-      <BarLoungeCarousel images={barImages} subImages={subImages} headers={headersBar} texts={textsBar} links={linksBar}/>
+       <BarLoungeCarousel {...barLoungeData} />
       <ContactSection/>
       <BorderCarousel/>
       <BorderCarousel2/>

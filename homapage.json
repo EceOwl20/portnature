@@ -1,0 +1,356 @@
+{
+    "pageName": "homepage",
+    "components": [
+        {
+        "type": "Carousel",
+        "props": {
+          "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": {
+                "en": "Port Nature Hotel",
+                "tr": "Port Nature Otel",
+                "de": "Port Nature Hotel",
+                "ru": "Порт Натуре Отель"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            }
+          ],
+          "autoplay": true,
+          "delay": 3000
+        }
+      },
+  
+      {
+    "type": "BarLoungeCarousel",
+    "props": {
+      "images": [
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734337070087IrishPub.png?alt=media&token=cb8df3fd-b092-40de-80ee-22b4e74e1d31",
+          "altText": {
+            "en": "Main Image 1",
+            "tr": "Ana Resim 1",
+            "de": "Hauptbild 1",
+            "ru": "Основное изображение 1"
+          },
+          "width": 1920,
+          "height": 1079,
+          "header": {
+            "en": "Premium Bar & Lounge 1",
+            "tr": "Premium Bar & Lounge 1 tr",
+            "de": "Premium Bar & Lounge 1 de",
+            "ru": "Премиум Бар и Лаунж 1"
+          },
+          "text": {
+            "en": "Enjoy a relaxing atmosphere at our bar.",
+            "tr": "Barımızda rahat bir ortamın tadını çıkarın.",
+            "de": "Genießen Sie eine entspannte Atmosphäre in unserer Bar.",
+            "ru": "Наслаждайтесь расслабляющей атмосферой в нашем баре."
+          },
+          "link": {
+            "en": "/bar-1",
+            "tr": "/bar-1-tr",
+            "de": "/bar-1-de",
+            "ru": "/bar-1-ru"
+          }
+        },
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734337262930TurkishBath2.png?alt=media&token=15f786a9-2b39-40ac-ab03-86867138184c",
+          "altText": {
+            "en": "Main Image 2",
+            "tr": "Ana Resim 2",
+            "de": "Hauptbild 2",
+            "ru": "Основное изображение 2"
+          },
+          "width": 1920,
+          "height": 1079,
+          "header": {
+            "en": "Elegant Lounge 2",
+            "tr": "Şık Lounge 2 tr",
+            "de": "Eleganter Lounge 2 de",
+            "ru": "Элегантный Лаунж 2"
+          },
+          "text": {
+            "en": "Relax with your favorite drink in a stylish lounge.",
+            "tr": "Şık bir lounge'da favori içeceğinizle rahatlayın.",
+            "de": "Entspannen Sie mit Ihrem Lieblingsgetränk in einer stilvollen Lounge.",
+            "ru": "Расслабьтесь с любимым напитком в стильном лаунже."
+          },
+          "link": {
+            "en": "/lounge-2",
+            "tr": "/lounge-2-tr",
+            "de": "/lounge-2-de",
+            "ru": "/lounge-2-ru"
+          }
+        },
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734337112435IrishPub2.png?alt=media&token=8e7037ae-b3cd-4a06-8b44-7ad906dc0f42",
+          "altText": {
+            "en": "Main Image 3",
+            "tr": "Ana Resim 3",
+            "de": "Hauptbild 3",
+            "ru": "Основное изображение 3"
+          },
+          "width": 1920,
+          "height": 1079,
+          "header": {
+            "en": "Cozy Bar 3",
+            "tr": "Rahat Bar 3 tr",
+            "de": "Gemütliche Bar 3 de",
+            "ru": "Уютный Бар 3"
+          },
+          "text": {
+            "en": "Experience the warmth and comfort of our cozy bar.",
+            "tr": "Rahat barımızın sıcaklığını ve konforunu yaşayın.",
+            "de": "Erleben Sie die Wärme und den Komfort unserer gemütlichen Bar.",
+            "ru": "Ощутите тепло и уют нашего уютного бара."
+          },
+          "link": {
+            "en": "/cozy-bar-3",
+            "tr": "/cozy-bar-3-tr",
+            "de": "/cozy-bar-3-de",
+            "ru": "/cozy-bar-3-ru"
+          }
+        },
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734336759289davidoff.png?alt=media&token=0ec4fc9d-e932-4067-a491-7b1780355e27",
+          "altText": {
+            "en": "Main Image 4",
+            "tr": "Ana Resim 4",
+            "de": "Hauptbild 4",
+            "ru": "Основное изображение 4"
+          },
+          "width": 1920,
+          "height": 1079,
+          "header": {
+            "en": "Elegant Lounge 4",
+            "tr": "Şık Lounge 4 tr",
+            "de": "Eleganter Lounge 4 de",
+            "ru": "Элегантный Лаунж 4"
+          },
+          "text": {
+            "en": "Relax with your favorite drink in a stylish lounge4.",
+            "tr": "Şık bir lounge'da favori içeceğinizle rahatlayın.",
+            "de": "Entspannen Sie mit Ihrem Lieblingsgetränk in einer stilvollen Lounge.",
+            "ru": "Расслабьтесь с любимым напитком в стильном лаунже."
+          },
+          "link": {
+            "en": "/lounge-2",
+            "tr": "/lounge-2-tr",
+            "de": "/lounge-2-de",
+            "ru": "/lounge-2-ru"
+          }
+        }
+      ],
+      "subImages": [
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734337215845chivas.png?alt=media&token=1b16e8d8-3135-4f0b-bfe5-a9c354e6e8c5",
+          "altText": {
+            "en": "Sub Image 1",
+            "tr": "Alt Resim 1",
+            "de": "Unterbild 1",
+            "ru": "Дополнительное изображение 1"
+          },
+          "width": 608,
+          "height": 352
+        },
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734337301800TurkishBath3.png?alt=media&token=8ec88e07-2d65-4364-804d-6b0ac17b80ed",
+          "altText": {
+            "en": "Sub Image 2",
+            "tr": "Alt Resim 2",
+            "de": "Unterbild 2",
+            "ru": "Дополнительное изображение 2"
+          },
+          "width": 608,
+          "height": 352
+        },
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734337182937meeting-restaurant.png?alt=media&token=238deb00-61ee-467e-92fe-2ad2db93bfb2",
+          "altText": {
+            "en": "Sub Image 3",
+            "tr": "Alt Resim 3",
+            "de": "Unterbild 3",
+            "ru": "Дополнительное изображение 3"
+          },
+          "width": 600,
+          "height": 352
+        },
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734337010410davidoff2.png?alt=media&token=703903df-ad45-4b0b-aed0-0b9c7a4afa2f",
+          "altText": {
+            "en": "Sub Image 4",
+            "tr": "Alt Resim 4",
+            "de": "Unterbild 4",
+            "ru": "Дополнительное изображение 3"
+          },
+          "width": 608,
+          "height": 352
+        }
+      ]
+    }
+  },
+  
+  
+  {
+    "type": "HomeIconSection",
+    "props": {
+      "items": [
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+          "text": {
+            "en": "BELEK . ANTALYA",
+            "tr": "BELEK . ANTALYA TR",
+            "de": "BELEK . ANTALYA DE",
+            "ru": "БЕЛЕК . АНТАЛЬЯ"
+          },
+          "largeWidth": 30.12,
+          "largeHeight": 47.63,
+          "smallWidth": 24,
+          "smallHeight": 38
+        },
+        {
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421485887AquaparkIcon.png?alt=media&token=303e0e3b-5a25-42ec-9cc7-13a7ff15c25e",
+          "text": {
+            "en": "AQUAPARK",
+            "tr": "AQUAPARK TR",
+            "de": "AQUAPARK DE",
+            "ru": "АКВАПАРК"
+          },
+          "largeWidth": 44,
+          "largeHeight": 48,
+          "smallWidth": 35,
+          "smallHeight": 39
+        },
+        {
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421460852concertIcon.png?alt=media&token=d8f28480-a983-43d6-93e7-d1af0137af4e",
+          "text": {
+            "en": "CONCERT",
+            "tr": "CONCERT TR",
+            "de": "CONCERT DE",
+            "ru": "CONCERT RU"
+          },
+          "largeWidth": 33,
+          "largeHeight": 48,
+          "smallWidth": 26,
+          "smallHeight": 39
+        },
+        {
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421402102surfboardIcon.png?alt=media&token=f9299a8a-8d7a-4a3a-8ebf-d9b683267d18",
+          "text": {
+            "en": "BEACH",
+            "tr": "BEACH TR",
+            "de": "BEACH DE",
+            "ru": "BEACH RU"
+          },
+          "largeWidth": 34,
+          "largeHeight": 48,
+          "smallWidth": 27,
+          "smallHeight": 39
+        },
+        {
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421520362entertainmentIcon.png?alt=media&token=9aa0040d-1101-485e-964f-58cdc1c9f6da",
+          "text": {
+            "en": "ENTERTAINMENT",
+            "tr": "ENTERTAINMENT TR",
+            "de": "ENTERTAINMENT DE",
+            "ru": "ENTERTAINMENT RU"
+          },
+          "largeWidth": 34.8,
+          "largeHeight": 47.54,
+          "smallWidth": 28,
+          "smallHeight": 38
+        }
+      ]
+    }
+  },
+  
+  {
+    "type": "AllInclusive",
+    "props": {
+      "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": {
+                "en": "Port Nature Hotel",
+                "tr": "Port Nature Otel",
+                "de": "Port Nature Hotel",
+                "ru": "Порт Натуре Отель"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            }
+          ],
+          "header":{
+          "en":"Your Holiday Experience Premium A'la Carte",
+          "tr":"Your Holiday Experience Premium A'la Carte",
+          "de":"Your Holiday Experience Premium A'la Carte",
+          "ru":"Your Holiday Experience Premium A'la Carte"
+      },
+      "span":{
+          "en":"You deserve that!",
+          "tr":"You deserve that!",
+          "de":"You deserve that!",
+          "ru":"You deserve that!"
+      },
+      "text1":{
+          "en":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
+          "tr":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
+          "de":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
+          "ru":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium."
+      },
+      "text2":{
+          "en":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
+          "tr":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
+          "de":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
+          "ru":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium."
+      },
+      "starNum":"5",
+  
+      "carouselHeader":{
+          "en":"ALL INCLUSIVE",
+          "tr":"ALL INCLUSIVE",
+          "de":"ALL INCLUSIVE",
+          "ru":"ALL INCLUSIVE"
+      },
+      "carouselText":{
+          "en":" Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium drink and our rich menus, we will enrich your holiday.Also, we have prepared a unique kids' concept for your kids. Serenity of Davidoff Cafe is free of charge in our facility.",
+          "tr":" Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium drink and our rich menus, we will enrich your holiday.Also, we have prepared a unique kids' concept for your kids. Serenity of Davidoff Cafe is free of charge in our facility.",
+          "de":" Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium drink and our rich menus, we will enrich your holiday.Also, we have prepared a unique kids' concept for your kids. Serenity of Davidoff Cafe is free of charge in our facility.",
+          "ru":" Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium drink and our rich menus, we will enrich your holiday.Also, we have prepared a unique kids' concept for your kids. Serenity of Davidoff Cafe is free of charge in our facility."
+      },
+  
+      "carouselSpan":{
+          "en":"Because you deserve it!",
+          "tr":"Because you deserve it!",
+          "de":"Because you deserve it!",
+          "ru":"Because you deserve it!"
+      }
+    }
+  }
+  
+    ]
+  }
