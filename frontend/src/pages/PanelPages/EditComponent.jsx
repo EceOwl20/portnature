@@ -196,6 +196,22 @@ const EditComponent = () => {
     }
   };
 
+  const handleReplaceSingleImage = (field, selectedImage) => {
+    setComponentData((prev) => ({
+      ...prev,
+      props: {
+        ...prev.props,
+        [field]: {
+          ...prev.props[field],
+          firebaseUrl: selectedImage.firebaseUrl,
+          altText: selectedImage.altText,
+          // width/height da istenirse buradan güncellenebilir.
+        },
+      },
+    }));
+  };  
+  
+
   const handleReplaceImage = (field, index, selectedImage) => {
     handleArrayChange(field, index, "firebaseUrl", selectedImage.firebaseUrl);
     handleArrayChange(field, index, "altText", selectedImage.altText);
@@ -413,6 +429,46 @@ const EditComponent = () => {
         </div>
       )}
 
+{/* Search for a new image */}
+<div className="flex flex-col gap-2 items-center mt-4">
+  <label className="text-[#e45252] text-[18px] font-semibold">Search for a new image for Image1</label>
+  <input
+    type="text"
+    placeholder="Enter image name"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="border py-2 px-3 w-[50%]"
+  />
+  <button
+    onClick={handleSearch}
+    className="bg-blue-500 text-white px-4 py-2 rounded"
+  >
+    Search
+  </button>
+
+  {searchResults.length > 0 && (
+    <div className="flex flex-col gap-2 mt-2">
+      <h4>Search Results</h4>
+      {searchResults.map((result, i) => (
+        <div
+          key={i}
+          className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+          onClick={() => handleReplaceSingleImage("image", result)}
+        >
+          <img
+            src={result.firebaseUrl}
+            alt={result.altText.en}
+            className="w-16 h-16 object-cover"
+          />
+          <p>{result.altText.en}</p>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
+
+
 {singleImage2 && (
         <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
           <h2 className="font-bold text-xl">Single Image</h2>
@@ -438,6 +494,45 @@ const EditComponent = () => {
           ))}
         </div>
       )}
+
+<div className="flex flex-col gap-2 items-center mt-4">
+  <label className="text-[#e45252] text-[18px] font-semibold">Search for a new image for Image1</label>
+  <input
+    type="text"
+    placeholder="Enter image name"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="border py-2 px-3 w-[50%]"
+  />
+  <button
+    onClick={handleSearch}
+    className="bg-blue-500 text-white px-4 py-2 rounded"
+  >
+    Search
+  </button>
+
+  {searchResults.length > 0 && (
+    <div className="flex flex-col gap-2 mt-2">
+      <h4>Search Results</h4>
+      {searchResults.map((result, i) => (
+        <div
+          key={i}
+          className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+          onClick={() => handleReplaceSingleImage("image2", result)}
+        >
+          <img
+            src={result.firebaseUrl}
+            alt={result.altText.en}
+            className="w-16 h-16 object-cover"
+          />
+          <p>{result.altText.en}</p>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
+      
 
 {singleButtonImage && (
         <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
