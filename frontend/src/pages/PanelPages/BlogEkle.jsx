@@ -213,203 +213,180 @@ const BlogEkle = () => {
   };
 
   return (
-    <section className="flex pl-4 pt-4 ">
-      <form
-        onSubmit={handleFormSubmit}
-        className="flex flex-col gap-4 p-4 rounded-xl w-1/4 bg-gray-500"
-      >
-        
-        {form.thumbnail && <img src={form.thumbnail} alt="Thumbnail" />}
-        <p>
+    <section className="flex flex-col p-10 gap-6">
+  <form
+    onSubmit={handleFormSubmit}
+    className="flex flex-col gap-6 p-10 rounded-xl w-full bg-gray-500 font-monserrat"
+  >
+    <div className="text-center font-bold text-[24px]">BLOG EKLE</div>
+
+    {/* Thumbnail Yükleme ve URL Gösterimi */}
+    <div className="flex flex-col md:flex-row gap-6">
+      <div className="flex flex-col items-center gap-4 w-full md:w-1/3">
+        <h4 className="font-bold text-white">Thumbnail Yükle</h4>
+        {form.thumbnail && (
+          <img
+            src={form.thumbnail}
+            alt="Thumbnail"
+            className="w-full max-h-[200px] object-cover rounded-lg"
+          />
+        )}
+        <p className="text-white">
           {progressBar > 0 && progressBar < 100
-            ? progressBar
+            ? `${progressBar}%`
             : progressBar === 100 && "Yüklendi"}
         </p>
         <input
           type="file"
           name="thumbnail"
           accept="image/*"
-          className="rounded-sm"
+          className="rounded-sm bg-white p-2"
           onChange={(e) => setThumbnail(e.target.files[0])}
           disabled={wait}
         />
+      </div>
 
-        {/* Burada tek bir URL yerine her dil için ayrı URL gösterimi yapabiliriz */}
-        <div className="bg-white p-2 rounded">
-          <h4 className="font-bold">Oluşan URL'ler:</h4>
+      <div className="flex flex-col w-full md:w-2/3 bg-white p-4 rounded-lg">
+        <h4 className="font-bold">URL'ler:</h4>
+        <div className="flex items-center gap-2">
+          <img
+            src="https://flagcdn.com/w40/tr.png"
+            alt="Türkçe"
+            className="w-6 h-4"
+          />
           <p>Türkçe: {form.urls.tr}</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <img
+            src='https://flagcdn.com/w40/gb.png'
+            alt="İngilizce"
+            className="w-6 h-4"
+          />
           <p>İngilizce: {form.urls.en}</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <img
+            src="https://flagcdn.com/w40/ru.png"
+            alt="Rusça"
+            className="w-6 h-4"
+          />
           <p>Rusça: {form.urls.ru}</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <img
+            src="https://flagcdn.com/w40/de.png"
+            alt="Almanca"
+            className="w-6 h-4"
+          />
           <p>Almanca: {form.urls.de}</p>
         </div>
+      </div>
+    </div>
 
-        
-        <input
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={handleImagesUpload}
-          disabled={wait}
+    {/* Çoklu Fotoğraf Yükleme ve Dil Bölümleri */}
+    <div className="flex flex-col gap-6">
+      {/* Çoklu Fotoğraf Yükleme */}
+      <div className="bg-white p-4 rounded-lg">
+  <h4 className="font-bold">Fotoğraflar Yükle</h4>
+  <input
+    type="file"
+    accept="image/*"
+    multiple
+    className="rounded-sm bg-gray-200 p-2 w-full"
+    onChange={handleImagesUpload}
+    disabled={wait}
+  />
+  {/* Fotoğraf Önizlemeleri */}
+  <div className="flex flex-wrap gap-4 mt-4">
+    {form.images.map((image, index) => (
+      <div key={index} className="relative">
+        <img
+          src={image}
+          alt={`Fotoğraf ${index + 1}`}
+          className="w-24 h-24 object-cover rounded-lg"
         />
+      </div>
+    ))}
+  </div>
+</div>
 
-        {/* Türkçe */}
-        <div className="flex bg-white justify-center items-center font-bold font-monserrat w-full rounded-sm">
-            <h3 className=" items-center flex">Türkçe</h3>
-        </div>
-        {form.sections.tr.map((section, index) => (
-          <div key={index} className="flex flex-col gap-2">
-            <input
-              type="text"
-              className="rounded-sm"
-              placeholder="Başlık"
-              value={section.title}
-              onChange={(e) =>
-                handleSectionChange("tr", index, "title", e.target.value)
-              }
-            />
-            <textarea
-              placeholder="İçerik"
-              className="rounded-sm"
-              value={section.content}
-              onChange={(e) =>
-                handleSectionChange("tr", index, "content", e.target.value)
-              }
-            />
+
+      {/* Dil Bölümleri */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {["tr", "en", "ru", "de"].map((lang) => (
+          <div key={lang} className="bg-white p-4 rounded-lg">
+            <h3 className="flex items-center gap-2 font-bold">
+              <img
+                src={`https://flagcdn.com/w40/${lang === "en" ? "gb" : lang}.png`}
+                alt={`${lang.toUpperCase()} Bayrağı`}
+                className="w-6 h-4"
+              />
+              {lang === "tr"
+                ? "Türkçe"
+                : lang === "en"
+                ? "İngilizce"
+                : lang === "ru"
+                ? "Rusça"
+                : "Almanca"}
+            </h3>
+            {form.sections[lang].map((section, index) => (
+              <div key={index} className="flex flex-col gap-2 mt-4">
+                <input
+                  type="text"
+                  className="rounded-sm bg-gray-100 p-2"
+                  placeholder="Başlık"
+                  value={section.title}
+                  onChange={(e) =>
+                    handleSectionChange(lang, index, "title", e.target.value)
+                  }
+                />
+                <textarea
+                  placeholder="İçerik"
+                  className="rounded-sm bg-gray-100 p-2"
+                  value={section.content}
+                  onChange={(e) =>
+                    handleSectionChange(lang, index, "content", e.target.value)
+                  }
+                />
+              </div>
+            ))}
+            <button
+              type="button"
+              className="mt-4 text-white bg-black p-2 rounded-md hover:bg-gray-700 transition duration-300"
+              onClick={() => handleAddSection(lang)}
+              disabled={wait}
+            >
+              {lang === "tr"
+                ? "Türkçe Bölüm Ekle"
+                : lang === "en"
+                ? "İngilizce Bölüm Ekle"
+                : lang === "ru"
+                ? "Rusça Bölüm Ekle"
+                : "Almanca Bölüm Ekle"}
+            </button>
           </div>
         ))}
-        <div className="flex items-center justify-center w-full">
-            <button
-                type="button"
-                className="text-white bg-black flex p-1 rounded-md cursor-pointer"
-                onClick={() => handleAddSection("tr")}
-                disabled={wait}
-            >
-                Türkçe Bölüm Ekle
-            </button>
-        </div>
+      </div>
+    </div>
 
-        {/* İngilizce */}
-        <div className="flex bg-white justify-center items-center font-bold font-monserrat w-full rounded-sm">
-            <h3>İngilizce</h3>
-        </div>
-        {form.sections.en.map((section, index) => (
-          <div key={index} className="flex flex-col gap-2">
-            <input
-              type="text"
-              className="rounded-sm"
-              placeholder="Title"
-              value={section.title}
-              onChange={(e) =>
-                handleSectionChange("en", index, "title", e.target.value)
-              }
-            />
-            <textarea
-              placeholder="Content"
-              className="rounded-sm"
-              value={section.content}
-              onChange={(e) =>
-                handleSectionChange("en", index, "content", e.target.value)
-              }
-            />
-          </div>
-        ))}
-        <div className="flex items-center justify-center w-full">
-            <button
-            type="button"
-            className="text-white bg-black flex p-1 rounded-md cursor-pointer"
-            onClick={() => handleAddSection("en")}
-            disabled={wait}
-            >
-            İngilizce Bölüm Ekle
-            </button>
-        </div>
+    {/* Form Gönderme */}
+    <div className="flex items-center justify-center">
+      <button
+        type="submit"
+        className="bg-black text-white flex justify-center rounded-sm py-2 px-6 hover:bg-gray-700 transition duration-300"
+        disabled={wait}
+      >
+        {wait ? "Bekleyin..." : "Kaydet"}
+      </button>
+    </div>
 
-        {/* Rusça */}
-        <div className="flex bg-white justify-center items-center font-bold font-monserrat w-full rounded-sm">
-            <h3>Rusça</h3>
-        </div>
-        {form.sections.ru.map((section, index) => (
-          <div key={index} className="flex flex-col gap-2">
-            <input
-              type="text"
-              className="rounded-sm"
-              placeholder="Title"
-              value={section.title}
-              onChange={(e) =>
-                handleSectionChange("ru", index, "title", e.target.value)
-              }
-            />
-            <textarea
-              placeholder="Content"
-              className="rounded-sm"
-              value={section.content}
-              onChange={(e) =>
-                handleSectionChange("ru", index, "content", e.target.value)
-              }
-            />
-          </div>
-        ))}
-        <div className="flex items-center justify-center w-full">
-            <button
-            type="button"
-            className="text-white bg-black flex p-1 rounded-md cursor-pointer"
-            onClick={() => handleAddSection("ru")}
-            disabled={wait}
-            >
-            Rusça Bölüm Ekle
-            </button>
-        </div>
+    {/* Hata ve Başarı Mesajları */}
+    {error && <p className="text-red-500 text-center">{error}</p>}
+    {success && <p className="text-green-500 text-center">{success}</p>}
+  </form>
+</section>
 
-        {/* Almanca */}
-        <div className="flex bg-white justify-center items-center font-bold font-monserrat w-full rounded-sm">
-            <h3>Almanca</h3>
-        </div>
-        {form.sections.de.map((section, index) => (
-          <div key={index} className="flex flex-col gap-2">
-            <input
-              type="text"
-              className="rounded-sm"
-              placeholder="Title"
-              value={section.title}
-              onChange={(e) =>
-                handleSectionChange("de", index, "title", e.target.value)
-              }
-            />
-            <textarea
-              placeholder="Content"
-              className="rounded-sm"
-              value={section.content}
-              onChange={(e) =>
-                handleSectionChange("de", index, "content", e.target.value)
-              }
-            />
-          </div>
-        ))}
-        <div className="flex items-center justify-center w-full">
-            <button
-            type="button"
-            className="text-white bg-black flex p-1 rounded-md cursor-pointer"
-            onClick={() => handleAddSection("de")}
-            disabled={wait}
-            >
-            Almanca Bölüm Ekle
-            </button>
-        </div>
 
-        <div className="flex items-center justify-center">
-          <button
-            type="submit"
-            className="bg-black text-white flex w-2/4 justify-center rounded-sm py-1"
-            disabled={wait}
-          >
-            {wait ? "Bekleyin..." : "Kaydet"}
-          </button>
-        </div>
-
-        {error && <p className="text-red-500">{error}</p>}
-        {success && <p className="text-green-500">{success}</p>}
-      </form>
-    </section>
   );
 };
 

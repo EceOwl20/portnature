@@ -4,6 +4,7 @@ import { logOutError, logOutStart, logOutSuccess } from "../../redux/userSlice";
 import { useState } from "react";
 import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 import { useSelector } from 'react-redux';
+import LogoArkaTop from "../../../public/logo/LogoArkaTop";
 
 const PanelSideBar = () => {
   const [isBlogMenuOpen, setIsBlogMenuOpen] = useState(false);
@@ -24,7 +25,7 @@ const PanelSideBar = () => {
 
   return (
     <section className="flex">
-      <aside className="flex flex-col items-center w-[10%] bg-[#0e0c1b] p-[15px]">
+      <aside className="flex flex-col items-center w-[10%] bg-[#0e0c1b] opacity-[97%] p-[15px]">
         <nav className="flex flex-col items-start w-full gap-[10px]">
           <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel">Panel</NavLink>
           <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel/dashboard">Dashboard</NavLink>
@@ -42,7 +43,7 @@ const PanelSideBar = () => {
           </a>
         </nav>
       </aside>
-      <main className="m-0 p-0 border-box w-full ">
+      <main className="m-0 p-0 border-box w-full bg-gray-800">
           <Outlet></Outlet>
       </main>
     </section>

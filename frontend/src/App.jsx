@@ -321,7 +321,7 @@ const App = () => {
 
 
             </Route>
-            <Route path="/bloglar" element={<BlogPage />} />
+            <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:lang/:slug" element={<BlogDetails />} />
             <Route path="/edit/:id" element={<EditImage />} />
         
