@@ -105,6 +105,7 @@ import EditPage from "./pages/PanelPages/EditPage";
 import PageDetails from "./pages/PanelPages/PageDetails";
 import PageList from "./pages/PanelPages/PageList";
 import EditComponent from "./pages/PanelPages/EditComponent";
+import Beach from "./pages/Beach/Beach";
 
 
 const davidoffCarousel = [davidoffImg, davidoffImg, davidoffImg, davidoffImg,davidoffImg,davidoffImg];
@@ -298,6 +299,7 @@ const App = () => {
             <Route path="/aquapark" element={<AquaPark />}/>
             <Route path='/minialacarte' element={<MiniAlaCarte/>}/>
             <Route path='/miniclub' element={<MiniClub/>}/>
+            <Route path='/beach' element={<Beach/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
