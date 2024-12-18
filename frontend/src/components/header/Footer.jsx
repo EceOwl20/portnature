@@ -42,7 +42,7 @@ const Footer = () => {
   if (!image) return <p>Loading...</p>;
 
   return (
-    <footer className='flex flex-col w-screen min-h-[1198px] lg:min-h-[440px] lg:max-h-[490px] bg-center bg-cover relative items-center justify-start' style={{ backgroundImage: `url(${img})` }}>
+    <footer className='flex flex-col w-full min-h-[1198px] lg:min-h-[440px] lg:max-h-[490px] bg-center bg-cover relative items-center justify-start' style={{ backgroundImage: `url(${img})` }}>
       <div className='flex absolute inset-0 z-1 bg-black/50'></div>
       <div className='flex flex-col lg:flex-row w-[95%] lg:w-[100%]  z-10 items-center justify-center text-[#fff] lg:items-center gap-[3%]'>
 

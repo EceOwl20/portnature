@@ -51,6 +51,8 @@ const Homepage = () => {
   const [iconSectionData, setIconSectionData] = useState(null);
   const [allInclusiveData, setAllInclusiveDataData] = useState(null);
   const [holidayImageSectionData, setHolidayImageSectionData] = useState(null);
+  const [childrenSectionData, setChildrenSectionData] = useState(null);
+  const [backgroundSectionData, setBackgroundSectionData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -116,8 +118,30 @@ const Homepage = () => {
         if (holidayImageSectionComponent) {
           setHolidayImageSectionData(holidayImageSectionComponent.props);
         } else {
-          console.warn("allInclusive data not found in homepage");
+          console.warn("HolidayImageSection data not found in homepage");
         }
+
+         // ChildrenSection verilerini çek
+         const childrenSectionComponent = data.components.find(
+          (comp) => comp.type === "ChildrenSection"
+        );
+
+        if (childrenSectionComponent) {
+          setChildrenSectionData(childrenSectionComponent.props);
+        } else {
+          console.warn("ChildrenSection data not found in homepage");
+        }
+
+          // BackgroundSection verilerini çek
+          const backgroundSectionComponent = data.components.find(
+            (comp) => comp.type === "ImageBackgroundSection"
+          );
+  
+          if (backgroundSectionComponent) {
+            setBackgroundSectionData(backgroundSectionComponent.props);
+          } else {
+            console.warn("allInclusive data not found in homepage");
+          }
 
       } catch (err) {
         setError(err.message);
@@ -128,7 +152,7 @@ const Homepage = () => {
   }, []);
 
   if (error) return <p>Error: {error}</p>;
-  if (!carouselData && !barLoungeData && !iconSectionData && !allInclusiveData) return <p>Loading...</p>;
+  if (!carouselData && !barLoungeData && !iconSectionData && !allInclusiveData && !childrenSectionData && !backgroundSectionData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col items-center justify-center'>
@@ -145,8 +169,8 @@ const Homepage = () => {
       <AllInclusive {...allInclusiveData}/>
       <HolidayImageSection  {...holidayImageSectionData}/>
       <Accommodation/>
-      <ChildrenSection/>
-      <ImageBackgroundSection/>
+      <ChildrenSection {...childrenSectionData}/>
+      <ImageBackgroundSection {...backgroundSectionData}/>
       <SpecialOffersCarousel/>
       <AlacarteSection/>
        <BarLoungeCarousel {...barLoungeData} />

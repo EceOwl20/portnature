@@ -60,11 +60,12 @@ const Gallery = () => {
       <h2 className="font-monserrat text-[30px] font-medium">Galeri</h2>
       <div className="grid grid-cols-5 gap-6 p-6 ">
       {images.map((image, index) => (
-        <div key={index} className="relative group w-[250px] h-[200px] items-center justify-center">
+        <div key={index} className="relative group w-[300px] h-[190px] items-center justify-center">
           <img
             src={image.firebaseUrl}
             alt={image.name.en} //varsayılan en
-            className="w-full h-auto rounded-md"
+            className="w-auto h-auto rounded-md"
+            
           />
           <div className="absolute bottom-1 left-0 right-0 bg-black/70 text-white text-center py-2 opacity-0 group-hover:opacity-100 transition-opacity">
             {image.name.en}
