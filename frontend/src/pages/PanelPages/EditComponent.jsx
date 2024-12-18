@@ -305,8 +305,12 @@ const EditComponent = () => {
 
   // NEW SINGLE IMAGE COMPONENT FIELDS
   const singleImage = componentData.props.image;
+  const singleImage2 = componentData.props.image2;
+  const singleButtonImage = componentData.props.singleButtonImage;
+  const singleButtonText = componentData.props.buttonText;
   const singleHeader = componentData.props.header;
   const singleText = componentData.props.text;
+  const singleSpan = componentData.props.span;
 
   return (
     <div className="flex flex-col items-center font-monserrat">
@@ -324,8 +328,12 @@ const EditComponent = () => {
           key === "links" ||
           key === "items" ||
           key === "image" || // Bu ek satırla image alanını da burada listelemekten kaçındık
+          key === "image2" ||
+          key === "buttonImage" ||
+          key === "buttonText"  || 
           key === "header" || // aynı şekilde
-          key === "text"     // aynı şekilde
+          key === "text"  || // aynı şekilde
+          key === "span"     // aynı şekilde
         ) {
           return null;
         }
@@ -405,6 +413,76 @@ const EditComponent = () => {
         </div>
       )}
 
+{singleImage2 && (
+        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+          <h2 className="font-bold text-xl">Single Image</h2>
+          <label className="font-semibold">Firebase URL</label>
+          <input
+            type="text"
+            value={singleImage2.firebaseUrl || ""}
+            onChange={(e) => handleImageUrlChange(e.target.value)}
+            className="border p-2"
+          />
+
+          <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
+          {singleImage2.altText && Object.keys(singleImage2.altText).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label>Alt Text ({lang})</label>
+              <input
+                type="text"
+                value={singleImage2.altText[lang]}
+                onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                className="border p-2"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+{singleButtonImage && (
+        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+          <h2 className="font-bold text-xl">Single Image</h2>
+          <label className="font-semibold">Firebase URL</label>
+          <input
+            type="text"
+            value={singleButtonImage.firebaseUrl || ""}
+            onChange={(e) => handleImageUrlChange(e.target.value)}
+            className="border p-2"
+          />
+
+          <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
+          {singleButtonImage.altText && Object.keys(singleButtonImage.altText).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label>Alt Text ({lang})</label>
+              <input
+                type="text"
+                value={singleButtonImage.altText[lang]}
+                onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                className="border p-2"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+{singleButtonText && (
+        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+          <h2 className="font-bold text-xl">Text (Multi-language)</h2>
+          {Object.keys(singleButtonText).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label>Text ({lang})</label>
+              <input
+                type="text"
+                value={singleButtonText[lang]}
+                onChange={(e) => handleLangFieldChange("text", lang, e.target.value)}
+                className="border p-2"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+      
+
       {/* Tek bir header alanı varsa */}
       {singleHeader && (
         <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
@@ -433,6 +511,24 @@ const EditComponent = () => {
               <input
                 type="text"
                 value={singleText[lang]}
+                onChange={(e) => handleLangFieldChange("text", lang, e.target.value)}
+                className="border p-2"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Tek bir text alanı varsa */}
+      {singleSpan && (
+        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+          <h2 className="font-bold text-xl">Text (Multi-language)</h2>
+          {Object.keys(singleSpan).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label>Text ({lang})</label>
+              <input
+                type="text"
+                value={singleSpan[lang]}
                 onChange={(e) => handleLangFieldChange("text", lang, e.target.value)}
                 className="border p-2"
               />

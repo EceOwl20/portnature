@@ -50,6 +50,7 @@ const Homepage = () => {
   const [barLoungeData, setBarLoungeData] = useState(null);
   const [iconSectionData, setIconSectionData] = useState(null);
   const [allInclusiveData, setAllInclusiveDataData] = useState(null);
+  const [holidayImageSectionData, setHolidayImageSectionData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -106,6 +107,18 @@ const Homepage = () => {
           console.warn("allInclusive data not found in homepage");
         }
 
+
+         // HolidayImageSection verilerini çek
+         const holidayImageSectionComponent = data.components.find(
+          (comp) => comp.type === "HolidayImageSection"
+        );
+
+        if (holidayImageSectionComponent) {
+          setHolidayImageSectionData(holidayImageSectionComponent.props);
+        } else {
+          console.warn("allInclusive data not found in homepage");
+        }
+
       } catch (err) {
         setError(err.message);
       }
@@ -130,7 +143,7 @@ const Homepage = () => {
       </div>
       </div>
       <AllInclusive {...allInclusiveData}/>
-      <HolidayImageSection/>
+      <HolidayImageSection  {...holidayImageSectionData}/>
       <Accommodation/>
       <ChildrenSection/>
       <ImageBackgroundSection/>
