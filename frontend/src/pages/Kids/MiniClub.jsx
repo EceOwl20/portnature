@@ -1,7 +1,9 @@
 import React from 'react'
-import DavidoffCarousel from '../../components/food/DavidoffCarousel'
 import MiniClubSlider from './components/MiniClubSlider'
 import MınıClubSection1 from './components/MınıClubSection1';
+import MiniClubSection2 from './components/MiniClubSection2';
+import ContactSection from '../../components/homepage/ContactSection';
+import SpecialOffers from '../../components/SpecialOffers';
 
 const MiniClub = () => {
 
@@ -22,6 +24,9 @@ const MiniClub = () => {
     <section>
         <MiniClubSlider slides={slides} options={OPTIONS} />
         <MınıClubSection1 />
+        <MiniClubSection2 />
+        <ContactSection/>
+        <SpecialOffers/>
     </section>
   )
 }
