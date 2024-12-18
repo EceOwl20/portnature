@@ -13,6 +13,36 @@ const BlogPage = () => {
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState("en");
   const images = [img1, img2, img3];
+  const [carouselData, setCarouselData] = useState(null);
+
+  useEffect(() => {
+    const fetchPageData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/page/homepage");
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch page data");
+        }
+
+        // Carousel verilerini çek
+        const carouselComponent = data.components.find(
+          (comp) => comp.type === "Carousel"
+        );
+
+        if (carouselComponent) {
+          setCarouselData(carouselComponent.props);
+        } else {
+          console.warn("Carousel data not found in homepage");
+        }
+
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchPageData();
+  }, []);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -39,7 +69,7 @@ const BlogPage = () => {
 
   return (
     <main>
-      <HomeCarousel images={images} />
+     <HomeCarousel {...carouselData} />
       <Reservation />
       <div className="flex flex-col w-full pb-4 justify-center items-center">
         <div className="flex gap-2 mb-4">

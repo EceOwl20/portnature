@@ -1,12 +1,16 @@
 import React from 'react'
 import MiniClubSlider from '../Kids/components/MiniClubSlider'
+import BeachSection1 from './components/BeachSection1';
+import BeachSection2 from './components/BeachSection2';
+import ContactSection from '../../components/homepage/ContactSection';
+import SpecialOffers from '../../components/SpecialOffers';
 
 const Beach = () => {
 
     const slides = [
-        '../../../public/Beach/beach1.png',
-        '../../../public/Beach/beach2.png',
-        '../../../public/Beach/beach3.png',
+        '/images/Beach/beach1.png',
+        '/images/Beach/beach2.png',
+        '/images/Beach/beach3.png',
       ];
       
     
@@ -17,6 +21,10 @@ const Beach = () => {
   return (
     <section>
         <MiniClubSlider slides={slides} options={OPTIONS}/>
+        <BeachSection1 />
+        <BeachSection2/>
+        <ContactSection/>
+        <SpecialOffers/>
     </section>
   )
 }
