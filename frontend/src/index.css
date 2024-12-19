@@ -74,3 +74,22 @@
 .react-datepicker__navigation-icon::before {
   @apply text-gray-700;
 }
+
+.my-ellipse {
+  width: 757px;
+  height: 757px;
+  flex-shrink: 0;
+  border-radius: 757px;
+  background: #2E34FC;
+  filter: blur(325px);
+}
+
+.my-ellipse2 {
+  width: 757px;
+  height: 757px;
+  flex-shrink: 0;
+  border-radius: 757px;
+  background: #A100FF;
+  filter: blur(325px);
+}
+

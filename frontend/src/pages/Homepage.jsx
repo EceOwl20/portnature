@@ -54,6 +54,7 @@ const Homepage = () => {
   const [childrenSectionData, setChildrenSectionData] = useState(null);
   const [backgroundSectionData, setBackgroundSectionData] = useState(null);
   const [alacarteSectionData, setAlacarteSectionData] = useState(null);
+  const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -155,6 +156,17 @@ const Homepage = () => {
             console.warn("Alacarte data not found in homepage");
           }
 
+            // Contact verilerini çek
+            const contactSectionComponent = data.components.find(
+              (comp) => comp.type === "ContactSection"
+            );
+    
+            if (contactSectionComponent) {
+              setContactSectionData(contactSectionComponent.props);
+            } else {
+              console.warn("Contact data not found in homepage");
+            }
+
       } catch (err) {
         setError(err.message);
       }
@@ -186,9 +198,7 @@ const Homepage = () => {
       <SpecialOffersCarousel/>
       <AlacarteSection {...alacarteSectionData}/>
        <BarLoungeCarousel {...barLoungeData} />
-      <ContactSection/>
-      <BorderCarousel/>
-      <BorderCarousel2/>
+      <ContactSection {...contactSectionData}/>
       {/* <InstagramSection images={instagramImages}/> */}
       <img src={instagramImg} alt='instagram' width={323.06149} height={630.77972} className='flex md:hidden  '/>
     </div>

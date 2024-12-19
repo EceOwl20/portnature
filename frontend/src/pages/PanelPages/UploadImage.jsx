@@ -156,7 +156,7 @@ const UploadImage = () => {
           />
         </div>
       ))}
-      <button type="submit" disabled={wait} className="mt-10 border text-white hover:text-[#0E0C1B] border-[#0E0C1B] py-[5px] px-[10px] bg-[#0E0C1B] hover:bg-white">
+      <button type="submit" disabled={wait} className="mt-10 border z-90 text-white hover:text-[#0E0C1B] border-[#0E0C1B] py-[5px] px-[10px] bg-[#0E0C1B] hover:bg-white">
         {wait ? "Uploading..." : "Yükle"}
       </button>
       {error && <p style={{ color: "red" }}>{error}</p>}
