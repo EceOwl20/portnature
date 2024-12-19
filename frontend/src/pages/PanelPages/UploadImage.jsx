@@ -117,8 +117,8 @@ const UploadImage = () => {
   return (
     <div className="flex flex-col items-center justify-center font-monserrat">
        <div className="flex flex-col w-[80%] items-start justify-center my-12">
-       <h2 className="text-[30px] font-medium font-monserrat text-[#0E0C1B]">Resim Yükle</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col items-start justify-center w-[100%] gap-5 min-h-[400px]">
+       <h2 className="text-[30px] font-medium font-monserrat text-[#ffffff]">Resim Yükle</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col items-start justify-center  w-[100%] gap-5 min-h-[400px]">
          {formData.firebaseUrl && <img src={formData.firebaseUrl} alt="firebaseUrl"/>}
         <p>
           {progressBar > 0 && progressBar < 100
@@ -126,7 +126,7 @@ const UploadImage = () => {
             : progressBar === 100 && "Yüklendi"}
         </p>
       <input
-       className="flex border border-[#0E0C1B] py-1 px-2 w-[50%]"
+       className="flex border border-[#0E0C1B] py-1 px-2 w-[48.5%] bg-white"
         type="file"
         name="firebaseUrl"
         accept="image/*"
@@ -135,7 +135,7 @@ const UploadImage = () => {
         disabled={wait}
       />
       {["en", "ru", "de", "tr"].map((lang) => (
-        <div key={lang}  className="flex py-1 px-2 gap-[2%] w-[50%]">
+        <div key={lang}  className="flex py-1 px-2 gap-[2%] w-[50%] ">
           <input
             type="text"
             name="name"
@@ -143,7 +143,7 @@ const UploadImage = () => {
             data-lang={lang}
             onChange={handleInputChange}
             required
-             className="flex border border-[#0E0C1B] py-1 px-[1%] bg-transparent w-[48%]"
+             className="flex border border-[#0E0C1B] bg-white py-2 px-[1%]  bg-transparent w-[48%]"
           />
           <input
             type="text"
@@ -152,7 +152,7 @@ const UploadImage = () => {
             data-lang={lang}
             onChange={handleInputChange}
             required
-            className="flex border border-[#0E0C1B] bg-transparent py-1 px-[1%] w-[48%]"
+            className="flex border border-[#0E0C1B] bg-white bg-transparent py-2 px-[1%] w-[48%]"
           />
         </div>
       ))}

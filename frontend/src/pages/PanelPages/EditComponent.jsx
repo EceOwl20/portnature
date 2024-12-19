@@ -347,7 +347,7 @@ const EditComponent = () => {
 
   return (
     <div className="flex flex-col items-center font-monserrat">
-      <h1 className="text-[25px] font-medium my-4 text-[#0e0c1b]">Edit Component: {componentData.type}</h1>
+      <h1 className="text-[25px] font-medium my-4 text-[#ffffff]">Edit Component: {componentData.type}</h1>
 
       {/* General props editing - Güncellenmiş kısım */}
       {Object.keys(componentData.props || {}).map((key) => {

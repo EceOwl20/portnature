@@ -53,6 +53,7 @@ const Homepage = () => {
   const [holidayImageSectionData, setHolidayImageSectionData] = useState(null);
   const [childrenSectionData, setChildrenSectionData] = useState(null);
   const [backgroundSectionData, setBackgroundSectionData] = useState(null);
+  const [alacarteSectionData, setAlacarteSectionData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -140,7 +141,18 @@ const Homepage = () => {
           if (backgroundSectionComponent) {
             setBackgroundSectionData(backgroundSectionComponent.props);
           } else {
-            console.warn("allInclusive data not found in homepage");
+            console.warn("BackgroundSection data not found in homepage");
+          }
+
+          // Alacarte verilerini çek
+          const alacarteSectionComponent = data.components.find(
+            (comp) => comp.type === "AlacarteSection"
+          );
+  
+          if (alacarteSectionComponent) {
+            setAlacarteSectionData(alacarteSectionComponent.props);
+          } else {
+            console.warn("Alacarte data not found in homepage");
           }
 
       } catch (err) {
@@ -172,7 +184,7 @@ const Homepage = () => {
       <ChildrenSection {...childrenSectionData}/>
       <ImageBackgroundSection {...backgroundSectionData}/>
       <SpecialOffersCarousel/>
-      <AlacarteSection/>
+      <AlacarteSection {...alacarteSectionData}/>
        <BarLoungeCarousel {...barLoungeData} />
       <ContactSection/>
       <BorderCarousel/>
