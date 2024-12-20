@@ -14,6 +14,7 @@ const StandardRooms = ({img,header,links,linkstext}) => {
   const [standardRoomsSecData2, setStandardRoomsSecData2] = useState(null);
   const [standardRoomsSecData3, setStandardRoomsSecData3] = useState(null);
   const [roomsFeaturesData, setRoomsFeaturesData] = useState(null);
+  const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -78,6 +79,17 @@ const StandardRooms = ({img,header,links,linkstext}) => {
           console.warn("RoomsFeatures data not found in Standard Rooms page");
         }
 
+        // Contact verilerini çek
+        const contactSectionComponent = data.components.find(
+          (comp) => comp.type === "ContactSection"
+        );
+
+        if (contactSectionComponent) {
+          setContactSectionData(contactSectionComponent.props);
+        } else {
+          console.warn("Contact data not found in homepage");
+        }
+
 
       } catch (err) {
         setError(err.message);
@@ -87,7 +99,7 @@ const StandardRooms = ({img,header,links,linkstext}) => {
   }, []);
 
   if (error) return <p>Error: {error}</p>;
-  if (!mainBackgroundData && !standardRoomsSecData && !roomsFeaturesData) return <p>Loading...</p>;
+  if (!mainBackgroundData && !standardRoomsSecData && !roomsFeaturesData && !contactSectionData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col justify-center items-center'>
@@ -96,7 +108,7 @@ const StandardRooms = ({img,header,links,linkstext}) => {
         <StandardRoomComponent {...standardRoomsSecData2}/>
         <StandardRoomComponent {...standardRoomsSecData3}/>
         <RoomFeatures {...roomsFeaturesData}/>
-        {/* <ContactSection/> */}
+        <ContactSection {...contactSectionData}/>
     </div>
   )
 }
