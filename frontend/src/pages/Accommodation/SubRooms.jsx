@@ -6,7 +6,7 @@ import ContactSection from '../../components/homepage/ContactSection'
 import RoomPlan from './components/RoomPlan'
 import OtherOptions from './components/OtherOptions'
 
-const SubRooms = () => {
+const SubRooms = ({page}) => {
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
   const [subroomInfoSecData, setSubroomInfoSecData] = useState(null);
   const [roomsFeaturesData, setRoomsFeaturesData] = useState(null);
@@ -16,7 +16,7 @@ const SubRooms = () => {
   useEffect(() => {
     const fetchPageData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/page/familyroom");
+        const response = await fetch(`http://localhost:3000/api/page/${page}`);
         const data = await response.json();
 
         if (!response.ok) {
