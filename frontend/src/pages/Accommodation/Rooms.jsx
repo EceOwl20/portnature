@@ -7,6 +7,7 @@ import RoomsInfoCarousel from "./components/RoomsInfoCarousel";
 const Rooms = ({links,linkstext,text1,text2,text3,images1,images2,images3}) => {
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
   const [roomsCarouselData, setRoomsCarouselData] = useState(null);
+  const [roomsFeaturesData, setRoomsFeaturesData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -41,6 +42,17 @@ const Rooms = ({links,linkstext,text1,text2,text3,images1,images2,images3}) => {
           console.warn("RoomsInfoCarousel data not found in Rooms page");
         }
 
+        // RoomsFeatures verilerini çek
+        const roomsFeaturesComponent = data.components.find(
+          (comp) => comp.type === "RoomsFeatures"
+        );
+
+        if (roomsFeaturesComponent) {
+          setRoomsFeaturesData(roomsFeaturesComponent.props);
+        } else {
+          console.warn("RoomsFeatures data not found in Rooms page");
+        }
+
       } catch (err) {
         setError(err.message);
       }
@@ -49,7 +61,7 @@ const Rooms = ({links,linkstext,text1,text2,text3,images1,images2,images3}) => {
   }, []);
 
   if (error) return <p>Error: {error}</p>;
-  if (!mainBackgroundData && !roomsCarouselData) return <p>Loading...</p>;
+  if (!mainBackgroundData && !roomsCarouselData && !roomsFeaturesData) return <p>Loading...</p>;
 
   return (
     <div>
@@ -59,7 +71,7 @@ const Rooms = ({links,linkstext,text1,text2,text3,images1,images2,images3}) => {
         {/* <RoomsInfoCarousel images={images2} text={text2}/>
         <RoomsInfoCarousel images={images3} text={text3}/> */}
 
-        <RoomFeatures/>
+        <RoomFeatures {...roomsFeaturesData}/>
       {/* <ContactSection/> */}
     </div>
   )
