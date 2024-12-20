@@ -279,12 +279,12 @@ const App = () => {
           <main>
           <ScrollToTop />
            <Routes>
-           <Route path="/homepage" element={<DynamicPage page="homepage" />} />
+           {/* <Route path="/homepage" element={<DynamicPage page="homepage" />} />
            <Route path="/about" element={<DynamicPage page="about" />} />
-           <Route path="/page/:pageName" element={<DynamicPage page="homepage"/>} />
+           <Route path="/page/:pageName" element={<DynamicPage page="homepage"/>} /> */}
 
             <Route path="/" element={<Homepage />} />
-            <Route path="/rooms" element={<Rooms img={allrooms} header="Feel every advantage of our rooms" links={allroomslinks} linkstext={allroomslinkstexts} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
+            <Route path="/rooms" element={<Rooms links={allroomslinks} linkstext={allroomslinkstexts} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
             <Route path="/family-room" element={<SubRooms img={familyroomBanner} images={familyImages} header="Family Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={familyroomPlan}/>}/>
             <Route path="/king-suite-room" element={<SubRooms img={kingsuiteBanner} images={kingsuiteImages} header="King Suite Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={kingPlan}/>}/>
             <Route path="/standard-rooms" element={<StandardRooms img={standardBanner} header="Standard Rooms" links={allStandardroomslinks} linkstext={allStandardroomslinkstexts} />}/>

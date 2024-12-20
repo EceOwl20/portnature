@@ -1,13 +1,66 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import MainBackgroundRooms from './components/MainBackgroundRooms'
+import RoomInfo from "./components/RoomInfo";
+import RoomFeatures from "./components/RoomFeatures";
+import RoomsInfoCarousel from "./components/RoomsInfoCarousel";
 
-import RoomInfo from './components/RoomInfo'
+const Rooms = ({links,linkstext,text1,text2,text3,images1,images2,images3}) => {
+  const [mainBackgroundData, setMainBackgroundData] = useState(null);
+  const [roomsCarouselData, setRoomsCarouselData] = useState(null);
+  const [error, setError] = useState(null);
 
-const Rooms = ({img,header,links,linkstext,text1,text2,text3,images1,images2,images3}) => {
+  useEffect(() => {
+    const fetchPageData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/page/roomspage");
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch page data");
+        }
+
+        // MainBackground verilerini çek
+        const mainBackgroundComponent = data.components.find(
+          (comp) => comp.type === "MainBackground"
+        );
+
+        if (mainBackgroundComponent) {
+          setMainBackgroundData(mainBackgroundComponent.props);
+        } else {
+          console.warn("MainBackgroundData data not found in Rooms page");
+        }
+
+        // RoomsInfoCarousel verilerini çek
+        const roomsCarouselComponent = data.components.find(
+          (comp) => comp.type === "RoomsInfoCarousel"
+        );
+
+        if (roomsCarouselComponent) {
+          setRoomsCarouselData(roomsCarouselComponent.props);
+        } else {
+          console.warn("RoomsInfoCarousel data not found in Rooms page");
+        }
+
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+    fetchPageData();
+  }, []);
+
+  if (error) return <p>Error: {error}</p>;
+  if (!mainBackgroundData && !roomsCarouselData) return <p>Loading...</p>;
+
   return (
     <div>
-      <MainBackgroundRooms img={img} header={header}/>
-      <RoomInfo links={links} linkstext={linkstext} text1={text1} text2={text2} text3={text3} images1={images1} images2={images2} images3={images3}/>
+      <MainBackgroundRooms {...mainBackgroundData} />
+      {/* <RoomInfo links={links} linkstext={linkstext} text1={text1} text2={text2} text3={text3} images1={images1} images2={images2} images3={images3}/> */}
+      <RoomsInfoCarousel {...roomsCarouselData}/>
+        {/* <RoomsInfoCarousel images={images2} text={text2}/>
+        <RoomsInfoCarousel images={images3} text={text3}/> */}
+
+        <RoomFeatures/>
+      {/* <ContactSection/> */}
     </div>
   )
 }

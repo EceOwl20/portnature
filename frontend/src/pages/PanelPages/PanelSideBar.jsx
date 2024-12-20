@@ -25,9 +25,9 @@ const PanelSideBar = () => {
 
   return (
     <section className="flex relative w-screen overflow-hidden">
-       <div className="-top-1/2 absolute -right-1/4 my-ellipse2 z-10"></div>
-      <aside className="flex flex-col items-center w-[10%] bg-[#0e0c1b] opacity-[97%] p-[15px] h-screen relative">
-        {/* <div className="-bottom-1/2 absolute -left-1/2 my-ellipse z-10"></div> */}
+       <div className="-top-1/2 absolute -right-1/4 my-ellipse2 z-0"></div>
+      <aside className="flex flex-col items-center w-[10%] bg-[#0e0c1b] opacity-[97%] p-[15px] h-screen relative ">
+        {/* <div className="-bottom-1/2 absolute -left-1/2 my-ellipse z-0"></div> */}
        
         <nav className="flex flex-col items-start w-full gap-[10px]">
           <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel">Panel</NavLink>

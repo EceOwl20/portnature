@@ -576,23 +576,174 @@
   {
       "type": "AlacarteSection",
       "props": {
-         "image":{
-              "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734528203926beach.png?alt=media&token=aa3e717e-8cf2-4feb-87b2-bc507c3d542a",
+          "header":{
+              "en": "Of Our Premium A’La Carte Restaurants",
+              "tr": "Of Our Premium A’La Carte Restaurants",
+              "de": "Of Our Premium A’La Carte Restaurants",
+              "ru": "Of Our Premium A’La Carte Restaurants"
+          },
+           "textComponent":[
+              {
+                  "header":{
+                  "en": "We have the top quality",
+                  "tr": "We have the top quality",
+                  "de": "We have the top quality",
+                  "ru": "We have the top quality"
+              },
+              "text":{
+                 "en": "We do not work with unknown brands. We offer top quality",
+                 "tr": "We do not work with unknown brands. We offer top quality",
+                 "de": "We do not work with unknown brands. We offer top quality",
+                 "ru": "We do not work with unknown brands. We offer top quality"
+              },
+              "image":{
+              "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
               "altText":{
-                  "en":"portnaturebeach",
-                  "tr":"portnaturebeach",
-                  "de":"portnaturebeach",
-                  "ru":"portnaturebeach"
+                  "en":"leafIcon",
+                  "tr":"leafIcon",
+                  "de":"leafIcon",
+                  "ru":"leafIcon"
               }
+          }
+        },
+
+              {
+                  "header":{
+                  "en": "Alacarte",
+                  "tr": "Port Nature Otel",
+                  "de": "Port Nature Hotel",
+                  "ru": "Порт Натуре Отель"
+              },
+              "text":{
+                 "en": "Alacarte",
+                 "tr": "Port Nature Otel",
+                 "de": "Port Nature Hotel",
+                 "ru": "Порт Натуре Отель"
+              },
+              "image":{
+              "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+              "altText":{
+                  "en":"leafIcon",
+                  "tr":"leafIcon",
+                  "de":"leafIcon",
+                  "ru":"leafIcon"
+              }
+          }
+        },
+
+              {
+                  "header":{
+                  "en": "Alacarte",
+                  "tr": "Port Nature Otel",
+                  "de": "Port Nature Hotel",
+                  "ru": "Порт Натуре Отель"
+              },
+              "text":{
+                 "en": "Alacarte",
+                 "tr": "Port Nature Otel",
+                 "de": "Port Nature Hotel",
+                 "ru": "Порт Натуре Отель"
+              },
+              "image":{
+              "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+              "altText":{
+                  "en":"leafIcon",
+                  "tr":"leafIcon",
+                  "de":"leafIcon",
+                  "ru":"leafIcon"
+              }
+          }
+        }
+
+           ],
+
+         "image":{
+              "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593017097alacarteBackground.png?alt=media&token=d51e9ccf-dacd-4dfb-8c04-1beaf74e8c6f",
+              "altText":{
+                  "en":"alacarteBackground",
+                  "tr":"alacarteBackground",
+                  "de":"alacarteBackground",
+                  "ru":"alacarteBackground"
+              },
+              "width":"1920",
+              "height":"475"
           },
            "images": [
           {
-            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734592937714alacarte.png?alt=media&token=e8110b18-4db2-4945-92e3-c2ff819767b1",
             "altText": {
-              "en": "Port Nature Hotel",
-              "tr": "Port Nature Otel",
-              "de": "Port Nature Hotel",
-              "ru": "Порт Натуре Отель"
+              "en": "alacarte",
+              "tr": "alacarte",
+              "de": "alacarte",
+              "ru": "alacarte"
+            },
+            "width": 1920,
+            "height": 1080,
+
+            "header":{
+                "en":"FAR  EAST A’LA CARTE ",
+                "tr":"FAR  EAST A’LA CARTE ",
+                "de":"FAR  EAST A’LA CARTE ",
+                "ru":"FAR  EAST A’LA CARTE "
+            },
+            "text1":{
+                 "en":"At any working time",
+                 "tr":"At any working time",
+                 "de":"At any working time",
+                 "ru":"At any working time"
+            },
+            "text2":{
+                 "en":"Booking is not required",
+                 "tr":"Booking is not required",
+                 "de":"Booking is not required",
+                 "ru":"Booking is not required"
+            },
+            
+            "buttonText":{
+                "en":"More About",
+                "tr":"More About",
+                 "de":"More About",
+                 "ru":"More About"
+            },
+            "buttonLink":{
+                "en":"/",
+                "tr":"/",
+                 "de":"/",
+                 "ru":"/"
+            },
+
+            "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+            "altText": {
+              "en": "leafIcon ",
+              "tr": "leafIcon",
+              "de": "leafIcon",
+              "ru": "leafIcon"
+            },
+            "width": 20,
+            "height": 20
+          },
+          
+          "image2":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+            "altText": {
+              "en": "leafIcon",
+              "tr": "leafIcon",
+              "de": "leafIcon",
+              "ru": "leafIcon"
+            },
+            "width": 20,
+            "height": 20
+          }
+
+          },
+          {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734592937714alacarte.png?alt=media&token=e8110b18-4db2-4945-92e3-c2ff819767b1",
+            "altText": {
+              "en": "alacarte",
+              "tr": "alacarte",
+              "de": "alacarte",
+              "ru": "alacarte"
             },
             "width": 1920,
             "height": 1080,
@@ -602,33 +753,289 @@
                 "tr":"",
                 "de":"",
                 "ru":""
-            }
-          },
-          {
-            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+            },
+            "text1":{
+                 "en":"",
+                 "tr":"",
+                 "de":"",
+                 "ru":""
+            },
+            "text2":{
+                 "en":"",
+                 "tr":"",
+                 "de":"",
+                 "ru":""
+            },
+            
+            "buttonText":{
+                "en":"More About",
+                "tr":"More About",
+                 "de":"More About",
+                 "ru":"More About"
+            },
+            "buttonLink":{
+                "en":"/",
+                "tr":"/",
+                 "de":"/",
+                 "ru":"/"
+            },
+
+            "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
             "altText": {
               "en": "Beach View",
               "tr": "Plaj Manzarası",
               "de": "Strandblick",
               "ru": "Вид на пляж"
             },
-            "width": 1920,
-            "height": 1080
-          },{
-            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+            "width": 20,
+            "height": 20
+          },
+          
+          "image2":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
             "altText": {
-              "en": "Port Nature Hotel",
-              "tr": "Port Nature Otel",
-              "de": "Port Nature Hotel",
-              "ru": "Порт Натуре Отель"
+              "en": "leafIcon",
+              "tr": "leafIcon",
+              "de": "leafIcon",
+              "ru": "leafIcon"
+            },
+            "width": 20,
+            "height": 20
+          }
+
+          },
+          {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734592937714alacarte.png?alt=media&token=e8110b18-4db2-4945-92e3-c2ff819767b1",
+            "altText": {
+              "en": "alacarte",
+              "tr": "alacarte",
+              "de": "alacarte",
+              "ru": "alacarte"
             },
             "width": 1920,
-            "height": 1080
+            "height": 1080,
+
+            "header":{
+                "en":"",
+                "tr":"",
+                "de":"",
+                "ru":""
+            },
+            "text1":{
+                 "en":"",
+                 "tr":"",
+                 "de":"",
+                 "ru":""
+            },
+            "text2":{
+                 "en":"",
+                 "tr":"",
+                 "de":"",
+                 "ru":""
+            },
+            
+            "buttonText":{
+                "en":"More About",
+                "tr":"More About",
+                 "de":"More About",
+                 "ru":"More About"
+            },
+            "buttonLink":{
+                "en":"/",
+                "tr":"/",
+                 "de":"/",
+                 "ru":"/"
+            },
+
+            "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+            "altText": {
+              "en": "leafIcon",
+              "tr": "leafIcon",
+              "de": "leafIcon",
+              "ru": "leafIcon"
+            },
+            "width": 20,
+            "height": 20
+          },
+          
+          "image2":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+            "altText": {
+              "en": "leafIcon",
+              "tr": "leafIcon",
+              "de": "leafIcon",
+              "ru": "leafIcon"
+            },
+            "width": 20,
+            "height": 20
           }
+
+          },
+          {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734592937714alacarte.png?alt=media&token=e8110b18-4db2-4945-92e3-c2ff819767b1",
+            "altText": {
+              "en": "alacarte",
+              "tr": "alacarte",
+              "de": "alacarte",
+              "ru": "alacarte"
+            },
+            "width": 1920,
+            "height": 1080,
+
+            "header":{
+                "en":"",
+                "tr":"",
+                "de":"",
+                "ru":""
+            },
+            "text1":{
+                 "en":"",
+                 "tr":"",
+                 "de":"",
+                 "ru":""
+            },
+            "text2":{
+                 "en":"",
+                 "tr":"",
+                 "de":"",
+                 "ru":""
+            },
+            
+            "buttonText":{
+                "en":"More About",
+                "tr":"More About",
+                 "de":"More About",
+                 "ru":"More About"
+            },
+            "buttonLink":{
+                "en":"/",
+                "tr":"/",
+                 "de":"/",
+                 "ru":"/"
+            },
+
+            "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+            "altText": {
+              "en": "leafIcon",
+              "tr": "leafIcon",
+              "de": "leafIcon",
+              "ru": "leafIcon"
+            },
+            "width": 20,
+            "height": 20
+          },
+          
+          "image2":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+            "altText": {
+              "en": "leafIcon",
+              "tr": "leafIcon",
+              "de": "leafIcon",
+              "ru": "leafIcon"
+            },
+            "width": 20,
+            "height": 20
+          }
+
+          }
+          
         ]
           
   }
-  }
-  
+  },
+{
+      "type": "ContactSection",
+      "props": {
+          "header":{
+              "en":"Free contact call center",
+              "tr":"Free contact call center",
+              "de":"Free contact call center",
+              "ru":"Free contact call center"
+          },
+
+          "text":{
+              "en":"Or online booking",
+              "tr":"Or online booking",
+              "de":"Or online booking",
+              "ru":"Or online booking"
+          },
+
+          "phone":"+ 90 (242) 731 07 07",
+          "email":"info@portnature.com.tr",
+
+          "buttonText":{
+              "en":"Send",
+              "tr":"Send",
+              "de":"Send",
+              "ru":"Send"
+          },
+
+          "buttonLink":{
+              "en":"/",
+              "tr":"/",
+              "de":"/",
+              "ru":"/"
+          },
+
+          "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734603783214callcenter.webp?alt=media&token=a50e406b-9351-44ce-9c4d-89608796392c",
+            "altText": {
+              "en": "callcenter",
+              "tr": "callcenter",
+              "de": "callcenter",
+              "ru": "callcenter"
+            },
+            "width": 317,
+            "height": 283
+          },
+
+           "header2":{
+              "en":"Send Message",
+              "tr":"Send Message",
+              "de":"Send Message",
+              "ru":"Send Message"
+          },
+
+          "text2":{
+              "en":"All your questions, options, suggestions",
+              "tr":"All your questions, options, suggestions",
+              "de":"All your questions, options, suggestions",
+              "ru":"All your questions, options, suggestions"
+          },
+
+          "checkboxText":{
+              "en":"Ben robot değilim",
+              "tr":"Ben robot değilim",
+              "de":"Ben robot değilim",
+              "ru":"Ben robot değilim"
+          },
+                     "iconImage":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+            "altText": {
+              "en": "leafIcon",
+              "tr": "leafIcon",
+              "de": "leafIcon",
+              "ru": "leafIcon"
+            },
+            "width": 20,
+            "height": 20
+           },
+             "iconImage2":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+            "altText": {
+              "en": "leafIcon",
+              "tr": "leafIcon",
+              "de": "leafIcon",
+              "ru": "leafIcon"
+            },
+            "width": 20,
+            "height": 20
+}
+      }
+           
+}
   ]
 }

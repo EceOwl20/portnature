@@ -348,7 +348,7 @@ const EditComponent = () => {
   const singleIconImage2 = componentData.props.iconImage2;
 
   return (
-    <div className="flex flex-col items-center font-monserrat">
+    <div className="flex flex-col items-center font-monserrat z-50">
       <h1 className="text-[25px] font-medium my-4 text-[#ffffff]">Edit Component: {componentData.type}</h1>
 
       {/* General props editing - Güncellenmiş kısım */}
