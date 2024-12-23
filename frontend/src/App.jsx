@@ -279,15 +279,18 @@ const App = () => {
           <main>
           <ScrollToTop />
            <Routes>
-           <Route path="/homepage" element={<DynamicPage page="homepage" />} />
+           {/* <Route path="/homepage" element={<DynamicPage page="homepage" />} />
            <Route path="/about" element={<DynamicPage page="about" />} />
-           <Route path="/page/:pageName" element={<DynamicPage page="homepage"/>} />
+           <Route path="/page/:pageName" element={<DynamicPage page="homepage"/>} /> */}
 
             <Route path="/" element={<Homepage />} />
-            <Route path="/rooms" element={<Rooms img={allrooms} header="Feel every advantage of our rooms" links={allroomslinks} linkstext={allroomslinkstexts} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
-            <Route path="/family-room" element={<SubRooms img={familyroomBanner} images={familyImages} header="Family Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={familyroomPlan}/>}/>
-            <Route path="/king-suite-room" element={<SubRooms img={kingsuiteBanner} images={kingsuiteImages} header="King Suite Rooms" text="A luxurious holiday with your loved ones is waiting for you in Family Rooms,designed in the comfort of your own home" items={FamilyItems} planImg={kingPlan}/>}/>
+            <Route path="/rooms" element={<Rooms links={allroomslinks} linkstext={allroomslinkstexts} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
+            <Route path="/family-room" element={<SubRooms page="familyroom"/>}/>
+            <Route path="/king-suite-room" element={<SubRooms page="kingsuiteroom"/>}/>
             <Route path="/standard-rooms" element={<StandardRooms img={standardBanner} header="Standard Rooms" links={allStandardroomslinks} linkstext={allStandardroomslinkstexts} />}/>
+            <Route path="/standard-sea-view-room" element={<SubRooms page="standardseaview"/>}/>
+            <Route path="/standard-side-view-room" element={<SubRooms page="standardsideview"/>}/>
+            <Route path="/standard-land-view-room" element={<SubRooms page="standardlandview"/>}/>
             {/* links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText} */}
             <Route path="/food-drinks" element={<FoodDrinkPage carouselImg={FoodCarouselImages} menuImg={FoodMenuImages} menuLinks={FoodMenuLinks} logoImages={FoodLogoImages} findRestaurants={findRestaurants} restaurants={restaurants}/>}/>
             <Route path="/davidoff-cafe" element={<CoffeePage carouselImg={davidoffCarousel} logo={davidoffLogo} logoText={davidoffLogoText} carouselTexts={davidoffCaroTexts} subheader={davidoffSubHeader} subTexts={davidoffSubTexts} image={davidoffsubimg} children={<DavidoffSvg width={436} height={387} className="absolute top-10 left-[45%] z-1"/>} />}/>

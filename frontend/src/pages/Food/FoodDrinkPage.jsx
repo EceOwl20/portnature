@@ -35,7 +35,7 @@ const FoodDrinkPage = ({carouselImg, menuImg, menuLinks,logoImages,findRestauran
         )
       ))}
       <FindRestaurantSection findRestaurants={findRestaurants} />
-      <ContactSection/>
+      {/* <ContactSection/> */}
     </div>
   )
 }

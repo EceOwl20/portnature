@@ -344,10 +344,12 @@ const EditComponent = () => {
   const singleHeader = componentData.props.header;
   const singleText = componentData.props.text;
   const singleSpan = componentData.props.span;
+  const singleIconImage = componentData.props.iconImage;
+  const singleIconImage2 = componentData.props.iconImage2;
 
   return (
-    <div className="flex flex-col items-center font-monserrat">
-      <h1 className="text-[25px] font-medium my-4 text-[#0e0c1b]">Edit Component: {componentData.type}</h1>
+    <div className="flex flex-col items-center font-monserrat z-50 bg-white">
+      <h1 className="text-[25px] font-medium my-4 text-[#ffffff]">Edit Component: {componentData.type}</h1>
 
       {/* General props editing - Güncellenmiş kısım */}
       {Object.keys(componentData.props || {}).map((key) => {
@@ -364,9 +366,11 @@ const EditComponent = () => {
           key === "image2" ||
           key === "buttonImage" ||
           key === "buttonText"  || 
-          key === "header" || // aynı şekilde
-          key === "text"  || // aynı şekilde
-          key === "span"     // aynı şekilde
+          key === "header" || 
+          key === "text"  || 
+          key === "span"  || 
+          key === "iconImage" || 
+          key === "iconImage2"     
         ) {
           return null;
         }
@@ -539,6 +543,136 @@ const EditComponent = () => {
           key={i}
           className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
           onClick={() => handleReplaceSingleImage("image2", result)}
+        >
+          <img
+            src={result.firebaseUrl}
+            alt={result.altText.en}
+            className="w-16 h-16 object-cover"
+          />
+          <p>{result.altText.en}</p>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+)}
+
+{singleIconImage && (
+        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+          <h2 className="font-bold text-xl">IconImage</h2>
+          <label className="font-semibold">Firebase URL</label>
+          <input
+            type="text"
+            value={singleIconImage.firebaseUrl || ""}
+            onChange={(e) => handleImageUrlChange(e.target.value)}
+            className="border p-2"
+          />
+
+          <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
+          {singleIconImage.altText && Object.keys(singleIconImage.altText).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label>Alt Text ({lang})</label>
+              <input
+                type="text"
+                value={singleIconImage.altText[lang]}
+                onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                className="border p-2"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+{singleIconImage && (
+<div className="flex flex-col gap-2 items-center mt-4">
+  <label className="text-[#e45252] text-[18px] font-semibold">Search for a new image for IconImage</label>
+  <input
+    type="text"
+    placeholder="Enter image name"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="border py-2 px-3 w-[50%]"
+  />
+  <button
+    onClick={handleSearch}
+    className="bg-blue-500 text-white px-4 py-2 rounded"
+  >
+    Search
+  </button>
+
+  {searchResults.length > 0 && (
+    <div className="flex flex-col gap-2 mt-2">
+      <h4>Search Results</h4>
+      {searchResults.map((result, i) => (
+        <div
+          key={i}
+          className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+          onClick={() => handleReplaceSingleImage("iconImage", result)}
+        >
+          <img
+            src={result.firebaseUrl}
+            alt={result.altText.en}
+            className="w-16 h-16 object-cover"
+          />
+          <p>{result.altText.en}</p>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+)}
+
+{singleIconImage2 && (
+        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+          <h2 className="font-bold text-xl">IconImage 2</h2>
+          <label className="font-semibold">Firebase URL</label>
+          <input
+            type="text"
+            value={singleIconImage2.firebaseUrl || ""}
+            onChange={(e) => handleImageUrlChange(e.target.value)}
+            className="border p-2"
+          />
+
+          <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
+          {singleIconImage2.altText && Object.keys(singleIconImage2.altText).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label>Alt Text ({lang})</label>
+              <input
+                type="text"
+                value={singleIconImage2.altText[lang]}
+                onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                className="border p-2"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+{singleIconImage2 && (
+<div className="flex flex-col gap-2 items-center mt-4">
+  <label className="text-[#e45252] text-[18px] font-semibold">Search for a new image for IconImage2</label>
+  <input
+    type="text"
+    placeholder="Enter image name"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="border py-2 px-3 w-[50%]"
+  />
+  <button
+    onClick={handleSearch}
+    className="bg-blue-500 text-white px-4 py-2 rounded"
+  >
+    Search
+  </button>
+
+  {searchResults.length > 0 && (
+    <div className="flex flex-col gap-2 mt-2">
+      <h4>Search Results</h4>
+      {searchResults.map((result, i) => (
+        <div
+          key={i}
+          className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+          onClick={() => handleReplaceSingleImage("iconImage2", result)}
         >
           <img
             src={result.firebaseUrl}

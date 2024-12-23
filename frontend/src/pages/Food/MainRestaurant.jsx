@@ -6,7 +6,7 @@ const MainRestaurant = () => {
   return (
     <div>
       <RestaurantMainSection/>
-      <ContactSection/>
+      {/* <ContactSection/> */}
     </div>
   )
 }

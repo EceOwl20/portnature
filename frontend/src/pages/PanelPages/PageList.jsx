@@ -27,7 +27,7 @@ const PageList = () => {
   // if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="flex flex-col items-center justify-center gap-7 my-5">
+    <div className="flex flex-col items-center justify-center gap-7 my-5 z-50">
       <h2 className="font-monserrat text-[30px] font-medium">Pages</h2>
       <ul className="flex flex-col w-[90%] items-start justify-center gap-5">
         {pages.map((page) => (
