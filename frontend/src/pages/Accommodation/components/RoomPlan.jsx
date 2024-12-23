@@ -25,8 +25,7 @@ const RoomPlan = ({image, header, text, text2, lang="en"}) => {
         <h4 className='text-[#170000] text-[30px] font-monserrat font-medium leading-normal mt-[15%] lg:mt-0'>{header[lang]}</h4>
        <div className='flex h-[1px] w-[90%] bg-[#c5bfbf] mb-5'></div>
       <img src={image.firebaseUrl} alt={image.altText[lang]} width={image.width} height={image.height}
-        // style={{ width: '85vw', height: '60vh', objectFit: 'contain' }}
-        className='rotate-90 lg:rotate-0 w-full h-auto lg:w-[85vw] lg:h-[60vh] object-contain mx-auto mt-[30%] lg:mt-0'
+        className='rotate-90 lg:rotate-0 w-full h-auto lg:w-auto max-w-[943px] max-h-[400px] object-contain mx-auto mt-[30%] lg:mt-0'
       />
     </div>
   </div>
