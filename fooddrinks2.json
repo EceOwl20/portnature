@@ -1,0 +1,388 @@
+{
+    "pageName": "fooddrinks",
+    "components": [
+      {
+        "type": "FoodCarousel",
+        "props": {
+          "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": {
+                "en": "Port Nature Hotel",
+                "tr": "Port Nature Otel",
+                "de": "Port Nature Hotel",
+                "ru": "Порт Натуре Отель"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            }
+          ],
+          "header":{
+              "en":"FOOD & DRINKS",
+              "tr":"FOOD & DRINKS",
+              "de":"FOOD & DRINKS",
+              "ru":"FOOD & DRINKS"
+          },
+           "text":{
+              "en":"You deserve the best! We offer the best…",
+              "tr":"You deserve the best! We offer the best…",
+              "de":"You deserve the best! We offer the best…",
+              "ru":"You deserve the best! We offer the best…"
+          }
+        }
+      },
+
+      {
+        "type": "FoodMenu",
+        "props": {
+          "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": {
+                "en": "Port Nature Hotel",
+                "tr": "Port Nature Otel",
+                "de": "Port Nature Hotel",
+                "ru": "Порт Натуре Отель"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            }
+           
+          ],
+          "buttonText":{
+              "en":"FOOD & DRINKS",
+              "tr":"FOOD & DRINKS",
+              "de":"FOOD & DRINKS",
+              "ru":"FOOD & DRINKS"
+          },
+          "buttonText2":{
+              "en":"FOOD & DRINKS",
+              "tr":"FOOD & DRINKS",
+              "de":"FOOD & DRINKS",
+              "ru":"FOOD & DRINKS"
+          },
+          "buttonText3":{
+              "en":"FOOD & DRINKS",
+              "tr":"FOOD & DRINKS",
+              "de":"FOOD & DRINKS",
+              "ru":"FOOD & DRINKS"
+          },
+           "buttonLink":{
+              "en":"/",
+              "tr":"/",
+              "de":"/",
+              "ru":"/"
+          },
+           "buttonLink2":{
+              "en":"/",
+              "tr":"/",
+              "de":"/",
+              "ru":"/"
+          },
+           "buttonLink3":{
+              "en":"/",
+              "tr":"/",
+              "de":"/",
+              "ru":"/"
+          }
+        }
+      },
+  
+       {
+        "type": "LogoSection",
+        "props": {
+       "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": {
+                "en": "Port Nature Hotel",
+                "tr": "Port Nature Otel",
+                "de": "Port Nature Hotel",
+                "ru": "Порт Натуре Отель"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            }
+          ]
+        }
+  },
+  
+  {
+        "type": "RestaurantSection",
+        "props": {
+             "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": {
+                "en": "Port Nature Hotel",
+                "tr": "Port Nature Otel",
+                "de": "Port Nature Hotel",
+                "ru": "Порт Натуре Отель"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            }
+          ],
+          "headers":[
+              {
+                "en": "A’LA CARTE",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              {
+                "en": "BARS & CAFÉS",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              {
+                "en": "MAIN RESTAURANT",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              }
+          ],
+
+          "texts":[
+              {
+                "en": "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              {
+                "en": "Независимо от того, ищете ли вы утренний кофе или расслабляющий вечерний напиток, наши бары и кафе предлагают идеальную атмосферу для того, чтобы приятно провести время приятной компании.",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              {
+                "en": "Memorable tastes are waiting for you in our restaurants, where the most special flavors of the world cuisine are offered and enriched with different themes and in our bars, where 148 kinds of Premium drinks are offered.",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              }
+          ],
+
+          "spans":[
+              {
+                "en": "Enjoy your holiday Enjoy your holiday",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              {
+                "en": "Enjoy your holiday Enjoy your holiday",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              {
+                "en": "Enjoy your holiday Enjoy your holiday",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              }
+          ],
+
+          "buttonTexts":[
+              {
+                "en": "More About",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              {
+                "en": "More About",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              {
+                "en": "More About",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              }
+          ],
+
+          "buttonLinks":[
+              {
+                "en": "/",
+                "tr":  "/",
+                "de":  "/",
+                "ru":  "/"
+              },
+              {
+                "en":  "/",
+                "tr": "/",
+                "de":  "/",
+                "ru":  "/"
+              },
+              {
+                "en":  "/",
+                "tr":  "/",
+                "de":  "/",
+                "ru": "/"
+              }
+          ]
+        }
+  }
+  
+    ]
+  }

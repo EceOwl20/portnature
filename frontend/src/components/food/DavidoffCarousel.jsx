@@ -4,7 +4,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 const TWEEN_FACTOR_BASE = 0.52;
 
-const DavidoffCarousel = ({ carouselImg, carouselTexts, logo, logoText }) => {
+const DavidoffCarousel = ({images = [], header, text, text2, image, lang="en"}) => {
   const [emblaRef, emblaApi] = useCarousel(
     {
       loop: true,
@@ -66,10 +66,10 @@ const DavidoffCarousel = ({ carouselImg, carouselTexts, logo, logoText }) => {
   }, [emblaApi, setTweenNodes, tweenScale, onSelect]);
 
   return (
-    <div className="flex flex-col w-full mt-3 h-auto lg:h-screen items-center justify-center">
+    <div className="flex flex-col w-full mt-3 h-auto  items-center justify-center">
       <div className="overflow-hidden relative w-full items-center justify-center h-full" ref={emblaRef}>
         <div className="flex grid-flow-col">
-          {carouselImg.map((image, index) => (
+          {images.map((img, index) => (
             <div
               key={index}
               className={`relative flex-[0_0_auto] w-[90%-1rem] h-full lg:h-[653px] transition-transform duration-150 ease-in-out items-center justify-center ${
@@ -78,7 +78,7 @@ const DavidoffCarousel = ({ carouselImg, carouselTexts, logo, logoText }) => {
             >
               <img
                 className="w-screen lg:w-full h-[40vh] lg:h-full object-cover rounded-md overflow-hidden"
-                src={image}
+                src={img.firebaseUrl}
                 alt={`Slide ${index + 1}`}
               />
 
@@ -91,13 +91,13 @@ const DavidoffCarousel = ({ carouselImg, carouselTexts, logo, logoText }) => {
               {index === selectedIndex && (
                 <div className="absolute inset-0 z-10 bg-black/30 flex flex-col items-end justify-center text-right lg:text-[28px] italic font-lora font-medium text-[#F8F8F8] text-[12px] leading-[20px] lg:leading-[42px] pr-5">
                   <h2>
-                    {carouselTexts[0]}<br />{carouselTexts[1]}
+                    {header[lang]}
                   </h2>
                   <div className="flex w-[40%] mt-[25px] mb-[15px] justify-end items-end">
                     <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
                     <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
                   </div>
-                  <p>{carouselTexts[2]}</p>
+                  <p> {text[lang]}</p>
                 </div>
               )}
             </div>
@@ -105,19 +105,19 @@ const DavidoffCarousel = ({ carouselImg, carouselTexts, logo, logoText }) => {
         </div>
       </div>
 
-      {(logo || logoText) && (
+      {(image || text2) && (
         <div className="flex flex-col lg:flex-row xl:w-[85%] lg:w-[90%] items-center justify-around gap-[30px] lg:gap-0 mt-0 lg:mt-0">
-          {logo && (
+          {image && (
             <>
-              <img src={logo} alt="davidoff" width={335} height={45} className="hidden md:flex lg:hidden" />
-              <img src={logo} alt="davidoff" width={200} height={28} className="flex md:hidden" />
-              <img src={logo} alt="davidoff" width={logo.width || 200} height={logo.height || 28} className="hidden lg:flex" />
+              <img src={image.firebaseUrl} alt="davidoff" width={335} height={45} className="hidden md:flex lg:hidden" />
+              <img src={image.firebaseUrl} alt="davidoff" width={200} height={28} className="flex md:hidden" />
+              <img src={image.firebaseUrl} alt="davidoff" width={image.width || 200} height={image.height || 28} className="hidden lg:flex" />
             </>
           )}
-          {logoText && (
+          {text2 && (
             <div className="flex items-center justify-center lg:justify-start text-center lg:text-start w-[85%] md:w-[60%] lg:w-[40%] xl:w-[35%]">
               <p className="text-[14px] lg:text-[15px] text-black font-monserrat font-normal leading-[22.5px]">
-                {logoText}
+              {text2[lang]}
               </p>
             </div>
           )}

@@ -292,8 +292,9 @@ const App = () => {
             <Route path="/standard-side-view-room" element={<SubRooms page="standardsideview"/>}/>
             <Route path="/standard-land-view-room" element={<SubRooms page="standardlandview"/>}/>
             {/* links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText} */}
-            <Route path="/food-drinks" element={<FoodDrinkPage carouselImg={FoodCarouselImages} menuImg={FoodMenuImages} menuLinks={FoodMenuLinks} logoImages={FoodLogoImages} findRestaurants={findRestaurants} restaurants={restaurants}/>}/>
-            <Route path="/davidoff-cafe" element={<CoffeePage carouselImg={davidoffCarousel} logo={davidoffLogo} logoText={davidoffLogoText} carouselTexts={davidoffCaroTexts} subheader={davidoffSubHeader} subTexts={davidoffSubTexts} image={davidoffsubimg} children={<DavidoffSvg width={436} height={387} className="absolute top-10 left-[45%] z-1"/>} />}/>
+            <Route path="/food-drinks" element={<FoodDrinkPage />}/>
+            <Route path="/davidoff-cafe" element={<CoffeePage  page="davidoffcafe" />}/>
+            {/* children={<DavidoffSvg width={436} height={387} className="absolute top-10 left-[45%] z-1"/>} */}
             <Route path="/bars-cafes" element={<CoffeeBarsMainPage filterfindRestaurants={filterfindRestaurants}/>}/>
             <Route path="/alacarte-restaurant" element={<AlacartePage findRestaurants={findRestaurants}/>}/>
             <Route path="/main-restaurant" element={<MainRestaurant/>}/>

@@ -2,13 +2,6 @@ import React from 'react'
 import StarSvg from "../../svg/StarSvg"
 import UnderLine from "../../svg/UnderLine/UnderLine"
 import SubCarousel from './SubCarousel'
-import img1 from "../../../public/images/homepage/portnaturehotel1.png"
-import img2 from "../../../public/images/homepage/portnaturehotel2.jpeg"
-import img3 from "../../../public/images/homepage/portnaturehotel3.png"
-import img4 from "../../../public/images/homepage/portnaturehotel4.png"
-import img5 from "../../../public/images/homepage/portnaturehotel5.png"
-
-const images=[img1,img2,img3,img4,img5];
 
 const AllInclusive = ({images=[], lang="en", header,span,text1,text2,starNum,carouselHeader, carouselText, carouselSpan}) => {
   return (

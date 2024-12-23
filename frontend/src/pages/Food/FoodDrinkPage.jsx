@@ -1,43 +1,133 @@
-import React from 'react'
-import FoodCarousel from '../../components/food/FoodCarousel'
-import FoodMenu from '../../components/food/FoodMenu'
-import LogoSection from '../../components/LogoSection'
-import ContactSection from '../../components/homepage/ContactSection'
-import FindRestaurantSection from '../../components/food/FindRestaurantSection'
-import RestaurantSection from '../../components/food/RestaurantSection'
-import ReverseRestaurantSection from '../../components/food/ReverseRestaurantSection'
+import React, { useState, useEffect } from "react";
+import FoodCarousel from "../../components/food/FoodCarousel";
+import FoodMenu from "../../components/food/FoodMenu";
+import LogoSection from "../../components/LogoSection";
+import ContactSection from "../../components/homepage/ContactSection";
+import FindRestaurantSection from "../../components/food/FindRestaurantSection";
+import RestaurantSection from "../../components/food/RestaurantSection";
+import ReverseRestaurantSection from "../../components/food/ReverseRestaurantSection";
 
-const FoodDrinkPage = ({carouselImg, menuImg, menuLinks,logoImages,findRestaurants,restaurants}) => {
+const FoodDrinkPage = ({
+  carouselImg,
+  menuImg,
+  menuLinks,
+  logoImages,
+  findRestaurants,
+  restaurants,
+}) => {
+  const [foodCarouselData, setFoodCarouselData] = useState(null);
+  const [foodMenuData, setFoodMenuData] = useState(null);
+  const [logoSectionData, setLogoSectionData] = useState(null);
+  const [restaurantSectionData, setRestaurantSectionData] = useState(null);
+  const [contactSectionData, setContactSectionData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPageData = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/page/fooddrinks"
+        );
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch page data");
+        }
+
+        // FoodCarousel verilerini çek
+        const foodCarouselComponent = data.components.find(
+          (comp) => comp.type === "FoodCarousel"
+        );
+
+        if (foodCarouselComponent) {
+          setFoodCarouselData(foodCarouselComponent.props);
+        } else {
+          console.warn("FoodCarousel data not found");
+        }
+
+        // FoodMenu verilerini çek
+        const foodMenuComponent = data.components.find(
+          (comp) => comp.type === "FoodMenu"
+        );
+
+        if (foodMenuComponent) {
+          setFoodMenuData(foodMenuComponent.props);
+        } else {
+          console.warn("FoodMenu data not found");
+        }
+
+        // LogoSection verilerini çek
+        const logoSectionComponent = data.components.find(
+          (comp) => comp.type === "LogoSection"
+        );
+
+        if (logoSectionComponent) {
+          setLogoSectionData(logoSectionComponent.props);
+        } else {
+          console.warn("LogoSection data not found");
+        }
+
+        // RestaurantSection verilerini çek
+        const restaurantSectionComponent = data.components.find(
+          (comp) => comp.type === "RestaurantSection"
+        );
+
+        if (restaurantSectionComponent) {
+          setRestaurantSectionData(restaurantSectionComponent.props);
+        } else {
+          console.warn("RestaurantSection data not found");
+        }
+
+        // Contact verilerini çek
+        const contactSectionComponent = data.components.find(
+          (comp) => comp.type === "ContactSection"
+        );
+
+        if (contactSectionComponent) {
+          setContactSectionData(contactSectionComponent.props);
+        } else {
+          console.warn("Contact data not found");
+        }
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchPageData();
+  }, []);
+
+  if (error) return <p>Error: {error}</p>;
+  if (
+    !foodCarouselData &&
+    !foodMenuData &&
+    !logoSectionData &&
+    !restaurantSectionData &&
+    !contactSectionData
+  )
+    return <p>Loading...</p>;
+
   return (
     <div>
-      <FoodCarousel images={carouselImg}/>
-      <FoodMenu images={menuImg} links={menuLinks}/>
-      <LogoSection images={logoImages}/>
-      {restaurants.map((restaurant, index) => (
+      <FoodCarousel {...foodCarouselData} />
+      <FoodMenu {...foodCarouselData} />
+       <LogoSection {...logoImages} />
+     {/* {restaurantSectionData.map((restaurant, index) =>
         index % 2 === 0 ? (
           <RestaurantSection
-            key={index} // Benzersiz bir key eklenir
-            header={restaurant.header}
-            text={restaurant.text}
-            span={restaurant.span}
-            image={restaurant.image}
-            link={restaurant.link}
+          key={index} // Benzersiz bir key eklenir
+            {...restaurantSectionData}
           />
         ) : (
           <ReverseRestaurantSection
             key={index} // Benzersiz bir key eklenir
-            header={restaurant.header}
-            text={restaurant.text}
-            span={restaurant.span}
-            image={restaurant.image}
-            link={restaurant.link}
+            {...restaurantSectionData}
           />
         )
-      ))}
-      <FindRestaurantSection findRestaurants={findRestaurants} />
+      )} */}
+      {/* <FindRestaurantSection findRestaurants={findRestaurants} /> */}
       {/* <ContactSection/> */}
     </div>
-  )
-}
+  );
+};
 
-export default FoodDrinkPage
+export default FoodDrinkPage;
