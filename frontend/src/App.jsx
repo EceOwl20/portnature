@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from "react";
+import React from "react";
 import Header from "./components/header/Header";
 import Homepage from "./pages/Homepage";
 import Footer from "./components/header/Footer";
@@ -14,12 +14,6 @@ import Login from "./pages/Login";
 import HeaderDgtl from "./components/header/HeaderDgtl";
 import Register from "./pages/Register";
 import Panel from "./pages/PanelPages/Panel";
-import HomeCarousel from "./components/homepage/HomeCarousel";
-import img1 from "../public/images/PortCover1.png"
-import img2 from "../public/images/PortCover31.png"
-import img3 from "../public/images/PortCover41.png"
-import Reservation from "./components/homepage/Reservation";
-import HomeIconSection from "./components/homepage/HomeIconSection";
 import "./App.css"
 import Rooms from "./pages/Accommodation/Rooms";
 import SubRooms from "./pages/Accommodation/SubRooms";
@@ -108,30 +102,6 @@ import EditComponent from "./pages/PanelPages/EditComponent";
 import Beach from "./pages/Beach/Beach";
 
 
-const davidoffCarousel = [davidoffImg, davidoffImg, davidoffImg, davidoffImg,davidoffImg,davidoffImg];
-const davidoffCaroTexts=[" Pleasure in a thing of beauty is the","essence of a happy life","ZINO DAVIDOFF"]
-const davidoffLogoText="Ищете роскошное кафе, чтобы расслабиться? Смело заходите в Davidoff. Приходите в гости насладиться идеальным сочетанием комфорта, уюта и изысканности в сочетании с уютным ароматом кофейных зерн"
-const davidoffSubHeader="Your zest for life sums up the essence of Davidoff brand. It is what makes DAVIDOFF unique.";
-const davidoffSubTexts=["Memorable tastes are waiting for you in our restaurants, where the most special flavors of the world cuisine are offered and enriched with different themes and in our bars, where 148 kinds of Premium drinks are offered.","Memorable tastes are waiting for you in our restaurants, where the most special flavors of the world cuisine are offered and enriched with"];
-
-const restaurants = [
-  {
-    header: "A'LA CARTE",
-    text: "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
-    span:"Enjoy your holiday Enjoy your holiday",
-    link: "/ala-carte",
-    image: alacarte, 
-   
-  },
-  {
-    header: "A'LA CARTE",
-    text: "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
-    span:"Enjoy your holiday Enjoy your holiday",
-    link: "/ala-carte",
-    image: alacarte, 
-  },
-];
-
 const findRestaurants = [
   {
     header: "FAR EAST A'LA CARTE",
@@ -177,26 +147,6 @@ const filterfindRestaurants = [
     ageLimit:"+18"
   },
 ];
-
-const restaurantIcons = [
-  { Icon: EastFoodSvg, width: 31, height: 29, color: "red-500" },
-  { Icon: CupcakeSvg, width: 31, height: 29, color: "blue-500" },
-];
-
-const findRestaurantHeaders=["FAR EAST A'LA CARTE","FAR EAST A'LA CARTE"]
-const findRestaurantTexts=["We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.","We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."]
-const findRestaurantLinks = ["/","/"]
-
-const foodFindCardImages=[farEast,farEast];
-
-const FoodLogoImages=[logo,logo,logo,logo,logo]
-
-const FoodCarouselImages=[food1, food1,food1, food1,food1, food1];
-const FoodMenuImages=[barcafes, barcafes,barcafes];
-const FoodMenuLinks=["", "", ""];
-
-const familyImages = [familyroom1, familyroom2, familyroom3];
-const kingsuiteImages = [kingsuite1, kingsuite2, kingsuite3];
 
 const familyText=["FAMILY ROOM","A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home","2","2","45m2","Corner Sea View",];
 const kingText=["KING SUITE","A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home","1","2","110m2","Sea View",];
@@ -294,8 +244,8 @@ const App = () => {
             {/* links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText} */}
             <Route path="/food-drinks" element={<FoodDrinkPage />}/>
             <Route path="/davidoff-cafe" element={<CoffeePage  page="davidoffcafe" />}/>
-            {/* children={<DavidoffSvg width={436} height={387} className="absolute top-10 left-[45%] z-1"/>} */}
-            <Route path="/bars-cafes" element={<CoffeeBarsMainPage filterfindRestaurants={filterfindRestaurants}/>}/>
+    
+            <Route path="/bars-cafes" element={<CoffeeBarsMainPage />}/>
             <Route path="/alacarte-restaurant" element={<AlacartePage findRestaurants={findRestaurants}/>}/>
             <Route path="/main-restaurant" element={<MainRestaurant/>}/>
             <Route path="/irish-pub" element={<PubBarPage/>}/>

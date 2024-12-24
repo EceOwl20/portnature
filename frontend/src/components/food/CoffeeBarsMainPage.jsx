@@ -4,7 +4,7 @@ import FilterFindCafe from './FilterFindCafe'
 import ContactSection from '../homepage/ContactSection'
 import CafeBarsMainSection from "./CafeBarsMainSection";
 
-const CoffeeBarsMainPage = ({filterfindRestaurants}) => {
+const CoffeeBarsMainPage = () => {
   const [cafesbarsMainSection, setCafesbarsMainSection] = useState(null);
   const [filterCafeSection, setFilterCafeSection] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);

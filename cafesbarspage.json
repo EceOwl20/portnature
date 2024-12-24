@@ -1,0 +1,232 @@
+{
+    "pageName": "cafesbarspage",
+    "components": [
+         {
+        "type": "MainSection",
+        "props": {
+            "image":{
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 469
+          },
+            "header":{
+              "en":" BARS & CAFES",
+              "tr":" BARS & CAFES",
+              "de":" BARS & CAFES",
+              "ru":" BARS & CAFES"
+          },
+          "text":{
+              "en":"Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли.",
+              "tr":"Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли.",
+              "de":"Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли.",
+              "ru":"Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли."
+          }
+        }
+    },
+      {
+        "type": "FilterCafeSection",
+        "props": {
+          "header":{
+              "en":"FIND A'LA CARTE",
+              "tr":"FIND A'LA CARTE",
+              "de":"FIND A'LA CARTE",
+              "ru":"FIND A'LA CARTE"
+          },
+          "iconImage":{
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+          },
+           "text":{
+              "en":" 7/24",
+              "tr":" 7/24",
+              "de":" 7/24",
+              "ru":" 7/24"
+          },
+          "text2":{
+               "en":"Kids Friendly",
+              "tr":"Kids Friendly",
+              "de":"Kids Friendly",
+              "ru":"Kids Friendly"
+          },
+          "text3":{
+               "en":"+18",
+              "tr":"+18",
+              "de":"+18",
+              "ru":"+18"
+          },
+
+    "filterItems": [
+               {
+        "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+        },
+
+        "iconImage":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "largeWidth": 30.12,
+              "largeHeight": 47.63,
+              "smallWidth": 24,
+              "smallHeight": 38
+        },
+
+        "header": {
+          "en": "FAR EAST A'LA CARTE",
+          "tr": "FAR EAST A'LA CARTE",
+          "de": "FAR EAST A'LA CARTE",
+          "ru": "FAR EAST A'LA CARTE"
+        },
+
+        "text": {
+          "en": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "tr": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "de":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "ru":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."
+        },
+
+        "buttonText": {
+          "en": "BELEK . ANTALYA",
+          "tr": "BELEK . ANTALYA TR",
+          "de": "BELEK . ANTALYA DE",
+          "ru": "БЕЛЕК . АНТАЛЬЯ"
+        },
+
+        "buttonLink": {
+          "en": "/far-east",
+          "tr": "/far-east",
+          "de": "/far-east",
+          "ru":"/far-east"
+        },
+
+        "time": {
+          "en": "7/24",
+          "tr":"7/24",
+          "de": "7/24",
+          "ru": "7/24"
+        },
+
+        "kidsFriendly": {
+          "en": "true",
+          "tr": "true",
+          "de": "true",
+          "ru": "true"
+        },
+
+        "ageLimit": {
+          "en": "7",
+          "tr": "7",
+          "de": "7",
+          "ru": "7"
+        }
+
+      },
+
+      {
+        "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+        },
+
+        "iconImage":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "largeWidth": 24,
+              "largeHeight": 29,
+              "smallWidth": 24,
+              "smallHeight": 38
+        },
+
+        "header": {
+          "en": "Davidoff Cafe",
+          "tr": "Davidoff Cafe",
+          "de": "Davidoff Cafe",
+          "ru": "Davidoff Cafe"
+        },
+
+        "text": {
+          "en": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "tr": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "de":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "ru":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."
+        },
+
+        "buttonText": {
+          "en": "BELEK . ANTALYA",
+          "tr": "BELEK . ANTALYA TR",
+          "de": "BELEK . ANTALYA DE",
+          "ru": "БЕЛЕК . АНТАЛЬЯ"
+        },
+
+        "buttonLink": {
+          "en": "/far-east",
+          "tr": "/far-east",
+          "de": "/far-east",
+          "ru":"/far-east"
+        },
+
+        "time": {
+          "en": "7/24",
+          "tr":"7/24",
+          "de": "7/24",
+          "ru": "7/24"
+        },
+
+        "kidsFriendly": {
+          "en": "false",
+          "tr": "false",
+          "de": "false",
+          "ru": "false"
+        },
+
+        "ageLimit": {
+          "en": "+18",
+          "tr": "+18",
+          "de": "+18",
+          "ru": "+18"
+        }
+
+      }
+    ]
+        }
+      }
+  
+    ]
+  }

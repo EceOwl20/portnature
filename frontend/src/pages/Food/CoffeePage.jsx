@@ -32,7 +32,7 @@ const CoffeePage = ({page}) => {
 
         // BarLoungeCarousel verilerini çek
         const cafeTextSectionComponent = data.components.find(
-          (comp) => comp.type === "CafeTextSection"
+          (comp) => comp.type === "CoffeeTextSection"
         );
 
         if (cafeTextSectionComponent) {
