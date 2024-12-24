@@ -5,7 +5,7 @@ import LogoSection from "../../components/LogoSection";
 import ContactSection from "../../components/homepage/ContactSection";
 import FindRestaurantSection from "../../components/food/FindRestaurantSection";
 import RestaurantSection from "../../components/food/RestaurantSection";
-import ReverseRestaurantSection from "../../components/food/ReverseRestaurantSection";
+import AllRestaurantSection from "../../pages/Food/AllRestaurantSection"
 
 const FoodDrinkPage = ({
   carouselImg,
@@ -106,24 +106,13 @@ const FoodDrinkPage = ({
   )
     return <p>Loading...</p>;
 
+   
   return (
     <div>
       <FoodCarousel {...foodCarouselData} />
-      <FoodMenu {...foodCarouselData} />
-       <LogoSection {...logoImages} />
-     {/* {restaurantSectionData.map((restaurant, index) =>
-        index % 2 === 0 ? (
-          <RestaurantSection
-          key={index} // Benzersiz bir key eklenir
-            {...restaurantSectionData}
-          />
-        ) : (
-          <ReverseRestaurantSection
-            key={index} // Benzersiz bir key eklenir
-            {...restaurantSectionData}
-          />
-        )
-      )} */}
+      <FoodMenu {...foodMenuData} />
+       <LogoSection {...logoSectionData} />
+      <AllRestaurantSection {...restaurantSectionData}/>
       {/* <FindRestaurantSection findRestaurants={findRestaurants} /> */}
       {/* <ContactSection/> */}
     </div>

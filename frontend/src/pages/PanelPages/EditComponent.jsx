@@ -790,6 +790,696 @@ const EditComponent = () => {
 
       {/* END OF NEW SINGLE IMAGE COMPONENT FIELDS */}
 
+          {/* -------------------------------------------------------------------------------- */}
+
+      {/* 
+         Devamında filterItems ekliyoruz 
+         filterItems => [
+           {
+             image: {...},
+             iconImage: {...},
+             header: {...},
+             text: {...},
+             buttonText: {...},
+             buttonLink: {...},
+             time: {...},
+             kidsFriendly: {...},
+             ageLimit: {...}
+           },
+           {...}, ...
+         ]
+      */}
+
+      {/* filterItems editing */}
+      {componentData.props.filterItems?.length > 0 && (
+        <div className="flex flex-col gap-4 w-full mt-8">
+          <h2 className="text-[20px] text-[#0e0c1b] font-semibold ml-2">
+            Filter Items
+          </h2>
+
+          {componentData.props.filterItems.map((item, index) => (
+            <div key={index} className="border p-4 rounded-md flex flex-col gap-2">
+              <h3>Filter Item {index + 1}</h3>
+
+              {/* image alanı */}
+              <label className="font-semibold text-[16px]">Image URL</label>
+              <input
+                type="text"
+                value={item.image?.firebaseUrl || ""}
+                onChange={(e) => {
+                  // item.image.firebaseUrl güncelleniyor
+                  const updatedArray = [...componentData.props.filterItems];
+                  updatedArray[index] = {
+                    ...updatedArray[index],
+                    image: {
+                      ...updatedArray[index].image,
+                      firebaseUrl: e.target.value,
+                    },
+                  };
+                  setComponentData((prev) => ({
+                    ...prev,
+                    props: {
+                      ...prev.props,
+                      filterItems: updatedArray,
+                    },
+                  }));
+                }}
+              />
+
+              {/* image altText */}
+              {item.image?.altText &&
+                Object.keys(item.image.altText).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1">
+                    <label className="text-sm font-semibold">AltText ({lang})</label>
+                    <input
+                      type="text"
+                      value={item.image.altText[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [...componentData.props.filterItems];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          image: {
+                            ...updatedArray[index].image,
+                            altText: {
+                              ...updatedArray[index].image.altText,
+                              [lang]: e.target.value,
+                            },
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            filterItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* iconImage alanı */}
+              <label className="font-semibold text-[16px] mt-4">Icon Image URL</label>
+              <input
+                type="text"
+                value={item.iconImage?.firebaseUrl || ""}
+                onChange={(e) => {
+                  const updatedArray = [...componentData.props.filterItems];
+                  updatedArray[index] = {
+                    ...updatedArray[index],
+                    iconImage: {
+                      ...updatedArray[index].iconImage,
+                      firebaseUrl: e.target.value,
+                    },
+                  };
+                  setComponentData((prev) => ({
+                    ...prev,
+                    props: {
+                      ...prev.props,
+                      filterItems: updatedArray,
+                    },
+                  }));
+                }}
+              />
+
+              {/* iconImage altText */}
+              {item.iconImage?.altText &&
+                Object.keys(item.iconImage.altText).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1">
+                    <label className="text-sm font-semibold">Icon AltText ({lang})</label>
+                    <input
+                      type="text"
+                      value={item.iconImage.altText[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [...componentData.props.filterItems];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          iconImage: {
+                            ...updatedArray[index].iconImage,
+                            altText: {
+                              ...updatedArray[index].iconImage.altText,
+                              [lang]: e.target.value,
+                            },
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            filterItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* iconImage dimensions */}
+              <div className="flex gap-2 mt-2">
+                <div className="flex flex-col w-[50%]">
+                  <label className="text-sm font-semibold">largeWidth</label>
+                  <input
+                    type="number"
+                    value={item.iconImage?.largeWidth || 0}
+                    onChange={(e) => {
+                      const updatedArray = [...componentData.props.filterItems];
+                      updatedArray[index] = {
+                        ...updatedArray[index],
+                        iconImage: {
+                          ...updatedArray[index].iconImage,
+                          largeWidth: Number(e.target.value),
+                        },
+                      };
+                      setComponentData((prev) => ({
+                        ...prev,
+                        props: {
+                          ...prev.props,
+                          filterItems: updatedArray,
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col w-[50%]">
+                  <label className="text-sm font-semibold">largeHeight</label>
+                  <input
+                    type="number"
+                    value={item.iconImage?.largeHeight || 0}
+                    onChange={(e) => {
+                      const updatedArray = [...componentData.props.filterItems];
+                      updatedArray[index] = {
+                        ...updatedArray[index],
+                        iconImage: {
+                          ...updatedArray[index].iconImage,
+                          largeHeight: Number(e.target.value),
+                        },
+                      };
+                      setComponentData((prev) => ({
+                        ...prev,
+                        props: {
+                          ...prev.props,
+                          filterItems: updatedArray,
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="flex gap-2 mt-2">
+                <div className="flex flex-col w-[50%]">
+                  <label className="text-sm font-semibold">smallWidth</label>
+                  <input
+                    type="number"
+                    value={item.iconImage?.smallWidth || 0}
+                    onChange={(e) => {
+                      const updatedArray = [...componentData.props.filterItems];
+                      updatedArray[index] = {
+                        ...updatedArray[index],
+                        iconImage: {
+                          ...updatedArray[index].iconImage,
+                          smallWidth: Number(e.target.value),
+                        },
+                      };
+                      setComponentData((prev) => ({
+                        ...prev,
+                        props: {
+                          ...prev.props,
+                          filterItems: updatedArray,
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col w-[50%]">
+                  <label className="text-sm font-semibold">smallHeight</label>
+                  <input
+                    type="number"
+                    value={item.iconImage?.smallHeight || 0}
+                    onChange={(e) => {
+                      const updatedArray = [...componentData.props.filterItems];
+                      updatedArray[index] = {
+                        ...updatedArray[index],
+                        iconImage: {
+                          ...updatedArray[index].iconImage,
+                          smallHeight: Number(e.target.value),
+                        },
+                      };
+                      setComponentData((prev) => ({
+                        ...prev,
+                        props: {
+                          ...prev.props,
+                          filterItems: updatedArray,
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* header (çok dilli) */}
+              {item.header &&
+                Object.keys(item.header).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">
+                      Header ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={item.header[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [...componentData.props.filterItems];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          header: {
+                            ...updatedArray[index].header,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            filterItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* text (çok dilli) */}
+              {item.text &&
+                Object.keys(item.text).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">
+                      Text ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={item.text[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [...componentData.props.filterItems];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          text: {
+                            ...updatedArray[index].text,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            filterItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* buttonText (çok dilli) */}
+              {item.buttonText &&
+                Object.keys(item.buttonText).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">
+                      Button Text ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={item.buttonText[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [...componentData.props.filterItems];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          buttonText: {
+                            ...updatedArray[index].buttonText,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            filterItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* buttonLink (çok dilli) */}
+              {item.buttonLink &&
+                Object.keys(item.buttonLink).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">
+                      Button Link ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={item.buttonLink[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [...componentData.props.filterItems];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          buttonLink: {
+                            ...updatedArray[index].buttonLink,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            filterItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* time (çok dilli) */}
+              {item.time &&
+                Object.keys(item.time).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">
+                      Time ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={item.time[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [...componentData.props.filterItems];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          time: {
+                            ...updatedArray[index].time,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            filterItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* kidsFriendly (çok dilli) */}
+              {item.kidsFriendly &&
+                Object.keys(item.kidsFriendly).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">
+                      Kids Friendly? ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={item.kidsFriendly[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [...componentData.props.filterItems];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          kidsFriendly: {
+                            ...updatedArray[index].kidsFriendly,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            filterItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* ageLimit (çok dilli) */}
+              {item.ageLimit &&
+                Object.keys(item.ageLimit).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">
+                      Age Limit ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={item.ageLimit[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [...componentData.props.filterItems];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          ageLimit: {
+                            ...updatedArray[index].ageLimit,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            filterItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* Burada isterseniz Search / Replace mantığını da yapabilirsiniz.
+                  Mesela item.image'i değiştirmek için arama butonuna basınca handleReplaceImage("filterItems", index, result) vb. */}
+
+            </div>
+          ))}
+        </div>
+      )}
+      {/* filterItems editing sonu */}
+
+    {/* restaurantItems editing */}
+      {componentData.props.restaurantItems?.length > 0 && (
+  <div className="flex flex-col gap-4 w-full mt-8">
+    <h2 className="text-[20px] text-[#0e0c1b] font-semibold ml-2">
+      Restaurant Items
+    </h2>
+    {componentData.props.restaurantItems.map((item, index) => (
+      <div key={index} className="border p-4 rounded-md flex flex-col gap-2">
+        <h3>Restaurant Item {index + 1}</h3>
+
+        {/* image alanı */}
+        <label className="font-semibold text-[16px]">Image URL</label>
+        <input
+          type="text"
+          value={item.image?.firebaseUrl || ""}
+          onChange={(e) => {
+            const updatedArray = [...componentData.props.restaurantItems];
+            updatedArray[index] = {
+              ...updatedArray[index],
+              image: {
+                ...updatedArray[index].image,
+                firebaseUrl: e.target.value,
+              },
+            };
+            setComponentData((prev) => ({
+              ...prev,
+              props: {
+                ...prev.props,
+                restaurantItems: updatedArray,
+              },
+            }));
+          }}
+        />
+
+        {/* image altText */}
+        {item.image?.altText &&
+          Object.keys(item.image.altText).map((lang) => (
+            <div key={lang} className="flex flex-col gap-1">
+              <label className="text-sm font-semibold">AltText ({lang})</label>
+              <input
+                type="text"
+                value={item.image.altText[lang]}
+                onChange={(e) => {
+                  const updatedArray = [...componentData.props.restaurantItems];
+                  updatedArray[index] = {
+                    ...updatedArray[index],
+                    image: {
+                      ...updatedArray[index].image,
+                      altText: {
+                        ...updatedArray[index].image.altText,
+                        [lang]: e.target.value,
+                      },
+                    },
+                  };
+                  setComponentData((prev) => ({
+                    ...prev,
+                    props: {
+                      ...prev.props,
+                      restaurantItems: updatedArray,
+                    },
+                  }));
+                }}
+              />
+            </div>
+          ))}
+
+        {/* header (çok dilli) */}
+        {item.header &&
+          Object.keys(item.header).map((lang) => (
+            <div key={lang} className="flex flex-col gap-1 mt-2">
+              <label className="text-sm font-semibold">Header ({lang})</label>
+              <input
+                type="text"
+                value={item.header[lang]}
+                onChange={(e) => {
+                  const updatedArray = [...componentData.props.restaurantItems];
+                  updatedArray[index] = {
+                    ...updatedArray[index],
+                    header: {
+                      ...updatedArray[index].header,
+                      [lang]: e.target.value,
+                    },
+                  };
+                  setComponentData((prev) => ({
+                    ...prev,
+                    props: {
+                      ...prev.props,
+                      restaurantItems: updatedArray,
+                    },
+                  }));
+                }}
+              />
+            </div>
+          ))}
+
+        {/* text (çok dilli) */}
+        {item.text &&
+          Object.keys(item.text).map((lang) => (
+            <div key={lang} className="flex flex-col gap-1 mt-2">
+              <label className="text-sm font-semibold">Text ({lang})</label>
+              <input
+                type="text"
+                value={item.text[lang]}
+                onChange={(e) => {
+                  const updatedArray = [...componentData.props.restaurantItems];
+                  updatedArray[index] = {
+                    ...updatedArray[index],
+                    text: {
+                      ...updatedArray[index].text,
+                      [lang]: e.target.value,
+                    },
+                  };
+                  setComponentData((prev) => ({
+                    ...prev,
+                    props: {
+                      ...prev.props,
+                      restaurantItems: updatedArray,
+                    },
+                  }));
+                }}
+              />
+            </div>
+          ))}
+
+        {/* span (çok dilli) */}
+        {item.span &&
+          Object.keys(item.span).map((lang) => (
+            <div key={lang} className="flex flex-col gap-1 mt-2">
+              <label className="text-sm font-semibold">Span ({lang})</label>
+              <input
+                type="text"
+                value={item.span[lang]}
+                onChange={(e) => {
+                  const updatedArray = [...componentData.props.restaurantItems];
+                  updatedArray[index] = {
+                    ...updatedArray[index],
+                    span: {
+                      ...updatedArray[index].span,
+                      [lang]: e.target.value,
+                    },
+                  };
+                  setComponentData((prev) => ({
+                    ...prev,
+                    props: {
+                      ...prev.props,
+                      restaurantItems: updatedArray,
+                    },
+                  }));
+                }}
+              />
+            </div>
+          ))}
+
+        {/* buttonText (çok dilli) */}
+        {item.buttonText &&
+          Object.keys(item.buttonText).map((lang) => (
+            <div key={lang} className="flex flex-col gap-1 mt-2">
+              <label className="text-sm font-semibold">Button Text ({lang})</label>
+              <input
+                type="text"
+                value={item.buttonText[lang]}
+                onChange={(e) => {
+                  const updatedArray = [...componentData.props.restaurantItems];
+                  updatedArray[index] = {
+                    ...updatedArray[index],
+                    buttonText: {
+                      ...updatedArray[index].buttonText,
+                      [lang]: e.target.value,
+                    },
+                  };
+                  setComponentData((prev) => ({
+                    ...prev,
+                    props: {
+                      ...prev.props,
+                      restaurantItems: updatedArray,
+                    },
+                  }));
+                }}
+              />
+            </div>
+          ))}
+
+        {/* buttonLink (çok dilli) */}
+        {item.buttonLink &&
+          Object.keys(item.buttonLink).map((lang) => (
+            <div key={lang} className="flex flex-col gap-1 mt-2">
+              <label className="text-sm font-semibold">Button Link ({lang})</label>
+              <input
+                type="text"
+                value={item.buttonLink[lang]}
+                onChange={(e) => {
+                  const updatedArray = [...componentData.props.restaurantItems];
+                  updatedArray[index] = {
+                    ...updatedArray[index],
+                    buttonLink: {
+                      ...updatedArray[index].buttonLink,
+                      [lang]: e.target.value,
+                    },
+                  };
+                  setComponentData((prev) => ({
+                    ...prev,
+                    props: {
+                      ...prev.props,
+                      restaurantItems: updatedArray,
+                    },
+                  }));
+                }}
+              />
+            </div>
+          ))}
+      </div>
+    ))}
+  </div>
+)}
+
+
+
       {/* Images editing */}
       {componentData.props.images?.length > 0 && (
         <div className="flex flex-col gap-4 w-full">
