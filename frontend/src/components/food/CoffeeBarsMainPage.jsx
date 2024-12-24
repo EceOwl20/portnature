@@ -1,26 +1,75 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import pubImage from "../../../public/images/food/IrishPub2.png"
 import FilterFindCafe from './FilterFindCafe'
 import ContactSection from '../homepage/ContactSection'
+import CafeBarsMainSection from "./CafeBarsMainSection";
 
 const CoffeeBarsMainPage = ({filterfindRestaurants}) => {
+  const [cafesbarsMainSection, setCafesbarsMainSection] = useState(null);
+  const [filterCafeSection, setFilterCafeSection] = useState(null);
+  const [contactSectionData, setContactSectionData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPageData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/page/cafesbarspage`);
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch page data");
+        }
+
+        
+        // FilterCafeSection verilerini çek
+        const filterCafeSectionComponent = data.components.find(
+          (comp) => comp.type === "FilterCafeSection"
+        );
+
+        if (filterCafeSectionComponent) {
+          setFilterCafeSection(filterCafeSectionComponent.props);
+        } else {
+          console.warn("filterCafeSectionComponent data not found");
+        }
+
+        // FilterCafeSection verilerini çek
+        const cafesbarsMainSectionComponent = data.components.find(
+          (comp) => comp.type === "MainSection"
+        );
+
+        if (cafesbarsMainSectionComponent) {
+          setCafesbarsMainSection(cafesbarsMainSectionComponent.props);
+        } else {
+          console.warn("cafesbarsMainSectionComponent data not found");
+        }
+
+            // Contact verilerini çek
+            const contactSectionComponent = data.components.find(
+              (comp) => comp.type === "ContactSection"
+            );
+    
+            if (contactSectionComponent) {
+              setContactSectionData(contactSectionComponent.props);
+            } else {
+              console.warn("Contact data not found");
+            }
+
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchPageData();
+  }, []);
+
+  if (error) return <p>Error: {error}</p>;
+  if (!cafesbarsMainSection && !filterCafeSection && !contactSectionData ) return <p>Loading...</p>;
+
   return (
     <div className='flex flex-col w-screen h-auto items-center justify-center '>
-      <div className='flex w-full h-[50vh] relative items-start justify-center text-center'>
-        <img src={pubImage} alt='pub' width={pubImage.width} height={pubImage.height}/>
-        <h2 className='absolute bottom-2 left-1/2 -translate-x-1/2 text-[40px] font-lora font-medium leading-normal text-[#F8F8F8]'> BARS & CAFES</h2>
-      </div>
-      <div className='flex w-[65%] lg:max-w-[900px] h-[30vh] items-center justify-center text-center'>
-        <p className='text-[15px] font-monserrat font-normal leading-[22.5px] text-black'>Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли.</p>
-      </div>
-      <div className='flex w-screen mb-10'>
-      <div className="bg-custom-gradient h-[1px] w-[50%]">
-      </div>
-      <div className="bg-custom-gradient-reverse h-[1px] w-[50%]">
-      </div>
-      </div>
-      <FilterFindCafe filterfindRestaurants={filterfindRestaurants}/>
-      <ContactSection/>
+      <CafeBarsMainSection {...cafesbarsMainSection}/>
+      <FilterFindCafe {...filterCafeSection}/>
+      {/* <ContactSection/> */}
     </div>
   )
 }

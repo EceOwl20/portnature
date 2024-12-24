@@ -3,7 +3,7 @@ import farEast from "../../../public/images/FarEastRestaurant 1.png"
 import LocationSvg from "../../svg/LocationSvg"
 import FindRestaurantCard from './FindRestaurantCard'
 
-const FilterFindCafe = ({filterfindRestaurants}) => {
+const FilterFindCafe = ({image, iconImage, header, text, text2, text3, filterItems=[], lang="en"}) => {
   const [sortOption, setSortOption] = useState('');
 
   const handleSortChange = (event) => {
@@ -40,31 +40,23 @@ const FilterFindCafe = ({filterfindRestaurants}) => {
   
   const filterCards = (card) => {
       return (
-        (selectedTime.length === 0 || selectedTime.includes(card.time)) &&
-        (selectedKidsFriendly.length === 0 || selectedKidsFriendly.includes(card.kidsFriendly)) &&
-        (selectedAgeLimit.length === 0 || selectedAgeLimit.includes(card.ageLimit))
+        (selectedTime.length === 0 || selectedTime.includes(card.time[lang])) &&
+        (selectedKidsFriendly.length === 0 || selectedKidsFriendly.includes(card.kidsFriendly[lang])) &&
+        (selectedAgeLimit.length === 0 || selectedAgeLimit.includes(card.ageLimit[lang]))
       );
     };
   
   
-    const filteredAndSortedCards = [...filterfindRestaurants]
-    .filter(filterCards) // Önce filtreleme
-    // .sort((a, b) => { // Ardından sıralama
-    //   if (sortOption === "most expensive") {
-    //     return b.price - a.price; // En pahalıdan en ucuza
-    //   } else if (sortOption === "least expensive") {
-    //     return a.price - b.price; // En ucuzdan en pahalıya
-    //   } 
-    //   return 0; // Varsayılan, sıralama yapılmaz
-    // });
+    const filteredAndSortedCards = [...filterItems]
+    .filter(filterCards)
 
   return (
     <div className='flex w-screen h-auto py-10 justify-center items-center'>
       <div className='flex flex-col w-[90%] lg:w-[75%] xl:max-w-[1180px] justify-center items-center text-start'>
        <div className='flex w-full items-center justify-between text-start '>
         <div className='flex items-start justify-start text-start gap-[30px] w-[40%]'>
-        <LocationSvg width={30} height={47}/>
-        <h2 className='text-[25px] lg:text-[35px] text-customGray80 font-medium font-lora leading-normal uppercase'>FIND A'LA CARTE</h2>
+        <img src={iconImage.firebaseUrl} width={30} height={47}/>
+        <h2 className='text-[25px] lg:text-[35px] text-customGray80 font-medium font-lora leading-normal uppercase'>{header[lang]}</h2>
         </div>
 
        <div className='flex items-center justify-between w-[60%]'>
@@ -77,7 +69,7 @@ const FilterFindCafe = ({filterfindRestaurants}) => {
               onChange={(e) => handleCheckboxChange(e, setSelectedTime)}
               checked={selectedTime.includes("7/24")}
             />
-            7/24
+            {text[lang]}
           </label>
       </div>
       <div className='flex w-[30%] text-[25px] whitespace-nowrap font-lora text-customGray italic font-medium leading-[42px] tracking-[-0.875px]'>
@@ -89,7 +81,7 @@ const FilterFindCafe = ({filterfindRestaurants}) => {
               onChange={(e) => handleCheckboxChange(e, setSelectedKidsFriendly)}
               checked={selectedKidsFriendly.includes("true")}
             />
-            Kids Friendly
+            {text2[lang]}
           </label>
       </div>
       <div className='flex w-[30%] text-[25px] font-lora text-customGray italic font-medium leading-[42px] tracking-[-0.875px]'>
@@ -101,7 +93,7 @@ const FilterFindCafe = ({filterfindRestaurants}) => {
               onChange={(e) => handleCheckboxChange(e, setSelectedAgeLimit)}
               checked={selectedAgeLimit.includes("+18")}
             />
-            +18
+            {text3[lang]}
           </label>
       </div>
        </div>
@@ -112,14 +104,14 @@ const FilterFindCafe = ({filterfindRestaurants}) => {
         {filteredAndSortedCards.map((restaurant, index) => (
         <FindRestaurantCard
           key={index}
-          header={restaurant.header}
-          text={restaurant.text}
-          link={restaurant.link}
-          icon={restaurant.icon}
+          header={restaurant.header[lang]}
+          text={restaurant.text[lang]}
+          link={restaurant.buttonLink[lang]}
+          icon={restaurant.iconImage}
           image={restaurant.image}
-          time={restaurant.time}
-          kidsFriendly={restaurant.kidsFriendly}
-          ageLimit={restaurant.ageLimit}
+          time={restaurant.time[lang]}
+          kidsFriendly={restaurant.kidsFriendly[lang]}
+          ageLimit={restaurant.ageLimit[lang]}
         />
       ))}
             

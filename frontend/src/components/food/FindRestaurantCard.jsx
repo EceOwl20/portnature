@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 const FindRestaurantCard = ({ header, text, link, image, icon, time,kidsFriendly, ageLimit}) => {
   return (
     <div className="flex flex-col bg-[#F8F8F8] justify-center items-center p-2 w-[97%] gap-[12px] lg:gap-[30px]">
-      <img src={image} alt="Restaurant" className="w-full h-auto" width={image.width} height={image.height} />
+      <img src={image.firebaseUrl} alt="Restaurant" className="w-full h-auto" width={image.width} height={image.height} />
      
       <div className="flex flex-col text-start items-center w-[92%] text-customGray80 gap-2">
         <div className="flex w-full items-center justify-start gap-2">
         {icon && (
-        <icon.Icon
-          width={icon.width}
-          height={icon.height}
-          className={`text-${icon.color}`}
+        <img
+        src={icon.firebaseUrl}
+          width={icon.largeWidth}
+          height={icon.largeHeight}
         />
       )}
           <h3 className="text-[15px] lg:text-[25px] font-medium font-lora leading-normal pl-1">
