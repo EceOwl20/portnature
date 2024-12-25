@@ -1,0 +1,99 @@
+{
+    "pageName": "mainrestaurant",
+    "components": [
+      {
+        "type": "MainSection",
+        "props": {
+          "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": {
+                "en": "Port Nature Hotel",
+                "tr": "Port Nature Otel",
+                "de": "Port Nature Hotel",
+                "ru": "Порт Натуре Отель"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            }
+          ],
+          "header":{
+              "en":"MAIN RESTAURANT",
+              "tr":"MAIN RESTAURANT",
+              "de":"MAIN RESTAURANT",
+              "ru":"MAIN RESTAURANT"
+          },
+           "text":{
+              "en":"We offer a wide selection of mouth-watering dishes that will satisfy every palate, from savory meats to fresh salads with open buffet. Our expert chefs use only the freshest ingredients to create flavorful and healthy dishes.",
+              "tr":"We offer a wide selection of mouth-watering dishes that will satisfy every palate, from savory meats to fresh salads with open buffet. Our expert chefs use only the freshest ingredients to create flavorful and healthy dishes.",
+              "de":"We offer a wide selection of mouth-watering dishes that will satisfy every palate, from savory meats to fresh salads with open buffet. Our expert chefs use only the freshest ingredients to create flavorful and healthy dishes.",
+              "ru":"We offer a wide selection of mouth-watering dishes that will satisfy every palate, from savory meats to fresh salads with open buffet. Our expert chefs use only the freshest ingredients to create flavorful and healthy dishes."
+          },
+          "image":{
+           "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": {
+                "en": "Port Nature Hotel",
+                "tr": "Port Nature Otel",
+                "de": "Port Nature Hotel",
+                "ru": "Порт Натуре Отель"
+              },
+              "width": 1920,
+              "height": 1080
+        }
+        }
+      },
+      
+      {
+         "type": "OtherOptions",
+        "props": {
+            
+        }
+      }
+  
+  
+    ]
+  }

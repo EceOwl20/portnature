@@ -244,10 +244,12 @@ const App = () => {
             {/* links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText} */}
             <Route path="/food-drinks" element={<FoodDrinkPage />}/>
             <Route path="/davidoff-cafe" element={<CoffeePage  page="davidoffcafe" />}/>
-    
+            <Route path="/kit-kat-cafe" element={<CoffeePage  page="kitkatcafe" />}/>
+            <Route path="/script-chivas-lounge" element={<CoffeePage  page="chivas"/>}/>
+            <Route path="/born9-hennessy-lounge" element={<CoffeePage  page="hennessy"/>}/>
             <Route path="/bars-cafes" element={<CoffeeBarsMainPage />}/>
             <Route path="/alacarte-restaurant" element={<AlacartePage findRestaurants={findRestaurants}/>}/>
-            <Route path="/main-restaurant" element={<MainRestaurant/>}/>
+            <Route path="/main-restaurant" element={<MainRestaurant page="mainrestaurant"/>}/>
             <Route path="/irish-pub" element={<PubBarPage/>}/>
             <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
             <Route path="/aquapark" element={<AquaPark />}/>
