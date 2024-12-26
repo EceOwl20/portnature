@@ -247,6 +247,8 @@ const App = () => {
             <Route path="/kit-kat-cafe" element={<CoffeePage  page="kitkatcafe" />}/>
             <Route path="/script-chivas-lounge" element={<CoffeePage  page="chivas"/>}/>
             <Route path="/born9-hennessy-lounge" element={<CoffeePage  page="hennessy"/>}/>
+            <Route path="/nespresso-cafe" element={<CoffeePage  page="nespresso"/>}/>
+            <Route path="/pastahouse" element={<CoffeePage  page="pastahouse"/>}/>
             <Route path="/bars-cafes" element={<CoffeeBarsMainPage />}/>
             <Route path="/alacarte-restaurant" element={<AlacartePage findRestaurants={findRestaurants}/>}/>
             <Route path="/main-restaurant" element={<MainRestaurant page="mainrestaurant"/>}/>

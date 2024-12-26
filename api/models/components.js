@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+ import mongoose from "mongoose";
 
 const componentSchema = new mongoose.Schema({
   type: { type: String, required: true }, // Bileşen tipi (ör: "Carousel", "HeaderSection")

@@ -12,7 +12,7 @@ const CoffeeTextSection = ({image,header,text, text2, iconImage, lang="en"}) => 
             <p className='text-[15px] font-normal font-monserrat leading-[22.5px]'>{text[lang]}</p>
             <p className='text-[15px] font-normal font-monserrat leading-[22.5px]'>{text2[lang]} </p>
         </div>
-        <img src={iconImage.firebaseUrl} width={436} height={387} className="absolute top-10 left-[35%] z-1"/>
+        <img src={iconImage.firebaseUrl} width={436} height={387} className="absolute top-10 left-[42%] z-1"/>
       </div>
 
     </div>

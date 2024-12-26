@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const FindRestaurantCard = ({ header, text, link, image, icon}) => {
   return (
-    <div className="flex flex-col bg-[#F8F8F8] justify-center items-center p-2 w-[97%] gap-[12px] lg:gap-[30px]">
+    <div className="flex flex-col min-h-content bg-[#F8F8F8] justify-center items-center p-2 w-[97%] gap-[12px] lg:gap-[30px]">
       <img src={image.firebaseUrl} alt="Restaurant" className="w-full h-auto" width={image.width} height={image.height} />
      
       <div className="flex flex-col text-start items-center w-[92%] text-customGray80 gap-2">
