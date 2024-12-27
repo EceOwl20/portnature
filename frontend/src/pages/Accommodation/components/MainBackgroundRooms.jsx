@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const MainBackgroundRooms = ({image,header, lang="en", buttonText,buttonText2,buttonText3,buttonLink,buttonLink2,buttonLink3}) => {
+const MainBackgroundRooms = ({image,header, lang, buttonText,buttonText2,buttonText3,buttonLink,buttonLink2,buttonLink3}) => {
   return (
     <>
     <div className="flex flex-col w-screen h-[50vw] lg:h-[34vw] bg-cover bg-center items-enter justify-end text-center" style={{ backgroundImage: `url(${image.firebaseUrl})` }}>

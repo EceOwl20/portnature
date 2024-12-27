@@ -8,7 +8,7 @@ import UnderLine from "../../svg/UnderLine/UnderLine";
 import FooterLineSvg from "../../svg/FooterLineSvg";
 import NewUnderline from "../../svg/NewUnderline";
 
-const BarLoungeCarousel = ({ images=[], subImages=[],lang="en" }) => {
+const BarLoungeCarousel = ({ images=[], subImages=[], lang}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 2000 }),
   ]);

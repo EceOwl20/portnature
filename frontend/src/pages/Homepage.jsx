@@ -21,6 +21,7 @@ import AlacarteSection from '../components/homepage/AlacarteSection'
 import SpecialOffersCarousel from '../components/homepage/SpecialOffersCarousel'
 import MultipleImages from '../components/Image/MultipleImages'
 // import InstagramSection from "../components/homepage/InstagramSection"
+import Cookies from "js-cookie";
 
 const Homepage = () => {
   const [carouselData, setCarouselData] = useState(null);
@@ -33,6 +34,8 @@ const Homepage = () => {
   const [alacarteSectionData, setAlacarteSectionData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
+
+  const [lang, setLang] = useState(Cookies.get("language") || "en");
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -158,24 +161,24 @@ const Homepage = () => {
   return (
     <div className='flex flex-col items-center justify-center'>
       {/* <HomeCarousel images={images}/> */}
-      <HomeCarousel {...carouselData} />
+      <HomeCarousel {...carouselData} lang={lang}/>
       <Reservation/>
-      <HomeIconSection {...iconSectionData}/>
+      <HomeIconSection {...iconSectionData} lang={lang}/>
       <div className='flex w-screen mt-20'>
       <div className="bg-custom-gradient h-[1px] w-[50%]">
       </div>
       <div className="bg-custom-gradient-reverse h-[1px] w-[50%]">
       </div>
       </div>
-      <AllInclusive {...allInclusiveData}/>
-      <HolidayImageSection  {...holidayImageSectionData}/>
+      <AllInclusive {...allInclusiveData} lang={lang}/>
+      <HolidayImageSection  {...holidayImageSectionData} lang={lang}/>
       <Accommodation/>
-      <ChildrenSection {...childrenSectionData}/>
-      <ImageBackgroundSection {...backgroundSectionData}/>
+      <ChildrenSection {...childrenSectionData} lang={lang}/>
+      <ImageBackgroundSection {...backgroundSectionData} lang={lang}/>
       <SpecialOffersCarousel/>
-      <AlacarteSection {...alacarteSectionData}/>
-       <BarLoungeCarousel {...barLoungeData} />
-      <ContactSection {...contactSectionData}/>
+      <AlacarteSection {...alacarteSectionData} lang={lang}/>
+       <BarLoungeCarousel {...barLoungeData} lang={lang}/>
+      <ContactSection {...contactSectionData} lang={lang}/>
       {/* <InstagramSection images={instagramImages}/> */}
       <img src={instagramImg} alt='instagram' width={323.06149} height={630.77972} className='flex md:hidden  '/>
     </div>

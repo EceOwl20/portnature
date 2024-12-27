@@ -15,6 +15,8 @@ import CrossSvg from "../../svg/CrossSvg";
 import NewUnderline from "../../svg/NewUnderline";
 import { app } from "../../firebase.js";
 import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+import Cookies from "js-cookie";
+import { useLanguage } from "../../context/LanguageContext";
 
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -22,6 +24,19 @@ const Header = () => {
   const sidebarRef = useRef(null);
 
   const [headerImages, setHeaderImages] = useState([]);
+
+  const { language, setLanguage } = useLanguage();
+
+      // Yeni fonksiyon
+      const handleChange = (newLang) => {
+        // Dili state'te güncelle
+        setLang(newLang);
+        // Cookie'yi güncelle
+        Cookies.set("language", newLang);
+        // Sayfayı yenile
+        window.location.reload();
+        // veya window.location.href = '/'; // istenirse anasayfaya yönlendirme
+      };
 
   useEffect(() => {
     const fetchHeaderImages = async () => {
@@ -61,6 +76,19 @@ const Header = () => {
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
+
+//lang
+const handleLanguageChange = (e) => {
+  const newLang = e.target.value;
+  setLanguage(newLang);
+  window.location.reload();
+
+  // Eğer dil değiştirdiğinde sayfayı yenilemek istiyorsanız:
+  // window.location.reload();
+
+  // Yada anasayfaya yönlendirmek istiyorsanız:
+  // window.location.href = "/";
+};
 
   return (
     <>
@@ -352,10 +380,18 @@ const Header = () => {
             </div>
 
             <div className="flex items-center gap-[9px]">
-              <span className="text-white text-[16px] font-monserrat leading-normal font-normal">
-                EN{" "}
-              </span>
-              <ArrowSvg className="flex" width={9} height={4} />
+            <select
+        id="selectBox"
+        className="bg-[#233038] text-[16px]"
+        value={language} // Seçili dili context'ten alıyoruz
+        onChange={handleLanguageChange}
+      >
+        <option value="en">EN</option>
+        <option value="tr">TR</option>
+        <option value="ru">RU</option>
+        <option value="de">DE</option>
+      </select>
+              {/* <ArrowSvg className="flex" width={9} height={4} /> */}
             </div>
           </nav>
           <button className="hidden lgxl-custom:flex bg-white text-[#233038] font-bold w-[10%] h-[50px] text-center justify-center items-center">
@@ -363,10 +399,18 @@ const Header = () => {
           </button>
 
           <div className="flex lgxl-custom:hidden items-center gap-[9px]">
-            <span className="text-white text-[16px] font-monserrat leading-normal font-normal">
-              EN{" "}
-            </span>
-            <ArrowSvg className="flex" width={9} height={4} />
+          <select
+        id="selectBox"
+        className="bg-[#233038] text-[16px]"
+        value={language} // Seçili dili context'ten alıyoruz
+        onChange={handleLanguageChange}
+      >
+        <option value="en">EN</option>
+        <option value="tr">TR</option>
+        <option value="ru">RU</option>
+        <option value="de">DE</option>
+      </select>
+            {/* <ArrowSvg className="flex" width={9} height={4} /> */}
           </div>
         </div>
       </header>
@@ -399,10 +443,18 @@ const Header = () => {
                 fill="#233038"
               />
               <div className="flex items-center gap-[9px] justify-center">
-                <span className="text-[#233038] text-[16px] font-monserrat leading-normal font-normal">
-                  EN{" "}
-                </span>
-                <ArrowSvg className="flex" width={9} height={4} />
+              <select
+        id="selectBox"
+        className="bg-[#233038] text-[16px]"
+        value={language} // Seçili dili context'ten alıyoruz
+        onChange={handleLanguageChange}
+      >
+        <option value="en">EN</option>
+        <option value="tr">TR</option>
+        <option value="ru">RU</option>
+        <option value="de">DE</option>
+      </select>
+                {/* <ArrowSvg className="flex" width={9} height={4} /> */}
               </div>
             </div>
           </div>

@@ -16,7 +16,7 @@ import ParquetFlooringSvg from "../../../svg/room/ParquetFlooringSvg";
 import HairDryerSvg from "../../../svg/room/HairDryerSvg";
 import SlippersSvg from "../../../svg/room/SlippersSvg";
 
-const RoomFeatures = ({header, items=[], buttonText, buttonText2, lang="en"}) => {
+const RoomFeatures = ({header, items=[], buttonText, buttonText2, lang}) => {
     const [showMore, setShowMore] = useState(false);
 
     const handleShowMore = () => {

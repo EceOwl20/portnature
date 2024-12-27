@@ -18,7 +18,7 @@ const AlacarteSection = ({
   header,
   textComponent = [],
   image,
-  lang = "en",
+  lang
 }) => {
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [

@@ -5,11 +5,11 @@ import LineVertical2Svg from '../../../svg/LineVertical2Svg'
 const MiniAlaCarteSection1 = () => {
   return (
     <div className='flex flex-col max-w-[1920px] mx-3 my-5'>
-        <div className='flex flex-row w-full gap-5'>
-            <div className='flex w-1/2'>
+        <div className='flex flex-col lg:flex-row w-full gap-5 justify-center items-center'>
+            <div className='flex w-full lg:w-1/2'>
                 <img src='../../../../public/images/minialacarte/miniclubalacarte.png' alt='minialacarte' />
             </div>
-            <div className='flex w-1/2'>
+            <div className='flex w-full lg:w-1/2'>
                 <iframe
                     width="560"
                     height="315"
@@ -18,7 +18,7 @@ const MiniAlaCarteSection1 = () => {
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowFullScreen
-                    className='w-full h-full rounded-none'
+                    className='flex w-full min-h-content rounded-none'
                     style={{ borderRadius: '0px', border: 'none' }}
                 ></iframe>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HomeIconSection = ({ items=[],lang="en" }) => {
+const HomeIconSection = ({ items=[], lang }) => {
   return (
     <div className="flex bg-white w-screen h-auto items-center justify-center">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:flex-row lg:flex w-[80%] md:w-[70%] gap-[10%] items-center justify-center lg:justify-between font-monserrat text-[12px] lg:text-[14px] font-bold leading-normal text-[#000000CC] text-center py-[6%]">

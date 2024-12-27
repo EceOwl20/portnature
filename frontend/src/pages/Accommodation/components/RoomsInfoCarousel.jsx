@@ -9,7 +9,7 @@ import SeaViewSvg from "../../../svg/SeaViewSvg"
 import Cross2Svg from "../../../svg/Cross2Svg"
 import BigBirdSvg from "../../../svg/room/BigBirdSvg"
 
-const RoomsInfoCarousel = ({images=[],header, text, items=[], buttonText, buttonLink, lang="en"}) => {
+const RoomsInfoCarousel = ({images=[],header, text, items=[], buttonText, buttonLink, lang}) => {
     const [emblaRef, emblaApi] = useCarousel({
         loop: true,
         align: "start",

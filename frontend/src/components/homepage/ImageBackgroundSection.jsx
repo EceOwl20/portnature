@@ -1,7 +1,7 @@
 import React from 'react'
 import img from "../../../public/images/portnature-beach.jpeg"
 
-const ImageBackgroundSection = ({image, buttonText, text, buttonLink, lang="en"}) => {
+const ImageBackgroundSection = ({image, buttonText, text, buttonLink,lang}) => {
   return (
    <main className='flex h-screen w-screen items-center justify-center'>
      <div className='flex w-screen items-center lg:items-start justify-center h-5/6 lg:h-[675px] bg-cover bg-center' style={{ backgroundImage: `url(${image.firebaseUrl})` }}>

@@ -14,6 +14,12 @@ const EditComponent = () => {
   const [itemSearchQuery, setItemSearchQuery] = useState("");
   const [itemSearchResults, setItemSearchResults] = useState([]);
 
+  const [filterImageSearchQuery, setFilterImageSearchQuery] = useState("");
+  const [filterImageSearchResults, setFilterImageSearchResults] = useState([]);
+
+  const [restaurantImageSearchQuery, setRestaurantImageSearchQuery] = useState("");
+  const [restaurantImageSearchResults, setRestaurantImageSearchResults] = useState([]);
+
   useEffect(() => {
     const fetchComponentData = async () => {
       try {
@@ -233,6 +239,88 @@ const EditComponent = () => {
     handleArrayChange(field, index, "firebaseUrl", selectedImage.firebaseUrl);
     handleArrayChange(field, index, "altText", selectedImage.altText);
   };
+
+  const handleFilterImageSearch = async () => {
+    try {
+      const response = await fetch(`/api/images/search?name=${filterImageSearchQuery}&lang=en`);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Image not found");
+      }
+
+      setFilterImageSearchResults([data]);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  // YENİ: filterItems içindeki image veya iconImage'i güncelleme fonksiyonu
+  // field: "image" ya da "iconImage"
+  const handleReplaceFilterItemImage = (index, field, selectedImage) => {
+    // updatedArray[index][field].firebaseUrl = selectedImage.firebaseUrl
+    // updatedArray[index][field].altText = selectedImage.altText
+    setComponentData((prev) => {
+      const updatedArray = [...prev.props.filterItems];
+      updatedArray[index] = {
+        ...updatedArray[index],
+        [field]: {
+          ...updatedArray[index][field],
+          firebaseUrl: selectedImage.firebaseUrl,
+          altText: selectedImage.altText,
+        },
+      };
+      return {
+        ...prev,
+        props: {
+          ...prev.props,
+          filterItems: updatedArray,
+        },
+      };
+    });
+  };
+
+
+  const handleRestaurantImageSearch = async () => {
+    try {
+      const response = await fetch(`/api/images/search?name=${restaurantImageSearchQuery}&lang=en`);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Image not found");
+      }
+
+      setRestaurantImageSearchResults([data]);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+
+  const handleReplaceRestaurantItemImage = (index, field, selectedImage) => {
+    // updatedArray[index][field].firebaseUrl = selectedImage.firebaseUrl
+    // updatedArray[index][field].altText = selectedImage.altText
+    setComponentData((prev) => {
+      const updatedArray = [...prev.props.restaurantItems];
+      updatedArray[index] = {
+        ...updatedArray[index],
+        [field]: {
+          ...updatedArray[index][field],
+          firebaseUrl: selectedImage.firebaseUrl,
+          altText: selectedImage.altText,
+        },
+      };
+      return {
+        ...prev,
+        props: {
+          ...prev.props,
+          restaurantItems: updatedArray,
+        },
+      };
+    });
+  };
+
+
 
   const handleSave = async () => {
     setError(null);
@@ -846,6 +934,48 @@ const EditComponent = () => {
                 }}
               />
 
+              {/* Search for a new main image */}
+              <div className="flex flex-col gap-2 items-center my-2">
+                <label className="text-[#246cfc] text-[18px] font-semibold">
+                  Search for a new image
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter image name"
+                  value={filterImageSearchQuery}
+                  onChange={(e) => setFilterImageSearchQuery(e.target.value)}
+                  className="border py-2 px-3 w-[50%]"
+                />
+                <button
+                  onClick={handleFilterImageSearch}
+                  className="bg-blue-500 text-white px-4 py-2 rounded"
+                >
+                  Search
+                </button>
+
+                {filterImageSearchResults.length > 0 && (
+                  <div className="flex flex-col gap-2 mt-2">
+                    <h4>Search Results</h4>
+                    {filterImageSearchResults.map((result, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                        onClick={() =>
+                          handleReplaceFilterItemImage(index, "image", result)
+                        }
+                      >
+                        <img
+                          src={result.firebaseUrl}
+                          alt={result.altText.en}
+                          className="w-16 h-16 object-cover"
+                        />
+                        <p>{result.altText.en}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               {/* image altText */}
               {item.image?.altText &&
                 Object.keys(item.image.altText).map((lang) => (
@@ -1254,9 +1384,11 @@ const EditComponent = () => {
                   </div>
                 ))}
 
+
               {/* Burada isterseniz Search / Replace mantığını da yapabilirsiniz.
                   Mesela item.image'i değiştirmek için arama butonuna basınca handleReplaceImage("filterItems", index, result) vb. */}
-
+                   {/* Image search */}
+             
             </div>
           ))}
         </div>
@@ -1296,6 +1428,48 @@ const EditComponent = () => {
             }));
           }}
         />
+
+        {/* Search for a new main image */}
+        <div className="flex flex-col gap-2 items-center my-2">
+                <label className="text-[#246cfc] text-[18px] font-semibold">
+                  Search for a new image
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter image name"
+                  value={restaurantImageSearchQuery}
+                  onChange={(e) => setRestaurantImageSearchQuery(e.target.value)}
+                  className="border py-2 px-3 w-[50%]"
+                />
+                <button
+                  onClick={handleRestaurantImageSearch}
+                  className="bg-blue-500 text-white px-4 py-2 rounded"
+                >
+                  Search
+                </button>
+
+                {restaurantImageSearchResults.length > 0 && (
+                  <div className="flex flex-col gap-2 mt-2">
+                    <h4>Search Results</h4>
+                    {restaurantImageSearchResults.map((result, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                        onClick={() =>
+                          handleReplaceRestaurantItemImage(index, "image", result)
+                        }
+                      >
+                        <img
+                          src={result.firebaseUrl}
+                          alt={result.altText.en}
+                          className="w-16 h-16 object-cover"
+                        />
+                        <p>{result.altText.en}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
         {/* image altText */}
         {item.image?.altText &&

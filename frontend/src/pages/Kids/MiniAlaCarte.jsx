@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import MiniAlaCarteSection1 from './components/MiniAlaCarteSection1'
 import ContactSection from '../../components/homepage/ContactSection'
 import OtherRestaurants from './components/OtherRestaurants'
 
-const MiniAlaCarte = () => {
+const MiniAlaCarte = ({page}) => {
   return (
     <section>
         <MiniAlaCarteSection1/>
-        <ContactSection/>
+        {/* <ContactSection/> */}
         <OtherRestaurants/>
     </section>
   )

@@ -7,7 +7,7 @@ import LineVertical2Svg from "../../svg/LineVertical2Svg"
 
 const images =[image,image,image]
 
-const RestaurantMainSection = ({img}) => {
+const RestaurantMainSection = ({images=[], header,text,image, lang="en"}) => {
   const [emblaRef, emblaApi] = useCarousel({
     loop: true,
     align:"center",
@@ -56,15 +56,15 @@ const RestaurantMainSection = ({img}) => {
         <div className="flex flex-col w-full lg:w-[49%] items-center justify-center lg:gap-[20px] text-center lg:text-start ">
           <div className="overflow-hidden relative w-full h-auto" ref={emblaRef}>
         <div className="flex grid-flow-col">
-          {images.map((image, index) => (
+          {images.map((img, index) => (
             <div className="flex-[0_0_auto] w-full flex justify-center relative group" key={index}>
               <div className="flex flex-col relative z-10">
               <img
                 className="cursor-pointer overflow-hidden object-cover relative"
-                height={image.height}
-                width={image.width}
-                src={image}
-                alt={`Slide ${index + 1}`}
+                height={img.height}
+                width={img.width}
+                src={img.firebaseUrl}
+                alt={img.altText[lang]}
               />
               </div>
             </div>
@@ -73,20 +73,20 @@ const RestaurantMainSection = ({img}) => {
     </div>
           
           <div className="flex w-[80%] lg:w-[70%] items-center justify-end gap-[28px] mt-[43px] text-center">
-           <h2 className="text-[40px] text-customGray font-lora leading-normal font-medium">MAIN RESTAURANT</h2>
+           <h2 className="text-[40px] text-customGray font-lora leading-normal font-medium">{header[lang]}</h2>
           </div>
-          <p className="flex lg:hidden text-[12px] w-[95%] text-black font-monserrat font-normal leading-normal"> We offer a wide selection of mouth-watering dishes that will satisfy every palate, from savory meats to fresh salads with open buffet. Our expert chefs use only the freshest ingredients to create flavorful and healthy dishes.</p>
+          <p className="flex lg:hidden text-[12px] w-[95%] text-black font-monserrat font-normal leading-normal">{text[lang]}</p>
         </div>
 
         <div className="hidden lg:flex flex-col w-[49%] items-center lg:items-center justify-center lg:gap-[20px] text-center lg:text-center">
         <img
-            src={image}
-            alt="img"
+            src={image.firebaseUrl}
+            alt={image.altText[lang]}
             width={image.width}
             height={image.height}
           />
           <p className="text-[15px] w-[90%] lg:w-[65%] text-black font-monserrat font-normal leading-[22.5px] lg:mt-[43px]">
-          We offer a wide selection of mouth-watering dishes that will satisfy every palate, from savory meats to fresh salads with open buffet. Our expert chefs use only the freshest ingredients to create flavorful and healthy dishes.
+          {text[lang]}
           </p>
         </div>
       

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ChildrenCarousel } from './ChildrenCarousel'
 
-const ChildrenSection = ({images=[], items=[], header, buttonText, lang="en"}) => {
+const ChildrenSection = ({images=[], items=[], header, buttonText, lang}) => {
   return (
     <div className='flex flex-col w-screen items-center justify-center gap-[50px] mt-10'>
       <div className='flex flex-col w-[90%] lg:w-[60%] gap-[30px] items-center justify-center text-center'>

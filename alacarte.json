@@ -1,0 +1,664 @@
+{
+  "pageName": "alacarte",
+  "components": [
+    {
+      "type": "AlaCarteMain",
+      "props": {
+        "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735219165624alacarteMain.png?alt=media&token=ce3cf1f4-3e1e-40d7-b814-434173a5368d",
+            "altText": {
+              "en": "Beach View",
+              "tr": "Plaj Manzarası",
+              "de": "Strandblick",
+              "ru": "Вид на пляж"
+            },
+            "width": 1920,
+            "height": 1080
+        },
+        "image2":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735219731484alacarteMain2.png?alt=media&token=f730dd84-cb5a-4052-970e-c6b74ac527c6",
+            "altText": {
+              "en": "Beach View",
+              "tr": "Plaj Manzarası",
+              "de": "Strandblick",
+              "ru": "Вид на пляж"
+            },
+            "width": 1920,
+            "height": 1080
+        },
+
+         "subImages": [
+          {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+            "altText": {
+              "en": "Port Nature Hotel",
+              "tr": "Port Nature Otel",
+              "de": "Port Nature Hotel",
+              "ru": "Порт Натуре Отель"
+            },
+            "width": 37,
+            "height": 40
+          },
+          {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+            "altText": {
+              "en": "Beach View",
+              "tr": "Plaj Manzarası",
+              "de": "Strandblick",
+              "ru": "Вид на пляж"
+            },
+            "width": 37,
+            "height": 40
+          },
+           {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+            "altText": {
+              "en": "Beach View",
+              "tr": "Plaj Manzarası",
+              "de": "Strandblick",
+              "ru": "Вид на пляж"
+            },
+            "width": 37,
+            "height": 40
+          }
+          ],
+
+        "header":{
+            "en":"A'LA CARTE",
+            "tr":"A'LA CARTE",
+            "de":"A'LA CARTE",
+            "ru":"A'LA CARTE"
+        },
+         "text":{
+            "en":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
+            "tr":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
+            "de":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
+            "ru":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. "
+        },
+        "text2":{
+             "en":"Всемирно известные блюда ждут вас в роскоши Port Nature",
+            "tr":"Всемирно известные блюда ждут вас в роскоши Port Nature",
+            "de":"Всемирно известные блюда ждут вас в роскоши Port Nature",
+            "ru":"Всемирно известные блюда ждут вас в роскоши Port Nature"
+        },
+
+        "span":{
+             "en":"You deserve the best! We offer the best…",
+            "tr":"You deserve the best! We offer the best…",
+            "de":"You deserve the best!We offer the best…",
+            "ru":"You deserve the best! We offer the best…"
+        }
+        
+      }
+    },
+
+    {
+      "type": "FindRestaurantSection",
+      "props": {
+          "header":{
+              "en":"FIND A'LA CARTE",
+              "tr":"FIND A'LA CARTE",
+              "de":"FIND A'LA CARTE",
+              "ru":"FIND A'LA CARTE"
+          },
+          "iconImage":{
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+              "altText": {
+                "en": "locationIcon",
+                "tr": "locationIcon",
+                "de": "locationIcon",
+                "ru": "locationIcon"
+              },
+              "width": 30,
+              "height": 47
+          },
+          "filterItems": [
+               {
+     "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735221620844fareastMenu.png?alt=media&token=3c5f81e6-9604-4eba-ae43-24abae1d6f70",
+            "altText": {
+                "en": "fareastMenu",
+                "tr": "fareastMenu",
+                "de": "fareastMenu",
+                "ru": "fareastMenu"
+              },
+              "width": 532,
+              "height": 177
+        },
+
+        "iconImage":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735221620844fareastMenu.png?alt=media&token=3c5f81e6-9604-4eba-ae43-24abae1d6f70",
+            "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "largeWidth": 30.12,
+              "largeHeight": 47.63,
+              "smallWidth": 24,
+              "smallHeight": 38
+        },
+
+        "header": {
+          "en": "FAR EAST A'LA CARTE",
+          "tr": "FAR EAST A'LA CARTE",
+          "de": "FAR EAST A'LA CARTE",
+          "ru": "FAR EAST A'LA CARTE"
+        },
+
+        "text": {
+          "en": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "tr": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "de":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "ru":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."
+        },
+
+        "buttonText": {
+          "en": "BELEK . ANTALYA",
+          "tr": "BELEK . ANTALYA TR",
+          "de": "BELEK . ANTALYA DE",
+          "ru": "БЕЛЕК . АНТАЛЬЯ"
+        },
+
+        "buttonLink": {
+          "en": "/far-east",
+          "tr": "/far-east",
+          "de": "/far-east",
+          "ru":"/far-east"
+        },
+
+        "time": {
+          "en": "7/24",
+          "tr":"7/24",
+          "de": "7/24",
+          "ru": "7/24"
+        },
+
+        "kidsFriendly": {
+          "en": "true",
+          "tr": "true",
+          "de": "true",
+          "ru": "true"
+        },
+
+        "ageLimit": {
+          "en": "7",
+          "tr": "7",
+          "de": "7",
+          "ru": "7"
+        }
+
+      },
+
+      {
+        "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735221620844fareastMenu.png?alt=media&token=3c5f81e6-9604-4eba-ae43-24abae1d6f70",
+            "altText": {
+                "en": "fareastMenu",
+                "tr": "fareastMenu",
+                "de": "fareastMenu",
+                "ru": "fareastMenu"
+              },
+              "width": 532,
+              "height": 177
+        },
+
+        "iconImage":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "largeWidth": 24,
+              "largeHeight": 29,
+              "smallWidth": 24,
+              "smallHeight": 38
+        },
+
+        "header": {
+          "en": "ALL DAY DINNING A'LA CARTE",
+          "tr":"ALL DAY DINNING A'LA CARTE",
+          "de": "ALL DAY DINNING A'LA CARTE",
+          "ru": "ALL DAY DINNING A'LA CARTE"
+        },
+
+        "text": {
+          "en": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "tr": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "de":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "ru":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."
+        },
+
+        "buttonText": {
+          "en": "BELEK . ANTALYA",
+          "tr": "BELEK . ANTALYA TR",
+          "de": "BELEK . ANTALYA DE",
+          "ru": "БЕЛЕК . АНТАЛЬЯ"
+        },
+
+        "buttonLink": {
+          "en": "/far-east",
+          "tr": "/far-east",
+          "de": "/far-east",
+          "ru":"/far-east"
+        },
+
+        "time": {
+          "en": "7/24",
+          "tr":"7/24",
+          "de": "7/24",
+          "ru": "7/24"
+        },
+
+        "kidsFriendly": {
+          "en": "false",
+          "tr": "false",
+          "de": "false",
+          "ru": "false"
+        },
+
+        "ageLimit": {
+          "en": "+18",
+          "tr": "+18",
+          "de": "+18",
+          "ru": "+18"
+        }
+
+      },
+
+      {
+     "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735221620844fareastMenu.png?alt=media&token=3c5f81e6-9604-4eba-ae43-24abae1d6f70",
+            "altText": {
+                "en": "fareastMenu",
+                "tr": "fareastMenu",
+                "de": "fareastMenu",
+                "ru": "fareastMenu"
+              },
+              "width": 532,
+              "height": 177
+        },
+
+        "iconImage":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "largeWidth": 30.12,
+              "largeHeight": 47.63,
+              "smallWidth": 24,
+              "smallHeight": 38
+        },
+
+        "header": {
+          "en": "MINI CLUB A'LA CARTE",
+          "tr": "MINI CLUB A'LA CARTE",
+          "de": "MINI CLUB A'LA CARTE",
+          "ru": "MINI CLUB A'LA CARTE"
+        },
+
+        "text": {
+          "en": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "tr": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "de":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "ru":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."
+        },
+
+        "buttonText": {
+          "en": "BELEK . ANTALYA",
+          "tr": "BELEK . ANTALYA TR",
+          "de": "BELEK . ANTALYA DE",
+          "ru": "БЕЛЕК . АНТАЛЬЯ"
+        },
+
+        "buttonLink": {
+          "en": "/far-east",
+          "tr": "/far-east",
+          "de": "/far-east",
+          "ru":"/far-east"
+        },
+
+        "time": {
+          "en": "7/24",
+          "tr":"7/24",
+          "de": "7/24",
+          "ru": "7/24"
+        },
+
+        "kidsFriendly": {
+          "en": "true",
+          "tr": "true",
+          "de": "true",
+          "ru": "true"
+        },
+
+        "ageLimit": {
+          "en": "7",
+          "tr": "7",
+          "de": "7",
+          "ru": "7"
+        }
+
+      },
+      {
+       "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735221620844fareastMenu.png?alt=media&token=3c5f81e6-9604-4eba-ae43-24abae1d6f70",
+            "altText": {
+                "en": "fareastMenu",
+                "tr": "fareastMenu",
+                "de": "fareastMenu",
+                "ru": "fareastMenu"
+              },
+              "width": 532,
+              "height": 177
+        },
+
+        "iconImage":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "largeWidth": 30.12,
+              "largeHeight": 47.63,
+              "smallWidth": 24,
+              "smallHeight": 38
+        },
+
+        "header": {
+          "en": "SEASIDE A'LA CARTE",
+          "tr": "SEASIDE A'LA CARTE",
+          "de": "SEASIDE A'LA CARTE",
+          "ru": "SEASIDE A'LA CARTE"
+        },
+
+        "text": {
+          "en": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "tr": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "de":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "ru":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."
+        },
+
+        "buttonText": {
+          "en": "BELEK . ANTALYA",
+          "tr": "BELEK . ANTALYA TR",
+          "de": "BELEK . ANTALYA DE",
+          "ru": "БЕЛЕК . АНТАЛЬЯ"
+        },
+
+        "buttonLink": {
+          "en": "/far-east",
+          "tr": "/far-east",
+          "de": "/far-east",
+          "ru":"/far-east"
+        },
+
+        "time": {
+          "en": "7/24",
+          "tr":"7/24",
+          "de": "7/24",
+          "ru": "7/24"
+        },
+
+        "kidsFriendly": {
+          "en": "true",
+          "tr": "true",
+          "de": "true",
+          "ru": "true"
+        },
+
+        "ageLimit": {
+          "en": "7",
+          "tr": "7",
+          "de": "7",
+          "ru": "7"
+        }
+
+      },
+
+      {
+        "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735221620844fareastMenu.png?alt=media&token=3c5f81e6-9604-4eba-ae43-24abae1d6f70",
+            "altText": {
+                "en": "fareastMenu",
+                "tr": "fareastMenu",
+                "de": "fareastMenu",
+                "ru": "fareastMenu"
+              },
+              "width": 532,
+              "height": 177
+        },
+
+        "iconImage":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "largeWidth": 30.12,
+              "largeHeight": 47.63,
+              "smallWidth": 24,
+              "smallHeight": 38
+        },
+
+        "header": {
+          "en": "FRENCH A'LA CARTE",
+          "tr": "FRENCH A'LA CARTE",
+          "de": "FRENCH A'LA CARTE",
+          "ru": "FRENCH A'LA CARTE"
+        },
+
+        "text": {
+          "en": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "tr": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "de":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "ru":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."
+        },
+
+        "buttonText": {
+          "en": "BELEK . ANTALYA",
+          "tr": "BELEK . ANTALYA TR",
+          "de": "BELEK . ANTALYA DE",
+          "ru": "БЕЛЕК . АНТАЛЬЯ"
+        },
+
+        "buttonLink": {
+          "en": "/far-east",
+          "tr": "/far-east",
+          "de": "/far-east",
+          "ru":"/far-east"
+        },
+
+        "time": {
+          "en": "7/24",
+          "tr":"7/24",
+          "de": "7/24",
+          "ru": "7/24"
+        },
+
+        "kidsFriendly": {
+          "en": "true",
+          "tr": "true",
+          "de": "true",
+          "ru": "true"
+        },
+
+        "ageLimit": {
+          "en": "7",
+          "tr": "7",
+          "de": "7",
+          "ru": "7"
+        }
+
+      },
+
+      {
+        "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735221620844fareastMenu.png?alt=media&token=3c5f81e6-9604-4eba-ae43-24abae1d6f70",
+            "altText": {
+                "en": "fareastMenu",
+                "tr": "fareastMenu",
+                "de": "fareastMenu",
+                "ru": "fareastMenu"
+              },
+              "width": 532,
+              "height": 177
+        },
+        
+        "iconImage":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "largeWidth": 30.12,
+              "largeHeight": 47.63,
+              "smallWidth": 24,
+              "smallHeight": 38
+        },
+
+        "header": {
+          "en": "ITALIAN A'LA CARTE",
+          "tr": "ITALIAN A'LA CARTE",
+          "de": "ITALIAN A'LA CARTE",
+          "ru": "ITALIAN A'LA CARTE"
+        },
+
+        "text": {
+          "en": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "tr": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "de":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "ru":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."
+        },
+
+        "buttonText": {
+          "en": "BELEK . ANTALYA",
+          "tr": "BELEK . ANTALYA TR",
+          "de": "BELEK . ANTALYA DE",
+          "ru": "БЕЛЕК . АНТАЛЬЯ"
+        },
+
+        "buttonLink": {
+          "en": "/far-east",
+          "tr": "/far-east",
+          "de": "/far-east",
+          "ru":"/far-east"
+        },
+
+        "time": {
+          "en": "7/24",
+          "tr":"7/24",
+          "de": "7/24",
+          "ru": "7/24"
+        },
+
+        "kidsFriendly": {
+          "en": "true",
+          "tr": "true",
+          "de": "true",
+          "ru": "true"
+        },
+
+        "ageLimit": {
+          "en": "7",
+          "tr": "7",
+          "de": "7",
+          "ru": "7"
+        }
+
+      },
+
+      {
+        "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735221620844fareastMenu.png?alt=media&token=3c5f81e6-9604-4eba-ae43-24abae1d6f70",
+            "altText": {
+                "en": "fareastMenu",
+                "tr": "fareastMenu",
+                "de": "fareastMenu",
+                "ru": "fareastMenu"
+              },
+              "width": 532,
+              "height": 177
+        },
+
+        "iconImage":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "largeWidth": 30.12,
+              "largeHeight": 47.63,
+              "smallWidth": 24,
+              "smallHeight": 38
+        },
+
+        "header": {
+          "en": "SUSHI BAR A'LA CARTE",
+          "tr":  "SUSHI BAR A'LA CARTE",
+          "de": "SUSHI BAR A'LA CARTE",
+          "ru": "SUSHI BAR A'LA CARTE"
+        },
+
+        "text": {
+          "en": "A unique dining experience that offers a wide variety of sushi rolls, prepared skilled chefs.",
+          "tr": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "de":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+          "ru":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."
+        },
+
+        "buttonText": {
+          "en": "BELEK . ANTALYA",
+          "tr": "BELEK . ANTALYA TR",
+          "de": "BELEK . ANTALYA DE",
+          "ru": "БЕЛЕК . АНТАЛЬЯ"
+        },
+
+        "buttonLink": {
+          "en": "/far-east",
+          "tr": "/far-east",
+          "de": "/far-east",
+          "ru":"/far-east"
+        },
+
+        "time": {
+          "en": "7/24",
+          "tr":"7/24",
+          "de": "7/24",
+          "ru": "7/24"
+        },
+
+        "kidsFriendly": {
+          "en": "true",
+          "tr": "true",
+          "de": "true",
+          "ru": "true"
+        },
+
+        "ageLimit": {
+          "en": "7",
+          "tr": "7",
+          "de": "7",
+          "ru": "7"
+        }
+
+      }
+    ]
+      }
+    }
+  ]
+}
