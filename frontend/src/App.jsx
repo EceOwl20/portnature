@@ -100,6 +100,9 @@ import PageDetails from "./pages/PanelPages/PageDetails";
 import PageList from "./pages/PanelPages/PageList";
 import EditComponent from "./pages/PanelPages/EditComponent";
 import Beach from "./pages/Beach/Beach";
+import { LanguageProvider } from "./context/LanguageContext";
+
+
 
 
 const findRestaurants = [
@@ -209,9 +212,6 @@ const KidsConceptItems = [
 ];
 
 
-
-
-
 const App = () => {
  const { activeUser } = useSelector((state) => state.user);
 
@@ -219,7 +219,8 @@ const App = () => {
     <>
       <HelmetProvider>
         <BrowserRouter>
-        {activeUser ? (
+       <LanguageProvider>
+       {activeUser ? (
             <HeaderDgtl />
           ) : (
             <>
@@ -250,7 +251,7 @@ const App = () => {
             <Route path="/nespresso-cafe" element={<CoffeePage  page="nespresso"/>}/>
             <Route path="/pastahouse" element={<CoffeePage  page="pastahouse"/>}/>
             <Route path="/bars-cafes" element={<CoffeeBarsMainPage />}/>
-            <Route path="/alacarte-restaurant" element={<AlacartePage findRestaurants={findRestaurants}/>}/>
+            <Route path="/alacarte-restaurant" element={<AlacartePage/>}/>
             <Route path="/main-restaurant" element={<MainRestaurant page="mainrestaurant"/>}/>
             <Route path="/irish-pub" element={<PubBarPage/>}/>
             <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
@@ -288,6 +289,7 @@ const App = () => {
           <BookPhoneSection/>
           <ScrollToTopButton/>
           <Footer/>
+       </LanguageProvider>
         </BrowserRouter>
       </HelmetProvider>
     </>

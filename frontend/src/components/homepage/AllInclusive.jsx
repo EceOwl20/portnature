@@ -3,7 +3,7 @@ import StarSvg from "../../svg/StarSvg"
 import UnderLine from "../../svg/UnderLine/UnderLine"
 import SubCarousel from './SubCarousel'
 
-const AllInclusive = ({images=[], lang="en", header,span,text1,text2,starNum,carouselHeader, carouselText, carouselSpan}) => {
+const AllInclusive = ({images=[], lang, header,span,text1,text2,starNum,carouselHeader, carouselText, carouselSpan}) => {
   return (
     <main className='flex flex-col w-screen h-auto font-lora items-center justify-center py-[150px]'>
       <div className='flex flex-col gap-[21px] items-center justify-center text-center w-[93%] lg:w-[70%] text-[#233038CC]'>

@@ -4,7 +4,7 @@ import night from "../../../public/images/homepage/portnaturenight.png"
 import UnderLine from '../../svg/UnderLine/UnderLine'
 import Youtube2Svg from '../../svg/Youtube2Svg'
 
-const HolidayImageSection = ({image, image2, buttonImage, buttonText, header,text,span, lang="en"}) => {
+const HolidayImageSection = ({image, image2, buttonImage, buttonText, header,text,span, lang}) => {
   return (
     <div className='flex flex-col lg:flex-row w-screen font-monserrat' >
       <div className='flex flex-col relative w-[100%] lg:w-[50%] h-auto bg-cover items-center justify-center min-h-[415px] xl:h-[548px]' style={{ backgroundImage: `url(${image.firebaseUrl})` }}>

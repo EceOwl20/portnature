@@ -3,7 +3,7 @@ import AlaCarteMain from '../../components/food/AlaCarteMain'
 import FindRestaurantSection from '../../components/food/FindRestaurantSection'
 import ContactSection from '../../components/homepage/ContactSection'
 
-const AlacartePage = ({findRestaurants}) => {
+const AlacartePage = () => {
   const [alacarteMainData, setAlacarteMainData] = useState(null);
   const [findRestaurantSectionData, setFindRestaurantSectionData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
