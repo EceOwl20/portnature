@@ -23,25 +23,6 @@ const RoomFeatures = ({header, items=[], buttonText, buttonText2, lang}) => {
       setShowMore(!showMore);
     };
 
-    // const items = [
-    //     { Svg: BalconySvg, width: 39.693, height: 39, text: "Balcony / Terrace" },
-    //     { Svg: WCSvg, width: 55, height: 43, text: "Seperate Shower / WC" },
-    //     { Svg: AirConditionerSvg, width: 40, height: 40, text: "Split-System Air Conditioner" },
-    //     { Svg: HotDrinkSvg, width: 41, height: 44, text: "Hot Drink Set-Up (tea and coffee sets)" },
-    //     { Svg: DigitalSafeSvg, width: 32, height: 43, text: "Digital Safe" },
-    //     { Svg: LedTvSvg, width: 44, height: 36, text: "Led TV" },
-    //     { Svg: TowerSvg, width: 46, height: 37, text: "Towel" },
-    //     { Svg: DialPhoneSvg, width: 43, height: 39, text: "Direct Dial Phone" },
-    //     { Svg: BroadcastingSvg, width: 42, height: 41, text: "Satellite Broadcasting" },
-    //     { Svg: MinibarSvg, width: 44, height: 45, text: "Minibar" },
-    //     { Svg: TableChairSvg, width: 58, height: 38, text: "Table and Chair" },
-    //     { Svg: MakeupMirrorSvg, width: 44, height: 42, text: "Make-up Mirror" },
-    //     { Svg: WifiSvg, width: 38, height: 37, text: "Free Wİ-Fİ internet" },
-    //     { Svg: ParquetFlooringSvg, width: 38, height: 37, text: "Parquet Flooring" },
-    //     { Svg: HairDryerSvg, width: 49, height: 44, text: "Hair Dryer" },
-    //     { Svg: SlippersSvg, width: 49, height: 48, text: "Slippers" },
-    //   ];
-
       const visibleItems = showMore ? items : items.slice(0, 8);
 
   return (
