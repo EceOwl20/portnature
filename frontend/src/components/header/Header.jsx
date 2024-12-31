@@ -27,16 +27,43 @@ const Header = () => {
 
   const { language, setLanguage } = useLanguage();
 
-      // Yeni fonksiyon
-      const handleChange = (newLang) => {
-        // Dili state'te güncelle
-        setLang(newLang);
-        // Cookie'yi güncelle
-        Cookies.set("language", newLang);
-        // Sayfayı yenile
-        window.location.reload();
-        // veya window.location.href = '/'; // istenirse anasayfaya yönlendirme
-      };
+  const options = ["en", "tr", "de", "ru"];
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Dışarı tıklanınca menüyü kapatmak için referans
+  const dropdownRef = useRef(null);
+
+  // Dışarı tıklama ile kapatma (basit versiyon)
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // Yeni fonksiyon
+  const handleChange = (newLang) => {
+    // Dili state'te güncelle
+    setLanguage(newLang);
+    // Cookie'yi güncelle
+    Cookies.set("language", newLang);
+    // Sayfayı yenile
+    window.location.reload();
+    // veya window.location.href = '/'; // istenirse anasayfaya yönlendirme
+  };
 
   useEffect(() => {
     const fetchHeaderImages = async () => {
@@ -77,18 +104,18 @@ const Header = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-//lang
-const handleLanguageChange = (e) => {
-  const newLang = e.target.value;
-  setLanguage(newLang);
-  window.location.reload();
+  //lang
+  const handleLanguageChange = (e) => {
+    const newLang = e.target.value;
+    setLanguage(newLang);
+    window.location.reload();
 
-  // Eğer dil değiştirdiğinde sayfayı yenilemek istiyorsanız:
-  // window.location.reload();
+    // Eğer dil değiştirdiğinde sayfayı yenilemek istiyorsanız:
+    // window.location.reload();
 
-  // Yada anasayfaya yönlendirmek istiyorsanız:
-  // window.location.href = "/";
-};
+    // Yada anasayfaya yönlendirmek istiyorsanız:
+    // window.location.href = "/";
+  };
 
   return (
     <>
@@ -183,10 +210,7 @@ const handleLanguageChange = (e) => {
                     <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
                   </div>
                 </Link>
-                <Link
-                  to="/aquapark"
-                  className="block px-4 py-2"
-                >
+                <Link to="/aquapark" className="block px-4 py-2">
                   Aquapark
                   <div className="flex">
                     <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
@@ -206,40 +230,28 @@ const handleLanguageChange = (e) => {
 
               {/* Alt menü */}
               <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
-                <Link
-                  to="/alacarte-restaurant"
-                  className="block px-4 py-2"
-                >
+                <Link to="/alacarte-restaurant" className="block px-4 py-2">
                   A'la Carte
                   <div className="flex  ">
                     <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
                     <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
                   </div>
                 </Link>
-                <Link
-                  to="/bars-cafes"
-                  className="block px-4 py-2"
-                >
+                <Link to="/bars-cafes" className="block px-4 py-2">
                   Bars & Cafes
                   <div className="flex  ">
                     <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
                     <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
                   </div>
                 </Link>
-                <Link
-                  to="/main-restaurant"
-                  className="block px-4 py-2"
-                >
+                <Link to="/main-restaurant" className="block px-4 py-2">
                   Main Restaurant
                   <div className="flex  ">
                     <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
                     <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
                   </div>
                 </Link>
-                <Link
-                  to="/davidoff-cafe"
-                  className="block px-4 py-2"
-                >
+                <Link to="/davidoff-cafe" className="block px-4 py-2">
                   Davidoff Cafe
                   <div className="flex  ">
                     <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
@@ -379,19 +391,33 @@ const handleLanguageChange = (e) => {
               </div>
             </div>
 
-            <div className="flex items-center gap-[9px]">
-            <select
-        id="selectBox"
-        className="bg-[#233038] text-[16px]"
-        value={language} // Seçili dili context'ten alıyoruz
-        onChange={handleLanguageChange}
-      >
-        <option value="en">EN</option>
-        <option value="tr">TR</option>
-        <option value="ru">RU</option>
-        <option value="de">DE</option>
-      </select>
-              {/* <ArrowSvg className="flex" width={9} height={4} /> */}
+            <div className="flex justify-center items-center gap-[9px] relative z-10">
+              <div className="items-center justify-center relative inline-block" ref={dropdownRef}>
+                {/* Dropdown button */}
+                <button
+                  onClick={handleToggle}
+                  className="flex flex-row items-center justify-center gap-1 px-4 py-2 bg-inherit text-white rounded uppercase"
+                >
+                  {language}
+                  <ArrowSvg className="flex" width={9} height={4} />
+                </button>
+
+                {/* Dropdown menu */}
+                {isOpen && (
+                  <ul className="absolute left-0 mt-1 bg-[#233038] shadow-lg">
+                    {options.map((option, index) => (
+                      <li
+                        key={index}
+                        onClick={() => handleChange(option)}
+                        className="uppercase px-4 py-2 hover:bg-white hover:text-[#233038] cursor-pointer"
+                      >
+                        {option}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                
+              </div>
             </div>
           </nav>
           <button className="hidden lgxl-custom:flex bg-white text-[#233038] font-bold w-[10%] h-[50px] text-center justify-center items-center">
@@ -399,18 +425,32 @@ const handleLanguageChange = (e) => {
           </button>
 
           <div className="flex lgxl-custom:hidden items-center gap-[9px]">
-          <select
-        id="selectBox"
-        className="bg-[#233038] text-[16px]"
-        value={language} // Seçili dili context'ten alıyoruz
-        onChange={handleLanguageChange}
-      >
-        <option value="en">EN</option>
-        <option value="tr">TR</option>
-        <option value="ru">RU</option>
-        <option value="de">DE</option>
-      </select>
-            {/* <ArrowSvg className="flex" width={9} height={4} /> */}
+          <div className="items-center justify-center relative inline-block" ref={dropdownRef}>
+                {/* Dropdown button */}
+                <button
+                  onClick={handleToggle}
+                  className="flex flex-row items-center justify-center gap-1 px-4 py-2 bg-inherit text-white rounded uppercase"
+                >
+                  {language}
+                  <ArrowSvg className="flex" width={9} height={4} />
+                </button>
+
+                {/* Dropdown menu */}
+                {isOpen && (
+                  <ul className="absolute left-0 mt-1 bg-[#233038] shadow-lg">
+                    {options.map((option, index) => (
+                      <li
+                        key={index}
+                        onClick={() => handleChange(option)}
+                        className="uppercase text-white px-4 py-2 hover:bg-white hover:text-[#233038] cursor-pointer"
+                      >
+                        {option}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                
+              </div>
           </div>
         </div>
       </header>
@@ -443,17 +483,17 @@ const handleLanguageChange = (e) => {
                 fill="#233038"
               />
               <div className="flex items-center gap-[9px] justify-center">
-              <select
-        id="selectBox"
-        className="bg-[#233038] text-[16px]"
-        value={language} // Seçili dili context'ten alıyoruz
-        onChange={handleLanguageChange}
-      >
-        <option value="en">EN</option>
-        <option value="tr">TR</option>
-        <option value="ru">RU</option>
-        <option value="de">DE</option>
-      </select>
+                <select
+                  id="selectBox"
+                  className="bg-[#233038] text-[16px]"
+                  value={language} // Seçili dili context'ten alıyoruz
+                  onChange={handleLanguageChange}
+                >
+                  <option value="en">EN</option>
+                  <option value="tr">TR</option>
+                  <option value="ru">RU</option>
+                  <option value="de">DE</option>
+                </select>
                 {/* <ArrowSvg className="flex" width={9} height={4} /> */}
               </div>
             </div>

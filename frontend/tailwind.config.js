@@ -7,6 +7,7 @@ export default {
     extend: {
       screens: {
         'lgxl-custom': { 'min': '1200px' }, 
+        'mdlg-custom': { 'min': '840px' }, 
       },
 
       colors: {
