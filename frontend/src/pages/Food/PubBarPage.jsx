@@ -6,7 +6,7 @@ const PubBarPage = () => {
   return (
     <div>
       <PubBarMainSection/>
-      <ContactSection/>
+      {/* <ContactSection/> */}
     </div>
   )
 }

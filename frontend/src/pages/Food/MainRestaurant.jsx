@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RestaurantMainSection from '../../components/food/RestaurantMainSection'
 import ContactSection from '../../components/homepage/ContactSection'
+import OtherRestaurants from '../Kids/components/OtherRestaurants'
 
 const MainRestaurant = ({page}) => {
   const [mainSectionData, setMainSection] = useState(null);
@@ -54,6 +55,7 @@ const MainRestaurant = ({page}) => {
     <div>
       <RestaurantMainSection {...mainSectionData}/>
       {/* <ContactSection/> */}
+      <OtherRestaurants/>
     </div>
   )
 }

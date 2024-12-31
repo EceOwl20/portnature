@@ -17,7 +17,7 @@ const repeatedImages = [
   ...imageData
 ]
 
-const OtherRestaurants = () => {
+const OtherRestaurants = ({header}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: 'start' },
     [Autoplay({ delay: 3000 })]
@@ -36,26 +36,26 @@ const OtherRestaurants = () => {
   }, [emblaApi, onSelect])
 
   return (
-    <section className="my-24">
-      <div className="flex mb-11 w-3/4 ml-auto justify-start">
+    <section className="flex flex-col w-full my-24">
+      <div className="flex mb-11 md:w-3/4 md:ml-auto justify-center items-center md:justify-start">
         <h2 className="text-[28px] leading-10 italic font-lora font-normal text-black">
         Other restaurants
         </h2>
       </div>
-      
       <div className="overflow-hidden relative w-5/6 ml-auto" ref={emblaRef}>
         <div className="flex gap-x-4">
           {repeatedImages.map(({ src, title }, index) => (
             <div 
-              className="relative flex-[0_0_25%] flex justify-center items-start" 
+              className="relative flex-[0_0_auto] flex justify-center items-start w-[calc(90%-1rem] md:w-[calc(50%-1rem] min-w-[280px] md:min-w-[343px] lg:w-[calc(33.3%-1rem] xl:w-[calc(25%-1rem)]" 
               key={index}
               style={{ position: 'relative' }}
             >
-              <div className="absolute border border-dotted border-[#CFCFCF] top-0 right-0 w-10/12 h-[450px] z-10"></div>
+              <div className="absolute border border-dotted border-[#CFCFCF] top-0 right-0 w-11/12 md:w-10/12 h-[450px] z-10"></div>
               <img
                 src={src}
                 alt={`Slide ${index + 1}`}
-                className="object-cover w-10/12 h-[450px] relative z-20 mt-10 mr-1"
+                className="object-cover w-11/12 md:w-10/12 h-[450px] relative z-20 mt-10 mr-1"
+               
               />
               <div className="absolute top-10 left-1/2 transform -translate-x-1/2  bg-opacity-70 text-white px-4 py-2 rounded z-30">
                 <p className="text-[25px] font-lora whitespace-nowrap font-medium text-start leading-normal">{title}</p>
