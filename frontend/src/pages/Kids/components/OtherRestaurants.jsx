@@ -1,8 +1,9 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
+import { Link } from 'react-router-dom'
 
-const OtherRestaurants = ({header, headers=[],lang,images=[]}) => {
+const OtherRestaurants = ({header, headers=[],lang,images=[], links=[]}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: 'start' },
     [Autoplay({ delay: 3000 })]
@@ -31,7 +32,8 @@ const OtherRestaurants = ({header, headers=[],lang,images=[]}) => {
       <div className="overflow-hidden relative w-5/6 ml-auto" ref={emblaRef}>
         <div className="flex gap-x-4">
           {images.map((image, index) => (
-            <div 
+            <Link 
+              to={links[index][lang]}
               className="relative flex-[0_0_auto] flex justify-center items-start w-[calc(90%-1rem] md:w-[calc(50%-1rem] min-w-[280px] md:min-w-[343px] lg:w-[calc(33.3%-1rem] xl:w-[calc(25%-1rem)]" 
               key={index}
               style={{ position: 'relative' }}
@@ -41,12 +43,12 @@ const OtherRestaurants = ({header, headers=[],lang,images=[]}) => {
                 src={image.firebaseUrl}
                 alt={`Slide ${index + 1}`}
                 className="object-cover w-11/12 md:w-10/12 h-[450px] relative z-20 mt-10 mr-1"
-               
               />
+            
               <div className="absolute top-10 left-1/2 transform -translate-x-1/2  bg-opacity-70 text-white px-4 py-2 rounded z-30">
                 <p className="text-[25px] font-lora whitespace-nowrap font-medium text-start leading-normal">{headers[index][lang]}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

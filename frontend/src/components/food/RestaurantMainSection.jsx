@@ -75,7 +75,7 @@ const RestaurantMainSection = ({images=[], header,text, span, lang,videoLink}) =
     </div>
         </div>
         <div className='hidden lg:flex w-full h-full lg:w-1/2'>
-            {/* <iframe
+            <iframe
                 width="560"
                 height="auto"
                 src={videoLink}
@@ -85,7 +85,7 @@ const RestaurantMainSection = ({images=[], header,text, span, lang,videoLink}) =
                 allowFullScreen
                 className=' flex w-full min-h-content rounded-none'
                 style={{ borderRadius: '0px', border: 'none' }}
-            ></iframe> */}
+            ></iframe>
         </div>
     </div>
     <div className='relative flex flex-row w-full justify-center my-24'>
