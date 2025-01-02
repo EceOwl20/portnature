@@ -1,24 +1,26 @@
-import React from 'react'
+import React,{ useEffect, useCallback, useState }  from "react";
+import useCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import LineVerticalSvg from '../../../svg/LineVerticalSvg'
 import LineVertical2Svg from '../../../svg/LineVertical2Svg'
 
-const MiniAlaCarteSection1 = () => {
+const RestaurantMainSection2 = ({header,text, span,img,videoLink, lang}) => {
   return (
-    <div className='flex flex-col max-w-[1920px] mx-3 my-5'>
-        <div className='flex flex-col lg:flex-row w-full gap-5 justify-center items-center'>
-            <div className='flex w-full lg:w-1/2'>
+    <div className='flex flex-col max-w-[1920px] mx-3 my-5 items-center justify-center'>
+        <div className='flex flex-col lg:flex-row w-full gap-5 justify-center items-center lg:h-[30vh] xl:h-[46vh]'>
+            <div className='flex w-full lg:w-1/2 h-full'>
                 <img src='../../../../public/images/minialacarte/miniclubalacarte.png' alt='minialacarte' />
             </div>
-            <div className='flex w-full lg:w-1/2'>
+            <div className='hidden lg:flex w-full h-full lg:w-1/2'>
                 <iframe
                     width="560"
-                    height="315"
+                    height="auto"
                     src="https://www.youtube.com/embed/qs4HrhmnYK0" 
                     title="YouTube video player" 
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowFullScreen
-                    className='flex w-full min-h-content rounded-none'
+                    className=' flex w-full min-h-content rounded-none'
                     style={{ borderRadius: '0px', border: 'none' }}
                 ></iframe>
             </div>
@@ -39,8 +41,22 @@ const MiniAlaCarteSection1 = () => {
             </p>
         </div>
 
+        <div className='flex lg:hidden w-full h-full'>
+                <iframe
+                    width="100%"
+                    height="auto"
+                    src="https://www.youtube.com/embed/qs4HrhmnYK0" 
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className='w-full min-h-[360px] md:min-h-[420px] rounded-none'
+                    style={{ borderRadius: '0px', border: 'none'}}
+                ></iframe>
+            </div>
+
     </div>
   )
 }
 
-export default MiniAlaCarteSection1
+export default RestaurantMainSection2

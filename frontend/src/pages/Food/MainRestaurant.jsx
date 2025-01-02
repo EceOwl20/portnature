@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import RestaurantMainSection from '../../components/food/RestaurantMainSection'
 import ContactSection from '../../components/homepage/ContactSection'
+import OtherRestaurants from '../Kids/components/OtherRestaurants'
+import Cookies from "js-cookie";
 
 const MainRestaurant = ({page}) => {
   const [mainSectionData, setMainSection] = useState(null);
+  const [otherRestaurantSectionData, setOtherRestaurantSectionData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
+
+  const [lang, setLang] = useState(Cookies.get("language") || "en");
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -26,6 +31,17 @@ const MainRestaurant = ({page}) => {
             setMainSection(mainSectionComponent.props);
           } else {
             console.warn("mainSectionComponent data not found");
+          }
+
+           // setOtherRestaurantSectionData verilerini çek
+           const otherRestaurantSectionComponent = data.components.find(
+            (comp) => comp.type === "OtherOptions"
+          );
+  
+          if (otherRestaurantSectionComponent) {
+            setOtherRestaurantSectionData(otherRestaurantSectionComponent.props);
+          } else {
+            console.warn("otherRestaurantSectionComponent data not found");
           }
 
             // Contact verilerini çek
@@ -52,8 +68,9 @@ const MainRestaurant = ({page}) => {
 
   return (
     <div>
-      <RestaurantMainSection {...mainSectionData}/>
+      <RestaurantMainSection {...mainSectionData} lang={lang}/>
       {/* <ContactSection/> */}
+      <OtherRestaurants {...otherRestaurantSectionData} lang={lang}/>
     </div>
   )
 }
