@@ -391,7 +391,7 @@ const Header = () => {
               </div>
             </div>
 
-            <div className="flex justify-center items-center gap-[9px] relative z-10">
+            <div className="flex justify-center items-center gap-[9px] relative ">
               <div className="items-center justify-center relative inline-block" ref={dropdownRef}>
                 {/* Dropdown button */}
                 <button

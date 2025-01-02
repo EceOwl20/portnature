@@ -94,6 +94,21 @@ const EditComponent = () => {
     });
   };
 
+  const handleArrayHeaderChange = (field, index, lang, value) => {
+    setComponentData((prev) => {
+      const updatedArray = [...prev.props[field]];
+      updatedArray[index][lang] = value;
+
+      return {
+        ...prev,
+        props: {
+          ...prev.props,
+          [field]: updatedArray,
+        },
+      };
+    });
+  };
+
   const handleTextChange = (field, index, lang, value) => {
     setComponentData((prev) => {
       const updatedArray = [...prev.props[field]];
@@ -1831,6 +1846,40 @@ const EditComponent = () => {
             className="bg-green-700 text-white px-4 py-2 rounded w-[20%] my-4"
           >
             Add New SubImage
+          </button>
+        </div>
+      )}
+
+      {/* headers editing */}
+      {componentData.props.headers?.length > 0 && (
+        <div className="flex flex-col gap-4 w-full">
+          <h2 className="text-[20px] text-[#0e0c1b] font-semibold mt-6 ml-2">Headers</h2>
+          {componentData.props.headers.map((header, index) => (
+            <div key={index} className="flex flex-col gap-2 border p-4 rounded-md">
+              <h3>Header {index + 1}</h3>
+
+              {Object.keys(header|| {}).map((lang) => (
+                <div key={lang} className="flex flex-col gap-2">
+                  <label className="text-[#246cfc] text-[18px] font-semibold">
+                    header({lang})
+                  </label>
+                  <input
+                    type="text"
+                    value={header[lang]}
+                    onChange={(e) =>
+                      handleArrayHeaderChange("headers", index, lang, e.target.value)
+                    }
+                  />
+                </div>
+              ))}
+            
+            </div>
+          ))}
+          <button
+            onClick={() => handleAddItem("headers")}
+            className="bg-green-700 text-white px-4 py-2 rounded w-[20%] my-4"
+          >
+            Add New Headers
           </button>
         </div>
       )}

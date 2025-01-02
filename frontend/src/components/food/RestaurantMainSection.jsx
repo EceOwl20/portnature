@@ -7,7 +7,7 @@ import LineVertical2Svg from "../../svg/LineVertical2Svg"
 
 const images =[image,image,image]
 
-const RestaurantMainSection = ({images=[], header,text, span, lang="en",videoLink}) => {
+const RestaurantMainSection = ({images=[], header,text, span, lang,videoLink}) => {
   const [emblaRef, emblaApi] = useCarousel({
     loop: true,
     align:"center",
@@ -75,7 +75,7 @@ const RestaurantMainSection = ({images=[], header,text, span, lang="en",videoLin
     </div>
         </div>
         <div className='hidden lg:flex w-full h-full lg:w-1/2'>
-            <iframe
+            {/* <iframe
                 width="560"
                 height="auto"
                 src={videoLink}
@@ -85,7 +85,7 @@ const RestaurantMainSection = ({images=[], header,text, span, lang="en",videoLin
                 allowFullScreen
                 className=' flex w-full min-h-content rounded-none'
                 style={{ borderRadius: '0px', border: 'none' }}
-            ></iframe>
+            ></iframe> */}
         </div>
     </div>
     <div className='relative flex flex-row w-full justify-center my-24'>
@@ -105,7 +105,7 @@ const RestaurantMainSection = ({images=[], header,text, span, lang="en",videoLin
     </div>
 
     <div className='flex lg:hidden w-full h-full'>
-            <iframe
+            {/* <iframe
                 width="100%"
                 height="auto"
                 src="https://www.youtube.com/embed/qs4HrhmnYK0" 
@@ -115,7 +115,7 @@ const RestaurantMainSection = ({images=[], header,text, span, lang="en",videoLin
                 allowFullScreen
                 className='w-full min-h-[360px] md:min-h-[420px] rounded-none'
                 style={{ borderRadius: '0px', border: 'none'}}
-            ></iframe>
+            ></iframe> */}
         </div>
 
 </div>

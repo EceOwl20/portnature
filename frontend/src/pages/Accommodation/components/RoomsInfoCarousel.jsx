@@ -40,7 +40,7 @@ const RoomsInfoCarousel = ({images=[],header, text, items=[], buttonText, button
           <div className='flex flex-col gap-[20px] items-center justify-center w-full text-[#233038]'>
             <div className=' flex-col hidden gap-[23px] text-center text-darkB w-full items-center justify-center'>
               <span className='text-[20px] tracking-[5px] leading-normal font-lora uppercase font-medium mb-[25px]'>{header[lang]}</span>
-              <text className='text-[14px] font-semibold leading-[22.5px] text-start text-stoneLight'>{text[lang]}</text>
+              <p className='text-[14px] font-semibold leading-[22.5px] text-start text-stoneLight'>{text[lang]}</p>
               <div className="grid grid-cols-3  items-center justify-center w-full">
                 <div className="flex items-center justify-center gap-2">
                 <img src={items[0].firebaseUrl} width={43} height={48} color="#3D515E"/>
@@ -69,7 +69,7 @@ const RoomsInfoCarousel = ({images=[],header, text, items=[], buttonText, button
               <span className='text-[20px] lg:text-[40px] leading-normal uppercase font-lora font-medium lg:mb-[0px]'>{header[lang]}</span>
               {/* <NewUnderline width={170} height={1}/> */}
               <Underline />
-              <text className='text-[12px] lg:text-[15px] font-normal leading-[22.5px] text-start font-monserrat text-black'>{text[lang]}</text>
+              <p className='text-[12px] lg:text-[15px] font-normal leading-[22.5px] text-start font-monserrat text-black'>{text[lang]}</p>
               <div className="grid grid-cols-3  items-center justify-center w-full">
                 <div className="flex items-center justify-center gap-2">
                 <img src={items[0].firebaseUrl} width={43} height={48} color="#3D515E" className="hidden lg:flex"/>
@@ -98,7 +98,7 @@ const RoomsInfoCarousel = ({images=[],header, text, items=[], buttonText, button
                 </div>
               </div>
               <button className="hidden lg:flex mt-3 bg-white text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-[#233038] border border-[#868686FF] py-[12px] px-[32px] hover:bg-[#868686FF] hover:text-white">
-                    <text >{buttonText[lang]}</text>
+                    <p >{buttonText[lang]}</p>
                 </button>
             </div>
             
@@ -116,7 +116,7 @@ const RoomsInfoCarousel = ({images=[],header, text, items=[], buttonText, button
             </div>
             <div className="flex md:hidden items-center text-darkBrown/50 justify-center mt-5 w-full">
             <button className="flex lg:hidden mt-2 bg-white text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-[#233038] border border-[#868686FF] py-[12px] px-[32px] hover:bg-[#868686FF] hover:text-white">
-                    <text >{buttonText[lang]}</text>
+                    <p >{buttonText[lang]}</p>
                 </button>
             </div>
           </div>
