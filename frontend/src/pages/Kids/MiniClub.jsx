@@ -25,7 +25,7 @@ const MiniClub = () => {
         <MiniClubSlider slides={slides} options={OPTIONS} />
         <MınıClubSection1 />
         <MiniClubSection2 />
-        <ContactSection/>
+        {/* <ContactSection/> */}
         <SpecialOffers/>
     </section>
   )

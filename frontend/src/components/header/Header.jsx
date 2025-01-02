@@ -36,10 +36,7 @@ const Header = () => {
   // Dışarı tıklama ile kapatma (basit versiyon)
   useEffect(() => {
     function handleClickOutside(event) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     }
@@ -390,67 +387,41 @@ const Header = () => {
                 </Link>
               </div>
             </div>
-
-            <div className="flex justify-center items-center gap-[9px] relative ">
-              <div className="items-center justify-center relative inline-block" ref={dropdownRef}>
-                {/* Dropdown button */}
-                <button
-                  onClick={handleToggle}
-                  className="flex flex-row items-center justify-center gap-1 px-4 py-2 bg-inherit text-white rounded uppercase"
-                >
-                  {language}
-                  <ArrowSvg className="flex" width={9} height={4} />
-                </button>
-
-                {/* Dropdown menu */}
-                {isOpen && (
-                  <ul className="absolute left-0 mt-1 bg-[#233038] shadow-lg">
-                    {options.map((option, index) => (
-                      <li
-                        key={index}
-                        onClick={() => handleChange(option)}
-                        className="uppercase px-4 py-2 hover:bg-white hover:text-[#233038] cursor-pointer"
-                      >
-                        {option}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                
-              </div>
-            </div>
+            
           </nav>
           <button className="hidden lgxl-custom:flex bg-white text-[#233038] font-bold w-[10%] h-[50px] text-center justify-center items-center">
             Book Now
           </button>
 
-          <div className="flex lgxl-custom:hidden items-center gap-[9px]">
-          <div className="items-center justify-center relative inline-block" ref={dropdownRef}>
-                {/* Dropdown button */}
-                <button
-                  onClick={handleToggle}
-                  className="flex flex-row items-center justify-center gap-1 px-4 py-2 bg-inherit text-white rounded uppercase"
-                >
-                  {language}
-                  <ArrowSvg className="flex" width={9} height={4} />
-                </button>
+          <div className="flex  items-center gap-[9px]">
+            <div
+              className="items-center justify-center relative inline-block"
+              ref={dropdownRef}
+            >
+              {/* Dropdown button */}
+              <button
+                onClick={handleToggle}
+                className="flex flex-row items-center justify-center gap-1 px-4 py-2 bg-inherit text-white rounded uppercase"
+              >
+                {language}
+                <ArrowSvg className="flex" width={9} height={4} />
+              </button>
 
-                {/* Dropdown menu */}
-                {isOpen && (
-                  <ul className="absolute left-0 mt-1 bg-[#233038] shadow-lg">
-                    {options.map((option, index) => (
-                      <li
-                        key={index}
-                        onClick={() => handleChange(option)}
-                        className="uppercase text-white px-4 py-2 hover:bg-white hover:text-[#233038] cursor-pointer"
-                      >
-                        {option}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                
-              </div>
+              {/* Dropdown menu */}
+              {isOpen && (
+                <ul className="absolute left-0 mt-1 bg-[#233038] shadow-lg">
+                  {options.map((option, index) => (
+                    <li
+                      key={index}
+                      onClick={() => handleChange(option)}
+                      className="uppercase text-white px-4 py-2 hover:bg-white hover:text-[#233038] cursor-pointer"
+                    >
+                      {option}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         </div>
       </header>
