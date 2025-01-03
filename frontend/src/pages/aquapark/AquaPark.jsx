@@ -39,10 +39,10 @@ const AquaPark = () => {
             (comp) => comp.type === "AquaSection2"
           );
   
-          if (AquaSectionComponent) {
-            setAquaSection2Data(AquaSectionComponent.props);
+          if (AquaSectionComponent2) {
+            setAquaSection2Data(AquaSectionComponent2.props);
           } else {
-            console.warn("AquaSectionComponent data not found");
+            console.warn("AquaSectionComponent2 data not found");
           }
 
             // Contact verilerini çek
@@ -69,8 +69,8 @@ const AquaPark = () => {
 
   return (
     <section>
-      <AquaParkSection1/>
-      <AquaParkSection2/>
+      <AquaParkSection1 {...aquaSectionData} lang={lang}/>
+      <AquaParkSection2 {...aquaSection2Data} lang={lang}/>
       {/* <ContactSection/> */}
       <SpecialOffers/>
     </section>

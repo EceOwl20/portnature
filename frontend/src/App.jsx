@@ -267,7 +267,7 @@ const App = () => {
 
             <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
             <Route path="/aquapark" element={<AquaPark />}/>
-            <Route path='/minialacarte' element={<MiniAlaCarte/>}/>
+            {/* <Route path='/minialacarte' element={<MiniAlaCarte/>}/> */}
             <Route path='/miniclub' element={<MiniClub/>}/>
             <Route path='/beach' element={<Beach/>}/>
             <Route path="/offers" element={<Offers/>}/>

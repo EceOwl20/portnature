@@ -3,12 +3,12 @@ import RestaurantMainSection2 from './components/RestaurantMainSection2'
 import ContactSection from '../../components/homepage/ContactSection'
 import OtherRestaurants from './components/OtherRestaurants'
 
-const MiniAlaCarte = ({page}) => {
+const MiniAlaCarte = () => {
   return (
     <section>
         <RestaurantMainSection2/>
         {/* <ContactSection/> */}
-        <OtherRestaurants/>
+        {/* <OtherRestaurants/> */}
     </section>
   )
 }

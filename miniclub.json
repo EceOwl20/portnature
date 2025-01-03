@@ -1,0 +1,341 @@
+{
+    "pageName": "miniclub",
+    "components": [
+      {
+        "type": "MiniClubSlider",
+        "props": {
+         "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": {
+                "en": "Port Nature Hotel",
+                "tr": "Port Nature Otel",
+                "de": "Port Nature Hotel",
+                "ru": "Порт Натуре Отель"
+              },
+              "width": 986,
+              "height": 515
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 986,
+              "height": 515
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 986,
+              "height": 515
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "SPIELE",
+                "ru": "Вид на пляж"
+              },
+              "width": 986,
+              "height": 515
+            }
+          ],
+  
+           "items": [
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+          "text": {
+            "en": "GAMES",
+            "tr": "OYUNLAR",
+            "de": "4 Adult + 1",
+            "ru": "Игры"
+          },
+          "largeWidth": 30.12,
+          "largeHeight": 47.63,
+          "smallWidth": 24,
+          "smallHeight": 38
+        },
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421485887AquaparkIcon.png?alt=media&token=303e0e3b-5a25-42ec-9cc7-13a7ff15c25e",
+          "text": {
+            "en": "PAINTING",
+            "tr": "RESIM",
+            "de": "MALEN",
+            "ru": "Рисования"
+          },
+          "largeWidth": 44,
+          "largeHeight": 48,
+          "smallWidth": 35,
+          "smallHeight": 39
+        },
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421460852concertIcon.png?alt=media&token=d8f28480-a983-43d6-93e7-d1af0137af4e",
+          "text": {
+            "en": "SPORTS ACTIVITIES",
+            "tr": "SPOR AKTIVITELERI",
+            "de": "SPORTLICHE AKTIVITÄTEN",
+            "ru": "Спортивные мероприятия"
+          },
+          "largeWidth": 33,
+          "largeHeight": 48,
+          "smallWidth": 26,
+          "smallHeight": 39
+        },
+        {
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421402102surfboardIcon.png?alt=media&token=f9299a8a-8d7a-4a3a-8ebf-d9b683267d18",
+          "text": {
+            "en": "COOKING",
+            "tr": "AŞÇILIK",
+            "de": "KOCHEN",
+            "ru": "Кулинария"
+          },
+          "largeWidth": 34,
+          "largeHeight": 48,
+          "smallWidth": 27,
+          "smallHeight": 39
+        }
+      ],
+  
+          "header":{
+              "en":"MINI CLUB",
+              "tr":"MINI CLUB",
+              "de":"MINI CLUB",
+              "ru":"MINI CLUB"
+          },
+           "text":{
+              "en":"Welcome to our luxurious paradise! Step onto the pristine private sandy beach, where the sun-kissed experience becomes a thrilling adventure. Get comfortable on our high-quality sunbeds, soaking up the golden rays and letting all worries drift away. For the ultimate VIP treatment, pre-book a pavilion and immerse yourself in premium service, savoring every moment of your sun-drenched escape. ",
+              "tr":"Heyecan verici hazine avlarının, çeşitli sporların, mutfak maceralarının ve ilham verici resim seanslarının miniklerinizi beklediği olağanüstü Çocuk Kulübümüze adım atın! Heyecan, eğlence ve öğrenme dolu unutulmaz bir tatil deneyimini garanti ediyoruz. Yetenekli eğitmenlerimiz onlara kendilerini keşfetme yolculuğunda rehberlik edecek ve büyülü temalı partiler mucizeyi canlı tutacak. Yaratıcılıklarını ortaya çıkarın ve ömür boyu sürecek değerli anılar yaratmalarını izleyin. Çocuklarınızın daha fazlasını istemesini sağlayacak adrenalin dolu bir kaçış için şimdi bize katılın!",
+              "de":"Treten Sie ein in unseren außergewöhnlichen Kids Club, in dem aufregende Schatzsuchen, sportliche Aktivitäten, kulinarische Abenteuer und inspirierende Malsessions auf Ihre Kleinen warten! Wir garantieren ein unvergessliches Urlaubserlebnis voller Spannung, Spaß und Lernen. Unsere talentierten Lehrer werden sie auf eine Reise der Selbstentdeckung führen, und zauberhafte Themenpartys halten das Wunder am Leben. Entfesseln Sie ihre Kreativität und beobachten Sie, wie sie Erinnerungen schaffen, die sie ein Leben lang begleiten werden. Kommen Sie jetzt zu uns und erleben Sie eine adrenalingeladene Eskapade, die Ihre Kinder nach mehr verlangen lässt!",
+              "ru":"Загляните в наш необычный детский клуб, где ваших малышей ждут увлекательные поиски сокровищ, разнообразные виды спорта, кулинарные приключения и вдохновляющие занятия живописью! Мы гарантируем незабываемые впечатления от отдыха, полные азарта, веселья и познания. Наши талантливые преподаватели проведут их по пути самопознания, а волшебные тематические вечеринки не дадут забыть о чудесах. Раскройте их творческий потенциал и наблюдайте за тем, как они создают драгоценные воспоминания, которые останутся на всю жизнь. Присоединяйтесь к нам прямо сейчас, чтобы отправиться в путешествие, наполненное адреналином, и чтобы ваши дети захотели еще больше!"
+          }
+          
+        }
+      },
+  
+      {
+        "type": "MiniClubSection2",
+        "props": {
+            "clubItems": [
+      {
+            "header":{
+            "en": "A’LA CARTE",
+            "tr": "A’LA CARTE",
+            "de": "A’LA CARTE",
+            "ru": "A’LA CARTE"
+          },
+        "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+        "width":"",
+        "height":""
+        },
+        "text": {
+          "en": "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+          "tr": "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+          "de": "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+          "ru":"Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food."
+        }
+       
+      },
+      {
+            "header":{
+            "en": "A’LA CARTE",
+            "tr": "A’LA CARTE",
+            "de": "A’LA CARTE",
+            "ru": "A’LA CARTE"
+          },
+        "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+        "width":"",
+        "height":""
+        },
+        "text": {
+          "en": "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+          "tr": "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+          "de": "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+          "ru":"Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food."
+        }
+       
+      },
+
+      {
+            "header":{
+            "en": "A’LA CARTE",
+            "tr": "A’LA CARTE",
+            "de": "A’LA CARTE",
+            "ru": "A’LA CARTE"
+          },
+        "image":{
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+        "width":"",
+        "height":""
+        },
+        "text": {
+          "en": "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+          "tr": "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+          "de": "Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food.",
+          "ru":"Welcoming atmosphere with a cozy our A'la Cartes are the perfect spot to catch up with friends and delicious food."
+        }
+       
+      }
+       
+      
+    ]
+        }
+      },
+  
+       {
+         "type": "OtherOptions",
+        "props": {
+            "header":{
+              "en":"Other restaurants",
+              "tr":"Other restaurants",
+              "de":"Other restaurants",
+              "ru":"Other restaurants"
+          },
+           "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805053933alldaydinning.png?alt=media&token=95850017-8cf6-4d08-b794-db614eece8f5",
+              "altText": {
+                "en": "Port Nature Hotel",
+                "tr": "Port Nature Otel",
+                "de": "Port Nature Hotel",
+                "ru": "Порт Натуре Отель"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805092550farEast.png?alt=media&token=ef502c0b-95fb-42a1-8a80-b526c6e8e3bb",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805117139french.png?alt=media&token=967a19fb-5420-4739-83f6-10a2ccd60768",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805175120seaside.png?alt=media&token=047b25c2-9f48-4f02-8c5c-8557223e4499",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805143142miniclubalacarte.png?alt=media&token=2d8e5eaf-732c-4f9f-9e3d-685f03c7347f",
+              "altText": {
+                "en": "Beach View",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+              },
+              "width": 1920,
+              "height": 1080
+            }
+          ],
+           "headers": [
+            {
+               "en": "ALL DAY DINNING",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+            },
+            {
+               "en": "FAR EAST RESTAURANT",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+            },
+            {
+               "en": "FRENCH RESTAURANT",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+            },
+            {
+               "en": "SEA SIDE RESTAURANT",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+            },
+            {
+               "en": "MINI CLUB",
+                "tr": "Plaj Manzarası",
+                "de": "Strandblick",
+                "ru": "Вид на пляж"
+            }
+          ],
+  
+          "links": [
+            {
+               "en": "/all-day-dining-alacarte-restaurant",
+                "tr": "/all-day-dining-alacarte-restoran",
+                "de": "/alacarte-restaurant-all-day-dining",
+                "ru": "/alacarte-restoran-all-day-dining"
+            },
+            {
+               "en": "/far-east-alacarte-restaurant",
+                "tr": "/uzak-dogu-alacarte-restoran",
+                "de": "/alacarte-restaurant-far-east",
+                "ru": "/alacarte-restoran-dalnevostochniy"
+            },
+            {
+               "en": "/french-alacarte-restaurant",
+                "tr": "/fransiz-alacarte-restoran",
+                "de": "/alacarte-restaurant-french",
+                "ru": "/alacarte-restoran-francuzskiy"
+            },
+            {
+               "en": "/seaside-alacarte-restaurant",
+                "tr": "/seaside-alacarte-restoran",
+                "de": "/alacarte-restaurant-seaside",
+                "ru": "alacarte-restoran-seaside"
+            },
+            {
+               "en": "/mini-club-alacarte-restaurant",
+                "tr": "/mini-club-alacarte-restoran",
+                "de": "/alacarte-restaurant-mini-club",
+                "ru": "/alacarte-restoran-mini-club"
+            }
+          ]
+        }
+      }
+    ]
+  }
