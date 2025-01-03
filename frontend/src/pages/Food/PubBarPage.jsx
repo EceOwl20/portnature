@@ -7,6 +7,7 @@ import OtherRestaurants from "../Kids/components/OtherRestaurants";
 const PubBarPage = ({page}) => {
   const [mainSectionData, setMainSection] = useState(null);
   const [otherRestaurantSectionData, setOtherRestaurantSectionData] = useState(null);
+  const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
   const [lang, setLang] = useState(Cookies.get("language") || "en");
@@ -69,7 +70,7 @@ const PubBarPage = ({page}) => {
   return (
     <div>
       <PubBarMainSection {...mainSectionData} lang={lang}/>
-      {/* <ContactSection/> */}
+      <ContactSection {...contactSectionData} lang={lang}/>
       <OtherRestaurants {...otherRestaurantSectionData} lang={lang}/>
     </div>
   )

@@ -260,6 +260,8 @@ const App = () => {
             <Route path="/mini-club-alacarte-restaurant" element={<MainRestaurant page="minialacarte"/>}/>
             <Route path="/seaside-alacarte-restaurant" element={<MainRestaurant page="seasidealacarte"/>}/>
             <Route path="/irish-pub" element={<PubBarPage page="irishpub"/>}/>
+            <Route path="/lobby-bar" element={<PubBarPage page="lobbybar"/>}/>
+            <Route path="/flamingo-bar" element={<PubBarPage page="flamingobar"/>}/>
             <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
             <Route path="/aquapark" element={<AquaPark />}/>
             <Route path='/minialacarte' element={<MiniAlaCarte/>}/>
