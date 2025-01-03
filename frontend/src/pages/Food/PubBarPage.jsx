@@ -52,7 +52,7 @@ const PubBarPage = ({page}) => {
             if (contactSectionComponent) {
               setContactSectionData(contactSectionComponent.props);
             } else {
-              console.warn("Contact data not found in homepage");
+              console.warn("Contact data not found");
             }
 
       } catch (err) {
@@ -64,7 +64,7 @@ const PubBarPage = ({page}) => {
   }, []);
 
   if (error) return <p>Error: {error}</p>;
-  if (!mainSectionData) return <p>Loading...</p>;
+  if (!mainSectionData && !contactSectionData && !otherRestaurantSectionData) return <p>Loading...</p>;
 
 
   return (

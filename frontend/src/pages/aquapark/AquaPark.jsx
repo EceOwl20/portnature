@@ -1,15 +1,77 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import AquaParkSection1 from './components/AquaParkSection1'
 import AquaParkSection2 from './components/AquaParkSection2'
 import ContactSection from '../../components/homepage/ContactSection'
 import SpecialOffers from '../../components/SpecialOffers'
+import Cookies from "js-cookie";
 
 const AquaPark = () => {
+  const [aquaSectionData, setAquaSectionData] = useState(null);
+  const [aquaSection2Data, setAquaSection2Data] = useState(null);
+  const [contactSectionData, setContactSectionData] = useState(null);
+  const [error, setError] = useState(null);
+
+  const [lang, setLang] = useState(Cookies.get("language") || "en");
+
+  useEffect(() => {
+    const fetchPageData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/page/aquapark`);
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch page data");
+        }
+
+          // AquaSectionComponent verilerini çek
+          const AquaSectionComponent = data.components.find(
+            (comp) => comp.type === "AquaSection"
+          );
+  
+          if (AquaSectionComponent) {
+            setAquaSectionData(AquaSectionComponent.props);
+          } else {
+            console.warn("AquaSectionComponent data not found");
+          }
+
+           // AquaSectionComponent2 verilerini çek
+           const AquaSectionComponent2 = data.components.find(
+            (comp) => comp.type === "AquaSection2"
+          );
+  
+          if (AquaSectionComponent) {
+            setAquaSection2Data(AquaSectionComponent.props);
+          } else {
+            console.warn("AquaSectionComponent data not found");
+          }
+
+            // Contact verilerini çek
+            const contactSectionComponent = data.components.find(
+              (comp) => comp.type === "ContactSection"
+            );
+    
+            if (contactSectionComponent) {
+              setContactSectionData(contactSectionComponent.props);
+            } else {
+              console.warn("Contact data not found ");
+            }
+
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchPageData();
+  }, []);
+
+  if (error) return <p>Error: {error}</p>;
+  if (!aquaSectionData && !aquaSection2Data && !contactSectionData) return <p>Loading...</p>;
+
   return (
     <section>
       <AquaParkSection1/>
       <AquaParkSection2/>
-      <ContactSection/>
+      {/* <ContactSection/> */}
       <SpecialOffers/>
     </section>
   )

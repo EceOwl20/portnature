@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import RestaurantMainSection from '../../components/food/RestaurantMainSection'
-import ContactSection from '../../components/homepage/ContactSection'
 import OtherRestaurants from '../Kids/components/OtherRestaurants'
 import Cookies from "js-cookie";
+import ContactSection from "../../components/homepage/ContactSection";
 
 const MainRestaurant = ({page}) => {
   const [mainSectionData, setMainSection] = useState(null);
@@ -52,7 +52,7 @@ const MainRestaurant = ({page}) => {
             if (contactSectionComponent) {
               setContactSectionData(contactSectionComponent.props);
             } else {
-              console.warn("Contact data not found in homepage");
+              console.warn("Contact data not found ");
             }
 
       } catch (err) {
@@ -64,12 +64,12 @@ const MainRestaurant = ({page}) => {
   }, []);
 
   if (error) return <p>Error: {error}</p>;
-  if (!mainSectionData) return <p>Loading...</p>;
+  if (!mainSectionData && !contactSectionData && !otherRestaurantSectionData) return <p>Loading...</p>;
 
   return (
     <div>
       <RestaurantMainSection {...mainSectionData} lang={lang}/>
-      {/* <ContactSection/> */}
+      <ContactSection {...contactSectionData} lang={lang}/>
       <OtherRestaurants {...otherRestaurantSectionData} lang={lang}/>
     </div>
   )

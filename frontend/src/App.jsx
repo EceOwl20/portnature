@@ -253,15 +253,18 @@ const App = () => {
             <Route path="/pastahouse" element={<CoffeePage  page="pastahouse"/>}/>
             <Route path="/bars-cafes" element={<CoffeeBarsMainPage />}/>
             <Route path="/alacarte-restaurant" element={<AlacartePage/>}/>
+            
             <Route path="/main-restaurant" element={<MainRestaurant page="mainrestaurant"/>}/>
             <Route path="/all-day-dining-alacarte-restaurant" element={<MainRestaurant page="allDayDining"/>}/>
             <Route path="/far-east-alacarte-restaurant" element={<MainRestaurant page="farEastAlacarte"/>}/>
             <Route path="/french-alacarte-restaurant" element={<MainRestaurant page="frenchalacarte"/>}/>
             <Route path="/mini-club-alacarte-restaurant" element={<MainRestaurant page="minialacarte"/>}/>
             <Route path="/seaside-alacarte-restaurant" element={<MainRestaurant page="seasidealacarte"/>}/>
+
             <Route path="/irish-pub" element={<PubBarPage page="irishpub"/>}/>
             <Route path="/lobby-bar" element={<PubBarPage page="lobbybar"/>}/>
             <Route path="/flamingo-bar" element={<PubBarPage page="flamingobar"/>}/>
+
             <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
             <Route path="/aquapark" element={<AquaPark />}/>
             <Route path='/minialacarte' element={<MiniAlaCarte/>}/>
