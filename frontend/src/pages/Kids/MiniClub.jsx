@@ -10,6 +10,7 @@ const MiniClub = () => {
   const [miniClubSliderData, setMiniClubSliderData] = useState(null);
   const [miniClubSection2Data, setMiniClubSection2Data] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
+  const [specialOffersData, setSpecialOffersData] = useState(null);
   const [error, setError] = useState(null);
 
   const [lang, setLang] = useState(Cookies.get("language") || "en");
@@ -57,6 +58,17 @@ const MiniClub = () => {
               console.warn("Contact data not found ");
             }
 
+            // specialOffers verilerini çek
+            const specialOffersComponents = data.components.find(
+              (comp) => comp.type === "SpecialOfferss"
+            );
+    
+            if (specialOffersComponents) {
+              setSpecialOffersData(specialOffersComponents.props);
+            } else {
+              console.warn("specialOffersComponents data not found ");
+            }
+
       } catch (err) {
         setError(err.message);
       }
@@ -66,16 +78,7 @@ const MiniClub = () => {
   }, []);
 
   if (error) return <p>Error: {error}</p>;
-  if (!miniClubSliderData && !contactSectionData && !miniClubSection2Data) return <p>Loading...</p>;
-
-  const slides = [
-    '../../../public/images/miniclub/miniclub1.png',
-    '../../../public/images/miniclub/miniclub2.png',
-    '../../../public/images/miniclub/miniclub1.png',
-    '../../../public/images/miniclub/miniclub2.png',
-    '../../../public/images/miniclub/miniclub1.png',
-  ];
-  
+  if (!miniClubSliderData && !contactSectionData && !miniClubSection2Data && !specialOffersData) return <p>Loading...</p>;
 
   const OPTIONS = { loop: true }
   const SLIDE_COUNT = 5
@@ -83,11 +86,11 @@ const MiniClub = () => {
 
   return (
     <section>
-        <MiniClubSlider slides={slides} options={OPTIONS} {...miniClubSliderData}/>
+        <MiniClubSlider options={OPTIONS} {...miniClubSliderData} lang={lang}/>
         {/* <MınıClubSection1 /> */}
-        <MiniClubSection2 />
-        {/* <ContactSection/> */}
-        <SpecialOffers/>
+        <MiniClubSection2 {...miniClubSection2Data} lang={lang}/>
+        <ContactSection {...contactSectionData} lang={lang}/>
+        <SpecialOffers {...specialOffersData} lang={lang}/>
     </section>
   )
 }

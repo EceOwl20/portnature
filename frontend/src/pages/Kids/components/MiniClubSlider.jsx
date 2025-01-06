@@ -8,8 +8,8 @@ const TWEEN_FACTOR_BASE = 0.12
 const numberWithinRange = (number, min, max) =>
   Math.min(Math.max(number, min), max)
 
-const MiniClubSlider = (props, {images=[],header, text, items=[]}) => {
-  const { slides, options } = props
+const MiniClubSlider = ({images=[],header, text, items=[], lang,
+  options}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const tweenFactor = useRef(0)
   const tweenNodes = useRef([])
@@ -98,15 +98,15 @@ const MiniClubSlider = (props, {images=[],header, text, items=[]}) => {
     <div className="max-w-[1920px] mx-auto mt-10">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex"> {/* Resimler arasındaki boşluk minimuma indirildi */}
-          {Array.isArray(slides) && slides.map((slideSrc, index) => (
+          {Array.isArray(images) && images.map((image, index) => (
             <div
               key={index}
               className="flex-[0_0_50%] min-w-0 transform-gpu" // Genişlik %50'ye çıkarıldı
             >
               <div className="slide-number shadow-inner border-gray-300 flex items-center justify-center h-[28rem] select-none overflow-hidden"> {/* Yükseklik artırıldı */}
                 <img 
-                  src={slideSrc} 
-                  alt={`Slide ${index + 1}`} 
+                  src={image.firebaseUrl} 
+                  alt={image.altText[lang]} 
                   className="w-full h-full object-cover" // Kenar kıvrımları kaldırıldı
                 />
               </div>
@@ -120,32 +120,26 @@ const MiniClubSlider = (props, {images=[],header, text, items=[]}) => {
 
 <section className="flex items-center justify-center max-w-[1920px] mx-auto mt-32"> {/* Tüm section tam ortalandı */}
       <div className="flex flex-col gap-16 items-center justify-center w-full"> {/* İçerikler dikeyde ortalandı */}
-        <div className="flex flex-row items-center justify-center gap-60 font-monserrat text-[14px] font-bold leading-normal">
-          <div className="flex flex-col items-center justify-center">
-            <img src="../../../../public/images/miniclub/Icons/console1.png" className="w-[39px] h-[39px] mb-4" alt="console" />
-            GAMES
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <img src="../../../../public/images/miniclub/Icons/paint1.png" className="w-[39px] h-[39px] mb-4" alt="paint" />
-            PAINTING
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <img src="../../../../public/images/miniclub/Icons/children1.png" className="w-[39px] h-[39px] mb-4" alt="sports activities" />
-            SPORTS ACTIVITIES
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <img src="../../../../public/images/miniclub/Icons/chef1.png" className="w-[39px] h-[39px] mb-4" alt="cooking" />
-            COOKING
-          </div>
+      <div className="flex flex-row items-center justify-center gap-60 font-monserrat text-[14px] font-bold leading-normal">
+      {items.map((item, index) => (
+        <div className="flex flex-col items-center justify-center" key={index}>
+          <img
+            src={item.firebaseUrl}
+            alt={item.text[lang]}
+            className="w-[39px] h-[39px] mb-4"
+          />
+          {item.text[lang]}
         </div>
+      ))}
+    </div>
         <div className="flex flex-row items-center justify-center gap-8 mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
-          <h1 className="font-lora text-[40px] leading-normal font-medium text-center">MINI CLUB</h1>
+          <h1 className="font-lora text-[40px] leading-normal font-medium text-center">{header[lang]}</h1>
           <div className="flex flex-col items-center justify-center">
             <LineVerticalSvg width={1} height={90} />
             <LineVertical2Svg width={1} height={90} />
           </div>
           <p className="font-monserrat text-[15px] font-normal leading-5 w-7/12 text-left">
-            Welcome to our luxurious paradise! Step onto the pristine private sandy beach, where the sun-kissed experience becomes a thrilling adventure. Get comfortable on our high-quality sunbeds, soaking up the golden rays and letting all worries drift away. For the ultimate VIP treatment, pre-book a pavilion and immerse yourself in premium service, savoring every moment of your sun-drenched escape.
+           {text[lang]}
           </p>
         </div>
       </div>

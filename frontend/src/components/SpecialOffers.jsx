@@ -1,23 +1,10 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
+import { Link } from 'react-router-dom'
 
-const imageData = [
-  { src: '/images/child1.png', title: 'MINI CLUB' },
-  { src: '/images/child3.png', title: 'GAME MACHINES' },
-  { src: '/images/jumpingtrack.png', title: 'JUMPING TRACK' },
-  { src: '/images/babysitting.png', title: 'BABAYSITTING' }
-]
 
-const repeatedImages = [
-  ...imageData,
-  ...imageData,
-  ...imageData,
-  ...imageData,
-  ...imageData
-]
-
-const SpecialOffers = () => {
+const SpecialOffers = ({header, headers=[],lang,images=[], links=[]}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: 'start' },
     [Autoplay({ delay: 3000 })]
@@ -39,28 +26,29 @@ const SpecialOffers = () => {
     <section className="my-24">
       <div className="flex mb-11 w-3/4 ml-auto justify-start">
         <h2 className="text-[28px] leading-10 italic font-lora font-normal text-black">
-          Special Offer
+         {header[lang]}
         </h2>
       </div>
       
       <div className="overflow-hidden relative w-5/6 ml-auto" ref={emblaRef}>
         <div className="flex gap-x-4">
-          {repeatedImages.map(({ src, title }, index) => (
-            <div 
+          {images.map((image, index) => (
+            <Link 
+              to={links[index][lang]}
               className="relative flex-[0_0_25%] flex justify-center items-start" 
               key={index}
               style={{ position: 'relative' }}
             >
               <div className="absolute border border-dotted border-[#CFCFCF] top-0 right-0 w-10/12 h-[450px] z-10"></div>
               <img
-                src={src}
-                alt={`Slide ${index + 1}`}
+                src={image.firebaseUrl}
+                alt={image.altText[lang]}
                 className="object-cover w-10/12 h-[450px] relative z-20 mt-10 mr-1"
               />
               <div className="absolute top-10 left-1/2 transform -translate-x-1/2  bg-opacity-70 text-white px-4 py-2 rounded z-30">
-                <p className="text-[25px] font-lora whitespace-nowrap font-medium text-start leading-normal">{title}</p>
+                <p className="text-[25px] font-lora whitespace-nowrap font-medium text-start leading-normal">{headers[index][lang]}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
