@@ -5,6 +5,7 @@ import OffersContact from './Components/OffersContact'
 import PlanYourTrip from './Components/PlanYourTrip'
 import LogoCarousel from './Components/LogoCarousel'
 import BookTransfer from './Components/BookTransfer'
+import ReviewCarousel from './Components/ReviewCarousel'
 
 const Offers = () => {
   return (
@@ -15,6 +16,7 @@ const Offers = () => {
         <PlanYourTrip/>
         <LogoCarousel/>
         <BookTransfer/>
+        <ReviewCarousel/>
     </section>
   )
 }
