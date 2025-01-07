@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MiniClubSection2 = () => {
+const MiniClubSection2 = ({clubItems, lang}) => {
   return (
     <section className="flex flex-col max-w-[1920px] mx-auto items-center justify-center">
       <div className="flex flex-col gap-16 w-full">
@@ -11,19 +11,19 @@ const MiniClubSection2 = () => {
         <div className="flex flex-row items-center justify-center max-w-[1920px] mx-auto gap-44">
           <div className="flex w-[700px] h-[500px] items-center justify-center"> {/* Resim genişliği ve yüksekliği artırıldı */}
             <img 
-              src="/images/miniclub/treasure-hunt.png" 
-              alt="Treasure Hunt" 
+              src={clubItems[0].image.firebaseUrl}
+              alt=""//{clubItems[0].image.text[lang]}
               className="w-full h-full object-cover" 
             />
           </div>
           <div className="flex flex-col text-center gap-2">
-            <h2 className="text-[20px] font-lora italic font-medium leading-10 text-start">TREASURE HUNT</h2>
+            <h2 className="text-[20px] font-lora italic font-medium leading-10 text-start">{clubItems[0].header[lang]}</h2>
             <div className="flex w-[50%] -ml-12 mb-8">
               <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
               <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
             </div>
             <p className="text-[15px] text-start leading-5 font-normal font-monserrat max-w-lg text-[#000]">
-              We have prepared an exciting treasure hunt game to awaken the adventurer within your child. This thrilling activity aims to provide an unforgettable experience by enhancing communication, problem-solving, and clue-finding skills!
+            {clubItems[0].text[lang]}
             </p>
           </div>
         </div>
@@ -32,19 +32,19 @@ const MiniClubSection2 = () => {
         <div className="flex flex-row-reverse items-center justify-center max-w-[1920px] mx-auto gap-44">
           <div className="flex w-[700px] h-[500px] items-center justify-center"> {/* Resim genişliği ve yüksekliği artırıldı */}
             <img 
-              src="/images/miniclub/port-olympiad.png" 
+              src={clubItems[1].image.firebaseUrl}
               alt="Port Olympiad" 
               className="w-full h-full object-cover" 
             />
           </div>
           <div className="flex flex-col text-start gap-2">
-            <h2 className="text-[20px] font-lora italic font-medium leading-10">PORT OLYMPIAD</h2>
+            <h2 className="text-[20px] font-lora italic font-medium leading-10">{clubItems[1].header[lang]}</h2>
             <div className="flex w-[50%] -ml-12 mb-8">
               <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
               <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
             </div>
             <p className="text-[15px] leading-5 font-normal font-monserrat max-w-lg">
-              With a mix of individual and team sports activities, our goal is to provide your child with a healthy and enjoyable experience. At Port Sports Games, we strive to entertain your children with fun-filled activities that promote physical well-being and foster a sense of teamwork.
+            {clubItems[1].text[lang]}
             </p>
           </div>
         </div>
@@ -53,19 +53,19 @@ const MiniClubSection2 = () => {
         <div className="flex flex-row items-center justify-center max-w-[1920px] mx-auto gap-44">
           <div className="flex w-[700px] h-[500px] items-center justify-center"> {/* Resim genişliği ve yüksekliği artırıldı */}
             <img 
-              src="/images/miniclub/kids-cheff.png" 
+              src={clubItems[2].image.firebaseUrl}
               alt="Kid Chef" 
               className="w-full h-full object-cover" 
             />
           </div>
           <div className="flex flex-col text-center gap-2">
-            <h2 className="text-[20px] font-lora italic font-medium leading-10 text-start">KID CHEF</h2>
+            <h2 className="text-[20px] font-lora italic font-medium leading-10 text-start">{clubItems[2].header[lang]}</h2>
             <div className="flex w-[50%] -ml-12 mb-8">
               <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
               <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
             </div>
             <p className="text-[15px] text-start leading-5 font-normal font-monserrat max-w-lg">
-              We aim to create fun and delicious experiences to help your children understand the concept of recipes, including gathering ingredients and cooking meals. Our goal is to make the learning process enjoyable as they embark on their culinary adventures, exploring the world of flavors and culinary creativity.
+            {clubItems[2].text[lang]}
             </p>
           </div>
         </div>
@@ -74,19 +74,19 @@ const MiniClubSection2 = () => {
         <div className="flex flex-row-reverse items-center justify-center max-w-[1920px] mx-auto gap-44">
           <div className="flex w-[700px] h-[500px] items-center justify-center"> {/* Resim genişliği ve yüksekliği artırıldı */}
             <img 
-              src="/images/miniclub/group-of-kindergarten.jpg" 
+              src={clubItems[3].image.firebaseUrl}
               alt="Art Class" 
               className="w-full h-full object-cover" 
             />
           </div>
           <div className="flex flex-col text-start gap-2">
-            <h2 className="text-[20px] font-lora italic font-medium leading-10">ART CLASS</h2>
+            <h2 className="text-[20px] font-lora italic font-medium leading-10">{clubItems[3].header[lang]}</h2>
             <div className="flex w-[50%] -ml-12 mb-8">
               <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
               <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
             </div>
             <p className="text-[15px] leading-5 font-normal font-monserrat max-w-lg">
-              We offer engaging painting lessons to nurture the artists within our young guests. These lessons are designed to inspire creativity and provide a supportive environment for children to explore their artistic talents. Through our painting classes, we aim to cultivate a love for art and self-expression, making it an unforgettable and enriching experience for every child.
+            {clubItems[3].text[lang]}
             </p>
           </div>
         </div>

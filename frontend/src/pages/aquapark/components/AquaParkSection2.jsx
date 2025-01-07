@@ -1,11 +1,11 @@
 import React from 'react'
 import AquaparkSvg from '../../../svg/AquaparkSvg'
 
-const AquaParkSection2 = () => {
+const AquaParkSection2 = ({images=[],header,text,span, videoLink, lang}) => {
   return (
     <div className='flex flex-col max-w-[1880px] max-h-[4745px] mx-auto items-center gap-28'>
         <h3 className='flex font-lora text-[40px] font-normal'>
-          Gallery
+          {header[lang]}
         </h3>
         
         {/* Sonsuz akış efekti */}
@@ -16,8 +16,8 @@ const AquaParkSection2 = () => {
                 <div className='relative flex-none'>
                   <div className="absolute border border-dotted bottom-10 left-10 w-full h-full"></div>
                   <img 
-                    src='../../../public/images/aquapark/AquaPark1.png' 
-                    alt='Gallery Image 1' 
+                    src={images[0].firebaseUrl}
+                    alt={images[0].altText[lang]} 
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
                   />
                 </div>
@@ -25,8 +25,8 @@ const AquaParkSection2 = () => {
                 <div className='relative flex-none'>
                   <div className="absolute border border-dotted bottom-10 left-10 w-full h-full"></div>
                   <img 
-                    src='../../../public/images/aquapark/AquaPark2.png' 
-                    alt='Gallery Image 2' 
+                    src={images[1].firebaseUrl}
+                    alt={images[1].altText[lang]}
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
                   />
                 </div>
@@ -34,8 +34,8 @@ const AquaParkSection2 = () => {
                 <div className='relative flex-none'>
                   <div className="absolute border border-dotted bottom-10 left-10 w-full h-full"></div>
                   <img 
-                    src='../../../public/images/aquapark/AquaPark3.png' 
-                    alt='Gallery Image 3' 
+                    src={images[2].firebaseUrl}
+                    alt={images[2].altText[lang]} 
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
                   />
                 </div>
@@ -43,8 +43,8 @@ const AquaParkSection2 = () => {
                 <div className='relative flex-none'>
                   <div className="absolute border border-dotted bottom-10 left-10 w-full h-full"></div>
                   <img 
-                    src='../../../public/images/aquapark/AquaPark4.png' 
-                    alt='Gallery Image 4' 
+                    src={images[3].firebaseUrl}
+                    alt={images[3].altText[lang]} 
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
                   />
                 </div>
@@ -56,7 +56,7 @@ const AquaParkSection2 = () => {
         <div className='flex flex-row items-center gap-10 justify-center'>
             <AquaparkSvg width={45} height={49} />
             <p className='flex font-monserrat text-black font-bold text-[20px] leading-[30px] w-full'>
-                One Aquapark with 6 slides for adults and <br/> a Children's Aquapark park with 12 slides for children.
+                {text[lang]}
             </p>
         </div>
 
@@ -65,14 +65,14 @@ const AquaParkSection2 = () => {
             <iframe 
               width="800" 
               height="450" 
-              src="https://www.youtube.com/embed/QAFojciW2kk" 
+              src={videoLink}
               title="YouTube video player" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowFullScreen
             ></iframe>
             <p className='flex font-monserrat text-[20px] font-bold leading-7 items-center justify-center'>
-                Because you deserve it!
+            {span[lang]}
             </p>
           </div>
         </div>
