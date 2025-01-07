@@ -3,6 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .corner-extended {
+    /* Üst iki köşeye eliptik radius uyguluyoruz */
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+  }
+}
 
 /* Takvim genel görünümü */
 .custom-calendar {
@@ -92,4 +99,5 @@
   background: #A100FF;
   filter: blur(325px);
 }
+
 

@@ -56,7 +56,16 @@ export default {
     },
   },
   plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".clip-slope-ltr": {
+          clipPath: "polygon(0% 10px, 100% 35px, 100% 100%, 0% 100%)",
+        },
+      };
+      addUtilities(newUtilities);
+    },
     require('tailwindcss-textshadow'),
   ],
 }
+
 

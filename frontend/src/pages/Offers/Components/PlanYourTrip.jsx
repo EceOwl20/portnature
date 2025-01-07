@@ -6,6 +6,9 @@ import tripadvisorLogo from "../../../../public/images/Tripadvisor-Logo.png";
 import bookingcomLogo from "../../../../public/images/Booking.com_logo.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { BsChevronDown } from "react-icons/bs";
+import BigPlaneSvg from "../../../svg/offers/BigPlaneSvg"
+import RoomsCarousel from "./RoomsCarousel";
 
 const images = [
   tripadvisorLogo,
@@ -13,16 +16,22 @@ const images = [
   expediaLogo,
   tripadvisorLogo,
   bookingcomLogo,
-  expediaLogo,
+  expediaLogo
 ];
 
 const PlanYourTrip = () => {
-    const [selectRoom, setSelectRoom] = useState(null);
+  // ROOM STATE
+  const [selectRoom, setSelectRoom] = useState(null);
+  const [showRoomDropdown, setShowRoomDropdown] = useState(false);
+
+  // DATES, GUESTS, vb.
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
-  const [showGuests, setShowGuests] = useState(false); // Varsayılan olarak false
+  const [showGuests, setShowGuests] = useState(false);
+  const [showChild, setShowChild] = useState(false);
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
+
   const [guestInfo, setGuestInfo] = useState({});
 
   // Konuk bilgilerini her değişiklikte güncelle
@@ -36,26 +45,42 @@ const PlanYourTrip = () => {
     });
   }, [selectRoom, checkInDate, checkOutDate, adults, children]);
 
-  // Konuk bilgilerini konsola yazdır
+  // Konsola yaz
   useEffect(() => {
     console.log("Guest Information:", guestInfo);
   }, [guestInfo]);
 
-  const toggleGuestsDropdown = () => {
-    setShowGuests((prev) => !prev); // Sadece tıklamayla açılır veya kapanır
+  // ROOM DROPDOWN TOGGLE
+  const toggleRoomDropdown = () => {
+    setShowRoomDropdown((prev) => !prev);
   };
+
+  // Oda seçimi
+  const handleSelectRoom = (roomType) => {
+    setSelectRoom(roomType);
+    setShowRoomDropdown(false); // Seçim yapılınca dropdown kapansın
+  };
+
+  // Adult
+  const toggleGuestsDropdown = () => {
+    setShowGuests((prev) => !prev);
+  };
+
+    // Child
+    const toggleChildDropdown = () => {
+      setShowChild((prev) => !prev);
+    };
 
   const incrementAdults = () => setAdults(adults + 1);
   const decrementAdults = () => adults > 0 && setAdults(adults - 1);
-
   const incrementChildren = () => setChildren(children + 1);
   const decrementChildren = () => children > 0 && setChildren(children - 1);
 
+  // EMBLA
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: "center" },
+    { loop: true, align: "center",  slidesToScroll: 1,},
     [Autoplay({ delay: 3000 })]
   );
-
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
@@ -76,9 +101,10 @@ const PlanYourTrip = () => {
   }, [emblaApi]);
 
   return (
-    <div className="flex w-screen items-center justify-center min-h-screen">
-      <div className="flex flex-col lg:flex-row w-[90%]">
-        <div className="flex flex-col w-[90%] lg:w-1/2 xl:w-[40%] bg-[#243039] lg:h-[627px] text-white justify-center items-center text-center">
+    <div className="flex flex-col lg:flex-row w-screen items-center justify-center min-h-screen">
+      <div className="flex flex-col w-[45%] items-center justify-end text-center gap-[45px]">
+        {/* LEFT SIDE */}
+        <div className="flex flex-col w-[90%] lg:w-1/2 xl:w-[80%] bg-[#243039] pt-[84px] pb-[51px] lg:min-h-[627px] text-white justify-center items-center text-center">
           <h3 className="text-[35px] font-normal uppercase font-lora leading-[50px]">
             PLAN YOUR TRIP
           </h3>
@@ -86,12 +112,10 @@ const PlanYourTrip = () => {
             With our hotel
           </span>
 
-          <div className="flex w-full bg-white items-center justify-center py-[23px]">
-            <div
-              className="overflow-hidden relative flex w-full "
-              ref={emblaRef}
-            >
-              <div className="flex grid-flow-col h-full w-full items-center justify-center">
+          {/* Embla carousel logos */}
+          <div className="flex w-full bg-white items-center justify-center py-[23px] mt-[28px] ">
+            <div className="overflow-hidden relative flex w-full " ref={emblaRef}>
+              <div className="flex grid-flow-col items-center justify-center">
                 {images.map((image, index) => (
                   <div
                     className="flex-[0_0_auto] items-center justify-center w-[calc(33%-1.2rem)] mx-[0.6rem] relative"
@@ -103,6 +127,7 @@ const PlanYourTrip = () => {
                       width={118}
                       height={34}
                       alt=""
+                      className="cursor-pointer"
                     />
                   </div>
                 ))}
@@ -110,146 +135,167 @@ const PlanYourTrip = () => {
             </div>
           </div>
 
-          <div className="flex w-[90%] flex-col items-center justify-center gap-[20px] mt-[93px]">
-          <div className="flex w-full gap-[2%]">
-          <div className="relative flex items-center justify-center w-[49%] lg:w-auto">
-          <DatePicker
-             selected={checkInDate}
-             onChange={(date) => setCheckInDate(date)}
-             placeholderText="Check In"
-              className="lg:px-[3vw] py-[1.2vh] min-h-[30px] w-[45vw] lg:w-auto flex text-[#CFCFCF] focus:outline-none border-[0.7px] border-[#CFCFCF] items-center justify-center text-center placeholder:text-[#CFCFCF] bg-transparent"
-               popperPlacement="bottom-start"
-              calendarClassName="custom-calendar"
-              dayClassName={(date) =>
-                "custom-day hover:bg-blue-100 focus:outline-none"
-              }
-             
-            
-          />
-        </div>
+          {/* BOOKING FORM */}
+          <div className="flex w-[90%] flex-col items-center justify-center gap-[20px] mt-[93px] z-10">
 
-        {/* Check-Out Input */}
-        <div className="relative flex items-center justify-center w-[49%] lg:w-auto ">
-          <DatePicker
-            selected={checkOutDate}
-            onChange={(date) => setCheckOutDate(date)}
-            placeholderText="Check Out"
-             className="px-[3vw] py-[1.2vh] w-[45vw] lg:w-auto  flex text-[#CFCFCF] focus:outline-none border-[0.7px] border-[#CFCFCF] items-center justify-center placeholder:text-[#CFCFCF] bg-transparent text-center"
-            popperPlacement="bottom-start"
-             calendarClassName="custom-calendar"
-             dayClassName={(date) =>
-              "custom-day hover:bg-blue-100 focus:outline-none"
-            }
-          />
-        </div>
-          </div>
-
-        <div className="flex w-full gap-[2%]">
-          {/* Guests Dropdown */}
-        <div className="relative w-[49%]">
-          <button
-            onClick={toggleGuestsDropdown}
-            className="px-[3vw] py-[1.2vh] w-full text-[#CFCFCF] focus:outline-none relative border-[0.7px] border-[#CFCFCF] text-center items-center justify-center "
-          >
-            Adult(s)
-          </button>
-          {showGuests && (
-            <div className="absolute top-full left-0 mt-2 bg-transparent border border-gray-300 text-[#CFCFCF] text-[14px] font-semibold rounded-lg shadow-lg w-full min-w-[180px] p-3 xl:p-4 ">
-              <div className="flex justify-between items-center mb-3">
-                <span className=" text-[#CFCFCF]">Adult(s)</span>
-                <div className="flex items-center gap-1 lg:gap-2">
-                  <button
-                    onClick={decrementAdults}
-                    className="w-5 h-5 xl:w-6 xl:h-6 border border-[#CFCFCF] rounded-full flex items-center justify-center  font-medium"
-                  >
-                    -
-                  </button>
-                  <span>{adults}</span>
-                  <button
-                    onClick={incrementAdults}
-                    className="w-5 h-5 xl:w-6 xl:h-6 border border-gray-400 rounded-full flex items-center justify-center font-medium"
-                  >
-                    +
-                  </button>
+            {/* SELECT ROOM */}
+            <div className="relative w-full">
+              <button
+                onClick={toggleRoomDropdown}
+                className="flex px-[3vw] py-[1.2vh] w-full text-[#CFCFCF] focus:outline-none relative border-[0.7px] border-[#CFCFCF] text-start items-center justify-between "
+              >
+                {selectRoom || "Select Room"}
+                <BsChevronDown className="flex" width={22.742} height={23.281}/>
+              </button>
+              {showRoomDropdown && (
+                <div className="absolute top-full z-50 left-0 mt-2 bg-transparent border border-gray-300 text-customGray bg-white text-[14px] font-semibold rounded-lg shadow-lg w-full min-w-[180px] p-3 xl:p-4 ">
+                  <div className="flex flex-col gap-2">
+                    <button
+                      onClick={() => handleSelectRoom("Family")}
+                      className="text-left hover:bg-gray-200 px-2 py-1"
+                    >
+                      Family
+                    </button>
+                    <button
+                      onClick={() => handleSelectRoom("King Suits")}
+                      className="text-left hover:bg-gray-200 px-2 py-1"
+                    >
+                      King Suits
+                    </button>
+                    <button
+                      onClick={() => handleSelectRoom("Standard")}
+                      className="text-left hover:bg-gray-200 px-2 py-1"
+                    >
+                      Standard
+                    </button>
+                  </div>
                 </div>
-              </div>
-              {/* <div className="flex justify-between items-center">
-                <span className="text-gray-700">Child(ren)</span>
-                <div className="flex items-center gap-1 lg:gap-2">
-                  <button
-                    onClick={decrementChildren}
-                    className="w-5 h-5 xl:w-6 xl:h-6 border border-gray-400 rounded-full flex items-center justify-center  font-medium"
-                  >
-                    -
-                  </button>
-                  <span>{children}</span>
-                  <button
-                    onClick={incrementChildren}
-                    className="w-5 h-5 xl:w-6 xl:h-6 border border-gray-400 rounded-full flex items-center justify-center font-medium"
-                  >
-                    +
-                  </button>
-                </div>
-              </div> */}
+              )}
             </div>
-          )}
-        </div>
 
-        {/* child */}
-        <div className="relative w-[49%]">
-          <button
-            onClick={toggleGuestsDropdown}
-            className="px-[3vw] py-[1.2vh] w-full text-[#CFCFCF] focus:outline-none relative border-[0.7px] border-[#CFCFCF] text-center items-center justify-center "
-          >
-            Child(ren)
-          </button>
-          {showGuests && (
-            <div className="absolute top-full left-0 mt-2 bg-transparent border border-gray-300 text-[#CFCFCF] text-[14px] font-semibold rounded-lg shadow-lg w-full min-w-[180px] p-3 xl:p-4 ">
-              {/* <div className="flex justify-between items-center mb-3">
-                <span className=" ">Adult(s)</span>
-                <div className="flex items-center gap-1 lg:gap-2">
-                  <button
-                    onClick={decrementAdults}
-                    className="w-5 h-5 xl:w-6 xl:h-6 border border-gray-400 rounded-full flex items-center justify-center  font-medium"
-                  >
-                    -
-                  </button>
-                  <span>{adults}</span>
-                  <button
-                    onClick={incrementAdults}
-                    className="w-5 h-5 xl:w-6 xl:h-6 border border-gray-400 rounded-full flex items-center justify-center font-medium"
-                  >
-                    +
-                  </button>
-                </div>
-              </div> */}
-              <div className="flex justify-between items-center">
-                <span className="text-[#CFCFCF]">Child(ren)</span>
-                <div className="flex items-center gap-1 lg:gap-2">
-                  <button
-                    onClick={decrementChildren}
-                    className="w-5 h-5 xl:w-6 xl:h-6 border border-gray-400 rounded-full flex items-center justify-center  font-medium"
-                  >
-                    -
-                  </button>
-                  <span>{children}</span>
-                  <button
-                    onClick={incrementChildren}
-                    className="w-5 h-5 xl:w-6 xl:h-6 border border-gray-400 rounded-full flex items-center justify-center font-medium"
-                  >
-                    +
-                  </button>
-                </div>
+            {/* CHECK-IN / CHECK-OUT */}
+            <div className="flex w-full gap-[2%]">
+              {/* Check-In Input */}
+              <div className="relative w-[49%] border-[0.7px] border-[#CFCFCF] items-center justify-center">
+                <DatePicker
+                  selected={checkInDate}
+                  onChange={(date) => setCheckInDate(date)}
+                  placeholderText="Check In"
+                  className="w-full py-[1.2vh] min-h-[30px] flex text-[#CFCFCF] focus:outline-none items-center justify-center text-center placeholder:text-[#CFCFCF] bg-transparent"
+                  popperPlacement="bottom-start"
+                  calendarClassName="custom-calendar"
+                  dayClassName={(date) =>
+                    "custom-day hover:bg-blue-100 focus:outline-none"
+                  }
+                />
+              </div>
+
+              {/* Check-Out Input */}
+              <div className="relative flex  w-[49%] border-[0.7px] border-[#CFCFCF] items-center justify-center">
+                <DatePicker
+                  selected={checkOutDate}
+                  onChange={(date) => setCheckOutDate(date)}
+                  placeholderText="Check Out"
+                  className="w-full py-[1.2vh] flex text-[#CFCFCF] focus:outline-none items-center justify-center placeholder:text-[#CFCFCF] bg-transparent text-center"
+                  popperPlacement="bottom-start"
+                  calendarClassName="custom-calendar"
+                  dayClassName={(date) =>
+                    "custom-day hover:bg-blue-100 focus:outline-none"
+                  }
+                />
               </div>
             </div>
-          )}
+
+            {/* ADULT(S) / CHILD(REN) */}
+            <div className="flex w-full gap-[2%]">
+              {/* Adults */}
+              <div className="relative w-[49%]">
+                <button
+                  onClick={toggleGuestsDropdown}
+                  className="px-[3vw] py-[1.2vh] w-full text-[#CFCFCF] focus:outline-none relative border-[0.7px] border-[#CFCFCF] text-center items-center justify-center "
+                >
+                  Adult(s)
+                </button>
+                {showGuests && (
+                  <div className="absolute top-full left-0 mt-2 bg-transparent border border-gray-300 text-customGray bg-white text-[14px] font-semibold rounded-lg shadow-lg w-full min-w-[180px] p-3 xl:p-4 ">
+                    <div className="flex justify-between items-center mb-3 ">
+                      <span className="text-customGray">Adult(s)</span>
+                      <div className="flex items-center gap-1 lg:gap-2">
+                        <button
+                          onClick={decrementAdults}
+                          className="w-5 h-5 xl:w-6 xl:h-6 border border-[#CFCFCF] rounded-full flex items-center justify-center font-medium"
+                        >
+                          -
+                        </button>
+                        <span>{adults}</span>
+                        <button
+                          onClick={incrementAdults}
+                          className="w-5 h-5 xl:w-6 xl:h-6 border border-gray-400 rounded-full flex items-center justify-center font-medium"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Children */}
+              <div className="relative w-[49%]">
+                <button
+                  onClick={toggleChildDropdown}
+                  className="px-[3vw] py-[1.2vh] w-full text-[#CFCFCF] focus:outline-none relative border-[0.7px] border-[#CFCFCF] text-center items-center justify-center "
+                >
+                  Child(ren)
+                </button>
+                {showChild && (
+                  <div className="absolute top-full left-0 mt-2 bg-transparent border border-gray-300 text-customGray bg-white text-[14px] font-semibold rounded-lg shadow-lg w-full min-w-[180px] p-3 xl:p-4 ">
+                    <div className="flex justify-between items-center">
+                      <span className="text-customGray">Child(ren)</span>
+                      <div className="flex items-center gap-1 lg:gap-2">
+                        <button
+                          onClick={decrementChildren}
+                          className="w-5 h-5 xl:w-6 xl:h-6 border border-gray-400 rounded-full flex items-center justify-center font-medium"
+                        >
+                          -
+                        </button>
+                        <span>{children}</span>
+                        <button
+                          onClick={incrementChildren}
+                          className="w-5 h-5 xl:w-6 xl:h-6 border border-gray-400 rounded-full flex items-center justify-center font-medium"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Book Now */}
+            <button
+              onClick={() => console.log("Final Guest Information:", guestInfo)}
+              className="border-[0.7px] border-[#00000033]  px-[3vw] py-[1.2vh] font-bold text-customGray bg-[#ffffff] lg:max-w-[304px] max-h-[60px] whitespace-nowrap"
+            >
+              Book Now
+            </button>
+          </div>
         </div>
+        <span className="text-[20px] font-monserrat text-[#AAA] leading-[30px] font-bold">...and book ticket right away</span>
+        {/* RIGHT SIDE (if any) */}
+      </div>
+
+      <div className="flex flex-col w-[55%] h-full items-center justify-center">
+        <div className="flex ">
+          <RoomsCarousel/>
         </div>
 
-        <button onClick={() => console.log("Final Guest Information:", guestInfo)} className='border-[0.7px] border-[#00000033]  px-[3vw] py-[1.2vh] font-bold text-customGray bg-[#ffffff] lg:max-w-[304px] max-h-[60px] whitespace-nowrap'>Book Now</button>
-          </div>
+        <div className="flex w-full items-center justify-center">
+          <BigPlaneSvg className="flex" width={841} height={238}/>
         </div>
       </div>
+
     </div>
   );
 };
