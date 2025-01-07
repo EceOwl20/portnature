@@ -7,6 +7,8 @@ import bookingcomLogo from "../../../../public/images/Booking.com_logo.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { BsChevronDown } from "react-icons/bs";
+import BigPlaneSvg from "../../../svg/offers/BigPlaneSvg"
+import RoomsCarousel from "./RoomsCarousel";
 
 const images = [
   tripadvisorLogo,
@@ -14,7 +16,7 @@ const images = [
   expediaLogo,
   tripadvisorLogo,
   bookingcomLogo,
-  expediaLogo,
+  expediaLogo
 ];
 
 const PlanYourTrip = () => {
@@ -26,6 +28,7 @@ const PlanYourTrip = () => {
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [showGuests, setShowGuests] = useState(false);
+  const [showChild, setShowChild] = useState(false);
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
 
@@ -58,10 +61,16 @@ const PlanYourTrip = () => {
     setShowRoomDropdown(false); // Seçim yapılınca dropdown kapansın
   };
 
-  // GUESTS
+  // Adult
   const toggleGuestsDropdown = () => {
     setShowGuests((prev) => !prev);
   };
+
+    // Child
+    const toggleChildDropdown = () => {
+      setShowChild((prev) => !prev);
+    };
+
   const incrementAdults = () => setAdults(adults + 1);
   const decrementAdults = () => adults > 0 && setAdults(adults - 1);
   const incrementChildren = () => setChildren(children + 1);
@@ -69,7 +78,7 @@ const PlanYourTrip = () => {
 
   // EMBLA
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: "center" },
+    { loop: true, align: "center",  slidesToScroll: 1,},
     [Autoplay({ delay: 3000 })]
   );
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -92,10 +101,10 @@ const PlanYourTrip = () => {
   }, [emblaApi]);
 
   return (
-    <div className="flex w-screen items-center justify-center min-h-screen">
-      <div className="flex flex-col lg:flex-row w-[90%]">
+    <div className="flex flex-col lg:flex-row w-screen items-center justify-center min-h-screen">
+      <div className="flex flex-col w-[45%] items-center justify-end text-center gap-[45px]">
         {/* LEFT SIDE */}
-        <div className="flex flex-col w-[90%] lg:w-1/2 xl:w-[40%] bg-[#243039] lg:h-[627px] text-white justify-center items-center text-center">
+        <div className="flex flex-col w-[90%] lg:w-1/2 xl:w-[80%] bg-[#243039] pt-[84px] pb-[51px] lg:min-h-[627px] text-white justify-center items-center text-center">
           <h3 className="text-[35px] font-normal uppercase font-lora leading-[50px]">
             PLAN YOUR TRIP
           </h3>
@@ -104,9 +113,9 @@ const PlanYourTrip = () => {
           </span>
 
           {/* Embla carousel logos */}
-          <div className="flex w-full bg-white items-center justify-center py-[23px]">
+          <div className="flex w-full bg-white items-center justify-center py-[23px] mt-[28px] ">
             <div className="overflow-hidden relative flex w-full " ref={emblaRef}>
-              <div className="flex grid-flow-col h-full w-full items-center justify-center">
+              <div className="flex grid-flow-col items-center justify-center">
                 {images.map((image, index) => (
                   <div
                     className="flex-[0_0_auto] items-center justify-center w-[calc(33%-1.2rem)] mx-[0.6rem] relative"
@@ -118,6 +127,7 @@ const PlanYourTrip = () => {
                       width={118}
                       height={34}
                       alt=""
+                      className="cursor-pointer"
                     />
                   </div>
                 ))}
@@ -126,19 +136,19 @@ const PlanYourTrip = () => {
           </div>
 
           {/* BOOKING FORM */}
-          <div className="flex w-[90%] flex-col items-center justify-center gap-[20px] mt-[93px]">
+          <div className="flex w-[90%] flex-col items-center justify-center gap-[20px] mt-[93px] z-10">
 
             {/* SELECT ROOM */}
             <div className="relative w-full">
               <button
                 onClick={toggleRoomDropdown}
-                className="flex px-[3vw] py-[1.2vh] w-full text-[#CFCFCF] focus:outline-none relative border-[0.7px] border-[#CFCFCF] text-start items-center justify-between"
+                className="flex px-[3vw] py-[1.2vh] w-full text-[#CFCFCF] focus:outline-none relative border-[0.7px] border-[#CFCFCF] text-start items-center justify-between "
               >
                 {selectRoom || "Select Room"}
                 <BsChevronDown className="flex" width={22.742} height={23.281}/>
               </button>
               {showRoomDropdown && (
-                <div className="absolute top-full z-50 left-0 mt-2 bg-transparent border border-gray-300 text-[#CFCFCF] text-[14px] font-semibold rounded-lg shadow-lg w-full min-w-[180px] p-3 xl:p-4">
+                <div className="absolute top-full z-50 left-0 mt-2 bg-transparent border border-gray-300 text-customGray bg-white text-[14px] font-semibold rounded-lg shadow-lg w-full min-w-[180px] p-3 xl:p-4 ">
                   <div className="flex flex-col gap-2">
                     <button
                       onClick={() => handleSelectRoom("Family")}
@@ -207,9 +217,9 @@ const PlanYourTrip = () => {
                   Adult(s)
                 </button>
                 {showGuests && (
-                  <div className="absolute top-full left-0 mt-2 bg-transparent border border-gray-300 text-[#CFCFCF] text-[14px] font-semibold rounded-lg shadow-lg w-full min-w-[180px] p-3 xl:p-4 ">
-                    <div className="flex justify-between items-center mb-3">
-                      <span className="text-[#CFCFCF]">Adult(s)</span>
+                  <div className="absolute top-full left-0 mt-2 bg-transparent border border-gray-300 text-customGray bg-white text-[14px] font-semibold rounded-lg shadow-lg w-full min-w-[180px] p-3 xl:p-4 ">
+                    <div className="flex justify-between items-center mb-3 ">
+                      <span className="text-customGray">Adult(s)</span>
                       <div className="flex items-center gap-1 lg:gap-2">
                         <button
                           onClick={decrementAdults}
@@ -233,15 +243,15 @@ const PlanYourTrip = () => {
               {/* Children */}
               <div className="relative w-[49%]">
                 <button
-                  onClick={toggleGuestsDropdown}
+                  onClick={toggleChildDropdown}
                   className="px-[3vw] py-[1.2vh] w-full text-[#CFCFCF] focus:outline-none relative border-[0.7px] border-[#CFCFCF] text-center items-center justify-center "
                 >
                   Child(ren)
                 </button>
-                {showGuests && (
-                  <div className="absolute top-full left-0 mt-2 bg-transparent border border-gray-300 text-[#CFCFCF] text-[14px] font-semibold rounded-lg shadow-lg w-full min-w-[180px] p-3 xl:p-4 ">
+                {showChild && (
+                  <div className="absolute top-full left-0 mt-2 bg-transparent border border-gray-300 text-customGray bg-white text-[14px] font-semibold rounded-lg shadow-lg w-full min-w-[180px] p-3 xl:p-4 ">
                     <div className="flex justify-between items-center">
-                      <span className="text-[#CFCFCF]">Child(ren)</span>
+                      <span className="text-customGray">Child(ren)</span>
                       <div className="flex items-center gap-1 lg:gap-2">
                         <button
                           onClick={decrementChildren}
@@ -272,9 +282,20 @@ const PlanYourTrip = () => {
             </button>
           </div>
         </div>
-
+        <span className="text-[20px] font-monserrat text-[#AAA] leading-[30px] font-bold">...and book ticket right away</span>
         {/* RIGHT SIDE (if any) */}
       </div>
+
+      <div className="flex flex-col w-[55%] h-full items-center justify-center">
+        <div className="flex ">
+          <RoomsCarousel/>
+        </div>
+
+        <div className="flex w-full items-center justify-center">
+          <BigPlaneSvg className="flex" width={841} height={238}/>
+        </div>
+      </div>
+
     </div>
   );
 };
