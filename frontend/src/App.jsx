@@ -102,6 +102,8 @@ import EditComponent from "./pages/PanelPages/EditComponent";
 import Beach from "./pages/Beach/Beach";
 import { LanguageProvider } from "./context/LanguageContext";
 import Offers from "./pages/Offers/Offers";
+import Entertainment from "./pages/Entertainment/Entertainment";
+import Activities from "./pages/Activities/Activities";
 
 
 
@@ -271,6 +273,8 @@ const App = () => {
             <Route path='/miniclub' element={<MiniClub/>}/>
             <Route path='/beach' element={<Beach/>}/>
             <Route path="/offers" element={<Offers/>}/>
+            <Route path="/entertainment" element={<Entertainment/>}/>
+            <Route path="/activities" element={<Activities/>}/>
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
