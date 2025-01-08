@@ -21,6 +21,18 @@ const EditComponent = () => {
   const [restaurantImageSearchResults, setRestaurantImageSearchResults] = useState([]);
 
   useEffect(() => {
+    if (!searchQuery) {
+      setSearchResults([]);
+      return;
+    }
+    const timeoutId = setTimeout(() => {
+      handleSearch(); // her 300ms sonrasında arama
+    }, 300);
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
+
+  
+  useEffect(() => {
     const fetchComponentData = async () => {
       try {
         const response = await fetch(`/api/page/${pageName}`);
@@ -193,16 +205,33 @@ const EditComponent = () => {
     try {
       const response = await fetch(`/api/images/search?name=${searchQuery}&lang=en`);
       const data = await response.json();
-
+  
       if (!response.ok) {
         throw new Error(data.message || "Image not found");
       }
-
-      setSearchResults([data]);
+  
+      // Artık data bir dizi (ör: [ {firebaseUrl, altText}, {...} ])
+      setSearchResults(data); 
     } catch (err) {
       setError(err.message);
     }
   };
+  
+
+  // const handleSearch = async () => {
+  //   try {
+  //     const response = await fetch(`/api/images/search?name=${searchQuery}&lang=en`);
+  //     const data = await response.json();
+
+  //     if (!response.ok) {
+  //       throw new Error(data.message || "Image not found");
+  //     }
+
+  //     setSearchResults([data]);
+  //   } catch (err) {
+  //     setError(err.message);
+  //   }
+  // };
 
   const handleSubImageSearch = async () => {
     try {

@@ -28,6 +28,12 @@
             "height": 1080
           }
         ],
+        "header": {
+          "en": "WELCOME TO",
+          "tr": "WELCOME TO",
+          "de": "WELCOME TO",
+          "ru": "WELCOME TO"
+        },
         "autoplay": true,
         "delay": 3000
       }
@@ -48,22 +54,22 @@
         "width": 1920,
         "height": 1079,
         "header": {
-          "en": "Premium Bar & Lounge 1",
-          "tr": "Premium Bar & Lounge 1 tr",
-          "de": "Premium Bar & Lounge 1 de",
-          "ru": "Премиум Бар и Лаунж 1"
+          "en": "Premium Bar & Lounge",
+          "tr": "Premium Bar & Lounge",
+          "de": "Premium Bar & Lounge",
+          "ru": "Премиум Бар & Лаундж"
         },
         "text": {
-          "en": "Enjoy a relaxing atmosphere at our bar.",
-          "tr": "Barımızda rahat bir ortamın tadını çıkarın.",
-          "de": "Genießen Sie eine entspannte Atmosphäre in unserer Bar.",
-          "ru": "Наслаждайтесь расслабляющей атмосферой в нашем баре."
+          "en": "Premium service feels premium. Port Nature Luxury Resort Hotel & Spa is always here for this feeling.",
+          "tr": "Premium hizmet premium hissettirir. Port Nature Luxury Resort Hotel & Spa her zaman bu hissi yaşatmak için burada.",
+          "de": "Premium-Service fühlt sich erstklassig an.  Für dieses Gefühl ist das Port Nature Luxury Resort immer da.",
+          "ru": "Премиум сервис даст чуство премиум-класса. Port Nature Luxury всегда здесь для этого ощущения."
         },
         "link": {
-          "en": "/bar-1",
-          "tr": "/bar-1-tr",
-          "de": "/bar-1-de",
-          "ru": "/bar-1-ru"
+          "en": "/bars-cafes",
+          "tr": "/barlar-kafeler",
+          "de": "/cafes-bars",
+          "ru": "/bari-kafe"
         }
       },
       {
@@ -77,22 +83,22 @@
         "width": 1920,
         "height": 1079,
         "header": {
-          "en": "Elegant Lounge 2",
-          "tr": "Şık Lounge 2 tr",
-          "de": "Eleganter Lounge 2 de",
-          "ru": "Элегантный Лаунж 2"
+          "en": "Magic Spa",
+          "tr": "Magic Spa",
+          "de": "Magic Spa",
+          "ru": "Magic Spa"
         },
         "text": {
-          "en": "Relax with your favorite drink in a stylish lounge.",
-          "tr": "Şık bir lounge'da favori içeceğinizle rahatlayın.",
-          "de": "Entspannen Sie mit Ihrem Lieblingsgetränk in einer stilvollen Lounge.",
-          "ru": "Расслабьтесь с любимым напитком в стильном лаунже."
+          "en": "Get spoiled on a blissful escape at our luxurious spa with skilled therapists.",
+          "tr": "Deneyimli terapistler eşliğinde lüks spa merkezimizde şımartıcı bir kaçış yaşayın.",
+          "de": "Gönnen Sie sich in unserem luxuriösen Spa mit erfahrenen Therapeuten eine glückselige Flucht.",
+          "ru": "Побалуйте себя блаженным отдыхом в спа-центре с квалифицированными специалистыми."
         },
         "link": {
-          "en": "/lounge-2",
-          "tr": "/lounge-2-tr",
-          "de": "/lounge-2-de",
-          "ru": "/lounge-2-ru"
+          "en": "/spa-center",
+          "tr": "/spa-merkezi",
+          "de": "/spa-zentrum",
+          "ru": "/spa-centr"
         }
       },
       {
@@ -106,22 +112,22 @@
         "width": 1920,
         "height": 1079,
         "header": {
-          "en": "Cozy Bar 3",
-          "tr": "Rahat Bar 3 tr",
-          "de": "Gemütliche Bar 3 de",
-          "ru": "Уютный Бар 3"
+          "en": "Meetings and Congress",
+          "tr": "Toplantı ve Kongre",
+          "de": "Tagung & Kongress",
+          "ru": "Встречи & Конгресс"
         },
         "text": {
-          "en": "Experience the warmth and comfort of our cozy bar.",
-          "tr": "Rahat barımızın sıcaklığını ve konforunu yaşayın.",
-          "de": "Erleben Sie die Wärme und den Komfort unserer gemütlichen Bar.",
-          "ru": "Ощутите тепло и уют нашего уютного бара."
+          "en": "We are not only fun but also appeal to the business person.",
+          "tr": "Sadece eğlenceli değil, aynı zamanda iş dünyasına da hitap ediyoruz.",
+          "de": "Bei uns geht es nicht nur um Unterhaltung, sondern sprechen auch den Unternehmer an.",
+          "ru": "Мы не только веселые, но и серьезные для деловых людей"
         },
         "link": {
-          "en": "/cozy-bar-3",
-          "tr": "/cozy-bar-3-tr",
-          "de": "/cozy-bar-3-de",
-          "ru": "/cozy-bar-3-ru"
+          "en": "/meeting-congress",
+          "tr": "/toplanti-kongre",
+          "de": "/tagung-kongress",
+          "ru": "/vstrechi-kongress"
         }
       },
       {
@@ -135,22 +141,22 @@
         "width": 1920,
         "height": 1079,
         "header": {
-          "en": "Elegant Lounge 4",
-          "tr": "Şık Lounge 4 tr",
-          "de": "Eleganter Lounge 4 de",
-          "ru": "Элегантный Лаунж 4"
+          "en": "Davidoff Cafe",
+          "tr": "Davidoff Kafe",
+          "de": "Davidoff Kafe",
+          "ru": "Кафе Davidoff"
         },
         "text": {
-          "en": "Relax with your favorite drink in a stylish lounge4.",
-          "tr": "Şık bir lounge'da favori içeceğinizle rahatlayın.",
-          "de": "Entspannen Sie mit Ihrem Lieblingsgetränk in einer stilvollen Lounge.",
-          "ru": "Расслабьтесь с любимым напитком в стильном лаунже."
+          "en": "No reservation required. Discover precious coffee varieties worth discovering.",
+          "tr": "Rezervasyon yapmanıza gerek yok. Keşfedilmeye değer değerli kahve çeşitlerini keşfedin.",
+          "de": "Entdecken Sie kostbare Kaffeesorten, die es wert sind, weiter zu gehen.",
+          "ru": "Откройте для себя драгоценные сорта кофе, сделав ваш день незабываемым"
         },
         "link": {
-          "en": "/lounge-2",
-          "tr": "/lounge-2-tr",
-          "de": "/lounge-2-de",
-          "ru": "/lounge-2-ru"
+          "en": "/davidoff-cafe",
+          "tr": "/davidoff-kafe",
+          "de": "/kafedavidoff",
+          "ru": "/kafe-davidoff"
         }
       }
     ],
@@ -199,7 +205,13 @@
         "width": 608,
         "height": 352
       }
-    ]
+    ],
+    "linkText": {
+          "en": "More About",
+          "tr": "Daha Fazla",
+          "de": "Mehr Uber",
+          "ru": "Подробнее"
+        }
   }
 },
 
@@ -212,8 +224,8 @@
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
         "text": {
           "en": "BELEK . ANTALYA",
-          "tr": "BELEK . ANTALYA TR",
-          "de": "BELEK . ANTALYA DE",
+          "tr": "BELEK . ANTALYA",
+          "de": "BELEK . ANTALYA ",
           "ru": "БЕЛЕК . АНТАЛЬЯ"
         },
         "largeWidth": 30.12,
@@ -225,9 +237,9 @@
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421485887AquaparkIcon.png?alt=media&token=303e0e3b-5a25-42ec-9cc7-13a7ff15c25e",
         "text": {
           "en": "AQUAPARK",
-          "tr": "AQUAPARK TR",
-          "de": "AQUAPARK DE",
-          "ru": "АКВАПАРК"
+          "tr": "SU PARKI",
+          "de": "AQUAPARK",
+          "ru": "Аквапарк"
         },
         "largeWidth": 44,
         "largeHeight": 48,
@@ -238,9 +250,9 @@
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421460852concertIcon.png?alt=media&token=d8f28480-a983-43d6-93e7-d1af0137af4e",
         "text": {
           "en": "CONCERT",
-          "tr": "CONCERT TR",
-          "de": "CONCERT DE",
-          "ru": "CONCERT RU"
+          "tr": "KONSERLER",
+          "de": "CONCERTS",
+          "ru": "Концерты"
         },
         "largeWidth": 33,
         "largeHeight": 48,
@@ -251,9 +263,9 @@
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421402102surfboardIcon.png?alt=media&token=f9299a8a-8d7a-4a3a-8ebf-d9b683267d18",
         "text": {
           "en": "BEACH",
-          "tr": "BEACH TR",
-          "de": "BEACH DE",
-          "ru": "BEACH RU"
+          "tr": "KUM PLAJ",
+          "de": "SANDY BEACH",
+          "ru": "Песчаный Пляж"
         },
         "largeWidth": 34,
         "largeHeight": 48,
@@ -264,9 +276,9 @@
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421520362entertainmentIcon.png?alt=media&token=9aa0040d-1101-485e-964f-58cdc1c9f6da",
         "text": {
           "en": "ENTERTAINMENT",
-          "tr": "ENTERTAINMENT TR",
-          "de": "ENTERTAINMENT DE",
-          "ru": "ENTERTAINMENT RU"
+          "tr": "EĞLENCELER",
+          "de": "ENTERTAINMENT ",
+          "ru": "Развлечения"
         },
         "largeWidth": 34.8,
         "largeHeight": 47.54,
@@ -315,42 +327,42 @@
           }
         ],
         "header":{
-        "en":"Your Holiday Experience Premium A'la Carte",
-        "tr":"Your Holiday Experience Premium A'la Carte",
-        "de":"Your Holiday Experience Premium A'la Carte",
-        "ru":"Your Holiday Experience Premium A'la Carte"
+        "en":"Port Nature Luxury Resort Hotel & Spa",
+        "tr":"Port Nature Luxury Resort Hotel & Spa",
+        "de":"Port Nature Luxury Resort Hotel & Spa",
+        "ru":"YPort Nature Luxury Resort Hotel & Spa"
     },
     "span":{
-        "en":"You deserve that!",
-        "tr":"You deserve that!",
-        "de":"You deserve that!",
-        "ru":"You deserve that!"
+        "en":"Experience Luxury Beyond",
+        "tr":"Lüksün ötesinde bir deneyim",
+        "de":"Erleben Sie den Luxus jenseits",
+        "ru":"Испытайте роскошь за пределами"
     },
     "text1":{
-        "en":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
-        "tr":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
-        "de":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
-        "ru":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium."
+        "en":"148 kinds of premium alcohol pushes the limits of all-inclusive services. You can find almost all premium alcohol brands at our bars.",
+        "tr":"148 çeşit premium alkol ile her şey dahil servisin sınırlarını zorluyoruz. Neredeyse bütün premium alkol çeşitlerini bulabilirsiniz.",
+        "de":"148 Sorten Premium-Alkohol sprengen die Grenzen der All-Inclusive-Leistungen. Sie finden fast alle Premium-Alkoholmarken.",
+        "ru":"148 видов алкоголя премиум-класса расширяют возможности обслуживания по системе 'все включено'."
     },
     "text2":{
-        "en":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
-        "tr":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
-        "de":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium.",
-        "ru":"Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium."
+        "en":"Also, you can sip your Davidoff coffee while watching the most famous artists' concerts, or when you relax with your family.",
+        "tr":"Ayrıca Davidoff kafede kahvenizi yudumlayabilir, en ünlü sanatçıların konserlerini izleyebilir ve ailenizle vakit geçirebilirsiniz.",
+        "de":"Außerdem können Sie Ihren Davidoff-Kaffee schlürfen, die Konzerte der berühmtesten Künstler ansehen und Zeit mit Ihrer Familie verbringen.",
+        "ru":"Кроме того, вы можете наслаждаться концертами самых известных артистов, проводя время со своей семьей."
     },
     "starNum":"5",
 
     "carouselHeader":{
-        "en":"ALL INCLUSIVE",
-        "tr":"ALL INCLUSIVE",
-        "de":"ALL INCLUSIVE",
-        "ru":"ALL INCLUSIVE"
+        "en":"Premium A'la Carte All Inclusive",
+        "tr":"Premium A'la Carte Her Şey Dahil",
+        "de":"Premium A'la Carte All Inclusive",
+        "ru":"Премиум A'la Carte Все включено"
     },
     "carouselText":{
-        "en":" Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium drink and our rich menus, we will enrich your holiday.Also, we have prepared a unique kids' concept for your kids. Serenity of Davidoff Cafe is free of charge in our facility.",
-        "tr":" Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium drink and our rich menus, we will enrich your holiday.Also, we have prepared a unique kids' concept for your kids. Serenity of Davidoff Cafe is free of charge in our facility.",
-        "de":" Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium drink and our rich menus, we will enrich your holiday.Also, we have prepared a unique kids' concept for your kids. Serenity of Davidoff Cafe is free of charge in our facility.",
-        "ru":" Our Premium A La Carte All Inclusive concept is pushing the limits of quality and service. With 148 kinds of Premium drink and our rich menus, we will enrich your holiday.Also, we have prepared a unique kids' concept for your kids. Serenity of Davidoff Cafe is free of charge in our facility."
+        "en":" Our 5-star premium luxury hotel has restaurants on-site, each serving a variety of delicious foods made by renowned chefs. There are exclusive concepts for families with children. Swimming pools, saunas, health clubs, and even live music performances and cultural activities are provided to guests at a 5-star hotel.",
+        "tr":" 5 yıldızlı premium lüks otelimizin bünyesinde, her biri ünlü şefler tarafından yapılan çeşitli lezzetli yiyecekler sunan restoranlar bulunmaktadır. Çocuklu ailelere özel konseptler. Yüzme havuzları, saunalar, sağlık kulübü ve hatta canlı konserler ve kültürel aktiviteler 5 yıldızlı otelimiz tarafından sağlanmaktadır.",
+        "de":" Unser 5-Sterne-Premium-Luxushotel verfügt über Restaurants vor Ort, die jeweils eine Vielzahl köstlicher Speisen von renommierten Köchen servieren. Familie mit Kind, exklusive Konzepte. Schwimmbäder, Saunen, Gesundheitsclubs und sogar Live-Musikdarbietungen und kulturelle Aktivitäten werden den Gästen eines 5-Sterne-Hotels geboten.",
+        "ru":"На территории нашего отеля 5 звезд премиум-класса работают рестораны с разнообразными вкусными блюдами. Для семей, есть эксклюзивная концепция для детей. К услугам гостей 5-звездочного отеля предоставляются сауны, оздоровительные центры, живая музыка, а также культурные мероприятия."
     },
 
     "carouselSpan":{
@@ -437,10 +449,10 @@
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734432156291videoIcon.png?alt=media&token=786193e6-771c-41d6-9b39-aa7a42498c20",
         "text": {
-          "en": "Watch your child on the video camera from the room",
-          "tr": "Watch your child on the video camera from the room",
-          "de": "Watch your child on the video camera from the room",
-          "ru": "Watch your child on the video camera from the room"
+          "en": "You can watch what your child is doing on TV in your rooms",
+          "tr": "Odanızda bulunan TV'den çocuğunuzun neler yaptığını izleyebilirsiniz.",
+          "de": "Auf dem Fernseher in Ihrem Zimmer können Sie sehen, was Ihr Kind macht",
+          "ru": "Наблюдайте за своим ребенком из номера через телевизор"
         },
         "largeWidth": 40,
         "largeHeight": 38,
@@ -451,9 +463,9 @@
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734432115060ageIcon.png?alt=media&token=848ec7cf-84e9-4382-8310-a36c47a79481",
         "text": {
           "en": "Activities for children of any age",
-          "tr": "Activities for children of any age",
-          "de": "Activities for children of any age",
-          "ru": "Activities for children of any age"
+          "tr": "Her yaştaki çocuk için aktiviteler",
+          "de": "Aktivitäten für Kinder jeden Alters",
+          "ru": "Развлечения для детей любого возраста"
         },
         "largeWidth": 34,
         "largeHeight": 36,
@@ -463,10 +475,10 @@
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734432078970miniclubIcon.png?alt=media&token=f3bc8ddc-bcff-49d9-a50c-3529ce961728",
         "text": {
-          "en": "Mini Club Al’a Carte, babysitting services",
-          "tr": "Mini Club Al’a Carte, babysitting services",
-          "de": "Mini Club Al’a Carte, babysitting services",
-          "ru": "Mini Club Al’a Carte, babysitting services"
+          "en": "Your child chooses their desired food from our child exclusive menu",
+          "tr": "Çocuğunuz, çocuklara özel hazırlanmış menülerden kendi yiyeceklerini seçebilir.",
+          "de": "Ihr Kind wählt selbst mit unserem Kinder-Exklusiv-Menü",
+          "ru": "Широкий выбор еды в ресторане для детей"
         },
         "largeWidth": 38.91,
         "largeHeight": 30.63,
@@ -523,16 +535,16 @@
         ],
 
           "buttonText":{
-              "en":"More About",
-              "tr":"More About",
-              "de":"More About",
-              "ru":"More About"
+              "en":"More",
+              "tr":"Daha Fazla",
+              "de":"Mehr Uber",
+              "ru":"Больше"
           },
           "header":{
               "en":"CHILDREN",
-              "tr":"CHILDREN",
-              "de":"CHILDREN",
-              "ru":"CHILDREN"
+              "tr":"ÇOCUKLAR",
+              "de":"KINDER",
+              "ru":"Дети"
           }
   }
   },
@@ -552,22 +564,22 @@
               }
           },
               "text":{
-                  "en":"We must create a happy environment for parents and his children",
-                  "tr":"We must create a happy environment for parents and his children",
-                  "de":"We must create a happy environment for parents and his children",
-                  "ru":"We must create a happy environment for parents and his children"
+                  "en":"We created an unbelievable beach experience with Belek’s unique natural beauty for adults and children.",
+                  "tr":"Belek'in eşsiz doğal güzellikleri ile yetişkinler ve çocuklar için inanılmaz bir sahil deneyimi yarattık",
+                  "de":"Wir haben ein unglaubliches Stranderlebnis mit Beleks einzigartiger natürlicher Schönheit für Erwachsene und Kinder geschaffen.",
+                  "ru":"Мы создали невероятный пляж с уникальной природной красотой города Белек для взрослых и детей."
               },
               "buttonText":{
                   "en":"More About",
-                  "tr":"More About",
-                  "de":"More About",
-                  "ru":"More About"
+                  "tr":"Daha Fazla",
+                  "de":"Mehr Uber",
+                  "ru":"Подробнее"
               },
               "buttonLink":{
-                 "en":"/",
-                  "tr":"/",
-                  "de":"/",
-                  "ru":"/"
+                 "en":"/activities",
+                  "tr":"/aktiviteler",
+                  "de":"/aktiviaten",
+                  "ru":"/meropriyatiya"
               }
           
   }
@@ -578,23 +590,30 @@
       "props": {
           "header":{
               "en": "Of Our Premium A’La Carte Restaurants",
-              "tr": "Of Our Premium A’La Carte Restaurants",
-              "de": "Of Our Premium A’La Carte Restaurants",
-              "ru": "Of Our Premium A’La Carte Restaurants"
+              "tr": " Of Premium A'La Carte Restoranımız",
+              "de": "Of Unserer Premium À-la-carte-Restaurants",
+              "ru": "Of Ресторанов A'la Carte Премиум-Класса"
           },
+          "span":{
+              "en": "The best cuisines of different countries!",
+              "tr": "Farklı ülkelerden en iyi mutfaklar!",
+              "de": "Die besten Küchen verschiedener Länder!",
+              "ru": "Лучшие кухни разных стран!"
+          },
+
            "textComponent":[
               {
                   "header":{
-                  "en": "We have the top quality",
-                  "tr": "We have the top quality",
-                  "de": "We have the top quality",
-                  "ru": "We have the top quality"
+                  "en": "Top Quality",
+                  "tr": "En İyi Kalite",
+                  "de": "Top Qualität",
+                  "ru": "Высочайшее Качество"
               },
               "text":{
-                 "en": "We do not work with unknown brands. We offer top quality",
-                 "tr": "We do not work with unknown brands. We offer top quality",
-                 "de": "We do not work with unknown brands. We offer top quality",
-                 "ru": "We do not work with unknown brands. We offer top quality"
+                 "en": "Carefully selected ingredients for gourmet cuisine.",
+                 "tr": "Özel yemekler için özenle seçilmiş malzemeler.",
+                 "de": "Sorgfältig ausgewählte Zutaten für besondere Speisen.",
+                 "ru": "Тщательно подобранные блюда для особых впечатлений."
               },
               "image":{
               "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
@@ -609,16 +628,16 @@
 
               {
                   "header":{
-                  "en": "Alacarte",
-                  "tr": "Port Nature Otel",
-                  "de": "Port Nature Hotel",
-                  "ru": "Порт Натуре Отель"
+                  "en": "Unlimited",
+                  "tr": "Sınırsız",
+                  "de": "Unbegrenzt",
+                  "ru": "Безграничный"
               },
               "text":{
-                 "en": "Alacarte",
-                 "tr": "Port Nature Otel",
-                 "de": "Port Nature Hotel",
-                 "ru": "Порт Натуре Отель"
+                 "en": "You will feel the luxury with 148 kinds of blue-ribbon drinks.",
+                 "tr": "148 çeşit en üst kalite içki ile lüksü hissedeceksiniz.",
+                 "de": "Sie werden den Luxus mit 148 verschiedenen Blue-Ribbon-Getränken spüren.",
+                 "ru": "Вы почувствуете роскошь с 148 напитками премиум-класса."
               },
               "image":{
               "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
@@ -633,16 +652,16 @@
 
               {
                   "header":{
-                  "en": "Alacarte",
-                  "tr": "Port Nature Otel",
-                  "de": "Port Nature Hotel",
-                  "ru": "Порт Натуре Отель"
+                  "en": "FREE within working hours",
+                  "tr": "Dilediğiniz an",
+                  "de": "Innerhalb der Arbeitszeit",
+                  "ru": "БЕСПЛАТНО в любое время"
               },
               "text":{
-                 "en": "Alacarte",
-                 "tr": "Port Nature Otel",
-                 "de": "Port Nature Hotel",
-                 "ru": "Порт Натуре Отель"
+                 "en": "You enter at your convenience",
+                 "tr": "İstediğiniz zaman ücretsiz girebilirsiniz.",
+                 "de": "Eintritt ohne Reservierung zu allen Geschäftszeiten.",
+                 "ru": "Вход без бронирования в любое рабочее время."
               },
               "image":{
               "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
@@ -654,8 +673,7 @@
               }
           }
         }
-
-           ],
+],
 
          "image":{
               "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593017097alacarteBackground.png?alt=media&token=d51e9ccf-dacd-4dfb-8c04-1beaf74e8c6f",
@@ -946,96 +964,96 @@
           
   }
   },
-{
-      "type": "ContactSection",
-      "props": {
-          "header":{
-              "en":"Free contact call center",
-              "tr":"Free contact call center",
-              "de":"Free contact call center",
-              "ru":"Free contact call center"
-          },
+  {
+    "type": "ContactSection",
+    "props": {
+        "header":{
+            "en":"Free contact call center",
+            "tr":"Ücretsiz Çağrı Merkezi",
+            "de":"Kostenloses Kontakt-Callcenter",
+            "ru":"Позвонить бесплатно в колл-центр"
+        },
 
-          "text":{
-              "en":"Or online booking",
-              "tr":"Or online booking",
-              "de":"Or online booking",
-              "ru":"Or online booking"
-          },
+        "text":{
+            "en":"Or online booking",
+            "tr":"Ya da online rezervasyon yapın",
+            "de":"Oder Online-Buchung",
+            "ru":"Или бронировать онлайн"
+        },
 
-          "phone":"+ 90 (242) 731 07 07",
-          "email":"info@portnature.com.tr",
+        "phone":"+ 90 (242) 731 07 07",
+        "email":"info@portnature.com.tr",
 
-          "buttonText":{
-              "en":"Send",
-              "tr":"Send",
-              "de":"Send",
-              "ru":"Send"
-          },
+        "buttonText":{
+            "en":"Send",
+            "tr":"Gönder",
+            "de":"Schicken",
+            "ru":"Отправить"
+        },
 
-          "buttonLink":{
-              "en":"/",
-              "tr":"/",
-              "de":"/",
-              "ru":"/"
-          },
+        "buttonLink":{
+            "en":"/",
+            "tr":"/",
+            "de":"/",
+            "ru":"/"
+        },
 
-          "image":{
-            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734603783214callcenter.webp?alt=media&token=a50e406b-9351-44ce-9c4d-89608796392c",
-            "altText": {
-              "en": "callcenter",
-              "tr": "callcenter",
-              "de": "callcenter",
-              "ru": "callcenter"
-            },
-            "width": 317,
-            "height": 283
+        "image":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734603783214callcenter.webp?alt=media&token=a50e406b-9351-44ce-9c4d-89608796392c",
+          "altText": {
+            "en": "callcenter",
+            "tr": "callcenter",
+            "de": "callcenter",
+            "ru": "callcenter"
           },
+          "width": 317,
+          "height": 283
+        },
 
-           "header2":{
-              "en":"Send Message",
-              "tr":"Send Message",
-              "de":"Send Message",
-              "ru":"Send Message"
-          },
+         "header2":{
+            "en":"Send Message",
+            "tr":"Mesaj Gönder",
+            "de":"Nachricht senden",
+            "ru":"Отправить сообщение"
+        },
 
-          "text2":{
-              "en":"All your questions, options, suggestions",
-              "tr":"All your questions, options, suggestions",
-              "de":"All your questions, options, suggestions",
-              "ru":"All your questions, options, suggestions"
-          },
+        "text2":{
+            "en":"All your questions, options, suggestions",
+            "tr":"Tüm sorularınız, fikirleriniz ve önerileriniz",
+            "de":"Alle Ihre Fragen, Meinungen, Vorschläge",
+            "ru":"Все ваши вопросы, отзывы, предложения"
+        },
 
-          "checkboxText":{
-              "en":"Ben robot değilim",
-              "tr":"Ben robot değilim",
-              "de":"Ben robot değilim",
-              "ru":"Ben robot değilim"
+        "checkboxText":{
+            "en":"Ben robot değilim",
+            "tr":"Ben robot değilim",
+            "de":"Ben robot değilim",
+            "ru":"Ben robot değilim"
+        },
+                   "iconImage":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+          "altText": {
+            "en": "leafIcon",
+            "tr": "leafIcon",
+            "de": "leafIcon",
+            "ru": "leafIcon"
           },
-                     "iconImage":{
-            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
-            "altText": {
-              "en": "leafIcon",
-              "tr": "leafIcon",
-              "de": "leafIcon",
-              "ru": "leafIcon"
-            },
-            "width": 20,
-            "height": 20
-           },
-             "iconImage2":{
-            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
-            "altText": {
-              "en": "leafIcon",
-              "tr": "leafIcon",
-              "de": "leafIcon",
-              "ru": "leafIcon"
-            },
-            "width": 20,
-            "height": 20
+          "width": 20,
+          "height": 20
+         },
+           "iconImage2":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+          "altText": {
+            "en": "leafIcon",
+            "tr": "leafIcon",
+            "de": "leafIcon",
+            "ru": "leafIcon"
+          },
+          "width": 20,
+          "height": 20
 }
-      }
-           
+    }
+         
 }
   ]
 }

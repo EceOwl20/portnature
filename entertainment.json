@@ -2,7 +2,7 @@
   "pageName": "entertainment",
   "components": [
       {
-      "type": "section1",
+      "type": "Section1",
       "props": {
         "image":{
           "firebaseUrl":"https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734504490581portnaturenight.png?alt=media&token=e76671e0-ce72-4c42-b65e-01fb51a861bc",

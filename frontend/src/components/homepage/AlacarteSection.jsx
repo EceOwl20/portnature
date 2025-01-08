@@ -87,17 +87,17 @@ const AlacarteSection = ({
           className="w-[85%] min-h-[515px] mx-auto overflow-hidden flex"
           ref={emblaRef}
         >
-          <div className="flex grid-flow-col w-full">
+          <div className="flex grid-flow-col w-full items-end">
             {images.map((resim, index) => (
               <div
                 key={index}
-                className="flex-[0_0_auto] h-full flex items-center justify-between relative"
+                className="flex-[0_0_auto] w-full h-3/4 flex items-center justify-between relative"
               >
                 <img
                   src={resim.firebaseUrl}
                   style={{ objectFit: "cover" }}
                   alt={`Slide ${index + 1}`}
-                  className="flex h-auto w-[60%]"
+                  className="flex h-auto w-[65%]"
                 />
                 <div className="flex flex-col w-[30%] text-start items-start justify-center text-white gap-[15px]">
                   <h3 className=" text-[25px] font-lora leading-normal font-medium ">
@@ -137,50 +137,6 @@ const AlacarteSection = ({
 
       {/* Eğer mobilde farklı davranış istiyorsanız, CSS ile yukarıdaki yapıyı uyarlayın veya ayrı bir carousel tanımlayın. 
           Ancak ayrı carousel tanımlayacaksanız ikinci bir useEmblaCarousel çağrısı ve ikinci bir ref gerekli. */}
-
-<div
-        className="relative w-screen h-[572px] flex items-center justify-center mdlg-custom:hidden">
-        <div className="w-full min-h-[515px] overflow-hidden" ref={emblaRef}
-        >
-          <div className="flex grid-flow-col w-full">
-            {images.map((resim, index) => (
-              <div
-                key={index}
-                className="flex-[0_0_auto] w-full relative"
-              >
-                <img
-                  src={resim.firebaseUrl}
-                  style={{ objectFit: "cover" }}
-                  alt={`Slide ${index + 1}`}
-                  className=" flex h-auto w-full"
-                />
-                 <div className="flex absolute inset-0 bg-black/40"></div>
-
-                <div className=" absolute top-2 h-[95%] left-[5%] flex flex-col w-[90%] text-start items-start justify-between text-white gap-[15px]">
-                  <h3 className=" text-[25px] font-lora leading-normal font-medium">
-                    {resim.header[lang]}
-                  </h3>
-                  <div className="flex flex-col gap-[20px] mb-4">
-                  <div className="flex items-center justify-start gap-[10px]">
-                    <img src={resim.image.firebaseUrl} width={resim.image.width} height={resim.image.height} />
-                    <span className="text-[12px]">{resim.text1[lang]}</span>
-                  </div>
-                  <div className="flex items-center justify-start gap-[10px]">
-                    <img src={resim.image.firebaseUrl} width={resim.image.width} height={resim.image.height} />
-                    <span className="text-[12px]">{resim.text2[lang]}</span>
-                  </div>
-                  <button className=" bottom-12 mt-[20px] bg-transparent text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-white border border-[#fff] py-[12px] px-[32px] hover:bg-white hover:text-[#233038]">
-                    <p>{resim.buttonText[lang]}</p>
-                  </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-      
-      </div>
 
 
     </div>
