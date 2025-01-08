@@ -8,8 +8,8 @@ import Disco from "../Icons/Frame.png"
 const Section1 = () => {
   return (
     <div className='flex flex-col justify-center items-center'>
-        <div className='flex flex-col max-w-[1920px] items-center justify-center w-full'>
-        <div className='flex flex-col h-[752px] max-w-[1920px] w-full items-end justify-end' style={{
+        <div className='flex flex-col items-center justify-center w-full'>
+        <div className='flex flex-col h-[752px]  w-full items-end justify-end' style={{
             backgroundImage: `
                 linear-gradient(to top, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.00) 100%), 
                 url(${PortNatureActivities})`,
@@ -47,7 +47,7 @@ const Section1 = () => {
                 </div>
             </div>
         </div>
-        <p className='flex items-center justify-center w-5/12 text-center mt-12 mb-12 font-monserrat font-bold text-[20px] leading-6'>
+        <p className='flex items-center justify-center w-5/12 text-center mt-24 mb-12 font-monserrat font-bold text-[20px] leading-6'>
             You will recharge yourself with fun games and sports activities  <br/>in company with our professional animation team and you  <br/> will meet with special programs at fitness center
         </p>
     </div>
