@@ -1,6 +1,6 @@
 import React from 'react'
 import Section1 from './Components/Section1'
-import Sectiıon2 from './Components/Sectiıon2'
+import Sectiıon2 from './Components/Section2'
 
 const Activities = () => {
   return (
