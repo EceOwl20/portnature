@@ -18,22 +18,48 @@ export const uploadImage = async (req, res) => {
   }
 };
 
-// İsme göre resim arama
+// Örnek: controller image.js
 export const searchImageByName = async (req, res) => {
   try {
-    const { name, lang } = req.query; // İsme ve dile göre arama
-    const image = await Image.findOne({ [`name.${lang}`]: name });
-
-    if (!image) {
-      return res.status(404).json({ message: "Image not found" });
+    const { name, lang } = req.query;
+    if (!name || !lang) {
+      return res.status(400).json({ message: "Missing 'name' or 'lang' query" });
     }
 
-    res.status(200).json(image);
+    // Kısmi arama: $regex + $options: "i" (case-insensitive)
+    const images = await Image.find({
+      [`name.${lang}`]: { $regex: name, $options: "i" },
+    });
+
+    // Tek bir yerine bir dizi döndüreceğiz
+    if (!images || images.length === 0) {
+      return res.status(404).json({ message: "No images found" });
+    }
+
+    res.status(200).json(images); // [ {..}, {..}, ... ]
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error fetching image", error });
   }
 };
+
+
+// İsme göre resim arama
+// export const searchImageByName = async (req, res) => {
+//   try {
+//     const { name, lang } = req.query; // İsme ve dile göre arama
+//     const image = await Image.findOne({ [`name.${lang}`]: name });
+
+//     if (!image) {
+//       return res.status(404).json({ message: "Image not found" });
+//     }
+
+//     res.status(200).json(image);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: "Error fetching image", error });
+//   }
+// };
 
 export const getImagesByName = async (req, res) => {
   try {
