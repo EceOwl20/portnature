@@ -28,8 +28,8 @@ const PageList = () => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-7 my-5 z-50">
-      <h2 className="font-monserrat text-[30px] font-medium">Pages</h2>
-      <ul className="grid grid-cols-4 w-[90%] items-start justify-center gap-5">
+      <h2 className="font-monserrat text-[30px] font-medium text-white">Pages</h2>
+      <ul className="grid grid-cols-4 w-[90%] items-center justify-center gap-5 text-center">
         {pages.map((page) => (
           <li key={page._id}>
             <Link className="font-monserrat text-[20px] font-normal hover:text-[#6b78ad] px-2 py-1 bg-slate-300 border rounded-md" to={`/panel/pages/${page.pageName}`}>{page.pageName}</Link>

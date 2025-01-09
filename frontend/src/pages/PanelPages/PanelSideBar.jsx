@@ -24,10 +24,10 @@ const PanelSideBar = () => {
   };
 
   return (
-    <section className="flex relative w-screen overflow-hidden">
+    <section className="flex relative  overflow-hidden min-h-screen">
        <div className="-top-1/2 absolute -right-1/4 my-ellipse2 z-0"></div>
-      <aside className="flex flex-col items-center w-[10%] bg-[#0e0c1b] opacity-[97%] p-[15px] h-screen relative ">
-        {/* <div className="-bottom-1/2 absolute -left-1/2 my-ellipse z-0"></div> */}
+      <aside className="flex flex-col items-center w-[10%] min-w-screen min-h-content bg-[#0e0c1b] opacity-[97%] p-[15px] relative ">
+        <div className="-bottom-1/2 absolute -left-1/2 my-ellipse z-0"></div>
        
         <nav className="flex flex-col items-start w-full gap-[10px]">
           <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel">Panel</NavLink>
@@ -36,10 +36,11 @@ const PanelSideBar = () => {
           <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel/pages"> Pages</NavLink>
           <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel/yeniblogekle">Yeni Blog Ekle</NavLink>
           <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel/bloglar">Bloglar</NavLink>
-          <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel">Kullanıcıları Yönet</NavLink>
+          <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel/users">Kullanıcıları Yönet</NavLink>
+          <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel/gallery"> Galeri</NavLink>
           <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel/upload-image">Resim yükle</NavLink>
           <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel/search-image"> Resim Ara</NavLink>
-          <NavLink className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" to="/panel/gallery"> Galeri</NavLink>
+          
           <a className="flex items-center w-[90%] text-white font-monserrat text-[15px] rounded-lg p-[7px] cursor-pointer hover:bg-white hover:text-[#0e0c1b]" href="#" onClick={handleLogOut}>
             Çıkış Yap
           </a>

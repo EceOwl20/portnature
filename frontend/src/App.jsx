@@ -104,6 +104,8 @@ import { LanguageProvider } from "./context/LanguageContext";
 import Offers from "./pages/Offers/Offers";
 import Entertainment from "./pages/Entertainment/Entertainment";
 import Activities from "./pages/Activities/Activities";
+import Users from "./pages/PanelPages/Users";
+import ProfilEditor from "./pages/PanelPages/ProfilEditor";
 
 
 
@@ -284,7 +286,10 @@ const App = () => {
                 <Route path="/panel/upload-image" element={<UploadImage />} />
                 <Route path="/panel/search-image" element={<SearchImage />} />
                 <Route path="/panel/gallery" element={<Gallery />} />
-                
+
+                <Route path="/panel/users" element={<Users />}></Route>
+                <Route path="users/:id" element={<ProfilEditor />} />
+
                 <Route path="/panel/bloglar" element={<BlogListele />} />
                 <Route path="/panel/blog/guncelle/:id" element={<BlogDüzenle />} />
                 <Route path="/panel/yeniblogekle" element={<BlogEkle />} />

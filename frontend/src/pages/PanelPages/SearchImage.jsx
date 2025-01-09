@@ -2,20 +2,22 @@ import React, { useState } from "react";
 
 const SearchImage = () => {
   const [search, setSearch] = useState({ name: "", lang: "en" });
-  const [image, setImage] = useState(null);
+  // Artık bir array tutuyoruz
+  const [images, setImages] = useState([]); 
   const [wait, setWait] = useState(false);
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
-    setIsOpen((prev) => !prev); // Açık/Kapalı durumu tersine çevir
+    setIsOpen((prev) => !prev);
   };
 
   const handleSearch = async (e) => {
     e.preventDefault();
     setWait(true);
     setError(null);
-    setImage(null);
+    // Arama öncesi dizi boşaltıyoruz
+    setImages([]);
 
     try {
       const response = await fetch(
@@ -28,12 +30,13 @@ const SearchImage = () => {
       const data = await response.json();
 
       if (!response.ok || !data) {
-        setError(data?.message || "Image not found");
+        setError(data?.message || "Image(s) not found");
         setWait(false);
         return;
       }
 
-      setImage(data);
+      // Artık data bir DİZİ [ {...}, {...} ]
+      setImages(data);
       setWait(false);
     } catch (err) {
       setError("An unexpected error occurred.");
@@ -42,14 +45,14 @@ const SearchImage = () => {
   };
 
   const handleLanguageSelection = (lang) => {
-    setSearch({ ...search, lang }); // Sadece dili güncelle
-    setIsOpen(false); // Dropdown'ı kapat
+    setSearch({ ...search, lang });
+    setIsOpen(false);
   };
 
   return (
     <div className="flex flex-col items-center justify-center w-screen h-auto my-12">
-      <div className="flex flex-col  w-[80%] items-start justify-center">
-        <h2 className="text-[30px] font-medium font-monserrat text-[#0E0C1B]">Resim Ara</h2>
+      <div className="flex flex-col w-[70%] items-start justify-center bg-[#6b78ad] p-[3%]">
+        <h2 className="text-[30px] font-medium font-monserrat text-[#fff]">Resim Ara</h2>
         <form onSubmit={handleSearch} className="flex w-[80%] items-center justify-start m-4 gap-6 mt-10">
           <input
             className="flex border border-[#0E0C1B] py-1 px-2"
@@ -59,11 +62,12 @@ const SearchImage = () => {
             onChange={(e) => setSearch({ ...search, name: e.target.value })}
             required
           />
+          {/* Dil Seçimi */}
           <div className="relative">
             <button
               className="flex items-center justify-between w-full border border-[#0E0C1B] py-1 px-2 bg-[#0E0C1B] text-white text-[15px] rounded"
               onClick={(e) => {
-                e.preventDefault(); // Dropdown açmak için form gönderimini engelle
+                e.preventDefault();
                 toggleDropdown();
               }}
             >
@@ -108,16 +112,24 @@ const SearchImage = () => {
           <button
             type="submit"
             disabled={wait}
-            className=" border text-white hover:text-[#0E0C1B] border-[#0E0C1B] py-[5px] px-[10px] bg-[#0E0C1B] hover:bg-white"
+            className="border text-white hover:text-[#0E0C1B] border-[#0E0C1B] py-[5px] px-[10px] bg-[#0E0C1B] hover:bg-white"
           >
             {wait ? "Searching..." : "Search"}
           </button>
         </form>
+
+        {/* Hata Mesajı */}
         {error && <p style={{ color: "red" }}>{error}</p>}
-        {image && (
-          <div className="w-[25%] h-auto flex flex-col">
-            <img src={image.firebaseUrl} alt={image.altText[search.lang]} />
-            <p>{image.altText[search.lang]}</p>
+
+        {/* Sonuçlar */}
+        {images.length > 0 && (
+          <div className="flex flex-wrap gap-4 mt-4">
+            {images.map((img, index) => (
+              <div key={index} className="w-[25%] h-auto flex flex-col border p-2">
+                <img src={img.firebaseUrl} alt={img.altText[search.lang]} />
+                <p>{img.altText[search.lang]}</p>
+              </div>
+            ))}
           </div>
         )}
       </div>
