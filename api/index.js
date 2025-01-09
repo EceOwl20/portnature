@@ -7,18 +7,28 @@ import cors from "cors";
 import imageRoute from "./routes/images.js";
 import pageRoute from "./routes/page.js";
 import componentRoute from "./routes/components.js";
+import metricRoute from "./routes/metric.js";
+import Metric from  "./models/metric.js";
 
 const connect = async () => {
-    await mongo.connect("mongodb+srv://smbduknwn:1TL6SUtVqQDyWsnJ@port-nature.jvs90.mongodb.net/?retryWrites=true&w=majority&appName=Port-Nature");
+    await mongo.connect("mongodb+srv://smbduknwn:1TL6SUtVqQDyWsnJ@port-nature.jvs90.mongodb.net/?retryWrites=true&w=majority&appName=Port-Nature", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    
 }
 
 connect()
-.then(()=>{
+  .then(async () => {
     console.log("Bağlandı sorun yok...");
-})
-.catch((db_error)=>{
+    // Artık await kullanılabilir
+    await seedMetrics();
+    console.log("Seed işlemi tamamlandı!");
+  })
+  .catch((db_error) => {
     console.log(db_error);
-})
+  });
+
 
 const exp = express();
 exp.use(express.json());
@@ -34,6 +44,7 @@ exp.use("/api/blog", blogRoute);
 exp.use("/api/images", imageRoute);
 exp.use("/api/page", pageRoute);
 exp.use("/api/components", componentRoute);
+exp.use("/api/metric", metricRoute);
 
 exp.use((error, request, response, next) => {
     const statusCode = error.statusCode || 500;
@@ -44,3 +55,33 @@ exp.use((error, request, response, next) => {
         message
     });
 });
+
+// Seed işlemi: Veritabanına başlangıç verisi ekleme
+const seedMetrics = async () => {
+    try {
+      const existingMetrics = await Metric.find();
+      if (existingMetrics.length === 0) {
+        await Metric.insertMany([
+          {
+            name: "network.bytesIn",
+            dataPoints: [
+              { timestamp: new Date(), value: 120 },
+              { timestamp: new Date(), value: 150 },
+            ],
+          },
+          {
+            name: "connections.current",
+            dataPoints: [
+              { timestamp: new Date(), value: 10 },
+              { timestamp: new Date(), value: 15 },
+            ],
+          },
+        ]);
+        console.log("Başlangıç verileri başarıyla eklendi.");
+      } else {
+        console.log("Veriler zaten mevcut, ekleme yapılmadı.");
+      }
+    } catch (error) {
+      console.error("Seed verisi ekleme hatası:", error);
+    }
+  };

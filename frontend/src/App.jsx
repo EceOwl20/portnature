@@ -314,13 +314,7 @@ const App = () => {
         </BrowserRouter>
       </HelmetProvider>
     </>
-    
-        //  <main>
-        //   <Header/>
-        //     <Homepage />
-        //     <BookPhoneSection/>
-        //     <Footer/>
-        //   </main>
+
           
   );
 };
