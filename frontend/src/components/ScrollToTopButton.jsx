@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import arrow from "../../public/images/uparrowıIcon.png"
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,13 +27,13 @@ const ScrollToTopButton = () => {
   };
 
   return (
-    <div className="fixed bottom-16 right-5 md:right-10 z-50">
+    <div className="flex">
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="p-3 bg-gray-600 text-white rounded-full shadow-lg hover:bg-gray-800 transition"
+          className="p-3 cursor-pointer text-white rounded-full shadow-lg hover:bg-gray-400 transition"
         >
-          ↑
+          <img src={arrow} alt="arrow" width={arrow.width} height={arrow.height}/>
         </button>
       )}
     </div>

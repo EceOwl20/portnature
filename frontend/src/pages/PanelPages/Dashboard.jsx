@@ -175,18 +175,18 @@ const opChartData = {
       <h1 className='text-2xl mb-4 text-white font-semibold font-monserrat'>Dashboard</h1>
 
       <div className='flex w-full items-start justify-between'>
-      <div className='w-[74%] grid grid-cols-2 mt-2 justify-center items-center gap-2'>
-        <div className='flex flex-col w-[90%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
+      <div className='w-[70%] grid grid-cols-2 mt-2 justify-center items-center gap-4'>
+        <div className='flex flex-col w-[100%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
           <h2 className='text-[#0e0c1b] text-[20px]'>Network Grafiği</h2>
           <Line data={chartData} options={options} />
         </div>
         
-        <div className='flex flex-col w-[90%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
+        <div className='flex flex-col w-[100%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
           <h2 className='text-[#0e0c1b] text-[20px]'>Connections Grafiği</h2>
           <Line data={chartData2} options={options2} />
         </div>
 
-        <div className='flex flex-col w-[90%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
+        <div className='flex flex-col w-[100%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
           <h2 className='text-[#0e0c1b] text-[20px]'>Opcounters Grafiği</h2>
           <Line data={opChartData} options={options2} />
         </div>

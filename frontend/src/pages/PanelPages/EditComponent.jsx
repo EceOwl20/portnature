@@ -20,6 +20,7 @@ const EditComponent = () => {
   const [restaurantImageSearchQuery, setRestaurantImageSearchQuery] = useState("");
   const [restaurantImageSearchResults, setRestaurantImageSearchResults] = useState([]);
 
+
   useEffect(() => {
     if (!searchQuery) {
       setSearchResults([]);
@@ -30,6 +31,19 @@ const EditComponent = () => {
     }, 300);
     return () => clearTimeout(timeoutId);
   }, [searchQuery]);
+
+
+useEffect(() => {
+  if (!itemSearchQuery) {
+    setItemSearchResults([]);
+    return;
+  }
+  const timeoutId = setTimeout(() => {
+    handleItemSearch();
+  }, 300);
+  return () => clearTimeout(timeoutId);
+}, [itemSearchQuery]);
+
 
   
   useEffect(() => {
@@ -257,7 +271,7 @@ const EditComponent = () => {
         throw new Error(data.message || "Item not found");
       }
 
-      setItemSearchResults([data]);
+      setItemSearchResults(data);
     } catch (err) {
       setError(err.message);
     }
@@ -674,7 +688,7 @@ const EditComponent = () => {
         <div
           key={i}
           className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-          onClick={() => handleReplaceSingleImage("image2", result)}
+          onClick={() => handleReplaceSingleImage("image2",index, result)}
         >
           <img
             src={result.firebaseUrl}

@@ -177,6 +177,13 @@
         "items": [
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+        "altText": {
+          "en": "Balcony / Terrace",
+          "tr": "Balcony / Terrace",
+          "de": "Balcony / Terrace",
+          "ru": "Balcony / Terrace"
+        }, 
+
         "text": {
           "en": "Balcony / Terrace",
           "tr": "Balcony / Terrace",
@@ -190,6 +197,13 @@
       },
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421485887AquaparkIcon.png?alt=media&token=303e0e3b-5a25-42ec-9cc7-13a7ff15c25e",
+        "altText": {
+          "en": "Balcony / Terrace",
+          "tr": "Balcony / Terrace",
+          "de": "Balcony / Terrace",
+          "ru": "Balcony / Terrace"
+        }, 
+
         "text": {
           "en": "2",
           "tr": "2",
@@ -203,6 +217,13 @@
       },
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421460852concertIcon.png?alt=media&token=d8f28480-a983-43d6-93e7-d1af0137af4e",
+        "altText": {
+          "en": "Balcony / Terrace",
+          "tr": "Balcony / Terrace",
+          "de": "Balcony / Terrace",
+          "ru": "Balcony / Terrace"
+        }, 
+
         "text": {
           "en": "45 m2",
           "tr": "45 m2",
@@ -216,6 +237,13 @@
       },
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421402102surfboardIcon.png?alt=media&token=f9299a8a-8d7a-4a3a-8ebf-d9b683267d18",
+        "altText": {
+          "en": "Balcony / Terrace",
+          "tr": "Balcony / Terrace",
+          "de": "Balcony / Terrace",
+          "ru": "Balcony / Terrace"
+        }, 
+
         "text": {
           "en": "Corner Side View",
           "tr": "Corner Side View",
@@ -229,6 +257,13 @@
       },
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421402102surfboardIcon.png?alt=media&token=f9299a8a-8d7a-4a3a-8ebf-d9b683267d18",
+        "altText": {
+          "en": "Balcony / Terrace",
+          "tr": "Balcony / Terrace",
+          "de": "Balcony / Terrace",
+          "ru": "Balcony / Terrace"
+        }, 
+
         "text": {
           "en": "Corner Side View",
           "tr": "Corner Side View",
@@ -242,6 +277,13 @@
       },
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421402102surfboardIcon.png?alt=media&token=f9299a8a-8d7a-4a3a-8ebf-d9b683267d18",
+        "altText": {
+          "en": "Balcony / Terrace",
+          "tr": "Balcony / Terrace",
+          "de": "Balcony / Terrace",
+          "ru": "Balcony / Terrace"
+        }, 
+
         "text": {
           "en": "Corner Side View",
           "tr": "Corner Side View",
@@ -255,6 +297,13 @@
       },
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421402102surfboardIcon.png?alt=media&token=f9299a8a-8d7a-4a3a-8ebf-d9b683267d18",
+        "altText": {
+          "en": "Balcony / Terrace",
+          "tr": "Balcony / Terrace",
+          "de": "Balcony / Terrace",
+          "ru": "Balcony / Terrace"
+        }, 
+
         "text": {
           "en": "Corner Side View",
           "tr": "Corner Side View",
@@ -268,6 +317,13 @@
       },
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421402102surfboardIcon.png?alt=media&token=f9299a8a-8d7a-4a3a-8ebf-d9b683267d18",
+        "altText": {
+          "en": "Balcony / Terrace",
+          "tr": "Balcony / Terrace",
+          "de": "Balcony / Terrace",
+          "ru": "Balcony / Terrace"
+        }, 
+
         "text": {
           "en": "Corner Side View",
           "tr": "Corner Side View",
@@ -281,6 +337,13 @@
       },
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421402102surfboardIcon.png?alt=media&token=f9299a8a-8d7a-4a3a-8ebf-d9b683267d18",
+        "altText": {
+          "en": "Balcony / Terrace",
+          "tr": "Balcony / Terrace",
+          "de": "Balcony / Terrace",
+          "ru": "Balcony / Terrace"
+        }, 
+
         "text": {
           "en": "Corner Side View",
           "tr": "Corner Side View",
@@ -294,6 +357,13 @@
       },
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421402102surfboardIcon.png?alt=media&token=f9299a8a-8d7a-4a3a-8ebf-d9b683267d18",
+        "altText": {
+          "en": "Balcony / Terrace",
+          "tr": "Balcony / Terrace",
+          "de": "Balcony / Terrace",
+          "ru": "Balcony / Terrace"
+        }, 
+
         "text": {
           "en": "Corner Side View",
           "tr": "Corner Side View",
@@ -307,6 +377,13 @@
       },
       {
         "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421402102surfboardIcon.png?alt=media&token=f9299a8a-8d7a-4a3a-8ebf-d9b683267d18",
+        "altText": {
+          "en": "Balcony / Terrace",
+          "tr": "Balcony / Terrace",
+          "de": "Balcony / Terrace",
+          "ru": "Balcony / Terrace"
+        }, 
+        
         "text": {
           "en": "Corner Side View",
           "tr": "Corner Side View",

@@ -308,7 +308,9 @@ const App = () => {
            </Routes>
           </main>
           <BookPhoneSection/>
+          <div className="flex items-center w-screen justify-center mb-4">
           <ScrollToTopButton/>
+          </div>
           <Footer/>
        </LanguageProvider>
         </BrowserRouter>
