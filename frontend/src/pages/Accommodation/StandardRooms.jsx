@@ -7,6 +7,7 @@ import StandardRoomComponent from './components/StandardRoomComponent'
 import { Link } from 'react-router-dom'
 import ContactSection from '../../components/homepage/ContactSection'
 import RoomFeatures from './components/RoomFeatures'
+import Cookies from "js-cookie";
 
 const StandardRooms = ({img,header,links,linkstext}) => {
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
@@ -16,6 +17,8 @@ const StandardRooms = ({img,header,links,linkstext}) => {
   const [roomsFeaturesData, setRoomsFeaturesData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
+
+  const [lang, setLang] = useState(Cookies.get("language") || "en");
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -103,12 +106,12 @@ const StandardRooms = ({img,header,links,linkstext}) => {
 
   return (
     <div className='flex flex-col justify-center items-center'>
-        <MainBackgroundRooms {...mainBackgroundData} />
-        <StandardRoomComponent {...standardRoomsSecData}/>
-        <StandardRoomComponent {...standardRoomsSecData2}/>
-        <StandardRoomComponent {...standardRoomsSecData3}/>
-        <RoomFeatures {...roomsFeaturesData}/>
-        <ContactSection {...contactSectionData}/>
+        <MainBackgroundRooms {...mainBackgroundData} lang={lang}/>
+        <StandardRoomComponent {...standardRoomsSecData} lang={lang}/>
+        <StandardRoomComponent {...standardRoomsSecData2} lang={lang}/>
+        <StandardRoomComponent {...standardRoomsSecData3} lang={lang}/>
+        <RoomFeatures {...roomsFeaturesData} lang={lang}/>
+        <ContactSection {...contactSectionData} lang={lang}/>
     </div>
   )
 }

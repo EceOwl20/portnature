@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import DavidoffCarousel from '../../components/food/DavidoffCarousel'
 import ContactSection from "../../components/homepage/ContactSection"
 import CoffeeTextSection from '../../components/food/CoffeeTextSection'
+import Cookies from "js-cookie";
 
 const CoffeePage = ({page}) => {
   const [cafeCarouselData, setCafeCarouselData] = useState(null);
   const [cafeTextSectionData, setCafeTextSectionData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
+
+  const [lang, setLang] = useState(Cookies.get("language") || "en");
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -65,8 +68,8 @@ const CoffeePage = ({page}) => {
 
   return (
     <div>
-      <DavidoffCarousel {...cafeCarouselData}/>
-       <CoffeeTextSection {...cafeTextSectionData}/>
+      <DavidoffCarousel {...cafeCarouselData} lang={lang}/>
+       <CoffeeTextSection {...cafeTextSectionData} lang={lang}/>
       {/*<ContactSection/> */}
     </div>
   )
