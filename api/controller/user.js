@@ -59,4 +59,15 @@ export const guncelleUser = async (request, response, next) => {
       next(error);
     }
   };
+
+  export const countOfUser = async (req, res, next) => {
+    try {
+      const userCount = await User.countDocuments();
+      // veya const userCount = await User.estimatedDocumentCount();
+      res.status(200).json({ count: userCount });
+    } catch (error) {
+      console.error("Error counting users:", error);
+      res.status(500).json({ error: "Failed to get user count" });
+    }
+  }
   
