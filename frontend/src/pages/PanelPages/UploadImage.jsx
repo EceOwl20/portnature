@@ -116,9 +116,9 @@ const UploadImage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center font-monserrat">
-       <div className="flex flex-col w-[80%] items-start justify-center my-12">
+       <div className="flex flex-col w-[70%] items-center justify-center my-12 py-10 px-6 bg-gray-500">
        <h2 className="text-[30px] font-medium font-monserrat text-[#ffffff]">Resim Yükle</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col items-start justify-center  w-[100%] gap-5 min-h-[400px]">
+        <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center  w-[100%] gap-5 min-h-[400px]">
          {formData.firebaseUrl && <img src={formData.firebaseUrl} alt="firebaseUrl"/>}
         <p>
           {progressBar > 0 && progressBar < 100
@@ -126,7 +126,7 @@ const UploadImage = () => {
             : progressBar === 100 && "Yüklendi"}
         </p>
       <input
-       className="flex border border-[#0E0C1B] py-1 px-2 w-[48.5%] bg-white"
+       className="flex border border-[#0E0C1B] py-2 p-2 w-[57%] bg-white rounded-md"
         type="file"
         name="firebaseUrl"
         accept="image/*"
@@ -135,7 +135,7 @@ const UploadImage = () => {
         disabled={wait}
       />
       {["en", "ru", "de", "tr"].map((lang) => (
-        <div key={lang}  className="flex py-1 px-2 gap-[2%] w-[50%] ">
+        <div key={lang}  className="flex py-1 px-2 gap-[2%] w-[60%] ">
           <input
             type="text"
             name="name"
@@ -143,7 +143,7 @@ const UploadImage = () => {
             data-lang={lang}
             onChange={handleInputChange}
             required
-             className="flex border border-[#0E0C1B] bg-white py-2 px-[1%]  bg-transparent w-[48%]"
+             className="flex border border-[#0E0C1B] bg-white py-2 px-[1%]  bg-transparent w-[48%] rounded-md"
           />
           <input
             type="text"
@@ -152,11 +152,11 @@ const UploadImage = () => {
             data-lang={lang}
             onChange={handleInputChange}
             required
-            className="flex border border-[#0E0C1B] bg-white bg-transparent py-2 px-[1%] w-[48%]"
+            className="flex border border-[#0E0C1B] bg-white bg-transparent py-2 px-[1%] w-[48%] rounded-md"
           />
         </div>
       ))}
-      <button type="submit" disabled={wait} className="mt-10 border z-90 text-white hover:text-[#0E0C1B] border-[#0E0C1B] py-[5px] px-[10px] bg-[#0E0C1B] hover:bg-white">
+      <button type="submit" disabled={wait} className="mt-10 border z-90 text-white hover:text-[#0E0C1B] border-[#0E0C1B] py-[6px] px-[20px] bg-[#0E0C1B] hover:bg-white rounded-md">
         {wait ? "Uploading..." : "Yükle"}
       </button>
       {error && <p style={{ color: "red" }}>{error}</p>}

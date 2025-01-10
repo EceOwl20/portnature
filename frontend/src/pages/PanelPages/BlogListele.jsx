@@ -63,9 +63,9 @@ const BlogListele = () => {
     console.log(blogs)
   return (
     <div className="container mx-auto px-4 pb-4 h-screen">
-            <h1 className="text-2xl font-bold mb-4">Blog Listesi</h1>
+            <h1 className="text-2xl font-bold mb-4 text-white my-5">Blog Listesi</h1>
             {blogs.length > 0 ? (
-                <table className="min-w-full bg-white">
+                <table className="min-w-full bg-white mt-10">
                     <thead>
                         <tr>
                             <th className="py-2 px-4 border">Başlık (TR)</th>

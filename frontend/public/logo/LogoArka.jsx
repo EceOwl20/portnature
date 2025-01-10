@@ -5,8 +5,8 @@ function LogoArka({ className, color, width, height }) {
     <div className={className}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={width || "1920"}
-        height={height || "96"}
+        width={width}
+        height={height}
         viewBox="0 0 1920 96"
         fill="none"
       >

@@ -64,7 +64,7 @@ const Gallery = () => {
           <img
             src={image.firebaseUrl}
             alt={image.name.en} //varsayılan en
-            className="w-auto h-auto rounded-md"
+             className="w-full h-full rounded-md object-contain"
             
           />
           <div className="absolute bottom-1 left-0 right-0 bg-black/70 text-white text-center py-2 opacity-0 group-hover:opacity-100 transition-opacity">
