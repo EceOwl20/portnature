@@ -1,7 +1,7 @@
 import React from 'react'
 import UnderLine from '../../../svg/UnderLine/UnderLine'
 
-const SubroomsInfoSection = ({images=[], items=[], text, header, text2, span, lang="en"}) => {
+const SubroomsInfoSection = ({images=[], items=[], text, header, text2, span, lang}) => {
 
   return (
     <div className='flex flex-col w-screen h-auto my-12 justify-center items-center '>

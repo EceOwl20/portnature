@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import AlaCarteMain from '../../components/food/AlaCarteMain'
 import FindRestaurantSection from '../../components/food/FindRestaurantSection'
 import ContactSection from '../../components/homepage/ContactSection'
+import Cookies from "js-cookie";
 
 const AlacartePage = () => {
   const [alacarteMainData, setAlacarteMainData] = useState(null);
   const [findRestaurantSectionData, setFindRestaurantSectionData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
+
+  const [lang, setLang] = useState(Cookies.get("language") || "en");
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -65,8 +68,8 @@ const AlacartePage = () => {
 
   return (
     <div >
-      <AlaCarteMain {...alacarteMainData}/>
-      <FindRestaurantSection {...findRestaurantSectionData}/>
+      <AlaCarteMain {...alacarteMainData} lang={lang}/>
+      <FindRestaurantSection {...findRestaurantSectionData} lang={lang}/>
       {/* <ContactSection/> */}
     </div>
   )

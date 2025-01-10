@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import ProgressBarExample from './PanelComponents/ProgressBarExample';
 
 ChartJS.register(
   LineElement,
@@ -170,11 +171,11 @@ const opChartData = {
   
 
   return (
-    <div className='flex flex-col w-full items-start justify-start h-full bg-[#6b78ad] text-white px-5 py-5'>
-      <h1 className='text-2xl mb-4 text-[#0e0c1b] font-semibold font-monserrat'>Dashboard</h1>
+    <div className='flex flex-col w-[98%] items-start justify-start h-full  text-white px-[2%] py-5'>
+      <h1 className='text-2xl mb-4 text-white font-semibold font-monserrat'>Dashboard</h1>
 
       <div className='flex w-full items-start justify-between'>
-      <div className='w-[74%] grid grid-cols-2 mt-10 justify-center items-center gap-2'>
+      <div className='w-[74%] grid grid-cols-2 mt-2 justify-center items-center gap-2'>
         <div className='flex flex-col w-[90%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
           <h2 className='text-[#0e0c1b] text-[20px]'>Network Grafiği</h2>
           <Line data={chartData} options={options} />
@@ -191,18 +192,21 @@ const opChartData = {
         </div>
       </div>
 
-      <div className='flex flex-col items-center justify-start w-[24%] gap-2 mt-10'>
-        <div className='flex flex-col items-start justify-start w-[85%] p-[6%] font-monserrat bg-[#0e0c1b] text-white'>
-          <span className='text-[25px] font-medium'>20</span>
-          <p className='text-[18px] font-medium'>Sayfa</p>
+      <div className='flex flex-col items-center justify-start w-[24%] gap-2 mt-0'>
+        <div className='flex flex-col items-start justify-start w-[80%] p-[5%] font-monserrat bg-[#0e0c1b] text-white rounded-lg'>
+          <span className='text-[25px] font-medium'>32</span>
+          <p className='text-[18px] font-medium mb-3'>Sayfa</p>
+          <ProgressBarExample currentValue={32} targetValue={100} />
         </div>
-        <div className='flex flex-col items-start justify-start w-[85%] p-[6%] font-monserrat bg-[#0e0c1b] text-white'>
+        <div className='flex flex-col items-start justify-start w-[80%] p-[5%] font-monserrat bg-[#0e0c1b] text-white rounded-lg'>
           <span className='text-[25px] font-medium'>80</span>
           <p className='text-[18px] font-medium'>Blog</p>
+          <ProgressBarExample currentValue={80} targetValue={100} />
         </div>
-        <div className='flex flex-col items-start justify-start w-[85%] p-[6%] font-monserrat bg-[#0e0c1b] text-white'>
+        <div className='flex flex-col items-start justify-start w-[80%] p-[5%] font-monserrat bg-[#0e0c1b] text-white rounded-lg'>
           <span className='text-[25px] font-medium'>6</span>
           <p className='text-[18px] font-medium'>Kullanıcı</p>
+          <ProgressBarExample currentValue={6} targetValue={50} />
         </div>
       </div>
       </div>

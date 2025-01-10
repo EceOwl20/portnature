@@ -2,7 +2,7 @@ import React, { useState }  from 'react'
 import PlusSvg from "../../../svg/room/PlusSvg"
 import CircleCrossSvg from '../../../svg/room/CircleCrossSvg';
 
-const RoomPlan = ({image, header, text, text2, lang="en"}) => {
+const RoomPlan = ({image, header, text, text2, lang}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className='flex bg-[#f8f8f8] w-screen h-auto justify-center items-center '>

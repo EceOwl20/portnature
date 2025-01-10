@@ -6,6 +6,7 @@ import ContactSection from "../../components/homepage/ContactSection";
 import FindRestaurantSection from "../../components/food/FindRestaurantSection";
 import RestaurantSection from "../../components/food/RestaurantSection";
 import AllRestaurantSection from "../../pages/Food/AllRestaurantSection"
+import Cookies from "js-cookie";
 
 const FoodDrinkPage = ({
   carouselImg,
@@ -21,6 +22,8 @@ const FoodDrinkPage = ({
   const [restaurantSectionData, setRestaurantSectionData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
+
+  const [lang, setLang] = useState(Cookies.get("language") || "en");
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -109,10 +112,10 @@ const FoodDrinkPage = ({
    
   return (
     <div>
-      <FoodCarousel {...foodCarouselData} />
-      <FoodMenu {...foodMenuData} />
-       <LogoSection {...logoSectionData} />
-      <AllRestaurantSection {...restaurantSectionData}/>
+      <FoodCarousel {...foodCarouselData} lang={lang}/>
+      <FoodMenu {...foodMenuData} lang={lang}/>
+       <LogoSection {...logoSectionData} lang={lang}/>
+      <AllRestaurantSection {...restaurantSectionData} lang={lang}/>
       {/* <FindRestaurantSection findRestaurants={findRestaurants} /> */}
       {/* <ContactSection/> */}
     </div>

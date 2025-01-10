@@ -2,7 +2,7 @@ import React from 'react'
 import UnderLine from '../../../svg/UnderLine/UnderLine'
 import BirdSvg from '../../../svg/room/BirdSvg'
 
-const StandardRoomComponent = ({image,header,text, span, text2, buttonText, buttonLink, lang="en"}) => {
+const StandardRoomComponent = ({image,header,text, span, text2, buttonText, buttonLink, lang}) => {
   return (
     <div className='flex flex-col relative lg:flex-row xl:w-[85%] lg:w-[90%] w-[100%] bg-white md:bg-[#f8f8f8] justify-center items-center mb-[60px] lg:mb-[100px] min-h-[60vh] text-customGray leading-[22.5px] font-monserrat py-[20px] lg:py-0 gap-4 lg:gap-0'>
       <div className='relative w-full h-auto justify-center items-center text-center'>
