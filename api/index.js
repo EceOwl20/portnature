@@ -21,8 +21,8 @@ const connect = async () => {
 connect()
   .then(async () => {
     console.log("Bağlandı sorun yok...");
-    await seedMetrics();
-    console.log("Seed işlemi tamamlandı!");
+    //await seedMetrics();
+    //console.log("Seed işlemi tamamlandı!");
   })
   .catch((db_error) => {
     console.log(db_error);
@@ -56,52 +56,52 @@ exp.use((error, request, response, next) => {
 });
 
 // Seed işlemi: Veritabanına başlangıç verisi ekleme
-const seedMetrics = async () => {
-  try {
-    // network.bytesIn dokümanını bul
-    const networkDoc = await Metric.findOne({ name: "network.bytesIn" });
+// const seedMetrics = async () => {
+//   try {
+//     // network.bytesIn dokümanını bul
+//     const networkDoc = await Metric.findOne({ name: "network.bytesIn" });
 
-    if (!networkDoc) {
-      // Eğer yoksa tamamen oluştur
-      await Metric.create({
-        name: "network.bytesIn",
-        dataPoints: [
-          { timestamp: new Date(), value: 120 },
-          { timestamp: new Date(), value: 150 },
-        ],
-      });
-      console.log("network.bytesIn kayıt oluşturuldu.");
-    } else {
-      // Varsa sadece ekleme yap
-      networkDoc.dataPoints.push({
-        timestamp: new Date(),
-        value: 200, // eklemek istediğiniz değer
-      });
-      await networkDoc.save();
-      console.log("network.bytesIn kaydına yeni dataPoint eklendi.");
-    }
+//     if (!networkDoc) {
+//       // Eğer yoksa tamamen oluştur
+//       await Metric.create({
+//         name: "network.bytesIn",
+//         dataPoints: [
+//           { timestamp: new Date(), value: 120 },
+//           { timestamp: new Date(), value: 150 },
+//         ],
+//       });
+//       console.log("network.bytesIn kayıt oluşturuldu.");
+//     } else {
+//       // Varsa sadece ekleme yap
+//       networkDoc.dataPoints.push({
+//         timestamp: new Date(),
+//         value: 200, // eklemek istediğiniz değer
+//       });
+//       await networkDoc.save();
+//       console.log("network.bytesIn kaydına yeni dataPoint eklendi.");
+//     }
 
-    // connections.current benzeri bir mantıkla ekleme/güncelleme
-    const connectionDoc = await Metric.findOne({ name: "connections.current" });
-    if (!connectionDoc) {
-      await Metric.create({
-        name: "connections.current",
-        dataPoints: [
-          { timestamp: new Date(), value: 10 },
-          { timestamp: new Date(), value: 15 },
-        ],
-      });
-      console.log("connections.current kayıt oluşturuldu.");
-    } else {
-      connectionDoc.dataPoints.push({
-        timestamp: new Date(),
-        value: 20, // ek data
-      });
-      await connectionDoc.save();
-      console.log("connections.current kaydına yeni dataPoint eklendi.");
-    }
+//     // connections.current benzeri bir mantıkla ekleme/güncelleme
+//     const connectionDoc = await Metric.findOne({ name: "connections.current" });
+//     if (!connectionDoc) {
+//       await Metric.create({
+//         name: "connections.current",
+//         dataPoints: [
+//           { timestamp: new Date(), value: 10 },
+//           { timestamp: new Date(), value: 15 },
+//         ],
+//       });
+//       console.log("connections.current kayıt oluşturuldu.");
+//     } else {
+//       connectionDoc.dataPoints.push({
+//         timestamp: new Date(),
+//         value: 20, // ek data
+//       });
+//       await connectionDoc.save();
+//       console.log("connections.current kaydına yeni dataPoint eklendi.");
+//     }
 
-  } catch (error) {
-    console.error("Seed verisi ekleme/güncelleme hatası:", error);
-  }
-};""
+//   } catch (error) {
+//     console.error("Seed verisi ekleme/güncelleme hatası:", error);
+//   }
+// };

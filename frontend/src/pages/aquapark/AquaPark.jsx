@@ -72,7 +72,7 @@ const AquaPark = () => {
       <AquaParkSection1 {...aquaSectionData} lang={lang}/>
       <AquaParkSection2 {...aquaSection2Data} lang={lang}/>
       {/* <ContactSection/> */}
-      <SpecialOffers/>
+      {/* <SpecialOffers/> */}
     </section>
   )
 }

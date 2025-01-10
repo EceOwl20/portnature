@@ -1,6 +1,6 @@
-import Metric from  "../models/metric.js";
+// controller/metric.js
+import Metric from "../models/metric.js";
 
-// Metrik verilerini MongoDB'den çeken fonksiyon
 export const getMetrics = async (req, res) => {
   try {
     const metrics = await Metric.find();
@@ -12,82 +12,61 @@ export const getMetrics = async (req, res) => {
 };
 
 
-// 1) Tüm metrikleri al (GET /api/metric)
-export const getAllMetrics = async (req, res) => {
+// Örnek bir "upsert" create
+export const upsertMetric = async (req, res) => {
   try {
-    const metrics = await Metric.find();
-    res.status(200).json(metrics);
+    const { name, dataPoints } = req.body; 
+    // dataPoints => örn. [{ timestamp, value }] dizi
+
+    // 1) name var mı veritabanında arayalım
+    const existing = await Metric.findOne({ name });
+    if (!existing) {
+      // Yoksa yeni metric oluşturalım
+      const newMetric = await Metric.create({ name, dataPoints });
+      return res.status(201).json({
+        message: "Yeni metric oluşturuldu",
+        metric: newMetric
+      });
+    } else {
+      // Varsa dataPoints'e ekleyelim
+      // Basit örnek: Tüm dataPoints'i push edelim
+      // (İsterseniz tek dataPoint eklemek için $push da yapabilirsiniz)
+      existing.dataPoints.push(...dataPoints); 
+      await existing.save();
+      return res.status(200).json({
+        message: "Mevcut metric'e dataPoints eklendi",
+        metric: existing
+      });
+    }
   } catch (error) {
-    console.error("getAllMetrics error:", error);
-    res.status(500).json({ message: "Metrics could not be retrieved" });
+    console.error("upsertMetric error:", error);
+    res.status(500).json({ error: "Failed to upsert metric" });
   }
 };
 
-// 2) Tek metrik bilgisi al (GET /api/metric/:id)
-export const getMetricById = async (req, res) => {
+// Örnek bir "update" fonksiyonu (var olan dataPoint'i güncellemek isterseniz)
+export const updateOneMetricData = async (req, res) => {
   try {
     const { id } = req.params;
+    const { timestamp, value } = req.body;
+    // Burada "ilk dataPoint"i veya "belirli index"i güncellesiniz; 
+    // tasarımınıza göre bir yaklaşım
     const metric = await Metric.findById(id);
-    if (!metric) {
-      return res.status(404).json({ message: "Metric not found" });
+    if (!metric) return res.status(404).json({ message: "Metric not found" });
+
+    // Basitçe: metric.dataPoints[0] güncelledik
+    // Veya find ile timestamp'i bulup value'yi değiştirebilirsiniz
+    if (!metric.dataPoints[0]) {
+      // Ekle
+      metric.dataPoints.push({ timestamp, value });
+    } else {
+      metric.dataPoints[0].timestamp = timestamp;
+      metric.dataPoints[0].value = value;
     }
-    res.status(200).json(metric);
-  } catch (error) {
-    console.error("getMetricById error:", error);
-    res.status(500).json({ message: "Metric could not be retrieved" });
+    await metric.save();
+    res.json({ message: "Metric updated", metric });
+  } catch (err) {
+    console.error("updateOneMetricData error:", err);
+    res.status(500).json({ error: "Failed to update metric data" });
   }
 };
-
-// 3) Yeni metrik oluştur (POST /api/metric)
-export const createMetric = async (req, res) => {
-  try {
-    // Örnek body: { "name": "network.bytesOut", "dataPoints": [ { "timestamp": "...", "value": 123 } ] }
-    const { name, dataPoints } = req.body;
-    const newMetric = new Metric({ name, dataPoints });
-    const savedMetric = await newMetric.save();
-    res.status(201).json(savedMetric);
-  } catch (error) {
-    console.error("createMetric error:", error);
-    res.status(500).json({ message: "Failed to create metric" });
-  }
-};
-
-// 4) Metrik güncelle (PUT veya PATCH /api/metric/:id)
-export const updateMetric = async (req, res) => {
-  try {
-    const { id } = req.params;
-    // PUT ile tam dokümanı değiştirirsiniz, PATCH ile kısmi alanları
-    // Burada PUT örneğini veriyorum:
-    const { name, dataPoints } = req.body;
-
-    const updated = await Metric.findByIdAndUpdate(
-      id,
-      { name, dataPoints },
-      { new: true } // new: true → güncellenmiş dokümanı döndür
-    );
-
-    if (!updated) {
-      return res.status(404).json({ message: "Metric not found" });
-    }
-    res.status(200).json(updated);
-  } catch (error) {
-    console.error("updateMetric error:", error);
-    res.status(500).json({ message: "Failed to update metric" });
-  }
-};
-
-// 5) Metrik sil (DELETE /api/metric/:id)
-export const deleteMetric = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const deleted = await Metric.findByIdAndDelete(id);
-    if (!deleted) {
-      return res.status(404).json({ message: "Metric not found" });
-    }
-    res.status(200).json({ message: "Metric deleted successfully" });
-  } catch (error) {
-    console.error("deleteMetric error:", error);
-    res.status(500).json({ message: "Failed to delete metric" });
-  }
-};
-

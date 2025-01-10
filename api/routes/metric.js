@@ -1,28 +1,11 @@
-import exp from "express"
-import { getMetrics, getAllMetrics,
-    getMetricById,
-    createMetric,
-    updateMetric,
-    deleteMetric } from '../controller/metric.js';
+// routes/metric.js
+import { Router } from "express";
+import { getMetrics, upsertMetric, updateOneMetricData } from "../controller/metric.js";
 
-const router = exp.Router();
+const router = Router();
 
-// /api/metrics endpoint'i
-router.get('/metrics', getMetrics);
-
-router.get("/", getAllMetrics);
-
-// 2) Tek metrik al
-router.get("/:id", getMetricById);
-
-// 3) Yeni metrik oluştur
-router.post("/", createMetric);
-
-// 4) Metrik güncelle (PUT)
-router.put("/:id", updateMetric);
-
-// 5) Metrik sil
-router.delete("/:id", deleteMetric);
-
+router.get("/metrics", getMetrics);      // Tüm metrikleri liste
+router.post("/", upsertMetric);         // POST /api/metric -> upsert (yeni oluştur veya var olana ekle)
+router.put("/:id", updateOneMetricData);// PUT /api/metric/:id -> dataPoint güncelleme
 
 export default router;
