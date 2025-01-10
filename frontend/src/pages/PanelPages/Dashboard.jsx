@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -32,6 +33,82 @@ const Dashboard = () => {
 
   // Mesaj göstermek için
   const [message, setMessage] = useState("");
+
+  //blog
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchBlogs = async () => {
+    try {
+        const response = await fetch("/api/blog/liste");
+        const data = await response.json();
+        if (data.success) {
+            setBlogs(data.blogs);
+        } else {
+            setError(data.message || "Bloglar Bulunamadı");
+        }
+    } catch (error) {
+        console.error("Fetch Error:", error)
+        setError(error.message)
+    }   finally {
+        setLoading(false)
+    }
+};
+
+useEffect(()=>{
+    fetchBlogs();
+},[]);
+
+
+  //pages
+  const [pages, setPages] = useState([]);
+  const [error, setError] = useState(null);
+
+
+  //user 
+  const [userCount, setUserCount] = useState(null);
+
+  const fetchUsersCount = async () => {
+    try {
+        const response = await fetch("http://localhost:3000/api/user/count");
+        const data = await response.json();
+        if (data.success) {
+          setUserCount(data.userCount);
+        } else {
+            setError(data.message || "Users Bulunamadı");
+        }
+    } catch (error) {
+        console.error("Fetch Error:", error)
+        setError(error.message)
+    }   finally {
+        setLoading(false)
+    }
+};
+useEffect(()=>{
+  fetchUsersCount();
+},[]);
+//user end
+
+  useEffect(() => {
+    const fetchPages = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/page/all");
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch pages");
+        }
+
+        setPages(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchPages();
+  }, []);
+  //pages end
+
 
   useEffect(() => {
     fetchMetrics();
@@ -175,18 +252,18 @@ const opChartData = {
       <h1 className='text-2xl mb-4 text-white font-semibold font-monserrat'>Dashboard</h1>
 
       <div className='flex w-full items-start justify-between'>
-      <div className='w-[74%] grid grid-cols-2 mt-2 justify-center items-center gap-2'>
-        <div className='flex flex-col w-[90%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
+      <div className='w-[70%] grid grid-cols-2 mt-2 justify-center items-center gap-4'>
+        <div className='flex flex-col w-[100%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
           <h2 className='text-[#0e0c1b] text-[20px]'>Network Grafiği</h2>
           <Line data={chartData} options={options} />
         </div>
         
-        <div className='flex flex-col w-[90%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
+        <div className='flex flex-col w-[100%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
           <h2 className='text-[#0e0c1b] text-[20px]'>Connections Grafiği</h2>
           <Line data={chartData2} options={options2} />
         </div>
 
-        <div className='flex flex-col w-[90%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
+        <div className='flex flex-col w-[100%] bg-white p-[2%] gap-10 rounded-md text-[#0e0c1b]'>
           <h2 className='text-[#0e0c1b] text-[20px]'>Opcounters Grafiği</h2>
           <Line data={opChartData} options={options2} />
         </div>
@@ -194,17 +271,17 @@ const opChartData = {
 
       <div className='flex flex-col items-center justify-start w-[24%] gap-2 mt-0'>
         <div className='flex flex-col items-start justify-start w-[80%] p-[5%] font-monserrat bg-[#0e0c1b] text-white rounded-lg'>
-          <span className='text-[25px] font-medium'>32</span>
+          <span className='text-[25px] font-medium'>{pages.length}</span>
           <p className='text-[18px] font-medium mb-3'>Sayfa</p>
-          <ProgressBarExample currentValue={32} targetValue={100} />
+          <ProgressBarExample currentValue={pages.length} targetValue={100} />
         </div>
         <div className='flex flex-col items-start justify-start w-[80%] p-[5%] font-monserrat bg-[#0e0c1b] text-white rounded-lg'>
-          <span className='text-[25px] font-medium'>80</span>
+          <span className='text-[25px] font-medium'>{blogs.length}</span>
           <p className='text-[18px] font-medium'>Blog</p>
-          <ProgressBarExample currentValue={80} targetValue={100} />
+          <ProgressBarExample currentValue={blogs.length} targetValue={50} />
         </div>
         <div className='flex flex-col items-start justify-start w-[80%] p-[5%] font-monserrat bg-[#0e0c1b] text-white rounded-lg'>
-          <span className='text-[25px] font-medium'>6</span>
+          <span className='text-[25px] font-medium'>{userCount}</span>
           <p className='text-[18px] font-medium'>Kullanıcı</p>
           <ProgressBarExample currentValue={6} targetValue={50} />
         </div>
