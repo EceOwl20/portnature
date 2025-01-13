@@ -70,4 +70,26 @@ export const guncelleUser = async (request, response, next) => {
       res.status(500).json({ error: "Failed to get user count" });
     }
   }
+
+// Tüm kullanıcıları çeker
+export const getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await User.find(); // Tüm User belgelerini al
+    // Dizi şeklinde dönecek. allUsers.length -> kullanıcı adedi
+
+    // Dönüş formatında "success" ve "users" alanları olsun (frontend ile uyumlu)
+    res.status(200).json({
+      success: true,
+      users: allUsers
+    });
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    // Hata durumunda "success=false" ve mesaj döndürelim
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch users",
+      error: error.message
+    });
+  }
+};
   

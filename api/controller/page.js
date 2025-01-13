@@ -9,7 +9,7 @@ export const getAllPages = async (req, res) => {
     }
     res.status(200).json(pages);
   } catch (error) {
-    console.error("Error fetching pages:", error);
+    console.error("Error fetching pages:", error);π
     res.status(500).json({ message: "Server error", error });
   }
 };
