@@ -1,5 +1,5 @@
 import exp from "express";
-import { getirBir, getirUsers, guncelleUser, silUsers, countOfUser } from "../controller/user.js";
+import { getirBir, getirUsers, guncelleUser, silUsers, countOfUser,getAllUsers } from "../controller/user.js";
 
 const router = exp.Router();
 
@@ -8,5 +8,6 @@ router.delete("/delete/:id", silUsers)
 router.put("/guncelle/:id", guncelleUser)
 router.get("/getirbir/:id", getirBir)
 router.get("/count", countOfUser)
+router.get("/all", getAllUsers)
 
 export default router;
