@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import GaleriPopup from "./PanelComponents/GaleriPopup";
+import GaleriPage from "./GaleriPage";
 
 const EditComponent = () => {
   const { pageName, componentIndex } = useParams();
@@ -20,6 +22,11 @@ const EditComponent = () => {
   const [restaurantImageSearchQuery, setRestaurantImageSearchQuery] = useState("");
   const [restaurantImageSearchResults, setRestaurantImageSearchResults] = useState([]);
 
+  const [isGaleriOpen, setGaleriOpen] = useState(false);
+
+  const handleGaleriToggle = () => {
+    setGaleriOpen(!isGaleriOpen);
+  };
 
   useEffect(() => {
     if (!searchQuery) {
@@ -520,11 +527,14 @@ useEffect(() => {
   const singleIconImage2 = componentData.props.iconImage2;
 
   return (
-    <div className="flex flex-col items-center font-monserrat z-50 bg-white">
+    <div className="flex flex-col items-start font-monserrat z-50 bg-transparent justify-start m-5 ">
       <h1 className="text-[25px] font-medium my-4 text-[#ffffff]">Edit Component: {componentData.type}</h1>
-
-      {/* General props editing - Güncellenmiş kısım */}
-      {Object.keys(componentData.props || {}).map((key) => {
+    <div className="grid grid-cols-2 items-start justify-center w-[40%] gap-[2%]">
+    {isGaleriOpen && (
+    <GaleriPopup isModalOpen={isGaleriOpen} handleModalToggle={handleGaleriToggle}/>
+    )}
+        {/* General props editing - Güncellenmiş kısım */}
+        {Object.keys(componentData.props || {}).map((key) => {
         const value = componentData.props[key];
         // Bu alanların düzenlenmesini istenmiyoruz
         if (
@@ -558,7 +568,7 @@ useEffect(() => {
 
         if (isLangObject) {
           return (
-            <div key={key} className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full">
+            <div key={key} className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full ">
               <h3 className="font-bold text-lg">{key} (Multi-language)</h3>
               {Object.keys(value).map((lang) => (
                 <div key={lang} className="flex flex-col gap-2">
@@ -910,16 +920,16 @@ useEffect(() => {
 
       {/* Tek bir header alanı varsa */}
       {singleHeader && (
-        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-          <h2 className="font-bold text-xl">Header (Multi-language)</h2>
+        <div className="flex flex-col gap-4 w-[100%] p-4 rounded my-4 bg-white">
+          <h2 className="font-bold text-[15px]">Header (Multi-language)</h2>
           {Object.keys(singleHeader).map((lang) => (
             <div key={lang} className="flex flex-col gap-2">
-              <label>Header ({lang})</label>
+              <label className="text-[12px]">Header ({lang})</label>
               <input
                 type="text"
                 value={singleHeader[lang]}
                 onChange={(e) => handleLangFieldChange("header", lang, e.target.value)}
-                className="border p-2"
+                className="border p-2 text-[10px]"
               />
             </div>
           ))}
@@ -962,35 +972,37 @@ useEffect(() => {
         </div>
       )}
 
-        {/* Tek bir text alanı varsa */}
-        {singleDelay !== undefined && (
-  <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-    <h2 className="font-bold text-xl">Delay</h2>
-    <label>Delay (saniye)</label>
+ <div className="flex flex-col border p-3 mt-4 justify-center items-center bg-white rounded">
+         {/* Tek bir delay alanı varsa */}
+ {singleDelay !== undefined && (
+  <div className="flex flex-col gap-4 w-full ">
+    <h2 className="font-bold text-[15px]">Delay</h2>
+    <label className="text-[12px]">Delay (saniye)</label>
     <input
       type="text"
       value={singleDelay/1000}
       onChange={(e) => handleDelayChange(e.target.value*1000)}
-      className="border p-2"
+      className="border p-2 text-[10px]"
     />
   </div>
 )}
 
 {singleAutoplay !== undefined && (
-  <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-    <h2 className="font-bold text-xl">Autoplay</h2>
+  <div className="flex flex-col gap-4 w-full my-4">
+    <h2 className="font-bold text-[15px]">Autoplay</h2>
 
-    <label className="font-semibold">Autoplay</label>
+    <label className="font-semibold text-[12px]">Autoplay</label>
     <select
       value={singleAutoplay ? "true" : "false"}
       onChange={(e) => handleAutoplayChange(e.target.value === "true")}
-      className="border p-2"
+      className="border p-2 text-[10px]"
     >
-      <option value="true">true</option>
-      <option value="false">false</option>
+      <option className="text-[10px]" value="true">true</option>
+      <option className="text-[10px]" value="false">false</option>
     </select>
   </div>
 )}
+ </div>
 
 
 
@@ -1775,108 +1787,132 @@ useEffect(() => {
 
 
 
-      {/* Images editing */}
-      {componentData.props.images?.length > 0 && (
-        <div className="flex flex-col gap-4 w-full">
-          <h2 className="text-[#0e0c1b] text-[20px] font-bold pl-2">Images</h2>
-          {componentData.props.images.map((image, index) => (
-            <div key={index} className="flex flex-col gap-2 border p-4 rounded-md">
-              <h3>Image {index + 1}</h3>
-              <label className="text-[#246cfc] text-[18px] font-semibold">Firebase URL</label>
+{/* Images editing */}
+{componentData.props.images?.length > 0 && (
+  <div className="flex flex-col gap-4 col-span-2 w-full overflow-hidden">
+    <h2 className="text-white text-[20px] font-bold pl-2"></h2>
+    <div className="flex flex-row gap-3 w-full">
+      {componentData.props.images.map((image, index) => (
+        <div key={index} className="flex flex-col gap-2 border p-4 rounded-md bg-white w-full h-96 overflow-y-scroll">
+          <h3 className="font-semibold">Görsel {index + 1}</h3>
+          <label className="text-black text-[18px] font-semibold hidden">Firebase URL</label>
+          <input
+            type="text"
+            value={image.firebaseUrl}
+            className="hidden"
+            onChange={(e) =>
+              handleArrayChange("images", index, "firebaseUrl", e.target.value)
+            }
+          />
+          {image.firebaseUrl && (
+            <img
+              src={image.firebaseUrl}
+              alt={`Preview of Image ${index + 1}`}
+              className="w-full h-32 object-cover mt-2 border rounded-md"
+            />
+          )}
+
+           {/* Image search */}
+           <div className="flex flex-col gap-2 items-center">
+            {/* <input
+              type="text"
+              placeholder="Enter image name"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="border py-2 px-3 w-[90%] text-[12px]"
+            /> */}
+
+            <div className="flex w-full items-center justify-center gap-3">
+            <button
+              onClick={handleGaleriToggle}
+              className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
+            >
+              Galeri
+            </button>
+
+            <button
+              onClick={handleSearch}
+              className="bg-green-700 text-white px-2 py-1 rounded text-[12px] whitespace-nowrap"
+            >
+              Resim Yükle
+            </button>
+            </div>
+
+            {searchResults.length > 0 && (
+              <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px]">
+                <h4>Search Results</h4>
+                {searchResults.map((result, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 border p-2 rounded-md cursor-pointer "
+                    onClick={() => handleReplaceImage("images", index, result)}
+                  >
+                    <img
+                      src={result.firebaseUrl}
+                      alt={result.altText.en}
+                      className="w-16 h-16 object-cover"
+                    />
+                    <p>{result.altText.en}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+
+          {Object.keys(image.altText || {}).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label className="text-black text-[15px] font-semibold">Alt Text ({lang})</label>
               <input
                 type="text"
-                value={image.firebaseUrl}
+                value={image.altText[lang]}
+                className="text-[12px] border p-1"
                 onChange={(e) =>
-                  handleArrayChange("images", index, "firebaseUrl", e.target.value)
+                  handleAltTextChange("images", index, lang, e.target.value)
                 }
               />
-
-              {Object.keys(image.altText || {}).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label className="text-[#246cfc] text-[18px] font-semibold">Alt Text ({lang})</label>
-                  <input
-                    type="text"
-                    value={image.altText[lang]}
-                    onChange={(e) =>
-                      handleAltTextChange("images", index, lang, e.target.value)
-                    }
-                  />
-                </div>
-              ))}
-
-              {Object.keys(image.header || {}).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label className="text-[#246cfc] text-[18px] font-semibold">Header ({lang})</label>
-                  <input
-                    type="text"
-                    value={image.header[lang]}
-                    onChange={(e) =>
-                      handleHeaderChange("images", index, lang, e.target.value)
-                    }
-                  />
-                </div>
-              ))}
-
-              {Object.keys(image.text || {}).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label className="text-[#246cfc] text-[18px] font-semibold">Text ({lang})</label>
-                  <input
-                    type="text"
-                    value={image.text[lang]}
-                    onChange={(e) =>
-                      handleTextChange("images", index, lang, e.target.value)
-                    }
-                  />
-                </div>
-              ))}
-
-              {/* Image search */}
-              <div className="flex flex-col gap-2 items-center">
-                <label className="text-[#e45252] text-[18px] font-semibold">Search for a new image</label>
-                <input
-                  type="text"
-                  placeholder="Enter image name"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="border py-2 px-3 w-[50%]"
-                />
-                <button
-                  onClick={handleSearch}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Search
-                </button>
-
-                {searchResults.length > 0 && (
-                  <div className="flex flex-col gap-2 mt-2">
-                    <h4>Search Results</h4>
-                    {searchResults.map((result, i) => (
-                      <div
-                        key={i}
-                        className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-                        onClick={() => handleReplaceImage("images", index, result)}
-                      >
-                        <img
-                          src={result.firebaseUrl}
-                          alt={result.altText.en}
-                          className="w-16 h-16 object-cover"
-                        />
-                        <p>{result.altText.en}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
             </div>
           ))}
-          <button
-            onClick={() => handleAddItem("images")}
-            className="bg-green-700 text-white px-4 py-2 rounded w-[20%] my-4"
-          >
-            Add New Image
-          </button>
+
+          {Object.keys(image.header || {}).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label className="text-black text-[18px] font-semibold">Header ({lang})</label>
+              <input
+                type="text"
+                value={image.header[lang]}
+                onChange={(e) =>
+                  handleHeaderChange("images", index, lang, e.target.value)
+                }
+              />
+            </div>
+          ))}
+
+          {Object.keys(image.text || {}).map((lang) => (
+            <div key={lang} className="flex flex-col gap-2">
+              <label className="text-black text-[18px] font-semibold">Text ({lang})</label>
+              <input
+                type="text"
+                value={image.text[lang]}
+                onChange={(e) =>
+                  handleTextChange("images", index, lang, e.target.value)
+                }
+              />
+            </div>
+          ))}
+
+         
         </div>
-      )}
+      ))}
+    </div>
+    <button
+      onClick={() => handleAddItem("images")}
+      className="bg-green-700 text-white px-4 py-2 rounded w-[50%] my-4 whitespace-nowrap"
+    >
+      Add New Image
+    </button>
+  </div>
+)}
+
 
       {/* SubImages editing */}
       {componentData.props.subImages?.length > 0 && (
@@ -2091,6 +2127,7 @@ useEffect(() => {
           </button>
         </div>
       )}
+    </div>
 
       <button onClick={handleSave} className="bg-[#342d64] text-white text-[18px] font-semibold px-4 py-2 rounded my-5">
         Save Changes

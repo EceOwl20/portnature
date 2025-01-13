@@ -29,11 +29,11 @@ const PanelSideBar = () => {
   };
 
   return (
-    <section className="flex relative overflow-hidden min-h-screen max-w-screen">
-      <div className="-top-1/2 absolute -right-1/4 my-ellipse2 z-0"></div>
+    <section className="flex relative overflow-hidden min-h-screen max-w-screen z-10">
+      {/* <div className="-top-1/2 absolute -right-1/4 my-ellipse2 z-1"></div> */}
 
       <aside className="flex flex-col items-center w-[10%] min-w-screen min-h-content bg-[#0e0c1b] p-[15px] relative">
-        <div className="-bottom-1/2 absolute -left-1/2 my-ellipse z-0"></div>
+      {/* <div className="-bottom-1/2 absolute -left-1/2 my-ellipse z-1"></div> */}
        
         <nav className="flex flex-col items-start w-full gap-[10px] z-10">
           <NavLink
