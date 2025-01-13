@@ -3,10 +3,11 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import portlogo from "../../../public/images/LogoPortbig.png";
 
-const HomeCarousel = ({ images = [], lang, autoplay = true, delay = 2000 }) => {
+const HomeCarousel = ({ images = [], lang, autoplay, delay }) => {
+  const plugins = autoplay ? [Autoplay({ delay })] : [];
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [autoplay ? Autoplay({ delay }) : undefined]
+    plugins
   );
 
   const scrollPrev = useCallback(() => {

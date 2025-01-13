@@ -46,7 +46,7 @@ const HeaderDgtl = () => {
   };
 
   return (
-    <header className="relative w-screen h-[96px] flex items-center top-0 bg-black justify-center">
+    <header className="relative w-screen h-[96px] flex items-center top-0 bg-[#0e0c1b] justify-center">
       {/* Logo ve Navigasyon */}
       <div className="relative flex items-center justify-between w-[95%] h-full px-[5%] font-sans text-[16px] text-white font-medium">
         {/* Logo */}

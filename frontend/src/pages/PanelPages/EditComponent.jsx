@@ -150,6 +150,17 @@ useEffect(() => {
     });
   };
 
+
+  const handleDelayChange = (field) => {
+    setComponentData((prev) => ({
+      ...prev,
+      props: {
+        ...prev.props,
+        delay: field, // yada autoplayDelay / singleDelay vb. 
+      },
+    }));
+  };
+
   // Tek bir image için URL güncellemesi
   const handleImageUrlChange = (value) => {
     setComponentData((prev) => ({
@@ -194,6 +205,19 @@ useEffect(() => {
       },
     }));
   };
+
+
+
+  const handleAutoplayChange = (newValue) => {
+    setComponentData((prev) => ({
+      ...prev,
+      props: {
+        ...prev.props,
+        autoplay: newValue, 
+      },
+    }));
+  };
+  
 
   const handleAddItem = (field) => {
     setComponentData((prev) => ({
@@ -490,6 +514,8 @@ useEffect(() => {
   const singleHeader = componentData.props.header;
   const singleText = componentData.props.text;
   const singleSpan = componentData.props.span;
+  const singleDelay = componentData.props.delay;
+  const singleAutoplay = componentData.props.autoplay;
   const singleIconImage = componentData.props.iconImage;
   const singleIconImage2 = componentData.props.iconImage2;
 
@@ -516,7 +542,10 @@ useEffect(() => {
           key === "text"  || 
           key === "span"  || 
           key === "iconImage" || 
-          key === "iconImage2"     
+          key === "iconImage2" || 
+          key === "autoplay" || 
+          key === "delay"
+
         ) {
           return null;
         }
@@ -932,6 +961,40 @@ useEffect(() => {
           ))}
         </div>
       )}
+
+        {/* Tek bir text alanı varsa */}
+        {singleDelay !== undefined && (
+  <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+    <h2 className="font-bold text-xl">Delay</h2>
+    <label>Delay (saniye)</label>
+    <input
+      type="text"
+      value={singleDelay/1000}
+      onChange={(e) => handleDelayChange(e.target.value*1000)}
+      className="border p-2"
+    />
+  </div>
+)}
+
+{singleAutoplay !== undefined && (
+  <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+    <h2 className="font-bold text-xl">Autoplay</h2>
+
+    <label className="font-semibold">Autoplay</label>
+    <select
+      value={singleAutoplay ? "true" : "false"}
+      onChange={(e) => handleAutoplayChange(e.target.value === "true")}
+      className="border p-2"
+    >
+      <option value="true">true</option>
+      <option value="false">false</option>
+    </select>
+  </div>
+)}
+
+
+
+
 
 
       {/* END OF NEW SINGLE IMAGE COMPONENT FIELDS */}
