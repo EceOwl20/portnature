@@ -82,13 +82,13 @@ const ProfilEditor = () => {
     }
     console.log(user)
     return (
-        <section className="max-w-[1400px] my-[50px] mx-auto w-[40%] py-[40px] px-[30px] bg-[#6b78ad] rounded-[8px] text-center">
-          <h1 className='text-[30px] mb-[30px] text-[#0e0c1b] w-full font-medium'>Profil Düzenle</h1>
+        <section className="max-w-[1400px] my-[50px] mx-auto w-[40%] py-[40px] px-[30px] rounded-[8px] text-white text-center">
+          <h1 className='text-[30px] mb-[30px] text-[#ffffff] w-full font-medium'>Profil Düzenle</h1>
           {error && <p className="bg-[#f8d7da] text-[#721c24]">{error}</p>}
           {success && <p className="bg-[#f8d7da] text-[#155724]">{success}</p>}
           {wait && <p className="bg-[#fff3cd] text-[#856404]">Bekleyiniz..</p>}
-          <form onSubmit={handleUserSubmit} className="flex w-[100%] flex-col items-center justify-center">
-            <label className='mb-[5px] w-full text-[#0e0c1b] font-bold' htmlFor="username">Kullanıcı Adı</label>
+          <form onSubmit={handleUserSubmit} className="flex w-[100%] flex-col items-center justify-center gap-2">
+            <label className='mb-[5px] w-full font-bold' htmlFor="username">Kullanıcı Adı</label>
             <input
               id="username"
               type="text"
@@ -98,7 +98,7 @@ const ProfilEditor = () => {
               className='w-[96%] p-[12px] mb-[20px] border border-[#ccc] rounded-[4px] text-[16px] text-[#0e0c1b]'
             />
     
-            <label className='mb-[5px] w-full text-[#0e0c1b] font-bold' htmlFor="name">Adınız Soyadınız</label>
+            <label className='mb-[5px] w-full  font-bold' htmlFor="name">Adınız Soyadınız</label>
             <input
               id="name"
               type="text"
@@ -108,7 +108,7 @@ const ProfilEditor = () => {
               className='w-[96%] p-[12px] mb-[20px] border border-[#ccc] rounded-[4px] text-[16px] text-[#0e0c1b]'
             />
     
-            <label className='mb-[5px] w-full text-[#0e0c1b] font-bold' htmlFor="email">E-posta Adresiniz</label>
+            <label className='mb-[5px] w-full font-bold' htmlFor="email">E-posta Adresiniz</label>
             <input
               id="email"
               type="text"
@@ -118,7 +118,7 @@ const ProfilEditor = () => {
               className='w-[96%] p-[12px] mb-[20px] border border-[#ccc] rounded-[4px] text-[16px] text-[#0e0c1b]'
             />
     
-            <label className='mb-[5px] w-full text-[#0e0c1b] font-bold' htmlFor="password">Parola</label>
+            <label className='mb-[5px] w-full font-bold' htmlFor="password">Parola</label>
             <input
               id="password"
               type="text"
@@ -128,7 +128,7 @@ const ProfilEditor = () => {
               className='w-[96%] p-[12px] mb-[20px] border border-[#ccc] rounded-[4px] text-[16px] text-[#0e0c1b]'
             />
     
-            <button className="p-[12px] mt-6 w-[40%] bg-[#0e0c1b] text-white borer-none rounded-[4px] text-[18px] cursor-pointer duration-500 hover:bg-[#39306d] hover:duration-500" type="submit">{wait ? "Bekleyiniz.." : "Kaydet"}</button>
+            <button className="p-[12px] mt-6 w-[40%] bg-[#0e0c1b] text-white borer-none rounded-[4px] text-[18px] cursor-pointer duration-500 hover:bg-[#56a7d0] hover:duration-500" type="submit">{wait ? "Bekleyiniz.." : "Kaydet"}</button>
           </form>
         </section>
       );

@@ -56,11 +56,11 @@ const Gallery = () => {
   if (error) return <p>Error: {error}</p>;
 //#6eaac3
   return (
-    <div className="flex flex-col w-full bg-[#6b78ad] items-center justify-start py-6 gap-4 min-h-[70vh]">
-      <h2 className="font-monserrat text-[30px] font-medium">Galeri</h2>
-      <div className="grid grid-cols-5 gap-6 p-6 ">
+    <div className="flex flex-col w-full items-center justify-start py-6 gap-4 min-h-[70vh]">
+      <h2 className="font-monserrat text-[30px] font-medium text-white">Galeri</h2>
+      <div className="grid grid-cols-6 gap-6 p-6 ">
       {images.map((image, index) => (
-        <div key={index} className="relative group w-[300px] h-[190px] items-center justify-center">
+        <div key={index} className="relative group w-[240px] h-[160px] items-center justify-center">
           <img
             src={image.firebaseUrl}
             alt={image.name.en} //varsayılan en

@@ -22,9 +22,9 @@ export const makaleListele = async (request, reponse, next) => {
 }
 
 export const makaleGetir = async (request, response, next) => {
-    const { lang, slug } = request.params;
+    const {id } = request.params;
     try {
-        const blog = await Blog.findOne({ [`urls.${lang}`]: slug });
+        const blog = await Blog.findById({ id });
         if (blog) {
             response.status(200).json({ success: true, blog });
         } else {

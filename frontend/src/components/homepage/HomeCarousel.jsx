@@ -3,10 +3,11 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import portlogo from "../../../public/images/LogoPortbig.png";
 
-const HomeCarousel = ({ images = [], lang, autoplay = true, delay = 2000 }) => {
+const HomeCarousel = ({ images = [],header, lang, autoplay, delay }) => {
+  const plugins = autoplay ? [Autoplay({ delay })] : [];
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [autoplay ? Autoplay({ delay }) : undefined]
+    plugins
   );
 
   const scrollPrev = useCallback(() => {
@@ -33,7 +34,7 @@ const HomeCarousel = ({ images = [], lang, autoplay = true, delay = 2000 }) => {
               />
               <div className="absolute flex flex-col text-center top-[30%] -translate-y-1/2 left-[50%] transform -translate-x-1/2">
                 <span className="text-[28px] lg:text-[40px] leading-normal text-white uppercase font-medium font-lora mb-[10px] lg:mb-[20px]">
-                  WELCOME TO
+                  {header[lang]}
                 </span>
                 <img
                   src={portlogo}

@@ -51,7 +51,7 @@ const SearchImage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-screen h-auto my-12">
-      <div className="flex flex-col w-[70%] items-start justify-center bg-[#6b78ad] p-[3%]">
+      <div className="flex flex-col w-[70%] items-start justify-center p-[3%]">
         <h2 className="text-[30px] font-medium font-monserrat text-[#fff]">Resim Ara</h2>
         <form onSubmit={handleSearch} className="flex w-[80%] items-center justify-start m-4 gap-6 mt-10">
           <input

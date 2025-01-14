@@ -282,7 +282,7 @@ const Dashboard = () => {
       </div>
 
       {/* Metric Ekleme Formu */}
-      <div className='my-5 bg-[#0e0c1b] text-white p-4 rounded'>
+      <div className='my-5 bg-[#0e0c1b] text-white p-4 rounded mt-[600px] '>
         <h2 className='text-lg font-semibold mb-2'>Yeni Metric Ekle / Var Olanı Güncelle</h2>
         <form onSubmit={handleAddMetric} className='flex gap-4 items-center'>
           <div>
@@ -291,7 +291,7 @@ const Dashboard = () => {
               type="text"
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
-              className='border px-2 py-1'
+              className='border px-2 py-1 text-black'
             />
           </div>
           <div>
@@ -300,7 +300,7 @@ const Dashboard = () => {
               type="datetime-local"
               value={newTimestamp}
               onChange={(e) => setNewTimestamp(e.target.value)}
-              className='border px-2 py-1'
+              className='border px-2 py-1 text-black'
             />
           </div>
           <div>
@@ -309,7 +309,7 @@ const Dashboard = () => {
               type="number"
               value={newValue}
               onChange={(e) => setNewValue(e.target.value)}
-              className='border px-2 py-1'
+              className='border px-2 py-1 text-black'
             />
           </div>
           <button type='submit' className='bg-[#6b78ad] text-white px-3 py-1 rounded'>Ekle/Upsert</button>

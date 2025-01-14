@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import GaleriPopup from "./PanelComponents/GaleriPopup";
-import GaleriPage from "./GaleriPage";
 
 const EditComponent = () => {
   const { pageName, componentIndex } = useParams();
@@ -71,6 +70,7 @@ useEffect(() => {
 
     fetchComponentData();
   }, [pageName, componentIndex]);
+  
 
   const handleInputChange = (field, value) => {
     setComponentData((prev) => ({
@@ -249,6 +249,22 @@ useEffect(() => {
   const handleSearch = async () => {
     try {
       const response = await fetch(`/api/images/search?name=${searchQuery}&lang=en`);
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.message || "Image not found");
+      }
+  
+      // Artık data bir dizi (ör: [ {firebaseUrl, altText}, {...} ])
+      setSearchResults(data); 
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleAll = async () => {
+    try {
+      const response = await fetch(`/api/images/all`);
       const data = await response.json();
   
       if (!response.ok) {
@@ -531,7 +547,7 @@ useEffect(() => {
       <h1 className="text-[25px] font-medium my-4 text-[#ffffff]">Edit Component: {componentData.type}</h1>
     <div className="grid grid-cols-2 items-start justify-center w-[40%] gap-[2%]">
     {isGaleriOpen && (
-    <GaleriPopup isModalOpen={isGaleriOpen} handleModalToggle={handleGaleriToggle}/>
+    <GaleriPopup isModalOpen={isGaleriOpen} handleModalToggle={handleGaleriToggle} searchResults={searchResults}/>
     )}
         {/* General props editing - Güncellenmiş kısım */}
         {Object.keys(componentData.props || {}).map((key) => {
