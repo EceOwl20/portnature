@@ -22,8 +22,16 @@ const CoffeePage = ({page}) => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+
+        // Dil bazında transactions verisini al
+        const localizedComponents = data.translations[lang];
+  
+        if (!localizedComponents) {
+          throw new Error(`No translations found for language: ${lang}`);
+        }
+
         // Carousel verilerini çek
-        const cafeCarouselComponent = data.components.find(
+        const cafeCarouselComponent = localizedComponents.find(
           (comp) => comp.type === "CafeCarousel"
         );
 
@@ -34,7 +42,7 @@ const CoffeePage = ({page}) => {
         }
 
         // BarLoungeCarousel verilerini çek
-        const cafeTextSectionComponent = data.components.find(
+        const cafeTextSectionComponent = localizedComponents.find(
           (comp) => comp.type === "CoffeeTextSection"
         );
 
@@ -45,7 +53,7 @@ const CoffeePage = ({page}) => {
         }
 
             // Contact verilerini çek
-            const contactSectionComponent = data.components.find(
+            const contactSectionComponent = localizedComponents.find(
               (comp) => comp.type === "ContactSection"
             );
     
@@ -68,9 +76,9 @@ const CoffeePage = ({page}) => {
 
   return (
     <div>
-      <DavidoffCarousel {...cafeCarouselData} lang={lang}/>
-       <CoffeeTextSection {...cafeTextSectionData} lang={lang}/>
-      {/*<ContactSection/> */}
+      <DavidoffCarousel {...cafeCarouselData} />
+       <CoffeeTextSection {...cafeTextSectionData} />
+      <ContactSection {...contactSectionData}/>
     </div>
   )
 }

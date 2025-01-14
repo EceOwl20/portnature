@@ -7,8 +7,7 @@ const AlacarteSection = ({
   images = [],
   header,
   textComponent = [],
-  image,
-  lang
+  image
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 3000, stopOnInteraction: false }),
@@ -49,7 +48,7 @@ const AlacarteSection = ({
         <div className="flex text-center font-medium font-lora text-[#233038] gap-2 lg:gap-5">
           <span className="text-[60px] leading-[42px] italic ">7</span>
           <h2 className="text-[25px] lg:text-[28px] leading-[37px] lg:leading-[42px] ">
-            {header[lang]}
+            {header}
           </h2>
         </div>
 
@@ -67,10 +66,10 @@ const AlacarteSection = ({
               />
               <div className="flex flex-col gap-[6px]">
                 <h3 className="text-[20px] font-lora italic leading-[42px] font-medium">
-                  {item.header[lang]}
+                  {item.header}
                 </h3>
                 <p className="text-[13px] font-normal font-monserrat leading-[19px]">
-                  {item.text[lang]}
+                  {item.text}
                 </p>
               </div>
             </div>
@@ -101,19 +100,19 @@ const AlacarteSection = ({
                 />
                 <div className="flex flex-col w-[30%] text-start items-start justify-center text-white gap-[15px]">
                   <h3 className=" text-[25px] font-lora leading-normal font-medium ">
-                    {resim.header[lang]}
+                    {resim.header}
                   </h3>
                   <NewUnderline width={100} height={1} className="mb-[15px]" />
                   <div className="flex items-center justify-start gap-[10px]">
                     <img src={resim.image.firebaseUrl} width={resim.image.width} height={resim.image.height} />
-                    <span className="text-[12px]">{resim.text1[lang]}</span>
+                    <span className="text-[12px]">{resim.text1}</span>
                   </div>
                   <div className="flex items-center justify-start gap-[10px]">
                     <img src={resim.image.firebaseUrl} width={resim.image.width} height={resim.image.height} />
-                    <span className="text-[12px]">{resim.text2[lang]}</span>
+                    <span className="text-[12px]">{resim.text2}</span>
                   </div>
                   <button className=" bottom-12 mt-[20px] bg-transparent text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-white border border-[#fff] py-[12px] px-[32px] hover:bg-white hover:text-[#233038]">
-                    <p>{resim.buttonText[lang]}</p>
+                    <p>{resim.buttonText}</p>
                   </button>
                 </div>
               </div>

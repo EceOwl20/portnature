@@ -3,21 +3,21 @@ import farEast from "../../../public/images/FarEastRestaurant 1.png"
 import LocationSvg from "../../svg/LocationSvg"
 import FindRestaurantCard from './FindRestaurantCard'
 
-const FindRestaurantSection = ({header, iconImage, filterItems=[], lang="en"}) => {
+const FindRestaurantSection = ({header, iconImage, filterItems=[]}) => {
   return (
     <div className='flex w-screen  h-auto py-10 justify-center items-center'>
       <div className='flex flex-col w-[90%] lg:w-[75%] xl:max-w-[1180px] justify-center items-center text-start'>
        <div className='flex w-full items-start justify-start text-start gap-[30px]'>
         <img src={iconImage.firebaseUrl} width={30} height={47}/>
-       <h2 className='text-[25px] lg:text-[35px] text-customGray80 font-medium font-lora leading-normal uppercase'>{header[lang]}</h2>
+       <h2 className='text-[25px] lg:text-[35px] text-customGray80 font-medium font-lora leading-normal uppercase'>{header}</h2>
        </div>
         <div className='flex flex-col md:grid grid-cols-2 w-full gap-[25px] lg:gap-[3%] mt-10 justify-between items-center'>
         {filterItems.map((restaurant, index) => (
         <FindRestaurantCard
           key={index}
-          header={restaurant.header[lang]}
-          text={restaurant.text[lang]}
-          link={restaurant.buttonLink[lang]}
+          header={restaurant.header}
+          text={restaurant.text}
+          link={restaurant.buttonLink}
           icon={restaurant.iconImage}
           image={restaurant.image}
         />

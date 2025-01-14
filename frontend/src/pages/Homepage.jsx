@@ -167,24 +167,24 @@ const Homepage = () => {
   return (
     <div className='flex flex-col items-center justify-center'>
       {/* <HomeCarousel images={images}/> */}
-      <HomeCarousel {...carouselData} lang={lang}/>
-      {/* <Reservation/>
-      <HomeIconSection {...iconSectionData} lang={lang}/>
+      <HomeCarousel {...carouselData} />
+      <Reservation/>
+      <HomeIconSection {...iconSectionData} />
       <div className='flex w-screen mt-20'>
       <div className="bg-custom-gradient h-[1px] w-[50%]">
       </div>
       <div className="bg-custom-gradient-reverse h-[1px] w-[50%]">
       </div>
       </div>
-      <AllInclusive {...allInclusiveData} lang={lang}/>
-      <HolidayImageSection  {...holidayImageSectionData} lang={lang}/>
+      <AllInclusive {...allInclusiveData} />
+      <HolidayImageSection  {...holidayImageSectionData} />
       <Accommodation/>
-      <ChildrenSection {...childrenSectionData} lang={lang}/>
-      <ImageBackgroundSection {...backgroundSectionData} lang={lang}/>
+      <ChildrenSection {...childrenSectionData} />
+      <ImageBackgroundSection {...backgroundSectionData} />
       <SpecialOffersCarousel/>
-      <AlacarteSection {...alacarteSectionData} lang={lang}/>
-       <BarLoungeCarousel {...barLoungeData} lang={lang}/>
-      <ContactSection {...contactSectionData} lang={lang}/> */}
+      <AlacarteSection {...alacarteSectionData} />
+       <BarLoungeCarousel {...barLoungeData} />
+      <ContactSection {...contactSectionData} />
       {/* <InstagramSection images={instagramImages}/> */}
       <img src={instagramImg} alt='instagram' width={323.06149} height={630.77972} className='flex md:hidden  '/>
     </div>

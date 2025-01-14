@@ -1,6 +1,6 @@
 import React from "react";
 
-const FoodMenu = ({ images = [], buttonText, buttonText2, buttonText3, buttonLink, buttonLink2,buttonLink3, lang = "en" }) => {
+const FoodMenu = ({ images = [], buttonText, buttonText2, buttonText3, buttonLink, buttonLink2,buttonLink3 }) => {
   const buttonTexts=[buttonText, buttonText2, buttonText3];
   return (
     <div className="flex w-screen h-auto justify-center items-center my-10">
@@ -14,7 +14,7 @@ const FoodMenu = ({ images = [], buttonText, buttonText2, buttonText3, buttonLin
           >
             <div className="absolute inset-0 bg-black/30 z-1 hover:bg-black/0"></div>
             <button className="flex z-10 justify-center items-center text-center py-[10px] md:py-[18px] w-[60%] sm:w-[50%] md:w-[35%] lg:w-[85%] xl:w-auto xl:px-[92px] border border-[#F8F8F8] text-[20px] leading-normal font-semibold font-monserrat text-[#F8F8F8] hover:bg-white hover:text-customGray">
-            {buttonTexts[index]?.[lang]}
+            {buttonTexts[index]}
             </button>
           </div>
         ))}

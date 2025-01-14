@@ -4,7 +4,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 const TWEEN_FACTOR_BASE = 0.52;
 
-const DavidoffCarousel = ({images = [], header, text, text2, image, lang="en"}) => {
+const DavidoffCarousel = ({images = [], header, text, text2, image}) => {
   const [emblaRef, emblaApi] = useCarousel(
     {
       loop: true,
@@ -91,13 +91,13 @@ const DavidoffCarousel = ({images = [], header, text, text2, image, lang="en"}) 
               {index === selectedIndex && (
                 <div className="absolute inset-0 z-10 bg-black/30 flex flex-col items-end justify-center text-right lg:text-[28px] italic font-lora font-medium text-[#F8F8F8] text-[12px] leading-[20px] lg:leading-[42px] pr-5">
                   <h2>
-                    {header[lang]}
+                    {header}
                   </h2>
                   <div className="flex w-[40%] mt-[25px] mb-[15px] justify-end items-end">
                     <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
                     <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
                   </div>
-                  <p> {text[lang]}</p>
+                  <p> {text}</p>
                 </div>
               )}
             </div>
@@ -117,7 +117,7 @@ const DavidoffCarousel = ({images = [], header, text, text2, image, lang="en"}) 
           {text2 && (
             <div className="flex items-center justify-center lg:justify-start text-center lg:text-start w-[85%] md:w-[60%] lg:w-[40%] xl:w-[35%]">
               <p className="text-[14px] lg:text-[15px] text-black font-monserrat font-normal leading-[22.5px]">
-              {text2[lang]}
+              {text2}
               </p>
             </div>
           )}

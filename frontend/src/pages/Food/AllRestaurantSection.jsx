@@ -2,7 +2,7 @@ import React from 'react'
 import RestaurantSection from "../../components/food/RestaurantSection";
 import ReverseRestaurantSection from "../../components/food/ReverseRestaurantSection";
 
-const AllRestaurantSection = ({restaurantItems=[], lang="en"}) => {
+const AllRestaurantSection = ({restaurantItems=[]}) => {
     const restaurants=[...restaurantItems];
   return (
     <div>
@@ -10,22 +10,22 @@ const AllRestaurantSection = ({restaurantItems=[], lang="en"}) => {
         index % 2 === 0 ? (
           <RestaurantSection
           key={index} // Benzersiz bir key eklenir
-          header={restaurant.header[lang]}
-          text={restaurant.text[lang]}
-          span={restaurant.span[lang]}
+          header={restaurant.header}
+          text={restaurant.text}
+          span={restaurant.span}
           image={restaurant.image}
-          buttonLink={restaurant.buttonLink[lang]}
-          buttonText={restaurant.buttonText[lang]}
+          buttonLink={restaurant.buttonLink}
+          buttonText={restaurant.buttonText}
           />
         ) : (
           <ReverseRestaurantSection
           key={index} // Benzersiz bir key eklenir
-          header={restaurant.header[lang]}
-          text={restaurant.text[lang]}
-          span={restaurant.span[lang]}
+          header={restaurant.header}
+          text={restaurant.text}
+          span={restaurant.span}
           image={restaurant.image}
-          buttonLink={restaurant.buttonLink[lang]}
-          buttonText={restaurant.buttonText[lang]}
+          buttonLink={restaurant.buttonLink}
+          buttonText={restaurant.buttonText}
           />
         )
       )}

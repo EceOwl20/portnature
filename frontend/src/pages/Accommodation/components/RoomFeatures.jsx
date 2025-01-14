@@ -16,7 +16,7 @@ import ParquetFlooringSvg from "../../../svg/room/ParquetFlooringSvg";
 import HairDryerSvg from "../../../svg/room/HairDryerSvg";
 import SlippersSvg from "../../../svg/room/SlippersSvg";
 
-const RoomFeatures = ({header, items=[], buttonText, buttonText2, lang}) => {
+const RoomFeatures = ({header, items=[], buttonText, buttonText2}) => {
     const [showMore, setShowMore] = useState(false);
 
     const handleShowMore = () => {
@@ -29,7 +29,7 @@ const RoomFeatures = ({header, items=[], buttonText, buttonText2, lang}) => {
     <div className="flex w-screen h-auto my-[20px] lg:my-[40px] items-center justify-center">
       <div className="flex flex-col w-[85%] items-center justify-center text-center">
         <h2 className="text-[25px] lg:text-[28px] italic font-lora text-[#233038] font-medium leading-[34px] lg:leading-[42px]">
-        {header[lang]}
+        {header}
         </h2>
         <div className="flex w-full mt-4 mb-8">
           <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
@@ -44,7 +44,7 @@ const RoomFeatures = ({header, items=[], buttonText, buttonText2, lang}) => {
           >
             <img src={item.firebaseUrl} width={item.width} height={item.height} />
             <span className="text-[#000] text-[15px] font-normal leading-[22.5px] font-monserrat">
-              {item.text[lang]}
+              {item.text}
             </span>
           </div>
         ))}
@@ -55,7 +55,7 @@ const RoomFeatures = ({header, items=[], buttonText, buttonText2, lang}) => {
             onClick={handleShowMore}
             className="text-[#233038] bg-white border border-[#233038] hover:bg-[#233038] hover:text-white font-medium py-2 px-4 rounded"
           >
-            {showMore ? `${buttonText2[lang]}` : `${buttonText[lang]}`}
+            {showMore ? `${buttonText2}` : `${buttonText}`}
           </button>
         </div>
       )}

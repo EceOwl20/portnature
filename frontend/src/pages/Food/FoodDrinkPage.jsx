@@ -37,8 +37,15 @@ const FoodDrinkPage = ({
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+        // Dil bazında transactions verisini al
+        const localizedComponents = data.translations[lang];
+  
+        if (!localizedComponents) {
+          throw new Error(`No translations found for language: ${lang}`);
+        }
+
         // FoodCarousel verilerini çek
-        const foodCarouselComponent = data.components.find(
+        const foodCarouselComponent = localizedComponents.find(
           (comp) => comp.type === "FoodCarousel"
         );
 
@@ -49,7 +56,7 @@ const FoodDrinkPage = ({
         }
 
         // FoodMenu verilerini çek
-        const foodMenuComponent = data.components.find(
+        const foodMenuComponent = localizedComponents.find(
           (comp) => comp.type === "FoodMenu"
         );
 
@@ -60,7 +67,7 @@ const FoodDrinkPage = ({
         }
 
         // LogoSection verilerini çek
-        const logoSectionComponent = data.components.find(
+        const logoSectionComponent = localizedComponents.find(
           (comp) => comp.type === "LogoSection"
         );
 
@@ -71,7 +78,7 @@ const FoodDrinkPage = ({
         }
 
         // RestaurantSection verilerini çek
-        const restaurantSectionComponent = data.components.find(
+        const restaurantSectionComponent = localizedComponents.find(
           (comp) => comp.type === "RestaurantSection"
         );
 
@@ -82,7 +89,7 @@ const FoodDrinkPage = ({
         }
 
         // Contact verilerini çek
-        const contactSectionComponent = data.components.find(
+        const contactSectionComponent = localizedComponents.find(
           (comp) => comp.type === "ContactSection"
         );
 
@@ -112,10 +119,10 @@ const FoodDrinkPage = ({
    
   return (
     <div>
-      <FoodCarousel {...foodCarouselData} lang={lang}/>
-      <FoodMenu {...foodMenuData} lang={lang}/>
-       <LogoSection {...logoSectionData} lang={lang}/>
-      <AllRestaurantSection {...restaurantSectionData} lang={lang}/>
+      <FoodCarousel {...foodCarouselData} />
+      <FoodMenu {...foodMenuData} />
+       <LogoSection {...logoSectionData} />
+      <AllRestaurantSection {...restaurantSectionData} />
       {/* <FindRestaurantSection findRestaurants={findRestaurants} /> */}
       {/* <ContactSection/> */}
     </div>

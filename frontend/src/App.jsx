@@ -240,10 +240,10 @@ const App = () => {
            <Route path="/page/:pageName" element={<DynamicPage page="homepage"/>} /> */}
 
             <Route path="/" element={<Homepage />} />
-            <Route path="/rooms" element={<Rooms links={allroomslinks} linkstext={allroomslinkstexts} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText}/>}/>
+            <Route path="/rooms" element={<Rooms />}/>
             <Route path="/family-room" element={<SubRooms page="familyroom"/>}/>
             <Route path="/king-suite-room" element={<SubRooms page="kingsuiteroom"/>}/>
-            <Route path="/standard-rooms" element={<StandardRooms img={standardBanner} header="Standard Rooms" links={allStandardroomslinks} linkstext={allStandardroomslinkstexts} />}/>
+            <Route path="/standard-rooms" element={<StandardRooms />}/>
             <Route path="/standard-sea-view-room" element={<SubRooms page="standardseaview"/>}/>
             <Route path="/standard-side-view-room" element={<SubRooms page="standardsideview"/>}/>
             <Route path="/standard-land-view-room" element={<SubRooms page="standardlandview"/>}/>
