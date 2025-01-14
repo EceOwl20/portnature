@@ -4,15 +4,28 @@ import GaleriPopup from "./PanelComponents/GaleriPopup";
 import GaleriPage from "./GaleriPage";
 
 const EditComponent = () => {
+  // --------------------------------------------------
+  // ROUTE PARAMS / NAVIGATION
+  // --------------------------------------------------
   const { pageName, componentIndex } = useParams();
   const navigate = useNavigate();
+
+  // --------------------------------------------------
+  // STATE: COMPONENT DATA, ERROR, SUCCESS
+  // --------------------------------------------------
   const [componentData, setComponentData] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+
+  // --------------------------------------------------
+  // STATE: SEARCH QUERIES & RESULTS (General / Items / SubImages / Filter / Restaurant)
+  // --------------------------------------------------
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+
   const [subImageSearchQuery, setSubImageSearchQuery] = useState("");
   const [subImageSearchResults, setSubImageSearchResults] = useState([]);
+
   const [itemSearchQuery, setItemSearchQuery] = useState("");
   const [itemSearchResults, setItemSearchResults] = useState([]);
 
@@ -22,37 +35,42 @@ const EditComponent = () => {
   const [restaurantImageSearchQuery, setRestaurantImageSearchQuery] = useState("");
   const [restaurantImageSearchResults, setRestaurantImageSearchResults] = useState([]);
 
+  // --------------------------------------------------
+  // STATE: GALERİ OPEN/CLOSE
+  // --------------------------------------------------
   const [isGaleriOpen, setGaleriOpen] = useState(false);
+    // #### EKLENDİ: Hangi alanı güncelleyeceğimizi tutan state
+    const [activeField, setActiveField] = useState(null);
 
-  const handleGaleriToggle = () => {
-    setGaleriOpen(!isGaleriOpen);
-  };
-
-  useEffect(() => {
-    if (!searchQuery) {
-      setSearchResults([]);
-      return;
-    }
-    const timeoutId = setTimeout(() => {
-      handleSearch(); // her 300ms sonrasında arama
-    }, 300);
-    return () => clearTimeout(timeoutId);
-  }, [searchQuery]);
-
-
-useEffect(() => {
-  if (!itemSearchQuery) {
-    setItemSearchResults([]);
-    return;
-  }
-  const timeoutId = setTimeout(() => {
-    handleItemSearch();
-  }, 300);
-  return () => clearTimeout(timeoutId);
-}, [itemSearchQuery]);
-
-
+    // #### EKLENDİ: Galeri üzerinden seçilen resmi "activeField"’e göre ekle
+    const handleGalleryImageSelect = (selectedImage) => {
+      if (activeField === "singleImage") {
+        // Tek bir alanı güncelle
+        setComponentData((prev) => ({
+          ...prev,
+          props: {
+            ...prev.props,
+            image: {
+              ...prev.props.image,
+              firebaseUrl: selectedImage.firebaseUrl,
+              altText: selectedImage.altText,
+            },
+          },
+        }));
+      }
+      else if (activeField?.type === "images") {
+        // images dizisi => handleReplaceImage("images", activeField.index, selectedImage);
+        handleReplaceImage("images", activeField.index, selectedImage);
+      }
+    
+      setGaleriOpen(false);
+    };
+    
   
+
+  // --------------------------------------------------
+  // useEffect: FETCH COMPONENT DATA ON MOUNT
+  // --------------------------------------------------
   useEffect(() => {
     const fetchComponentData = async () => {
       try {
@@ -72,6 +90,46 @@ useEffect(() => {
     fetchComponentData();
   }, [pageName, componentIndex]);
 
+  // --------------------------------------------------
+  // useEffect: SEARCH QUERY DEBOUNCING (searchQuery)
+  // --------------------------------------------------
+  useEffect(() => {
+    if (!searchQuery) {
+      setSearchResults([]);
+      return;
+    }
+    const timeoutId = setTimeout(() => {
+      handleSearch(); // her 300ms sonrasında arama
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
+
+  // --------------------------------------------------
+  // useEffect: SEARCH QUERY DEBOUNCING (itemSearchQuery)
+  // --------------------------------------------------
+  useEffect(() => {
+    if (!itemSearchQuery) {
+      setItemSearchResults([]);
+      return;
+    }
+    const timeoutId = setTimeout(() => {
+      handleItemSearch();
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [itemSearchQuery]);
+
+  // --------------------------------------------------
+  // GALERİ OPEN/CLOSE HANDLER
+  // --------------------------------------------------
+  const handleGaleriToggle = () => {
+    setGaleriOpen(!isGaleriOpen);
+  };
+
+  // --------------------------------------------------
+  // HANDLERS: INPUT & ARRAY MODIFICATIONS
+  // --------------------------------------------------
   const handleInputChange = (field, value) => {
     setComponentData((prev) => ({
       ...prev,
@@ -157,18 +215,19 @@ useEffect(() => {
     });
   };
 
-
   const handleDelayChange = (field) => {
     setComponentData((prev) => ({
       ...prev,
       props: {
         ...prev.props,
-        delay: field, // yada autoplayDelay / singleDelay vb. 
+        delay: field,
       },
     }));
   };
 
-  // Tek bir image için URL güncellemesi
+  // --------------------------------------------------
+  // HANDLERS: SINGLE IMAGE UPDATES
+  // --------------------------------------------------
   const handleImageUrlChange = (value) => {
     setComponentData((prev) => ({
       ...prev,
@@ -182,7 +241,6 @@ useEffect(() => {
     }));
   };
 
-  // Tek bir image altText dil güncellemeleri
   const handleImageAltTextChange = (lang, value) => {
     setComponentData((prev) => ({
       ...prev,
@@ -199,7 +257,6 @@ useEffect(() => {
     }));
   };
 
-  // header veya text gibi dil bazlı alanlar için güncelleme fonksiyonu
   const handleLangFieldChange = (field, lang, value) => {
     setComponentData((prev) => ({
       ...prev,
@@ -213,18 +270,15 @@ useEffect(() => {
     }));
   };
 
-
-
   const handleAutoplayChange = (newValue) => {
     setComponentData((prev) => ({
       ...prev,
       props: {
         ...prev.props,
-        autoplay: newValue, 
+        autoplay: newValue,
       },
     }));
   };
-  
 
   const handleAddItem = (field) => {
     setComponentData((prev) => ({
@@ -246,37 +300,22 @@ useEffect(() => {
     }));
   };
 
+  // --------------------------------------------------
+  // HANDLERS: SEARCH
+  // --------------------------------------------------
   const handleSearch = async () => {
     try {
       const response = await fetch(`/api/images/search?name=${searchQuery}&lang=en`);
       const data = await response.json();
-  
+
       if (!response.ok) {
         throw new Error(data.message || "Image not found");
       }
-  
-      // Artık data bir dizi (ör: [ {firebaseUrl, altText}, {...} ])
-      setSearchResults(data); 
+      setSearchResults(data);
     } catch (err) {
       setError(err.message);
     }
   };
-  
-
-  // const handleSearch = async () => {
-  //   try {
-  //     const response = await fetch(`/api/images/search?name=${searchQuery}&lang=en`);
-  //     const data = await response.json();
-
-  //     if (!response.ok) {
-  //       throw new Error(data.message || "Image not found");
-  //     }
-
-  //     setSearchResults([data]);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // };
 
   const handleSubImageSearch = async () => {
     try {
@@ -286,7 +325,6 @@ useEffect(() => {
       if (!response.ok) {
         throw new Error(data.message || "SubImage not found");
       }
-
       setSubImageSearchResults([data]);
     } catch (err) {
       setError(err.message);
@@ -301,32 +339,10 @@ useEffect(() => {
       if (!response.ok) {
         throw new Error(data.message || "Item not found");
       }
-
       setItemSearchResults(data);
     } catch (err) {
       setError(err.message);
     }
-  };
-
-  const handleReplaceSingleImage = (field, selectedImage) => {
-    setComponentData((prev) => ({
-      ...prev,
-      props: {
-        ...prev.props,
-        [field]: {
-          ...prev.props[field],
-          firebaseUrl: selectedImage.firebaseUrl,
-          altText: selectedImage.altText,
-          // width/height da istenirse buradan güncellenebilir.
-        },
-      },
-    }));
-  };  
-  
-
-  const handleReplaceImage = (field, index, selectedImage) => {
-    handleArrayChange(field, index, "firebaseUrl", selectedImage.firebaseUrl);
-    handleArrayChange(field, index, "altText", selectedImage.altText);
   };
 
   const handleFilterImageSearch = async () => {
@@ -337,18 +353,49 @@ useEffect(() => {
       if (!response.ok) {
         throw new Error(data.message || "Image not found");
       }
-
       setFilterImageSearchResults([data]);
     } catch (err) {
       setError(err.message);
     }
   };
 
-  // YENİ: filterItems içindeki image veya iconImage'i güncelleme fonksiyonu
-  // field: "image" ya da "iconImage"
+  const handleRestaurantImageSearch = async () => {
+    try {
+      const response = await fetch(`/api/images/search?name=${restaurantImageSearchQuery}&lang=en`);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Image not found");
+      }
+      setRestaurantImageSearchResults([data]);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  // --------------------------------------------------
+  // HANDLERS: REPLACE IMAGE
+  // --------------------------------------------------
+  const handleReplaceSingleImage = (field, selectedImage) => {
+    setComponentData((prev) => ({
+      ...prev,
+      props: {
+        ...prev.props,
+        [field]: {
+          ...prev.props[field],
+          firebaseUrl: selectedImage.firebaseUrl,
+          altText: selectedImage.altText,
+        },
+      },
+    }));
+  };
+
+  const handleReplaceImage = (field, index, selectedImage) => {
+    handleArrayChange(field, index, "firebaseUrl", selectedImage.firebaseUrl);
+    handleArrayChange(field, index, "altText", selectedImage.altText);
+  };
+
   const handleReplaceFilterItemImage = (index, field, selectedImage) => {
-    // updatedArray[index][field].firebaseUrl = selectedImage.firebaseUrl
-    // updatedArray[index][field].altText = selectedImage.altText
     setComponentData((prev) => {
       const updatedArray = [...prev.props.filterItems];
       updatedArray[index] = {
@@ -369,26 +416,7 @@ useEffect(() => {
     });
   };
 
-
-  const handleRestaurantImageSearch = async () => {
-    try {
-      const response = await fetch(`/api/images/search?name=${restaurantImageSearchQuery}&lang=en`);
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Image not found");
-      }
-
-      setRestaurantImageSearchResults([data]);
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-
   const handleReplaceRestaurantItemImage = (index, field, selectedImage) => {
-    // updatedArray[index][field].firebaseUrl = selectedImage.firebaseUrl
-    // updatedArray[index][field].altText = selectedImage.altText
     setComponentData((prev) => {
       const updatedArray = [...prev.props.restaurantItems];
       updatedArray[index] = {
@@ -409,20 +437,24 @@ useEffect(() => {
     });
   };
 
-
-
+  // --------------------------------------------------
+  // HANDLERS: SAVE CHANGES
+  // --------------------------------------------------
   const handleSave = async () => {
     setError(null);
     setSuccess(false);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/page/${pageName}/components/${componentIndex}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(componentData),
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/page/${pageName}/components/${componentIndex}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(componentData),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to save component data");
@@ -435,6 +467,9 @@ useEffect(() => {
     }
   };
 
+  // --------------------------------------------------
+  // HANDLERS: ITEM CRUD
+  // --------------------------------------------------
   const handleItemInputChange = (field, index, key, value) => {
     setComponentData((prev) => {
       const updatedItems = [...prev.props.items];
@@ -487,9 +522,12 @@ useEffect(() => {
 
   const handleRemoveItem = async (index) => {
     try {
-      const response = await fetch(`/api/page/${pageName}/components/${componentIndex}/items/${index}`, {
-        method: 'DELETE',
-      });
+      const response = await fetch(
+        `/api/page/${pageName}/components/${componentIndex}/items/${index}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!response.ok) {
         const data = await response.json();
@@ -510,10 +548,15 @@ useEffect(() => {
     }
   };
 
+  // --------------------------------------------------
+  // EARLY RETURNS IF NO DATA OR ERROR
+  // --------------------------------------------------
   if (error) return <p>Error: {error}</p>;
   if (!componentData) return <p>Loading...</p>;
 
-  // NEW SINGLE IMAGE COMPONENT FIELDS
+  // --------------------------------------------------
+  // DESTRUCTURING FOR SINGLE FIELDS
+  // --------------------------------------------------
   const singleImage = componentData.props.image;
   const singleImage2 = componentData.props.image2;
   const singleButtonImage = componentData.props.singleButtonImage;
@@ -526,520 +569,557 @@ useEffect(() => {
   const singleIconImage = componentData.props.iconImage;
   const singleIconImage2 = componentData.props.iconImage2;
 
+  // --------------------------------------------------
+  // RENDER
+  // --------------------------------------------------
   return (
-    <div className="flex flex-col items-start font-monserrat z-50 bg-transparent justify-start m-5 ">
-      <h1 className="text-[25px] font-medium my-4 text-[#ffffff]">Edit Component: {componentData.type}</h1>
-    <div className="grid grid-cols-2 items-start justify-center w-[40%] gap-[2%]">
-    {isGaleriOpen && (
-    <GaleriPopup isModalOpen={isGaleriOpen} handleModalToggle={handleGaleriToggle}/>
-    )}
-        {/* General props editing - Güncellenmiş kısım */}
+    <div className="flex flex-col items-start font-monserrat z-50 bg-transparent justify-start m-5">
+      <h1 className="text-[25px] font-medium my-4 text-[#ffffff]">
+        Edit Component: {componentData.type}
+      </h1>
+
+      {/* GRID WRAPPER */}
+      <div className="grid grid-cols-2 items-start justify-center w-[40%] gap-[2%]">
+        
+        {/* GALERİ POPUP */}
+        {isGaleriOpen && (
+          <GaleriPopup
+            isModalOpen={isGaleriOpen}
+            handleModalToggle={handleGaleriToggle}
+            onImageSelect={handleGalleryImageSelect}
+          />
+        )}
+
+        {/* DİĞER PROP KEY'LERİNİN DÜZENLENMESİ */}
         {Object.keys(componentData.props || {}).map((key) => {
-        const value = componentData.props[key];
-        // Bu alanların düzenlenmesini istenmiyoruz
-        if (
-          key === "images" ||
-          key === "subImages" ||
-          key === "headers" ||
-          key === "texts" ||
-          key === "links" ||
-          key === "items" ||
-          key === "image" || // Bu ek satırla image alanını da burada listelemekten kaçındık
-          key === "image2" ||
-          key === "buttonImage" ||
-          key === "buttonText"  || 
-          key === "header" || 
-          key === "text"  || 
-          key === "span"  || 
-          key === "iconImage" || 
-          key === "iconImage2" || 
-          key === "autoplay" || 
-          key === "delay"
+          const value = componentData.props[key];
 
-        ) {
-          return null;
-        }
+          // Bu alanların alt tarafta özel UI'ları var; o yüzden burada göstermiyoruz
+          if (
+            key === "images" ||
+            key === "subImages" ||
+            key === "headers" ||
+            key === "texts" ||
+            key === "links" ||
+            key === "items" ||
+            key === "image" ||
+            key === "image2" ||
+            key === "buttonImage" ||
+            key === "buttonText" ||
+            key === "header" ||
+            key === "text" ||
+            key === "span" ||
+            key === "iconImage" ||
+            key === "iconImage2" ||
+            key === "autoplay" ||
+            key === "delay"
+          ) {
+            return null;
+          }
 
-        // Eğer value dört dilli bir obje ise (en, tr, de, ru)
-        const isLangObject =
-          value &&
-          typeof value === "object" &&
-          ["en", "tr", "de", "ru"].every((lang) => value.hasOwnProperty(lang));
+          // Eğer value dört dilli bir obje ise (en, tr, de, ru)
+          const isLangObject =
+            value &&
+            typeof value === "object" &&
+            ["en", "tr", "de", "ru"].every((lang) => value.hasOwnProperty(lang));
 
-        if (isLangObject) {
-          return (
-            <div key={key} className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full ">
-              <h3 className="font-bold text-lg">{key} (Multi-language)</h3>
-              {Object.keys(value).map((lang) => (
+          if (isLangObject) {
+            return (
+              <div
+                key={key}
+                className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full"
+              >
+                <h3 className="font-bold text-lg">{key} (Multi-language)</h3>
+                {Object.keys(value).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-2">
+                    <label className="text-[#246cfc] text-[18px] font-semibold">
+                      {key} ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={value[lang]}
+                      onChange={(e) => {
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            [key]: {
+                              ...prev.props[key],
+                              [lang]: e.target.value,
+                            },
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            );
+          } else {
+            // Basit string/number ise
+            return (
+              <div
+                key={key}
+                className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full"
+              >
+                <label className="text-[#246cfc] text-[18px] font-semibold">
+                  {key}
+                </label>
+                <input
+                  type="text"
+                  value={componentData.props[key]}
+                  onChange={(e) => handleInputChange(key, e.target.value)}
+                />
+              </div>
+            );
+          }
+        })}
+
+        {/* --------------- SINGLE IMAGE 1 --------------- */}
+        {singleImage && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+            <h2 className="font-bold text-xl">Single Image</h2>
+            <label className="font-semibold">Firebase URL</label>
+            <input
+              type="text"
+              value={singleImage.firebaseUrl || ""}
+              onChange={(e) => handleImageUrlChange(e.target.value)}
+              className="border p-2"
+            />
+
+            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
+            {singleImage.altText &&
+              Object.keys(singleImage.altText).map((lang) => (
                 <div key={lang} className="flex flex-col gap-2">
-                  <label className="text-[#246cfc] text-[18px] font-semibold">{key} ({lang})</label>
+                  <label>Alt Text ({lang})</label>
                   <input
                     type="text"
-                    value={value[lang]}
-                    onChange={(e) => {
-                      setComponentData((prev) => ({
-                        ...prev,
-                        props: {
-                          ...prev.props,
-                          [key]: {
-                            ...prev.props[key],
-                            [lang]: e.target.value,
-                          },
-                        },
-                      }));
-                    }}
+                    value={singleImage.altText[lang]}
+                    onChange={(e) =>
+                      handleImageAltTextChange(lang, e.target.value)
+                    }
+                    className="border p-2"
                   />
                 </div>
               ))}
-            </div>
-          );
-        } else {
-          return (
-            <div key={key} className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full">
-              <label className="text-[#246cfc] text-[18px] font-semibold">{key}</label>
+              <button
+                  className="bg-blue-600 text-white px-4 py-2 rounded mt-2"
+                  onClick={() => {
+                    setActiveField("singleImage");  // “image” alanını güncelleyeceğimizi belirt
+                    setGaleriOpen(true);            // popup’ı aç
+                  }}
+                >
+                  Galeri Aç
+              </button>
+              {singleImage.firebaseUrl && (
+                <img
+                  src={singleImage.firebaseUrl}
+                  alt="Preview"
+                  className="w-[200px] h-auto object-contain mt-2 border rounded"
+                />
+              )}
+          </div>
+        )}
+
+        {/* Search for a new image for Image1 */}
+        {singleImage && (
+          <div className="flex flex-col gap-2 items-center mt-4">
+            <label className="text-[#e45252] text-[18px] font-semibold">
+              Search for a new image for Image1
+            </label>
+            <input
+              type="text"
+              placeholder="Enter image name"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="border py-2 px-3 w-[50%]"
+            />
+            <button
+              onClick={handleSearch}
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Search
+            </button>
+
+            {searchResults.length > 0 && (
+              <div className="flex flex-col gap-2 mt-2">
+                <h4>Search Results</h4>
+                {searchResults.map((result, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                    onClick={() => handleReplaceSingleImage("image", result)}
+                  >
+                    <img
+                      src={result.firebaseUrl}
+                      alt={result.altText.en}
+                      className="w-16 h-16 object-cover"
+                    />
+                    <p>{result.altText.en}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* --------------- SINGLE IMAGE 2 --------------- */}
+        {singleImage2 && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+            <h2 className="font-bold text-xl">Single Image</h2>
+            <label className="font-semibold">Firebase URL</label>
+            <input
+              type="text"
+              value={singleImage2.firebaseUrl || ""}
+              onChange={(e) => handleImageUrlChange(e.target.value)}
+              className="border p-2"
+            />
+
+            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
+            {singleImage2.altText &&
+              Object.keys(singleImage2.altText).map((lang) => (
+                <div key={lang} className="flex flex-col gap-2">
+                  <label>Alt Text ({lang})</label>
+                  <input
+                    type="text"
+                    value={singleImage2.altText[lang]}
+                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    className="border p-2"
+                  />
+                </div>
+              ))}
+          </div>
+        )}
+
+        {singleImage2 && (
+          <div className="flex flex-col gap-2 items-center mt-4">
+            <label className="text-[#e45252] text-[18px] font-semibold">
+              Search for a new image for Image1
+            </label>
+            <input
+              type="text"
+              placeholder="Enter image name"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="border py-2 px-3 w-[50%]"
+            />
+            <button
+              onClick={handleSearch}
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Search
+            </button>
+
+            {searchResults.length > 0 && (
+              <div className="flex flex-col gap-2 mt-2">
+                <h4>Search Results</h4>
+                {searchResults.map((result, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                    onClick={() => handleReplaceSingleImage("image2", result)}
+                  >
+                    <img
+                      src={result.firebaseUrl}
+                      alt={result.altText.en}
+                      className="w-16 h-16 object-cover"
+                    />
+                    <p>{result.altText.en}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* --------------- ICON IMAGE --------------- */}
+        {singleIconImage && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+            <h2 className="font-bold text-xl">IconImage</h2>
+            <label className="font-semibold">Firebase URL</label>
+            <input
+              type="text"
+              value={singleIconImage.firebaseUrl || ""}
+              onChange={(e) => handleImageUrlChange(e.target.value)}
+              className="border p-2"
+            />
+
+            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
+            {singleIconImage.altText &&
+              Object.keys(singleIconImage.altText).map((lang) => (
+                <div key={lang} className="flex flex-col gap-2">
+                  <label>Alt Text ({lang})</label>
+                  <input
+                    type="text"
+                    value={singleIconImage.altText[lang]}
+                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    className="border p-2"
+                  />
+                </div>
+              ))}
+          </div>
+        )}
+
+        {singleIconImage && (
+          <div className="flex flex-col gap-2 items-center mt-4">
+            <label className="text-[#e45252] text-[18px] font-semibold">
+              Search for a new image for IconImage
+            </label>
+            <input
+              type="text"
+              placeholder="Enter image name"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="border py-2 px-3 w-[50%]"
+            />
+            <button
+              onClick={handleSearch}
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Search
+            </button>
+
+            {searchResults.length > 0 && (
+              <div className="flex flex-col gap-2 mt-2">
+                <h4>Search Results</h4>
+                {searchResults.map((result, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                    onClick={() => handleReplaceSingleImage("iconImage", result)}
+                  >
+                    <img
+                      src={result.firebaseUrl}
+                      alt={result.altText.en}
+                      className="w-16 h-16 object-cover"
+                    />
+                    <p>{result.altText.en}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* --------------- ICON IMAGE 2 --------------- */}
+        {singleIconImage2 && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+            <h2 className="font-bold text-xl">IconImage 2</h2>
+            <label className="font-semibold">Firebase URL</label>
+            <input
+              type="text"
+              value={singleIconImage2.firebaseUrl || ""}
+              onChange={(e) => handleImageUrlChange(e.target.value)}
+              className="border p-2"
+            />
+
+            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
+            {singleIconImage2.altText &&
+              Object.keys(singleIconImage2.altText).map((lang) => (
+                <div key={lang} className="flex flex-col gap-2">
+                  <label>Alt Text ({lang})</label>
+                  <input
+                    type="text"
+                    value={singleIconImage2.altText[lang]}
+                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    className="border p-2"
+                  />
+                </div>
+              ))}
+          </div>
+        )}
+
+        {singleIconImage2 && (
+          <div className="flex flex-col gap-2 items-center mt-4">
+            <label className="text-[#e45252] text-[18px] font-semibold">
+              Search for a new image for IconImage2
+            </label>
+            <input
+              type="text"
+              placeholder="Enter image name"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="border py-2 px-3 w-[50%]"
+            />
+            <button
+              onClick={handleSearch}
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Search
+            </button>
+
+            {searchResults.length > 0 && (
+              <div className="flex flex-col gap-2 mt-2">
+                <h4>Search Results</h4>
+                {searchResults.map((result, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                    onClick={() => handleReplaceSingleImage("iconImage2", result)}
+                  >
+                    <img
+                      src={result.firebaseUrl}
+                      alt={result.altText.en}
+                      className="w-16 h-16 object-cover"
+                    />
+                    <p>{result.altText.en}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* --------------- BUTTON IMAGE & TEXT --------------- */}
+        {singleButtonImage && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+            <h2 className="font-bold text-xl">Single Image</h2>
+            <label className="font-semibold">Firebase URL</label>
+            <input
+              type="text"
+              value={singleButtonImage.firebaseUrl || ""}
+              onChange={(e) => handleImageUrlChange(e.target.value)}
+              className="border p-2"
+            />
+
+            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
+            {singleButtonImage.altText &&
+              Object.keys(singleButtonImage.altText).map((lang) => (
+                <div key={lang} className="flex flex-col gap-2">
+                  <label>Alt Text ({lang})</label>
+                  <input
+                    type="text"
+                    value={singleButtonImage.altText[lang]}
+                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    className="border p-2"
+                  />
+                </div>
+              ))}
+          </div>
+        )}
+
+        {singleButtonText && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+            <h2 className="font-bold text-xl">Button Text (Multi-language)</h2>
+            {Object.keys(singleButtonText).map((lang) => (
+              <div key={lang} className="flex flex-col gap-2">
+                <label>Button Text ({lang})</label>
+                <input
+                  type="text"
+                  value={singleButtonText[lang]}
+                  onChange={(e) =>
+                    handleLangFieldChange("buttonText", lang, e.target.value)
+                  }
+                  className="border p-2"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* --------------- SINGLE HEADER --------------- */}
+        {singleHeader && (
+          <div className="flex flex-col gap-4 w-[100%] p-4 rounded my-4 bg-white">
+            <h2 className="font-bold text-[15px]">Header (Multi-language)</h2>
+            {Object.keys(singleHeader).map((lang) => (
+              <div key={lang} className="flex flex-col gap-2">
+                <label className="text-[12px]">Header ({lang})</label>
+                <input
+                  type="text"
+                  value={singleHeader[lang]}
+                  onChange={(e) => handleLangFieldChange("header", lang, e.target.value)}
+                  className="border p-2 text-[10px]"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* --------------- SINGLE TEXT --------------- */}
+        {singleText && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+            <h2 className="font-bold text-xl">Text (Multi-language)</h2>
+            {Object.keys(singleText).map((lang) => (
+              <div key={lang} className="flex flex-col gap-2">
+                <label>Text ({lang})</label>
+                <input
+                  type="text"
+                  value={singleText[lang]}
+                  onChange={(e) => handleLangFieldChange("text", lang, e.target.value)}
+                  className="border p-2"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* --------------- SINGLE SPAN --------------- */}
+        {singleSpan && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+            <h2 className="font-bold text-xl">Text (Multi-language)</h2>
+            {Object.keys(singleSpan).map((lang) => (
+              <div key={lang} className="flex flex-col gap-2">
+                <label>Span Text ({lang})</label>
+                <input
+                  type="text"
+                  value={singleSpan[lang]}
+                  onChange={(e) => handleLangFieldChange("span", lang, e.target.value)}
+                  className="border p-2"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* --------------- DELAY & AUTOPLAY --------------- */}
+        <div className="flex flex-col border p-3 mt-4 justify-center items-center bg-white rounded">
+          {/* SINGLE DELAY */}
+          {singleDelay !== undefined && (
+            <div className="flex flex-col gap-4 w-full">
+              <h2 className="font-bold text-[15px]">Delay</h2>
+              <label className="text-[12px]">Delay (saniye)</label>
               <input
                 type="text"
-                value={componentData.props[key]}
-                onChange={(e) => handleInputChange(key, e.target.value)}
-              />
-            </div>
-          );
-        }
-      })}
-
-      {/* NEW SINGLE IMAGE COMPONENT FIELDS */}
-      {/* Tek bir image alanı varsa düzenleme alanı */}
-      {singleImage && (
-        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-          <h2 className="font-bold text-xl">Single Image</h2>
-          <label className="font-semibold">Firebase URL</label>
-          <input
-            type="text"
-            value={singleImage.firebaseUrl || ""}
-            onChange={(e) => handleImageUrlChange(e.target.value)}
-            className="border p-2"
-          />
-
-          <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-          {singleImage.altText && Object.keys(singleImage.altText).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label>Alt Text ({lang})</label>
-              <input
-                type="text"
-                value={singleImage.altText[lang]}
-                onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
-                className="border p-2"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
-{/* Search for a new image */}
-{singleImage && (
-<div className="flex flex-col gap-2 items-center mt-4">
-  <label className="text-[#e45252] text-[18px] font-semibold">Search for a new image for Image1</label>
-  <input
-    type="text"
-    placeholder="Enter image name"
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
-    className="border py-2 px-3 w-[50%]"
-  />
-  <button
-    onClick={handleSearch}
-    className="bg-blue-500 text-white px-4 py-2 rounded"
-  >
-    Search
-  </button>
-
-  {searchResults.length > 0 && (
-    <div className="flex flex-col gap-2 mt-2">
-      <h4>Search Results</h4>
-      {searchResults.map((result, i) => (
-        <div
-          key={i}
-          className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-          onClick={() => handleReplaceSingleImage("image", result)}
-        >
-          <img
-            src={result.firebaseUrl}
-            alt={result.altText.en}
-            className="w-16 h-16 object-cover"
-          />
-          <p>{result.altText.en}</p>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-)}
-
-
-
-{singleImage2 && (
-        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-          <h2 className="font-bold text-xl">Single Image</h2>
-          <label className="font-semibold">Firebase URL</label>
-          <input
-            type="text"
-            value={singleImage2.firebaseUrl || ""}
-            onChange={(e) => handleImageUrlChange(e.target.value)}
-            className="border p-2"
-          />
-
-          <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-          {singleImage2.altText && Object.keys(singleImage2.altText).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label>Alt Text ({lang})</label>
-              <input
-                type="text"
-                value={singleImage2.altText[lang]}
-                onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
-                className="border p-2"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
-{singleImage2 && (
-<div className="flex flex-col gap-2 items-center mt-4">
-  <label className="text-[#e45252] text-[18px] font-semibold">Search for a new image for Image1</label>
-  <input
-    type="text"
-    placeholder="Enter image name"
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
-    className="border py-2 px-3 w-[50%]"
-  />
-  <button
-    onClick={handleSearch}
-    className="bg-blue-500 text-white px-4 py-2 rounded"
-  >
-    Search
-  </button>
-
-  {searchResults.length > 0 && (
-    <div className="flex flex-col gap-2 mt-2">
-      <h4>Search Results</h4>
-      {searchResults.map((result, i) => (
-        <div
-          key={i}
-          className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-          onClick={() => handleReplaceSingleImage("image2",index, result)}
-        >
-          <img
-            src={result.firebaseUrl}
-            alt={result.altText.en}
-            className="w-16 h-16 object-cover"
-          />
-          <p>{result.altText.en}</p>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-)}
-
-{singleIconImage && (
-        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-          <h2 className="font-bold text-xl">IconImage</h2>
-          <label className="font-semibold">Firebase URL</label>
-          <input
-            type="text"
-            value={singleIconImage.firebaseUrl || ""}
-            onChange={(e) => handleImageUrlChange(e.target.value)}
-            className="border p-2"
-          />
-
-          <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-          {singleIconImage.altText && Object.keys(singleIconImage.altText).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label>Alt Text ({lang})</label>
-              <input
-                type="text"
-                value={singleIconImage.altText[lang]}
-                onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
-                className="border p-2"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
-{singleIconImage && (
-<div className="flex flex-col gap-2 items-center mt-4">
-  <label className="text-[#e45252] text-[18px] font-semibold">Search for a new image for IconImage</label>
-  <input
-    type="text"
-    placeholder="Enter image name"
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
-    className="border py-2 px-3 w-[50%]"
-  />
-  <button
-    onClick={handleSearch}
-    className="bg-blue-500 text-white px-4 py-2 rounded"
-  >
-    Search
-  </button>
-
-  {searchResults.length > 0 && (
-    <div className="flex flex-col gap-2 mt-2">
-      <h4>Search Results</h4>
-      {searchResults.map((result, i) => (
-        <div
-          key={i}
-          className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-          onClick={() => handleReplaceSingleImage("iconImage", result)}
-        >
-          <img
-            src={result.firebaseUrl}
-            alt={result.altText.en}
-            className="w-16 h-16 object-cover"
-          />
-          <p>{result.altText.en}</p>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-)}
-
-{singleIconImage2 && (
-        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-          <h2 className="font-bold text-xl">IconImage 2</h2>
-          <label className="font-semibold">Firebase URL</label>
-          <input
-            type="text"
-            value={singleIconImage2.firebaseUrl || ""}
-            onChange={(e) => handleImageUrlChange(e.target.value)}
-            className="border p-2"
-          />
-
-          <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-          {singleIconImage2.altText && Object.keys(singleIconImage2.altText).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label>Alt Text ({lang})</label>
-              <input
-                type="text"
-                value={singleIconImage2.altText[lang]}
-                onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
-                className="border p-2"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
-{singleIconImage2 && (
-<div className="flex flex-col gap-2 items-center mt-4">
-  <label className="text-[#e45252] text-[18px] font-semibold">Search for a new image for IconImage2</label>
-  <input
-    type="text"
-    placeholder="Enter image name"
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
-    className="border py-2 px-3 w-[50%]"
-  />
-  <button
-    onClick={handleSearch}
-    className="bg-blue-500 text-white px-4 py-2 rounded"
-  >
-    Search
-  </button>
-
-  {searchResults.length > 0 && (
-    <div className="flex flex-col gap-2 mt-2">
-      <h4>Search Results</h4>
-      {searchResults.map((result, i) => (
-        <div
-          key={i}
-          className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-          onClick={() => handleReplaceSingleImage("iconImage2", result)}
-        >
-          <img
-            src={result.firebaseUrl}
-            alt={result.altText.en}
-            className="w-16 h-16 object-cover"
-          />
-          <p>{result.altText.en}</p>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-)}
-
-      
-
-{singleButtonImage && (
-        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-          <h2 className="font-bold text-xl">Single Image</h2>
-          <label className="font-semibold">Firebase URL</label>
-          <input
-            type="text"
-            value={singleButtonImage.firebaseUrl || ""}
-            onChange={(e) => handleImageUrlChange(e.target.value)}
-            className="border p-2"
-          />
-
-          <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-          {singleButtonImage.altText && Object.keys(singleButtonImage.altText).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label>Alt Text ({lang})</label>
-              <input
-                type="text"
-                value={singleButtonImage.altText[lang]}
-                onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
-                className="border p-2"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
-{singleButtonText && (
-        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-          <h2 className="font-bold text-xl">Button Text (Multi-language)</h2>
-          {Object.keys(singleButtonText).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label>Button Text ({lang})</label>
-              <input
-                type="text"
-                value={singleButtonText[lang]}
-                onChange={(e) => handleLangFieldChange("buttonText", lang, e.target.value)}
-                className="border p-2"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-      
-
-      {/* Tek bir header alanı varsa */}
-      {singleHeader && (
-        <div className="flex flex-col gap-4 w-[100%] p-4 rounded my-4 bg-white">
-          <h2 className="font-bold text-[15px]">Header (Multi-language)</h2>
-          {Object.keys(singleHeader).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label className="text-[12px]">Header ({lang})</label>
-              <input
-                type="text"
-                value={singleHeader[lang]}
-                onChange={(e) => handleLangFieldChange("header", lang, e.target.value)}
+                value={singleDelay / 1000}
+                onChange={(e) => handleDelayChange(e.target.value * 1000)}
                 className="border p-2 text-[10px]"
               />
             </div>
-          ))}
-        </div>
-      )}
+          )}
 
-      {/* Tek bir text alanı varsa */}
-      {singleText && (
-        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-          <h2 className="font-bold text-xl">Text (Multi-language)</h2>
-          {Object.keys(singleText).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label>Text ({lang})</label>
-              <input
-                type="text"
-                value={singleText[lang]}
-                onChange={(e) => handleLangFieldChange("text", lang, e.target.value)}
-                className="border p-2"
-              />
+          {/* SINGLE AUTOPLAY */}
+          {singleAutoplay !== undefined && (
+            <div className="flex flex-col gap-4 w-full my-4">
+              <h2 className="font-bold text-[15px]">Autoplay</h2>
+              <label className="font-semibold text-[12px]">Autoplay</label>
+              <select
+                value={singleAutoplay ? "true" : "false"}
+                onChange={(e) => handleAutoplayChange(e.target.value === "true")}
+                className="border p-2 text-[10px]"
+              >
+                <option className="text-[10px]" value="true">
+                  true
+                </option>
+                <option className="text-[10px]" value="false">
+                  false
+                </option>
+              </select>
             </div>
-          ))}
+          )}
         </div>
-      )}
+      </div>
 
-      {/* Tek bir text alanı varsa */}
-      {singleSpan && (
-        <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-          <h2 className="font-bold text-xl">Text (Multi-language)</h2>
-          {Object.keys(singleSpan).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label>Span Text ({lang})</label>
-              <input
-                type="text"
-                value={singleSpan[lang]}
-                onChange={(e) => handleLangFieldChange("span", lang, e.target.value)}
-                className="border p-2"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
- <div className="flex flex-col border p-3 mt-4 justify-center items-center bg-white rounded">
-         {/* Tek bir delay alanı varsa */}
- {singleDelay !== undefined && (
-  <div className="flex flex-col gap-4 w-full ">
-    <h2 className="font-bold text-[15px]">Delay</h2>
-    <label className="text-[12px]">Delay (saniye)</label>
-    <input
-      type="text"
-      value={singleDelay/1000}
-      onChange={(e) => handleDelayChange(e.target.value*1000)}
-      className="border p-2 text-[10px]"
-    />
-  </div>
-)}
-
-{singleAutoplay !== undefined && (
-  <div className="flex flex-col gap-4 w-full my-4">
-    <h2 className="font-bold text-[15px]">Autoplay</h2>
-
-    <label className="font-semibold text-[12px]">Autoplay</label>
-    <select
-      value={singleAutoplay ? "true" : "false"}
-      onChange={(e) => handleAutoplayChange(e.target.value === "true")}
-      className="border p-2 text-[10px]"
-    >
-      <option className="text-[10px]" value="true">true</option>
-      <option className="text-[10px]" value="false">false</option>
-    </select>
-  </div>
-)}
- </div>
-
-
-
-
-
-
-      {/* END OF NEW SINGLE IMAGE COMPONENT FIELDS */}
-
-          {/* -------------------------------------------------------------------------------- */}
-
-      {/* 
-         Devamında filterItems ekliyoruz 
-         filterItems => [
-           {
-             image: {...},
-             iconImage: {...},
-             header: {...},
-             text: {...},
-             buttonText: {...},
-             buttonLink: {...},
-             time: {...},
-             kidsFriendly: {...},
-             ageLimit: {...}
-           },
-           {...}, ...
-         ]
-      */}
-
-      {/* filterItems editing */}
+      {/* --------------- FILTER ITEMS --------------- */}
       {componentData.props.filterItems?.length > 0 && (
         <div className="flex flex-col gap-4 w-full mt-8">
           <h2 className="text-[20px] text-[#0e0c1b] font-semibold ml-2">
             Filter Items
           </h2>
-
           {componentData.props.filterItems.map((item, index) => (
-            <div key={index} className="border p-4 rounded-md flex flex-col gap-2">
+            <div
+              key={index}
+              className="border p-4 rounded-md flex flex-col gap-2"
+            >
               <h3>Filter Item {index + 1}</h3>
 
               {/* image alanı */}
@@ -1048,8 +1128,9 @@ useEffect(() => {
                 type="text"
                 value={item.image?.firebaseUrl || ""}
                 onChange={(e) => {
-                  // item.image.firebaseUrl güncelleniyor
-                  const updatedArray = [...componentData.props.filterItems];
+                  const updatedArray = [
+                    ...componentData.props.filterItems,
+                  ];
                   updatedArray[index] = {
                     ...updatedArray[index],
                     image: {
@@ -1113,12 +1194,16 @@ useEffect(() => {
               {item.image?.altText &&
                 Object.keys(item.image.altText).map((lang) => (
                   <div key={lang} className="flex flex-col gap-1">
-                    <label className="text-sm font-semibold">AltText ({lang})</label>
+                    <label className="text-sm font-semibold">
+                      AltText ({lang})
+                    </label>
                     <input
                       type="text"
                       value={item.image.altText[lang]}
                       onChange={(e) => {
-                        const updatedArray = [...componentData.props.filterItems];
+                        const updatedArray = [
+                          ...componentData.props.filterItems,
+                        ];
                         updatedArray[index] = {
                           ...updatedArray[index],
                           image: {
@@ -1142,12 +1227,16 @@ useEffect(() => {
                 ))}
 
               {/* iconImage alanı */}
-              <label className="font-semibold text-[16px] mt-4">Icon Image URL</label>
+              <label className="font-semibold text-[16px] mt-4">
+                Icon Image URL
+              </label>
               <input
                 type="text"
                 value={item.iconImage?.firebaseUrl || ""}
                 onChange={(e) => {
-                  const updatedArray = [...componentData.props.filterItems];
+                  const updatedArray = [
+                    ...componentData.props.filterItems,
+                  ];
                   updatedArray[index] = {
                     ...updatedArray[index],
                     iconImage: {
@@ -1169,12 +1258,16 @@ useEffect(() => {
               {item.iconImage?.altText &&
                 Object.keys(item.iconImage.altText).map((lang) => (
                   <div key={lang} className="flex flex-col gap-1">
-                    <label className="text-sm font-semibold">Icon AltText ({lang})</label>
+                    <label className="text-sm font-semibold">
+                      Icon AltText ({lang})
+                    </label>
                     <input
                       type="text"
                       value={item.iconImage.altText[lang]}
                       onChange={(e) => {
-                        const updatedArray = [...componentData.props.filterItems];
+                        const updatedArray = [
+                          ...componentData.props.filterItems,
+                        ];
                         updatedArray[index] = {
                           ...updatedArray[index],
                           iconImage: {
@@ -1205,7 +1298,9 @@ useEffect(() => {
                     type="number"
                     value={item.iconImage?.largeWidth || 0}
                     onChange={(e) => {
-                      const updatedArray = [...componentData.props.filterItems];
+                      const updatedArray = [
+                        ...componentData.props.filterItems,
+                      ];
                       updatedArray[index] = {
                         ...updatedArray[index],
                         iconImage: {
@@ -1229,7 +1324,9 @@ useEffect(() => {
                     type="number"
                     value={item.iconImage?.largeHeight || 0}
                     onChange={(e) => {
-                      const updatedArray = [...componentData.props.filterItems];
+                      const updatedArray = [
+                        ...componentData.props.filterItems,
+                      ];
                       updatedArray[index] = {
                         ...updatedArray[index],
                         iconImage: {
@@ -1256,7 +1353,9 @@ useEffect(() => {
                     type="number"
                     value={item.iconImage?.smallWidth || 0}
                     onChange={(e) => {
-                      const updatedArray = [...componentData.props.filterItems];
+                      const updatedArray = [
+                        ...componentData.props.filterItems,
+                      ];
                       updatedArray[index] = {
                         ...updatedArray[index],
                         iconImage: {
@@ -1280,7 +1379,9 @@ useEffect(() => {
                     type="number"
                     value={item.iconImage?.smallHeight || 0}
                     onChange={(e) => {
-                      const updatedArray = [...componentData.props.filterItems];
+                      const updatedArray = [
+                        ...componentData.props.filterItems,
+                      ];
                       updatedArray[index] = {
                         ...updatedArray[index],
                         iconImage: {
@@ -1311,7 +1412,9 @@ useEffect(() => {
                       type="text"
                       value={item.header[lang]}
                       onChange={(e) => {
-                        const updatedArray = [...componentData.props.filterItems];
+                        const updatedArray = [
+                          ...componentData.props.filterItems,
+                        ];
                         updatedArray[index] = {
                           ...updatedArray[index],
                           header: {
@@ -1342,7 +1445,9 @@ useEffect(() => {
                       type="text"
                       value={item.text[lang]}
                       onChange={(e) => {
-                        const updatedArray = [...componentData.props.filterItems];
+                        const updatedArray = [
+                          ...componentData.props.filterItems,
+                        ];
                         updatedArray[index] = {
                           ...updatedArray[index],
                           text: {
@@ -1373,7 +1478,9 @@ useEffect(() => {
                       type="text"
                       value={item.buttonText[lang]}
                       onChange={(e) => {
-                        const updatedArray = [...componentData.props.filterItems];
+                        const updatedArray = [
+                          ...componentData.props.filterItems,
+                        ];
                         updatedArray[index] = {
                           ...updatedArray[index],
                           buttonText: {
@@ -1404,7 +1511,9 @@ useEffect(() => {
                       type="text"
                       value={item.buttonLink[lang]}
                       onChange={(e) => {
-                        const updatedArray = [...componentData.props.filterItems];
+                        const updatedArray = [
+                          ...componentData.props.filterItems,
+                        ];
                         updatedArray[index] = {
                           ...updatedArray[index],
                           buttonLink: {
@@ -1435,7 +1544,9 @@ useEffect(() => {
                       type="text"
                       value={item.time[lang]}
                       onChange={(e) => {
-                        const updatedArray = [...componentData.props.filterItems];
+                        const updatedArray = [
+                          ...componentData.props.filterItems,
+                        ];
                         updatedArray[index] = {
                           ...updatedArray[index],
                           time: {
@@ -1466,7 +1577,9 @@ useEffect(() => {
                       type="text"
                       value={item.kidsFriendly[lang]}
                       onChange={(e) => {
-                        const updatedArray = [...componentData.props.filterItems];
+                        const updatedArray = [
+                          ...componentData.props.filterItems,
+                        ];
                         updatedArray[index] = {
                           ...updatedArray[index],
                           kidsFriendly: {
@@ -1497,7 +1610,9 @@ useEffect(() => {
                       type="text"
                       value={item.ageLimit[lang]}
                       onChange={(e) => {
-                        const updatedArray = [...componentData.props.filterItems];
+                        const updatedArray = [
+                          ...componentData.props.filterItems,
+                        ];
                         updatedArray[index] = {
                           ...updatedArray[index],
                           ageLimit: {
@@ -1516,54 +1631,47 @@ useEffect(() => {
                     />
                   </div>
                 ))}
-
-
-              {/* Burada isterseniz Search / Replace mantığını da yapabilirsiniz.
-                  Mesela item.image'i değiştirmek için arama butonuna basınca handleReplaceImage("filterItems", index, result) vb. */}
-                   {/* Image search */}
-             
             </div>
           ))}
         </div>
       )}
-      {/* filterItems editing sonu */}
 
-    {/* restaurantItems editing */}
+      {/* --------------- RESTAURANT ITEMS --------------- */}
       {componentData.props.restaurantItems?.length > 0 && (
-  <div className="flex flex-col gap-4 w-full mt-8">
-    <h2 className="text-[20px] text-[#0e0c1b] font-semibold ml-2">
-      Restaurant Items
-    </h2>
-    {componentData.props.restaurantItems.map((item, index) => (
-      <div key={index} className="border p-4 rounded-md flex flex-col gap-2">
-        <h3>Restaurant Item {index + 1}</h3>
+        <div className="flex flex-col gap-4 w-full mt-8">
+          <h2 className="text-[20px] text-[#0e0c1b] font-semibold ml-2">
+            Restaurant Items
+          </h2>
+          {componentData.props.restaurantItems.map((item, index) => (
+            <div key={index} className="border p-4 rounded-md flex flex-col gap-2">
+              <h3>Restaurant Item {index + 1}</h3>
 
-        {/* image alanı */}
-        <label className="font-semibold text-[16px]">Image URL</label>
-        <input
-          type="text"
-          value={item.image?.firebaseUrl || ""}
-          onChange={(e) => {
-            const updatedArray = [...componentData.props.restaurantItems];
-            updatedArray[index] = {
-              ...updatedArray[index],
-              image: {
-                ...updatedArray[index].image,
-                firebaseUrl: e.target.value,
-              },
-            };
-            setComponentData((prev) => ({
-              ...prev,
-              props: {
-                ...prev.props,
-                restaurantItems: updatedArray,
-              },
-            }));
-          }}
-        />
+              {/* image alanı */}
+              <label className="font-semibold text-[16px]">Image URL</label>
+              <input
+                type="text"
+                value={item.image?.firebaseUrl || ""}
+                onChange={(e) => {
+                  const updatedArray = [...componentData.props.restaurantItems];
+                  updatedArray[index] = {
+                    ...updatedArray[index],
+                    image: {
+                      ...updatedArray[index].image,
+                      firebaseUrl: e.target.value,
+                    },
+                  };
+                  setComponentData((prev) => ({
+                    ...prev,
+                    props: {
+                      ...prev.props,
+                      restaurantItems: updatedArray,
+                    },
+                  }));
+                }}
+              />
 
-        {/* Search for a new main image */}
-        <div className="flex flex-col gap-2 items-center my-2">
+              {/* Search for a new main image */}
+              <div className="flex flex-col gap-2 items-center my-2">
                 <label className="text-[#246cfc] text-[18px] font-semibold">
                   Search for a new image
                 </label>
@@ -1604,324 +1712,346 @@ useEffect(() => {
                 )}
               </div>
 
-        {/* image altText */}
-        {item.image?.altText &&
-          Object.keys(item.image.altText).map((lang) => (
-            <div key={lang} className="flex flex-col gap-1">
-              <label className="text-sm font-semibold">AltText ({lang})</label>
-              <input
-                type="text"
-                value={item.image.altText[lang]}
-                onChange={(e) => {
-                  const updatedArray = [...componentData.props.restaurantItems];
-                  updatedArray[index] = {
-                    ...updatedArray[index],
-                    image: {
-                      ...updatedArray[index].image,
-                      altText: {
-                        ...updatedArray[index].image.altText,
-                        [lang]: e.target.value,
-                      },
-                    },
-                  };
-                  setComponentData((prev) => ({
-                    ...prev,
-                    props: {
-                      ...prev.props,
-                      restaurantItems: updatedArray,
-                    },
-                  }));
-                }}
-              />
-            </div>
-          ))}
-
-        {/* header (çok dilli) */}
-        {item.header &&
-          Object.keys(item.header).map((lang) => (
-            <div key={lang} className="flex flex-col gap-1 mt-2">
-              <label className="text-sm font-semibold">Header ({lang})</label>
-              <input
-                type="text"
-                value={item.header[lang]}
-                onChange={(e) => {
-                  const updatedArray = [...componentData.props.restaurantItems];
-                  updatedArray[index] = {
-                    ...updatedArray[index],
-                    header: {
-                      ...updatedArray[index].header,
-                      [lang]: e.target.value,
-                    },
-                  };
-                  setComponentData((prev) => ({
-                    ...prev,
-                    props: {
-                      ...prev.props,
-                      restaurantItems: updatedArray,
-                    },
-                  }));
-                }}
-              />
-            </div>
-          ))}
-
-        {/* text (çok dilli) */}
-        {item.text &&
-          Object.keys(item.text).map((lang) => (
-            <div key={lang} className="flex flex-col gap-1 mt-2">
-              <label className="text-sm font-semibold">Text ({lang})</label>
-              <input
-                type="text"
-                value={item.text[lang]}
-                onChange={(e) => {
-                  const updatedArray = [...componentData.props.restaurantItems];
-                  updatedArray[index] = {
-                    ...updatedArray[index],
-                    text: {
-                      ...updatedArray[index].text,
-                      [lang]: e.target.value,
-                    },
-                  };
-                  setComponentData((prev) => ({
-                    ...prev,
-                    props: {
-                      ...prev.props,
-                      restaurantItems: updatedArray,
-                    },
-                  }));
-                }}
-              />
-            </div>
-          ))}
-
-        {/* span (çok dilli) */}
-        {item.span &&
-          Object.keys(item.span).map((lang) => (
-            <div key={lang} className="flex flex-col gap-1 mt-2">
-              <label className="text-sm font-semibold">Span ({lang})</label>
-              <input
-                type="text"
-                value={item.span[lang]}
-                onChange={(e) => {
-                  const updatedArray = [...componentData.props.restaurantItems];
-                  updatedArray[index] = {
-                    ...updatedArray[index],
-                    span: {
-                      ...updatedArray[index].span,
-                      [lang]: e.target.value,
-                    },
-                  };
-                  setComponentData((prev) => ({
-                    ...prev,
-                    props: {
-                      ...prev.props,
-                      restaurantItems: updatedArray,
-                    },
-                  }));
-                }}
-              />
-            </div>
-          ))}
-
-        {/* buttonText (çok dilli) */}
-        {item.buttonText &&
-          Object.keys(item.buttonText).map((lang) => (
-            <div key={lang} className="flex flex-col gap-1 mt-2">
-              <label className="text-sm font-semibold">Button Text ({lang})</label>
-              <input
-                type="text"
-                value={item.buttonText[lang]}
-                onChange={(e) => {
-                  const updatedArray = [...componentData.props.restaurantItems];
-                  updatedArray[index] = {
-                    ...updatedArray[index],
-                    buttonText: {
-                      ...updatedArray[index].buttonText,
-                      [lang]: e.target.value,
-                    },
-                  };
-                  setComponentData((prev) => ({
-                    ...prev,
-                    props: {
-                      ...prev.props,
-                      restaurantItems: updatedArray,
-                    },
-                  }));
-                }}
-              />
-            </div>
-          ))}
-
-        {/* buttonLink (çok dilli) */}
-        {item.buttonLink &&
-          Object.keys(item.buttonLink).map((lang) => (
-            <div key={lang} className="flex flex-col gap-1 mt-2">
-              <label className="text-sm font-semibold">Button Link ({lang})</label>
-              <input
-                type="text"
-                value={item.buttonLink[lang]}
-                onChange={(e) => {
-                  const updatedArray = [...componentData.props.restaurantItems];
-                  updatedArray[index] = {
-                    ...updatedArray[index],
-                    buttonLink: {
-                      ...updatedArray[index].buttonLink,
-                      [lang]: e.target.value,
-                    },
-                  };
-                  setComponentData((prev) => ({
-                    ...prev,
-                    props: {
-                      ...prev.props,
-                      restaurantItems: updatedArray,
-                    },
-                  }));
-                }}
-              />
-            </div>
-          ))}
-      </div>
-    ))}
-  </div>
-)}
-
-
-
-{/* Images editing */}
-{componentData.props.images?.length > 0 && (
-  <div className="flex flex-col gap-4 col-span-2 w-full overflow-hidden">
-    <h2 className="text-white text-[20px] font-bold pl-2"></h2>
-    <div className="flex flex-row gap-3 w-full">
-      {componentData.props.images.map((image, index) => (
-        <div key={index} className="flex flex-col gap-2 border p-4 rounded-md bg-white w-full h-96 overflow-y-scroll">
-          <h3 className="font-semibold">Görsel {index + 1}</h3>
-          <label className="text-black text-[18px] font-semibold hidden">Firebase URL</label>
-          <input
-            type="text"
-            value={image.firebaseUrl}
-            className="hidden"
-            onChange={(e) =>
-              handleArrayChange("images", index, "firebaseUrl", e.target.value)
-            }
-          />
-          {image.firebaseUrl && (
-            <img
-              src={image.firebaseUrl}
-              alt={`Preview of Image ${index + 1}`}
-              className="w-full h-32 object-cover mt-2 border rounded-md"
-            />
-          )}
-
-           {/* Image search */}
-           <div className="flex flex-col gap-2 items-center">
-            {/* <input
-              type="text"
-              placeholder="Enter image name"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="border py-2 px-3 w-[90%] text-[12px]"
-            /> */}
-
-            <div className="flex w-full items-center justify-center gap-3">
-            <button
-              onClick={handleGaleriToggle}
-              className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
-            >
-              Galeri
-            </button>
-
-            <button
-              onClick={handleSearch}
-              className="bg-green-700 text-white px-2 py-1 rounded text-[12px] whitespace-nowrap"
-            >
-              Resim Yükle
-            </button>
-            </div>
-
-            {searchResults.length > 0 && (
-              <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px]">
-                <h4>Search Results</h4>
-                {searchResults.map((result, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-4 border p-2 rounded-md cursor-pointer "
-                    onClick={() => handleReplaceImage("images", index, result)}
-                  >
-                    <img
-                      src={result.firebaseUrl}
-                      alt={result.altText.en}
-                      className="w-16 h-16 object-cover"
+              {/* image altText */}
+              {item.image?.altText &&
+                Object.keys(item.image.altText).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1">
+                    <label className="text-sm font-semibold">AltText ({lang})</label>
+                    <input
+                      type="text"
+                      value={item.image.altText[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [...componentData.props.restaurantItems];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          image: {
+                            ...updatedArray[index].image,
+                            altText: {
+                              ...updatedArray[index].image.altText,
+                              [lang]: e.target.value,
+                            },
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            restaurantItems: updatedArray,
+                          },
+                        }));
+                      }}
                     />
-                    <p>{result.altText.en}</p>
+                  </div>
+                ))}
+
+              {/* header (çok dilli) */}
+              {item.header &&
+                Object.keys(item.header).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">
+                      Header ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={item.header[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [
+                          ...componentData.props.restaurantItems,
+                        ];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          header: {
+                            ...updatedArray[index].header,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            restaurantItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* text (çok dilli) */}
+              {item.text &&
+                Object.keys(item.text).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">
+                      Text ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={item.text[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [
+                          ...componentData.props.restaurantItems,
+                        ];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          text: {
+                            ...updatedArray[index].text,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            restaurantItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* span (çok dilli) */}
+              {item.span &&
+                Object.keys(item.span).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">Span ({lang})</label>
+                    <input
+                      type="text"
+                      value={item.span[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [
+                          ...componentData.props.restaurantItems,
+                        ];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          span: {
+                            ...updatedArray[index].span,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            restaurantItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* buttonText (çok dilli) */}
+              {item.buttonText &&
+                Object.keys(item.buttonText).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">
+                      Button Text ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={item.buttonText[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [
+                          ...componentData.props.restaurantItems,
+                        ];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          buttonText: {
+                            ...updatedArray[index].buttonText,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            restaurantItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+
+              {/* buttonLink (çok dilli) */}
+              {item.buttonLink &&
+                Object.keys(item.buttonLink).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">
+                      Button Link ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={item.buttonLink[lang]}
+                      onChange={(e) => {
+                        const updatedArray = [
+                          ...componentData.props.restaurantItems,
+                        ];
+                        updatedArray[index] = {
+                          ...updatedArray[index],
+                          buttonLink: {
+                            ...updatedArray[index].buttonLink,
+                            [lang]: e.target.value,
+                          },
+                        };
+                        setComponentData((prev) => ({
+                          ...prev,
+                          props: {
+                            ...prev.props,
+                            restaurantItems: updatedArray,
+                          },
+                        }));
+                      }}
+                    />
+                  </div>
+                ))}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* --------------- IMAGES ARRAY --------------- */}
+      {componentData.props.images?.length > 0 && (
+        <div className="flex flex-col gap-4 col-span-2 w-full overflow-hidden">
+          <h2 className="text-white text-[20px] font-bold pl-2"></h2>
+          <div className="flex flex-row gap-3 w-full">
+            {componentData.props.images.map((image, index) => (
+              <div
+                key={index}
+                className="flex flex-col gap-2 border p-4 rounded-md bg-white w-full h-96 overflow-y-scroll"
+              >
+                <h3 className="font-semibold">Görsel {index + 1}</h3>
+                <label className="text-black text-[18px] font-semibold hidden">
+                  Firebase URL
+                </label>
+                <input
+                  type="text"
+                  value={image.firebaseUrl}
+                  className="hidden"
+                  onChange={(e) =>
+                    handleArrayChange("images", index, "firebaseUrl", e.target.value)
+                  }
+                />
+                {image.firebaseUrl && (
+                  <img
+                    src={image.firebaseUrl}
+                    alt={`Preview of Image ${index + 1}`}
+                    className="w-full h-32 object-cover mt-2 border rounded-md"
+                  />
+                )}
+
+                {/* Image search */}
+                <div className="flex flex-col gap-2 items-center">
+                  <div className="flex w-full items-center justify-center gap-3">
+                    <button
+                      onClick={() => {
+                        setActiveField({ type: "images", index }); // <--- EKLE
+                        setGaleriOpen(true);                      // <--- EKLE
+                      }}
+                      className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
+                    >
+                      Galeri
+                    </button>
+
+                    <button
+                      onClick={handleSearch}
+                      className="bg-green-700 text-white px-2 py-1 rounded text-[12px] whitespace-nowrap"
+                    >
+                      Resim Yükle
+                    </button>
+                  </div>
+
+                  {searchResults.length > 0 && (
+                    <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px]">
+                      <h4>Search Results</h4>
+                      {searchResults.map((result, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                          onClick={() => handleReplaceImage("images", index, result)}
+                        >
+                          <img
+                            src={result.firebaseUrl}
+                            alt={result.altText.en}
+                            className="w-16 h-16 object-cover"
+                          />
+                          <p>{result.altText.en}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {Object.keys(image.altText || {}).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-2">
+                    <label className="text-black text-[15px] font-semibold">
+                      Alt Text ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={image.altText[lang]}
+                      className="text-[12px] border p-1"
+                      onChange={(e) =>
+                        handleAltTextChange("images", index, lang, e.target.value)
+                      }
+                    />
+                  </div>
+                ))}
+
+                {Object.keys(image.header || {}).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-2">
+                    <label className="text-black text-[18px] font-semibold">
+                      Header ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={image.header[lang]}
+                      onChange={(e) =>
+                        handleHeaderChange("images", index, lang, e.target.value)
+                      }
+                    />
+                  </div>
+                ))}
+
+                {Object.keys(image.text || {}).map((lang) => (
+                  <div key={lang} className="flex flex-col gap-2">
+                    <label className="text-black text-[18px] font-semibold">
+                      Text ({lang})
+                    </label>
+                    <input
+                      type="text"
+                      value={image.text[lang]}
+                      onChange={(e) =>
+                        handleTextChange("images", index, lang, e.target.value)
+                      }
+                    />
                   </div>
                 ))}
               </div>
-            )}
+            ))}
           </div>
-
-
-          {Object.keys(image.altText || {}).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label className="text-black text-[15px] font-semibold">Alt Text ({lang})</label>
-              <input
-                type="text"
-                value={image.altText[lang]}
-                className="text-[12px] border p-1"
-                onChange={(e) =>
-                  handleAltTextChange("images", index, lang, e.target.value)
-                }
-              />
-            </div>
-          ))}
-
-          {Object.keys(image.header || {}).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label className="text-black text-[18px] font-semibold">Header ({lang})</label>
-              <input
-                type="text"
-                value={image.header[lang]}
-                onChange={(e) =>
-                  handleHeaderChange("images", index, lang, e.target.value)
-                }
-              />
-            </div>
-          ))}
-
-          {Object.keys(image.text || {}).map((lang) => (
-            <div key={lang} className="flex flex-col gap-2">
-              <label className="text-black text-[18px] font-semibold">Text ({lang})</label>
-              <input
-                type="text"
-                value={image.text[lang]}
-                onChange={(e) =>
-                  handleTextChange("images", index, lang, e.target.value)
-                }
-              />
-            </div>
-          ))}
-
-         
+          <button
+            onClick={() => handleAddItem("images")}
+            className="bg-green-700 text-white px-4 py-2 rounded w-[50%] my-4 whitespace-nowrap"
+          >
+            Add New Image
+          </button>
         </div>
-      ))}
-    </div>
-    <button
-      onClick={() => handleAddItem("images")}
-      className="bg-green-700 text-white px-4 py-2 rounded w-[50%] my-4 whitespace-nowrap"
-    >
-      Add New Image
-    </button>
-  </div>
-)}
+      )}
 
-
-      {/* SubImages editing */}
+      {/* --------------- SUBIMAGES ARRAY --------------- */}
       {componentData.props.subImages?.length > 0 && (
         <div className="flex flex-col gap-4 w-full">
-          <h2 className="text-[20px] text-[#0e0c1b] font-semibold mt-6 ml-2">Sub Images</h2>
+          <h2 className="text-[20px] text-[#0e0c1b] font-semibold mt-6 ml-2">
+            Sub Images
+          </h2>
           {componentData.props.subImages.map((subImage, index) => (
             <div key={index} className="flex flex-col gap-2 border p-4 rounded-md">
               <h3>Sub Image {index + 1}</h3>
-              <label className="text-[#246cfc] text-[18px] font-semibold">Firebase URL</label>
+              <label className="text-[#246cfc] text-[18px] font-semibold">
+                Firebase URL
+              </label>
               <input
                 type="text"
                 value={subImage.firebaseUrl}
@@ -1944,9 +2074,12 @@ useEffect(() => {
                   />
                 </div>
               ))}
+
               {/* SubImage search */}
               <div className="flex flex-col gap-2 items-center">
-                <label className="text-[#246cfc] text-[18px] font-semibold">Search for a new sub-image</label>
+                <label className="text-[#246cfc] text-[18px] font-semibold">
+                  Search for a new sub-image
+                </label>
                 <input
                   type="text"
                   placeholder="Enter sub-image name"
@@ -1992,15 +2125,16 @@ useEffect(() => {
         </div>
       )}
 
-      {/* headers editing */}
+      {/* --------------- HEADERS ARRAY --------------- */}
       {componentData.props.headers?.length > 0 && (
         <div className="flex flex-col gap-4 w-full">
-          <h2 className="text-[20px] text-[#0e0c1b] font-semibold mt-6 ml-2">Headers</h2>
+          <h2 className="text-[20px] text-[#0e0c1b] font-semibold mt-6 ml-2">
+            Headers
+          </h2>
           {componentData.props.headers.map((header, index) => (
             <div key={index} className="flex flex-col gap-2 border p-4 rounded-md">
               <h3>Header {index + 1}</h3>
-
-              {Object.keys(header|| {}).map((lang) => (
+              {Object.keys(header || {}).map((lang) => (
                 <div key={lang} className="flex flex-col gap-2">
                   <label className="text-[#246cfc] text-[18px] font-semibold">
                     header({lang})
@@ -2014,7 +2148,6 @@ useEffect(() => {
                   />
                 </div>
               ))}
-            
             </div>
           ))}
           <button
@@ -2026,18 +2159,21 @@ useEffect(() => {
         </div>
       )}
 
-      {/* Items Editing UI */}
+      {/* --------------- ITEMS ARRAY --------------- */}
       {componentData.props.items?.length > 0 && (
         <div className="flex flex-col gap-4 w-full mt-8">
           <h2 className="text-[20px] text-[#0e0c1b] font-semibold ml-2">Items</h2>
           {componentData.props.items.map((item, index) => (
             <div key={index} className="border p-4 rounded-md flex flex-col gap-2">
               <h3>Item {index + 1}</h3>
+
               <label>Image URL</label>
               <input
                 type="text"
                 value={item.firebaseUrl}
-                onChange={(e) => handleItemInputChange("items", index, "firebaseUrl", e.target.value)}
+                onChange={(e) =>
+                  handleItemInputChange("items", index, "firebaseUrl", e.target.value)
+                }
               />
 
               <label>Large Dimensions</label>
@@ -2045,13 +2181,17 @@ useEffect(() => {
                 type="number"
                 placeholder="Width"
                 value={item.largeWidth}
-                onChange={(e) => handleItemInputChange("items", index, "largeWidth", e.target.value)}
+                onChange={(e) =>
+                  handleItemInputChange("items", index, "largeWidth", e.target.value)
+                }
               />
               <input
                 type="number"
                 placeholder="Height"
                 value={item.largeHeight}
-                onChange={(e) => handleItemInputChange("items", index, "largeHeight", e.target.value)}
+                onChange={(e) =>
+                  handleItemInputChange("items", index, "largeHeight", e.target.value)
+                }
               />
 
               <label>Small Dimensions</label>
@@ -2059,13 +2199,17 @@ useEffect(() => {
                 type="number"
                 placeholder="Width"
                 value={item.smallWidth}
-                onChange={(e) => handleItemInputChange("items", index, "smallWidth", e.target.value)}
+                onChange={(e) =>
+                  handleItemInputChange("items", index, "smallWidth", e.target.value)
+                }
               />
               <input
                 type="number"
                 placeholder="Height"
                 value={item.smallHeight}
-                onChange={(e) => handleItemInputChange("items", index, "smallHeight", e.target.value)}
+                onChange={(e) =>
+                  handleItemInputChange("items", index, "smallHeight", e.target.value)
+                }
               />
 
               <label>Text</label>
@@ -2075,13 +2219,17 @@ useEffect(() => {
                   type="text"
                   placeholder={`Text (${lang})`}
                   value={item.text[lang]}
-                  onChange={(e) => handleItemTextChange("items", index, lang, e.target.value)}
+                  onChange={(e) =>
+                    handleItemTextChange("items", index, lang, e.target.value)
+                  }
                 />
               ))}
 
               {/* SubImage search */}
               <div className="flex flex-col gap-2 items-center">
-                <label className="text-[#246cfc] text-[18px] font-semibold">Search for a new item</label>
+                <label className="text-[#246cfc] text-[18px] font-semibold">
+                  Search for a new item
+                </label>
                 <input
                   type="text"
                   placeholder="Enter sub-image name"
@@ -2102,8 +2250,10 @@ useEffect(() => {
                     {itemSearchResults.map((result, i) => (
                       <div
                         key={i}
-                        className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-                        onClick={() => handleReplaceImage("items", index, result)}
+                         className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                        onClick={() =>
+                          handleReplaceImage("items", index, result)
+                        }
                       >
                         <img
                           src={result.firebaseUrl}
@@ -2117,19 +2267,28 @@ useEffect(() => {
                 )}
               </div>
 
-              <button onClick={() => handleRemoveItem(index)} className="w-1/6 bg-red-600 text-white py-1 px-3 rounded">
+              <button
+                onClick={() => handleRemoveItem(index)}
+                className="w-1/6 bg-red-600 text-white py-1 px-3 rounded"
+              >
                 Remove Item
               </button>
             </div>
           ))}
-          <button onClick={handleAddNewItem} className="bg-green-700 text-white py-2 px-4 rounded mt-4">
+          <button
+            onClick={handleAddNewItem}
+            className="bg-green-700 text-white py-2 px-4 rounded mt-4"
+          >
             Add New Item
           </button>
         </div>
       )}
-    </div>
 
-      <button onClick={handleSave} className="bg-[#342d64] text-white text-[18px] font-semibold px-4 py-2 rounded my-5">
+      {/* --------------- SAVE BUTTON --------------- */}
+      <button
+        onClick={handleSave}
+        className="bg-[#342d64] text-white text-[18px] font-semibold px-4 py-2 rounded my-5"
+      >
         Save Changes
       </button>
       {success && <p className="text-green-500">Component updated successfully!</p>}
