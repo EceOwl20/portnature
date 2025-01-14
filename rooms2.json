@@ -1,0 +1,298 @@
+{
+    "pageName": "roomspage",
+    "translations": {
+      "en": [
+        {
+          "type": "MainBackground",
+          "props": {
+            "image": {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": "Port Nature Hotel",
+              "width": 1920,
+              "height": 1079
+            },
+            "header": "Feel every advantage of our rooms",
+            "buttonText": "Family Room",
+            "buttonText2": "King Suite Room",
+            "buttonText3": "Standard Room",
+            "buttonLink": "/",
+            "buttonLink2": "/",
+            "buttonLink3": "/"
+          }
+        },
+        {
+          "type": "RoomsInfoCarousel",
+          "props": {
+            "images": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+                "altText": "Port Nature Hotel",
+                "width": 1920,
+                "height": 1080
+              },
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+                "altText": "Beach View",
+                "width": 1920,
+                "height": 1080
+              }
+            ],
+            "autoplay": true,
+            "delay": 3000,
+            "header": "Beach View",
+            "text": "A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home",
+            "buttonText": "Beach View",
+            "buttonLink": "/",
+            "items": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "text": "2",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
+              }
+            ]
+          }
+        },
+        {
+          "type": "RoomsFeatures",
+          "props": {
+            "header": "Features",
+            "items": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "text": "Balcony / Terrace",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
+              }
+            ],
+            "buttonText": "Show More",
+            "buttonText2": "Show Less"
+          }
+        }
+      ],
+      "tr": [
+        {
+          "type": "MainBackground",
+          "props": {
+            "image": {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": "Port Nature Hotel",
+              "width": 1920,
+              "height": 1079
+            },
+            "header": "Feel every advantage of our rooms",
+            "buttonText": "Family Room",
+            "buttonText2": "King Suite Room",
+            "buttonText3": "Standard Room",
+            "buttonLink": "/",
+            "buttonLink2": "/",
+            "buttonLink3": "/"
+          }
+        },
+        {
+          "type": "RoomsInfoCarousel",
+          "props": {
+            "images": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+                "altText": "Port Nature Hotel",
+                "width": 1920,
+                "height": 1080
+              },
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+                "altText": "Beach View",
+                "width": 1920,
+                "height": 1080
+              }
+            ],
+            "autoplay": true,
+            "delay": 3000,
+            "header": "Beach View",
+            "text": "A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home",
+            "buttonText": "Beach View",
+            "buttonLink": "/",
+            "items": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "text": "2",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
+              }
+            ]
+          }
+        },
+        {
+          "type": "RoomsFeatures",
+          "props": {
+            "header": "Features",
+            "items": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "text": "Balcony / Terrace",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
+              }
+            ],
+            "buttonText": "Show More",
+            "buttonText2": "Show Less"
+          }
+        }
+      ],
+      "de": [
+        {
+          "type": "MainBackground",
+          "props": {
+            "image": {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": "Port Nature Hotel",
+              "width": 1920,
+              "height": 1079
+            },
+            "header": "Feel every advantage of our rooms",
+            "buttonText": "Family Room",
+            "buttonText2": "King Suite Room",
+            "buttonText3": "Standard Room",
+            "buttonLink": "/",
+            "buttonLink2": "/",
+            "buttonLink3": "/"
+          }
+        },
+        {
+          "type": "RoomsInfoCarousel",
+          "props": {
+            "images": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+                "altText": "Port Nature Hotel",
+                "width": 1920,
+                "height": 1080
+              },
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+                "altText": "Beach View",
+                "width": 1920,
+                "height": 1080
+              }
+            ],
+            "autoplay": true,
+            "delay": 3000,
+            "header": "Beach View",
+            "text": "A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home",
+            "buttonText": "Beach View",
+            "buttonLink": "/",
+            "items": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "text": "2",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
+              }
+            ]
+          }
+        },
+        {
+          "type": "RoomsFeatures",
+          "props": {
+            "header": "Features",
+            "items": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "text": "Balcony / Terrace",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
+              }
+            ],
+            "buttonText": "Show More",
+            "buttonText2": "Show Less"
+          }
+        }
+      ],
+      "ru": [
+        {
+          "type": "MainBackground",
+          "props": {
+            "image": {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": "Port Nature Hotel",
+              "width": 1920,
+              "height": 1079
+            },
+            "header": "Feel every advantage of our rooms",
+            "buttonText": "Family Room",
+            "buttonText2": "King Suite Room",
+            "buttonText3": "Standard Room",
+            "buttonLink": "/",
+            "buttonLink2": "/",
+            "buttonLink3": "/"
+          }
+        },
+        {
+          "type": "RoomsInfoCarousel",
+          "props": {
+            "images": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+                "altText": "Port Nature Hotel",
+                "width": 1920,
+                "height": 1080
+              },
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+                "altText": "Beach View",
+                "width": 1920,
+                "height": 1080
+              }
+            ],
+            "autoplay": true,
+            "delay": 3000,
+            "header": "Beach View",
+            "text": "A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home",
+            "buttonText": "Beach View",
+            "buttonLink": "/",
+            "items": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "text": "2",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
+              }
+            ]
+          }
+        },
+        {
+          "type": "RoomsFeatures",
+          "props": {
+            "header": "Features",
+            "items": [
+              {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "text": "Balcony / Terrace",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
+              }
+            ],
+            "buttonText": "Show More",
+            "buttonText2": "Show Less"
+          }
+        }
+      ]
+    }
+  }
+  

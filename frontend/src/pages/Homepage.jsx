@@ -42,118 +42,124 @@ const Homepage = () => {
       try {
         const response = await fetch("http://localhost:3000/api/page/homepage");
         const data = await response.json();
-
+  
         if (!response.ok) {
           throw new Error(data.message || "Failed to fetch page data");
         }
-
+  
+        // Dil bazında transactions verisini al
+        const localizedComponents = data.translations[lang];
+  
+        if (!localizedComponents) {
+          throw new Error(`No translations found for language: ${lang}`);
+        }
+  
         // Carousel verilerini çek
-        const carouselComponent = data.components.find(
+        const carouselComponent = localizedComponents.find(
           (comp) => comp.type === "Carousel"
         );
-
+  
         if (carouselComponent) {
           setCarouselData(carouselComponent.props);
         } else {
           console.warn("Carousel data not found in homepage");
         }
-
+  
         // BarLoungeCarousel verilerini çek
-        const barLoungeComponent = data.components.find(
+        const barLoungeComponent = localizedComponents.find(
           (comp) => comp.type === "BarLoungeCarousel"
         );
-
+  
         if (barLoungeComponent) {
           setBarLoungeData(barLoungeComponent.props);
         } else {
           console.warn("BarLoungeCarousel data not found in homepage");
         }
-
-         // Icon verilerini çek
-         const iconSectionComponent = data.components.find(
+  
+        // IconSection verilerini çek
+        const iconSectionComponent = localizedComponents.find(
           (comp) => comp.type === "HomeIconSection"
         );
-
+  
         if (iconSectionComponent) {
           setIconSectionData(iconSectionComponent.props);
         } else {
-          console.warn("iconSection data not found in homepage");
+          console.warn("IconSection data not found in homepage");
         }
-
-         // AllIncllusive verilerini çek
-         const allInclusiveComponent = data.components.find(
+  
+        // AllInclusive verilerini çek
+        const allInclusiveComponent = localizedComponents.find(
           (comp) => comp.type === "AllInclusive"
         );
-
+  
         if (allInclusiveComponent) {
           setAllInclusiveDataData(allInclusiveComponent.props);
         } else {
-          console.warn("allInclusive data not found in homepage");
+          console.warn("AllInclusive data not found in homepage");
         }
-
-
-         // HolidayImageSection verilerini çek
-         const holidayImageSectionComponent = data.components.find(
+  
+        // HolidayImageSection verilerini çek
+        const holidayImageSectionComponent = localizedComponents.find(
           (comp) => comp.type === "HolidayImageSection"
         );
-
+  
         if (holidayImageSectionComponent) {
           setHolidayImageSectionData(holidayImageSectionComponent.props);
         } else {
           console.warn("HolidayImageSection data not found in homepage");
         }
-
-         // ChildrenSection verilerini çek
-         const childrenSectionComponent = data.components.find(
+  
+        // ChildrenSection verilerini çek
+        const childrenSectionComponent = localizedComponents.find(
           (comp) => comp.type === "ChildrenSection"
         );
-
+  
         if (childrenSectionComponent) {
           setChildrenSectionData(childrenSectionComponent.props);
         } else {
           console.warn("ChildrenSection data not found in homepage");
         }
-
-          // BackgroundSection verilerini çek
-          const backgroundSectionComponent = data.components.find(
-            (comp) => comp.type === "ImageBackgroundSection"
-          );
   
-          if (backgroundSectionComponent) {
-            setBackgroundSectionData(backgroundSectionComponent.props);
-          } else {
-            console.warn("BackgroundSection data not found in homepage");
-          }
-
-          // Alacarte verilerini çek
-          const alacarteSectionComponent = data.components.find(
-            (comp) => comp.type === "AlacarteSection"
-          );
+        // BackgroundSection verilerini çek
+        const backgroundSectionComponent = localizedComponents.find(
+          (comp) => comp.type === "ImageBackgroundSection"
+        );
   
-          if (alacarteSectionComponent) {
-            setAlacarteSectionData(alacarteSectionComponent.props);
-          } else {
-            console.warn("Alacarte data not found in homepage");
-          }
-
-            // Contact verilerini çek
-            const contactSectionComponent = data.components.find(
-              (comp) => comp.type === "ContactSection"
-            );
-    
-            if (contactSectionComponent) {
-              setContactSectionData(contactSectionComponent.props);
-            } else {
-              console.warn("Contact data not found in homepage");
-            }
-
+        if (backgroundSectionComponent) {
+          setBackgroundSectionData(backgroundSectionComponent.props);
+        } else {
+          console.warn("BackgroundSection data not found in homepage");
+        }
+  
+        // Alacarte verilerini çek
+        const alacarteSectionComponent = localizedComponents.find(
+          (comp) => comp.type === "AlacarteSection"
+        );
+  
+        if (alacarteSectionComponent) {
+          setAlacarteSectionData(alacarteSectionComponent.props);
+        } else {
+          console.warn("AlacarteSection data not found in homepage");
+        }
+  
+        // ContactSection verilerini çek
+        const contactSectionComponent = localizedComponents.find(
+          (comp) => comp.type === "ContactSection"
+        );
+  
+        if (contactSectionComponent) {
+          setContactSectionData(contactSectionComponent.props);
+        } else {
+          console.warn("ContactSection data not found in homepage");
+        }
       } catch (err) {
         setError(err.message);
       }
     };
-
+  
     fetchPageData();
-  }, []);
+  }, [lang]); // Dil değiştiğinde useEffect yeniden çalışır
+  
 
   if (error) return <p>Error: {error}</p>;
   if (!carouselData && !barLoungeData && !iconSectionData && !allInclusiveData && !childrenSectionData && !backgroundSectionData) return <p>Loading...</p>;
@@ -162,7 +168,7 @@ const Homepage = () => {
     <div className='flex flex-col items-center justify-center'>
       {/* <HomeCarousel images={images}/> */}
       <HomeCarousel {...carouselData} lang={lang}/>
-      <Reservation/>
+      {/* <Reservation/>
       <HomeIconSection {...iconSectionData} lang={lang}/>
       <div className='flex w-screen mt-20'>
       <div className="bg-custom-gradient h-[1px] w-[50%]">
@@ -178,7 +184,7 @@ const Homepage = () => {
       <SpecialOffersCarousel/>
       <AlacarteSection {...alacarteSectionData} lang={lang}/>
        <BarLoungeCarousel {...barLoungeData} lang={lang}/>
-      <ContactSection {...contactSectionData} lang={lang}/>
+      <ContactSection {...contactSectionData} lang={lang}/> */}
       {/* <InstagramSection images={instagramImages}/> */}
       <img src={instagramImg} alt='instagram' width={323.06149} height={630.77972} className='flex md:hidden  '/>
     </div>

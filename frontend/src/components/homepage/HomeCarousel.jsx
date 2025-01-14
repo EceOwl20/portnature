@@ -3,7 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import portlogo from "../../../public/images/LogoPortbig.png";
 
-const HomeCarousel = ({ images = [],header, lang, autoplay, delay }) => {
+const HomeCarousel = ({ images=[] ,header, autoplay, delay }) => {
   const plugins = autoplay ? [Autoplay({ delay })] : [];
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
@@ -29,12 +29,12 @@ const HomeCarousel = ({ images = [],header, lang, autoplay, delay }) => {
                 style={{ objectFit: "cover" }}
                 width={image.width}
                 height={image.height}
-                alt={image.altText[lang]}
+                alt={image.altText}
                 className="flex h-screen w-full"
               />
               <div className="absolute flex flex-col text-center top-[30%] -translate-y-1/2 left-[50%] transform -translate-x-1/2">
                 <span className="text-[28px] lg:text-[40px] leading-normal text-white uppercase font-medium font-lora mb-[10px] lg:mb-[20px]">
-                  {header[lang]}
+                  {header}
                 </span>
                 <img
                   src={portlogo}
