@@ -24,8 +24,15 @@ const Entertainment = () => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+         // Dil bazında transactions verisini al
+         const localizedComponents = data.translations[lang];
+  
+         if (!localizedComponents) {
+           throw new Error(`No translations found for language: ${lang}`);
+         }
+
            // Section1 verilerini çek
-           const section1Component = data.components.find(
+           const section1Component = localizedComponents.find(
             (comp) => comp.type === "Section1"
           );
   
@@ -36,7 +43,7 @@ const Entertainment = () => {
           }
 
           // Section2 verilerini çek
-          const section2Component = data.components.find(
+          const section2Component = localizedComponents.find(
             (comp) => comp.type === "Section2"
           );
   
@@ -47,7 +54,7 @@ const Entertainment = () => {
           }
 
           // Section3 verilerini çek
-          const section3Component = data.components.find(
+          const section3Component = localizedComponents.find(
             (comp) => comp.type === "Section3"
           );
   
@@ -58,7 +65,7 @@ const Entertainment = () => {
           }
 
             // Contact verilerini çek
-            const contactSectionComponent = data.components.find(
+            const contactSectionComponent = localizedComponents.find(
               (comp) => comp.type === "ContactSection"
             );
     
@@ -81,10 +88,10 @@ const Entertainment = () => {
 
   return (
     <section>
-        <Section1 {...section1Data} lang={lang}/>
-        <Section2 {...section2Data} lang={lang}/>
-        <Section3 {...section3Data} lang={lang}/>
-        <ContactSection {...contactSectionData} lang={lang}/>
+        <Section1 {...section1Data} />
+        <Section2 {...section2Data} />
+        <Section3 {...section3Data} />
+        <ContactSection {...contactSectionData} />
     </section>
   )
 }

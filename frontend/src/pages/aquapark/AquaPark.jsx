@@ -23,8 +23,15 @@ const AquaPark = () => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+         // Dil bazında transactions verisini al
+         const localizedComponents = data.translations[lang];
+  
+         if (!localizedComponents) {
+           throw new Error(`No translations found for language: ${lang}`);
+         }
+
           // AquaSectionComponent verilerini çek
-          const AquaSectionComponent = data.components.find(
+          const AquaSectionComponent = localizedComponents.find(
             (comp) => comp.type === "AquaSection"
           );
   
@@ -35,7 +42,7 @@ const AquaPark = () => {
           }
 
            // AquaSectionComponent2 verilerini çek
-           const AquaSectionComponent2 = data.components.find(
+           const AquaSectionComponent2 = localizedComponents.find(
             (comp) => comp.type === "AquaSection2"
           );
   
@@ -46,7 +53,7 @@ const AquaPark = () => {
           }
 
             // Contact verilerini çek
-            const contactSectionComponent = data.components.find(
+            const contactSectionComponent = localizedComponents.find(
               (comp) => comp.type === "ContactSection"
             );
     
@@ -69,9 +76,9 @@ const AquaPark = () => {
 
   return (
     <section>
-      <AquaParkSection1 {...aquaSectionData} lang={lang}/>
-      <AquaParkSection2 {...aquaSection2Data} lang={lang}/>
-      {/* <ContactSection/> */}
+      <AquaParkSection1 {...aquaSectionData} />
+      <AquaParkSection2 {...aquaSection2Data} />
+      <ContactSection {...contactSectionData}/>
       {/* <SpecialOffers/> */}
     </section>
   )

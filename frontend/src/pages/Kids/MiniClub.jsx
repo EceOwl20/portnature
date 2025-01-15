@@ -25,8 +25,15 @@ const MiniClub = () => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+        // Dil bazında transactions verisini al
+        const localizedComponents = data.translations[lang];
+  
+        if (!localizedComponents) {
+          throw new Error(`No translations found for language: ${lang}`);
+        }
+
           // miniClubSliderData verilerini çek
-          const miniClubSliderComponent = data.components.find(
+          const miniClubSliderComponent = localizedComponents.find(
             (comp) => comp.type === "MiniClubSlider"
           );
   
@@ -37,7 +44,7 @@ const MiniClub = () => {
           }
 
            // miniClubSection2Data verilerini çek
-           const miniClubSection2Component = data.components.find(
+           const miniClubSection2Component = localizedComponents.find(
             (comp) => comp.type === "MiniClubSection2"
           );
   
@@ -48,7 +55,7 @@ const MiniClub = () => {
           }
 
             // Contact verilerini çek
-            const contactSectionComponent = data.components.find(
+            const contactSectionComponent = localizedComponents.find(
               (comp) => comp.type === "ContactSection"
             );
     
@@ -59,7 +66,7 @@ const MiniClub = () => {
             }
 
             // specialOffers verilerini çek
-            const specialOffersComponents = data.components.find(
+            const specialOffersComponents = localizedComponents.find(
               (comp) => comp.type === "SpecialOfferss"
             );
     
@@ -86,11 +93,11 @@ const MiniClub = () => {
 
   return (
     <section>
-        <MiniClubSlider options={OPTIONS} {...miniClubSliderData} lang={lang}/>
+        <MiniClubSlider options={OPTIONS} {...miniClubSliderData}/>
         {/* <MınıClubSection1 /> */}
-        <MiniClubSection2 {...miniClubSection2Data} lang={lang}/>
-        <ContactSection {...contactSectionData} lang={lang}/>
-        <SpecialOffers {...specialOffersData} lang={lang}/>
+        <MiniClubSection2 {...miniClubSection2Data} />
+        <ContactSection {...contactSectionData} />
+        <SpecialOffers {...specialOffersData} />
     </section>
   )
 }

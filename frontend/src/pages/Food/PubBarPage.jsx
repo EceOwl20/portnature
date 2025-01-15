@@ -22,8 +22,15 @@ const PubBarPage = ({page}) => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+          // Dil bazında transactions verisini al
+          const localizedComponents = data.translations[lang];
+  
+          if (!localizedComponents) {
+            throw new Error(`No translations found for language: ${lang}`);
+          }
+
           // mainSectionComponent verilerini çek
-          const mainSectionComponent = data.components.find(
+          const mainSectionComponent = localizedComponents.find(
             (comp) => comp.type === "MainSection"
           );
   
@@ -34,7 +41,7 @@ const PubBarPage = ({page}) => {
           }
 
            // setOtherRestaurantSectionData verilerini çek
-           const otherRestaurantSectionComponent = data.components.find(
+           const otherRestaurantSectionComponent = localizedComponents.find(
             (comp) => comp.type === "OtherOptions"
           );
   
@@ -45,7 +52,7 @@ const PubBarPage = ({page}) => {
           }
 
             // Contact verilerini çek
-            const contactSectionComponent = data.components.find(
+            const contactSectionComponent = localizedComponents.find(
               (comp) => comp.type === "ContactSection"
             );
     
@@ -69,9 +76,9 @@ const PubBarPage = ({page}) => {
 
   return (
     <div>
-      <PubBarMainSection {...mainSectionData} lang={lang}/>
-      <ContactSection {...contactSectionData} lang={lang}/>
-      <OtherRestaurants {...otherRestaurantSectionData} lang={lang}/>
+      <PubBarMainSection {...mainSectionData} />
+      <ContactSection {...contactSectionData} />
+      <OtherRestaurants {...otherRestaurantSectionData} />
     </div>
   )
 }

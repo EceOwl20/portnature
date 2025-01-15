@@ -7,7 +7,7 @@ import LineVertical2Svg from "../../svg/LineVertical2Svg"
 
 const images =[image,image,image]
 
-const RestaurantMainSection = ({images=[], header,text, span, lang,videoLink}) => {
+const RestaurantMainSection = ({images=[], header,text, span,videoLink}) => {
   const [emblaRef, emblaApi] = useCarousel({
     loop: true,
     align:"center",
@@ -66,7 +66,7 @@ const RestaurantMainSection = ({images=[], header,text, span, lang,videoLink}) =
                 height={img.height}
                 width={img.width}
                 src={img.firebaseUrl}
-                alt={img.altText[lang]}
+                alt={img.altText}
               />
               </div>
             </div>
@@ -90,7 +90,7 @@ const RestaurantMainSection = ({images=[], header,text, span, lang,videoLink}) =
     </div>
     <div className='relative flex flex-row w-full justify-center my-24'>
         <h1 className='flex w-1/3 justify-end text-[40px] font-lora font-medium leading-normal mr-32'>
-            {header[lang]}
+            {header}
         </h1>
         
         <div className="absolute -bottom-10 left-1/2 flex flex-col w-1/3 h-auto">
@@ -99,8 +99,8 @@ const RestaurantMainSection = ({images=[], header,text, span, lang,videoLink}) =
         </div>
         
         <p className='flex flex-col w-1/3 font-normal font-monserrat text-[15px] leading-6'>
-        {text[lang]}
-            <span className='mt-2 font-monserrat text-[15px] font-bold leading-6'>{span[lang]}</span>
+        {text}
+            <span className='mt-2 font-monserrat text-[15px] font-bold leading-6'>{span}</span>
         </p>
     </div>
 
@@ -132,7 +132,7 @@ const RestaurantMainSection = ({images=[], header,text, span, lang,videoLink}) =
     //             height={img.height}
     //             width={img.width}
     //             src={img.firebaseUrl}
-    //             alt={img.altText[lang]}
+    //             alt={img.altText}
     //           />
     //           </div>
     //         </div>
@@ -141,20 +141,20 @@ const RestaurantMainSection = ({images=[], header,text, span, lang,videoLink}) =
     // </div>
           
     //       <div className="flex w-[80%] lg:w-[70%] items-center justify-end gap-[28px] mt-[43px] text-center">
-    //        <h2 className="text-[40px] text-customGray font-lora leading-normal font-medium">{header[lang]}</h2>
+    //        <h2 className="text-[40px] text-customGray font-lora leading-normal font-medium">{header}</h2>
     //       </div>
-    //       <p className="flex lg:hidden text-[12px] w-[95%] text-black font-monserrat font-normal leading-normal">{text[lang]}</p>
+    //       <p className="flex lg:hidden text-[12px] w-[95%] text-black font-monserrat font-normal leading-normal">{text}</p>
     //     </div>
 
     //     <div className="hidden lg:flex flex-col w-[49%] items-center lg:items-center justify-center lg:gap-[20px] text-center lg:text-center">
     //     <img
     //         src={image.firebaseUrl}
-    //         alt={image.altText[lang]}
+    //         alt={image.altText}
     //         width={image.width}
     //         height={image.height}
     //       />
     //       <p className="text-[15px] w-[90%] lg:w-[65%] text-black font-monserrat font-normal leading-[22.5px] lg:mt-[43px]">
-    //       {text[lang]}
+    //       {text}
     //       </p>
     //     </div>
       

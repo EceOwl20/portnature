@@ -211,5 +211,22 @@ export const deleteImageFromComponent = async (req, res) => {
   }
 };
 
+export const getTranslations = async (req, res) => {
+  const { pageName } = req.params;
+
+  try {
+    const page = await Page.findOne({ pageName });
+    if (!page) {
+      return res.status(404).json({ message: "Page not found" });
+    }
+
+    res.status(200).json(page.translations);
+  } catch (error) {
+    console.error("Error fetching translations:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+
 
 

@@ -7,7 +7,7 @@ const EditComponent = () => {
   // --------------------------------------------------
   // ROUTE PARAMS / NAVIGATION
   // --------------------------------------------------
-  const { pageName, componentIndex } = useParams();
+  const { pageName, componentIndex, language } = useParams();
   const navigate = useNavigate();
 
   // --------------------------------------------------
@@ -74,21 +74,31 @@ const EditComponent = () => {
   useEffect(() => {
     const fetchComponentData = async () => {
       try {
-        const response = await fetch(`/api/page/${pageName}`);
+        const response = await fetch(`/api/page/${pageName}/translations`);
         const data = await response.json();
-
+  
         if (!response.ok) {
           throw new Error(data.message || "Failed to fetch component data");
         }
-
-        setComponentData(data.components[componentIndex]);
+  
+        // Seçilen dili kullanarak ilgili veriyi çek
+        const translatedComponents = data.translations[language || "en"]; // Varsayılan olarak "en"
+  
+        // İlgili componentIndex'e göre veriyi ayıkla
+        const selectedComponent = translatedComponents[componentIndex];
+  
+        if (!selectedComponent) {
+          throw new Error("Component not found");
+        }
+  
+        setComponentData(selectedComponent);
       } catch (err) {
         setError(err.message);
       }
     };
-
+  
     fetchComponentData();
-  }, [pageName, componentIndex]);
+  }, [pageName, componentIndex, language]); // Dil değişikliği durumunda tekrar çalışır
 
   // --------------------------------------------------
   // useEffect: SEARCH QUERY DEBOUNCING (searchQuery)
@@ -443,29 +453,58 @@ const EditComponent = () => {
   const handleSave = async () => {
     setError(null);
     setSuccess(false);
-
+  
     try {
+      // Translations yapısını oluştur
+      const translations = {
+        en: [],
+        tr: [],
+        de: [],
+        ru: [],
+      };
+  
+      // Mevcut `componentData`yı dillere göre ayır
+      componentData.forEach((component) => {
+        Object.keys(translations).forEach((lang) => {
+          const translatedComponent = { ...component, props: {} };
+  
+          Object.keys(component.props).forEach((key) => {
+            const value = component.props[key];
+  
+            // Eğer değer bir nesne ise ve içinde dil bilgisi varsa
+            if (typeof value === "object" && value[lang] !== undefined) {
+              translatedComponent.props[key] = value[lang];
+            } else {
+              translatedComponent.props[key] = value; // Düz metin veya diğer veri türlerini koru
+            }
+          });
+  
+          translations[lang].push(translatedComponent);
+        });
+      });
+  
       const response = await fetch(
-        `http://localhost:3000/api/page/${pageName}/components/${componentIndex}`,
+        `http://localhost:/api/page/${pageName}/translations`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(componentData),
+          body: JSON.stringify({ translations }),
         }
       );
-
+  
       if (!response.ok) {
         throw new Error("Failed to save component data");
       }
-
+  
       setSuccess(true);
       navigate(`/panel/pages/${pageName}`);
     } catch (err) {
       setError(err.message);
     }
   };
+  
 
   // --------------------------------------------------
   // HANDLERS: ITEM CRUD
