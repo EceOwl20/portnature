@@ -22,8 +22,16 @@ const MainRestaurant = ({page}) => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+        // Dil bazında transactions verisini al
+        const localizedComponents = data.translations[lang];
+  
+        if (!localizedComponents) {
+          throw new Error(`No translations found for language: ${lang}`);
+        }
+  
+
           // mainSectionComponent verilerini çek
-          const mainSectionComponent = data.components.find(
+          const mainSectionComponent = localizedComponents.find(
             (comp) => comp.type === "MainSection"
           );
   
@@ -34,7 +42,7 @@ const MainRestaurant = ({page}) => {
           }
 
            // setOtherRestaurantSectionData verilerini çek
-           const otherRestaurantSectionComponent = data.components.find(
+           const otherRestaurantSectionComponent = localizedComponents.find(
             (comp) => comp.type === "OtherOptions"
           );
   
@@ -45,7 +53,7 @@ const MainRestaurant = ({page}) => {
           }
 
             // Contact verilerini çek
-            const contactSectionComponent = data.components.find(
+            const contactSectionComponent = localizedComponents.find(
               (comp) => comp.type === "ContactSection"
             );
     
@@ -68,9 +76,9 @@ const MainRestaurant = ({page}) => {
 
   return (
     <div>
-      <RestaurantMainSection {...mainSectionData} lang={lang}/>
-      <ContactSection {...contactSectionData} lang={lang}/>
-      <OtherRestaurants {...otherRestaurantSectionData} lang={lang}/>
+      <RestaurantMainSection {...mainSectionData} />
+      <ContactSection {...contactSectionData} />
+      <OtherRestaurants {...otherRestaurantSectionData} />
     </div>
   )
 }

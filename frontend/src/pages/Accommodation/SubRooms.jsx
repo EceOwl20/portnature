@@ -24,10 +24,18 @@ const SubRooms = ({page}) => {
 
         if (!response.ok) {
           throw new Error(data.message || "Failed to fetch page data");
+          
         }
 
+         // Dil bazında transactions verisini al
+         const localizedComponents = data.translations[lang];
+  
+         if (!localizedComponents) {
+           throw new Error(`No translations found for language: ${lang}`);
+         }
+
         // MainBackground verilerini çek
-        const mainBackgroundComponent = data.components.find(
+        const mainBackgroundComponent = localizedComponents.find(
           (comp) => comp.type === "MainBackground"
         );
 
@@ -38,7 +46,7 @@ const SubRooms = ({page}) => {
         }
 
         // setSubroomInfoSecData verilerini çek
-        const subroomInfoSecComponent = data.components.find(
+        const subroomInfoSecComponent = localizedComponents.find(
           (comp) => comp.type === "SubroomInfoSection"
         );
 
@@ -49,7 +57,7 @@ const SubRooms = ({page}) => {
         }
 
         // RoomsFeatures verilerini çek
-        const roomsFeaturesComponent = data.components.find(
+        const roomsFeaturesComponent = localizedComponents.find(
           (comp) => comp.type === "RoomsFeatures"
         );
 
@@ -60,7 +68,7 @@ const SubRooms = ({page}) => {
         }
 
         // RoomPlan verilerini çek
-        const roomPlanComponent = data.components.find(
+        const roomPlanComponent = localizedComponents.find(
           (comp) => comp.type === "RoomPlan"
         );
 
@@ -83,10 +91,10 @@ const SubRooms = ({page}) => {
 
   return (
     <div>
-      <MainBackgroundRooms {...mainBackgroundData} lang={lang}/>
-      <SubroomsInfoSection {...subroomInfoSecData} lang={lang}/>
-      <RoomFeatures {...roomsFeaturesData} lang={lang}/>
-      <RoomPlan {...roomPlanData} lang={lang}/>
+      <MainBackgroundRooms {...mainBackgroundData}/>
+      <SubroomsInfoSection {...subroomInfoSecData} />
+      <RoomFeatures {...roomsFeaturesData} />
+      <RoomPlan {...roomPlanData} />
       {/* <ContactSection/> */}
       <OtherOptions/>
     </div>

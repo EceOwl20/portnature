@@ -6,7 +6,7 @@ import image from "../../../public/images/alacarteMain.png";
 import irishpub from "../../../public/images/food/irishpub6.png";
 import ThreeDrinkSvg from "../../svg/food/ThreeDrinkSvg";
 
-const PubBarMainSection = ({images=[], subImages=[], iconImage, header, text, lang}) => {
+const PubBarMainSection = ({images=[], subImages=[], iconImage, header, text}) => {
   // 1. carousel için
   const [emblaRef1, emblaApi1] = useCarousel(
     { loop: true, align: "center", startIndex: 0 },
@@ -81,7 +81,7 @@ const PubBarMainSection = ({images=[], subImages=[], iconImage, header, text, la
   return (
     <section className="flex flex-col w-screen h-auto relative items-center justify-center bg-white my-10">
       <h2 className="text-[40px] text-customGray font-lora font-medium leading-normal lg:mb-[60px]">
-        {header[lang]}
+        {header}
       </h2>
 
       <div className="flex flex-col-reverse lg:flex-row justify-between items-center w-full lg:w-[90%]">
@@ -135,7 +135,7 @@ const PubBarMainSection = ({images=[], subImages=[], iconImage, header, text, la
           <div className="flex flex-col lg:flex-row w-full lg:w-[90%] items-center justify-center gap-[30px] lg:gap-[2.5%]">
             <img src={iconImage.firebaseUrl} width={iconImage.width} height={iconImage.height} />
             <p className="text-[15px] w-[75%] text-black font-monserrat font-normal leading-[22.5px] mb-10 lg:mb-0">
-            {text[lang]}
+            {text}
             </p>
           </div>
         </div>

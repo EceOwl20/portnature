@@ -3,7 +3,7 @@ import farEast from "../../../public/images/FarEastRestaurant 1.png"
 import LocationSvg from "../../svg/LocationSvg"
 import FindRestaurantCard from './FindRestaurantCard'
 
-const FilterFindCafe = ({image, iconImage, header, text, text2, text3, filterItems=[], lang="en"}) => {
+const FilterFindCafe = ({image, iconImage, header, text, text2, text3, filterItems=[]}) => {
   const [sortOption, setSortOption] = useState('');
 
   const handleSortChange = (event) => {
@@ -40,9 +40,9 @@ const FilterFindCafe = ({image, iconImage, header, text, text2, text3, filterIte
   
   const filterCards = (card) => {
       return (
-        (selectedTime.length === 0 || selectedTime.includes(card.time[lang])) &&
-        (selectedKidsFriendly.length === 0 || selectedKidsFriendly.includes(card.kidsFriendly[lang])) &&
-        (selectedAgeLimit.length === 0 || selectedAgeLimit.includes(card.ageLimit[lang]))
+        (selectedTime.length === 0 || selectedTime.includes(card.time)) &&
+        (selectedKidsFriendly.length === 0 || selectedKidsFriendly.includes(card.kidsFriendly)) &&
+        (selectedAgeLimit.length === 0 || selectedAgeLimit.includes(card.ageLimit))
       );
     };
   
@@ -56,7 +56,7 @@ const FilterFindCafe = ({image, iconImage, header, text, text2, text3, filterIte
        <div className='flex w-full items-center justify-between text-start '>
         <div className='flex items-start justify-start text-start gap-[30px] w-[40%]'>
         <img src={iconImage.firebaseUrl} width={30} height={47}/>
-        <h2 className='text-[25px] lg:text-[35px] text-customGray80 font-medium font-lora leading-normal uppercase'>{header[lang]}</h2>
+        <h2 className='text-[25px] lg:text-[35px] text-customGray80 font-medium font-lora leading-normal uppercase'>{header}</h2>
         </div>
 
        <div className='flex items-center justify-between w-[60%]'>
@@ -69,7 +69,7 @@ const FilterFindCafe = ({image, iconImage, header, text, text2, text3, filterIte
               onChange={(e) => handleCheckboxChange(e, setSelectedTime)}
               checked={selectedTime.includes("7/24")}
             />
-            {text[lang]}
+            {text}
           </label>
       </div>
       <div className='flex w-[30%] text-[25px] whitespace-nowrap font-lora text-customGray italic font-medium leading-[42px] tracking-[-0.875px]'>
@@ -81,7 +81,7 @@ const FilterFindCafe = ({image, iconImage, header, text, text2, text3, filterIte
               onChange={(e) => handleCheckboxChange(e, setSelectedKidsFriendly)}
               checked={selectedKidsFriendly.includes("true")}
             />
-            {text2[lang]}
+            {text2}
           </label>
       </div>
       <div className='flex w-[30%] text-[25px] font-lora text-customGray italic font-medium leading-[42px] tracking-[-0.875px]'>
@@ -93,7 +93,7 @@ const FilterFindCafe = ({image, iconImage, header, text, text2, text3, filterIte
               onChange={(e) => handleCheckboxChange(e, setSelectedAgeLimit)}
               checked={selectedAgeLimit.includes("+18")}
             />
-            {text3[lang]}
+            {text3}
           </label>
       </div>
        </div>
@@ -104,14 +104,14 @@ const FilterFindCafe = ({image, iconImage, header, text, text2, text3, filterIte
         {filteredAndSortedCards.map((restaurant, index) => (
         <FindRestaurantCard
           key={index}
-          header={restaurant.header[lang]}
-          text={restaurant.text[lang]}
-          link={restaurant.buttonLink[lang]}
+          header={restaurant.header}
+          text={restaurant.text}
+          link={restaurant.buttonLink}
           icon={restaurant.iconImage}
           image={restaurant.image}
-          time={restaurant.time[lang]}
-          kidsFriendly={restaurant.kidsFriendly[lang]}
-          ageLimit={restaurant.ageLimit[lang]}
+          time={restaurant.time}
+          kidsFriendly={restaurant.kidsFriendly}
+          ageLimit={restaurant.ageLimit}
         />
       ))}
             

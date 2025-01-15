@@ -23,9 +23,16 @@ const CoffeeBarsMainPage = () => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+        // Dil bazında transactions verisini al
+        const localizedComponents = data.translations[lang];
+  
+        if (!localizedComponents) {
+          throw new Error(`No translations found for language: ${lang}`);
+        }
+
         
         // FilterCafeSection verilerini çek
-        const filterCafeSectionComponent = data.components.find(
+        const filterCafeSectionComponent = localizedComponents.find(
           (comp) => comp.type === "FilterCafeSection"
         );
 
@@ -36,7 +43,7 @@ const CoffeeBarsMainPage = () => {
         }
 
         // FilterCafeSection verilerini çek
-        const cafesbarsMainSectionComponent = data.components.find(
+        const cafesbarsMainSectionComponent = localizedComponents.find(
           (comp) => comp.type === "MainSection"
         );
 
@@ -47,7 +54,7 @@ const CoffeeBarsMainPage = () => {
         }
 
             // Contact verilerini çek
-            const contactSectionComponent = data.components.find(
+            const contactSectionComponent = localizedComponents.find(
               (comp) => comp.type === "ContactSection"
             );
     
@@ -70,8 +77,8 @@ const CoffeeBarsMainPage = () => {
 
   return (
     <div className='flex flex-col w-screen h-auto items-center justify-center '>
-      <CafeBarsMainSection {...cafesbarsMainSection} lang={lang}/>
-      <FilterFindCafe {...filterCafeSection} lang={lang}/>
+      <CafeBarsMainSection {...cafesbarsMainSection} />
+      <FilterFindCafe {...filterCafeSection} />
       {/* <ContactSection/> */}
     </div>
   )

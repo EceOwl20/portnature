@@ -9,7 +9,7 @@ import ContactSection from '../../components/homepage/ContactSection'
 import RoomFeatures from './components/RoomFeatures'
 import Cookies from "js-cookie";
 
-const StandardRooms = ({img,header,links,linkstext}) => {
+const StandardRooms = () => {
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
   const [standardRoomsSecData, setStandardRoomsSecData] = useState(null);
   const [standardRoomsSecData2, setStandardRoomsSecData2] = useState(null);
@@ -30,8 +30,15 @@ const StandardRooms = ({img,header,links,linkstext}) => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+        // Dil bazında transactions verisini al
+        const localizedComponents = data.translations[lang];
+  
+        if (!localizedComponents) {
+          throw new Error(`No translations found for language: ${lang}`);
+        }
+
         // MainBackground verilerini çek
-        const mainBackgroundComponent = data.components.find(
+        const mainBackgroundComponent = localizedComponents.find(
           (comp) => comp.type === "MainBackground"
         );
 
@@ -42,7 +49,7 @@ const StandardRooms = ({img,header,links,linkstext}) => {
         }
 
         // StandardRoomComponent verilerini çek
-        const standardRoomsSecComponent = data.components.find(
+        const standardRoomsSecComponent = localizedComponents.find(
           (comp) => comp.type === "StandardRoomComponent"
         );
         if (standardRoomsSecComponent) {
@@ -52,7 +59,7 @@ const StandardRooms = ({img,header,links,linkstext}) => {
         }
 
          // StandardRoomComponent verilerini çek
-         const standardRoomsSecComponent2 = data.components.find(
+         const standardRoomsSecComponent2 = localizedComponents.find(
           (comp) => comp.type === "StandardRoomComponent2"
         );
         if (standardRoomsSecComponent2) {
@@ -62,7 +69,7 @@ const StandardRooms = ({img,header,links,linkstext}) => {
         }
 
          // StandardRoomComponent verilerini çek
-         const standardRoomsSecComponent3 = data.components.find(
+         const standardRoomsSecComponent3 = localizedComponents.find(
           (comp) => comp.type === "StandardRoomComponent3"
         );
         if (standardRoomsSecComponent3) {
@@ -72,7 +79,7 @@ const StandardRooms = ({img,header,links,linkstext}) => {
         }
 
         // RoomsFeatures verilerini çek
-        const roomsFeaturesComponent = data.components.find(
+        const roomsFeaturesComponent = localizedComponents.find(
           (comp) => comp.type === "RoomsFeatures"
         );
 
@@ -83,7 +90,7 @@ const StandardRooms = ({img,header,links,linkstext}) => {
         }
 
         // Contact verilerini çek
-        const contactSectionComponent = data.components.find(
+        const contactSectionComponent = localizedComponents.find(
           (comp) => comp.type === "ContactSection"
         );
 
@@ -99,19 +106,19 @@ const StandardRooms = ({img,header,links,linkstext}) => {
       }
     };
     fetchPageData();
-  }, []);
+  }, [lang]);
 
   if (error) return <p>Error: {error}</p>;
-  if (!mainBackgroundData && !standardRoomsSecData && !roomsFeaturesData && !contactSectionData) return <p>Loading...</p>;
+  if (!mainBackgroundData && !standardRoomsSecData && standardRoomsSecData2 && standardRoomsSecData3 && !roomsFeaturesData && !contactSectionData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col justify-center items-center'>
-        <MainBackgroundRooms {...mainBackgroundData} lang={lang}/>
-        <StandardRoomComponent {...standardRoomsSecData} lang={lang}/>
-        <StandardRoomComponent {...standardRoomsSecData2} lang={lang}/>
-        <StandardRoomComponent {...standardRoomsSecData3} lang={lang}/>
-        <RoomFeatures {...roomsFeaturesData} lang={lang}/>
-        <ContactSection {...contactSectionData} lang={lang}/>
+        <MainBackgroundRooms {...mainBackgroundData} />
+        <StandardRoomComponent {...standardRoomsSecData} />
+        <StandardRoomComponent {...standardRoomsSecData2} />
+        <StandardRoomComponent {...standardRoomsSecData3} />
+        <RoomFeatures {...roomsFeaturesData} />
+        <ContactSection {...contactSectionData} />
     </div>
   )
 }

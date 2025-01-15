@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 import useCarousel from "embla-carousel-react";
 
-const FoodCarousel = ({images = [], text, header, lang="en"}) => {
+const FoodCarousel = ({images = [], text, header}) => {
     const [emblaRef, emblaApi] = useCarousel({
         loop: true,
         align:"center",
@@ -34,7 +34,7 @@ const FoodCarousel = ({images = [], text, header, lang="en"}) => {
                 height={image.height}
                 width={image.width}
                 src={image.firebaseUrl}
-                alt={image.altText[lang]}
+                alt={image.altText}
               />
               <div className="absolute inset-0 w-full flex bg-black/30 "></div>
             </div>
@@ -44,8 +44,8 @@ const FoodCarousel = ({images = [], text, header, lang="en"}) => {
         </div>
        
         <div className="flex flex-col absolute inset-0 w-full text-center text-white z-20 justify-start items-start top-1/2 -translate-y-1/2">
-            <h2 className="text-[25px] md:text-[40px] lg:text-[25px] xl:text-[40px] font-medium leading-normal font-monserrat w-[40%]">{header[lang]}</h2>
-            <p className="text-[#F8F8F8] text-[18px] md:text-[28px] lg:text-[18px] xl:text-[28px] leading-[42px] italic font-medium font-lora w-[40%]">{text[lang]}</p>
+            <h2 className="text-[25px] md:text-[40px] lg:text-[25px] xl:text-[40px] font-medium leading-normal font-monserrat w-[40%]">{header}</h2>
+            <p className="text-[#F8F8F8] text-[18px] md:text-[28px] lg:text-[18px] xl:text-[28px] leading-[42px] italic font-medium font-lora w-[40%]">{text}</p>
         </div>
     </div>
   

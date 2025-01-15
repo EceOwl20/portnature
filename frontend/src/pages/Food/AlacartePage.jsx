@@ -22,8 +22,15 @@ const AlacartePage = () => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+         // Dil bazında transactions verisini al
+         const localizedComponents = data.translations[lang];
+  
+         if (!localizedComponents) {
+           throw new Error(`No translations found for language: ${lang}`);
+         }
+
         // AlaCarteMain verilerini çek
-        const alacarteMainComponent = data.components.find(
+        const alacarteMainComponent = localizedComponents.find(
           (comp) => comp.type === "AlaCarteMain"
         );
 
@@ -34,7 +41,7 @@ const AlacartePage = () => {
         }
 
         // FindRestaurantSection verilerini çek
-        const findRestaurantComponent = data.components.find(
+        const findRestaurantComponent = localizedComponents.find(
           (comp) => comp.type === "FindRestaurantSection"
         );
 
@@ -45,7 +52,7 @@ const AlacartePage = () => {
         }
 
             // Contact verilerini çek
-            const contactSectionComponent = data.components.find(
+            const contactSectionComponent = localizedComponents.find(
               (comp) => comp.type === "ContactSection"
             );
     
@@ -68,9 +75,9 @@ const AlacartePage = () => {
 
   return (
     <div >
-      <AlaCarteMain {...alacarteMainData} lang={lang}/>
-      <FindRestaurantSection {...findRestaurantSectionData} lang={lang}/>
-      {/* <ContactSection/> */}
+      <AlaCarteMain {...alacarteMainData} />
+      <FindRestaurantSection {...findRestaurantSectionData} />
+      <ContactSection {...contactSectionData}/>
     </div>
   )
 }

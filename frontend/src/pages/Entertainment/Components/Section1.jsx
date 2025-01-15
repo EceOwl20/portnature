@@ -1,7 +1,7 @@
 import React from 'react'
 import PortNatureConcert from "../Images/PortNatureConcert.png"
 
-const Section1 = ({header,text,image, lang}) => {
+const Section1 = ({header,text,image}) => {
 
   return (
     <div className='flex justify-center items-center'>
@@ -11,14 +11,14 @@ const Section1 = ({header,text,image, lang}) => {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
         }}>
-            <h1 className='flex text-[#fff] font-lora text-[40px] font-medium leading-normal'>{header[lang]}</h1>
+            <h1 className='flex text-[#fff] font-lora text-[40px] font-medium leading-normal'>{header}</h1>
             <div className='flex w-screen'>
             <div className="bg-custom-gradient h-[1px] w-[50%]">
             </div>
             <div className="bg-custom-gradient-reverse h-[1px] w-[50%]">
             </div>
             </div>
-            <p className='text-[#f5f5f5] text-center font-monserrat text-[20px] leading-7 font-bold'>{text[lang]}</p>
+            <p className='text-[#f5f5f5] text-center font-monserrat text-[20px] leading-7 font-bold'>{text}</p>
         </div>
     </div>
   )

@@ -26,8 +26,16 @@ const Beach = () => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+         // Dil bazında transactions verisini al
+         const localizedComponents = data.translations[lang];
+  
+         if (!localizedComponents) {
+           throw new Error(`No translations found for language: ${lang}`);
+         }
+   
+
           // miniClubSliderData verilerini çek
-          const miniClubSliderComponent = data.components.find(
+          const miniClubSliderComponent = localizedComponents.find(
             (comp) => comp.type === "MiniClubSlider"
           );
   
@@ -38,7 +46,7 @@ const Beach = () => {
           }
 
            // setBeachSectionData verilerini çek
-           const beachSectionComponent = data.components.find(
+           const beachSectionComponent = localizedComponents.find(
             (comp) => comp.type === "BeachSection"
           );
   
@@ -49,7 +57,7 @@ const Beach = () => {
           }
 
            // setBeachSection2Data verilerini çek
-           const beachSection2Component = data.components.find(
+           const beachSection2Component = localizedComponents.find(
             (comp) => comp.type === "BeachSection2"
           );
   
@@ -60,7 +68,7 @@ const Beach = () => {
           }
 
             // Contact verilerini çek
-            const contactSectionComponent = data.components.find(
+            const contactSectionComponent = localizedComponents.find(
               (comp) => comp.type === "ContactSection"
             );
     
@@ -71,7 +79,7 @@ const Beach = () => {
             }
 
             // specialOffers verilerini çek
-            const specialOffersComponents = data.components.find(
+            const specialOffersComponents = localizedComponents.find(
               (comp) => comp.type === "SpecialOfferss"
             );
     
@@ -105,11 +113,11 @@ const Beach = () => {
 
   return (
     <section>
-        <MiniClubSlider slides={slides} options={OPTIONS} {...miniClubSliderData} lang={lang}/>
+        <MiniClubSlider slides={slides} options={OPTIONS} {...miniClubSliderData} />
         {/* <BeachSection1 /> */}
-        <BeachSection2 {...beachSection2Data} lang={lang}/>
-        <ContactSection {...contactSectionData} lang={lang}/>
-        <SpecialOffers {...specialOffersData} lang={lang}/>
+        <BeachSection2 {...beachSection2Data} />
+        <ContactSection {...contactSectionData} />
+        <SpecialOffers {...specialOffersData} />
     </section>
   )
 }

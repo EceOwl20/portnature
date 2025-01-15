@@ -7,7 +7,8 @@ import {
   deletePage,
   updateComponent,
   deleteItemFromComponent,
-  deleteImageFromComponent
+  deleteImageFromComponent,
+  getTranslations
 } from "../controller/page.js";
 
 const router = express.Router();
@@ -35,6 +36,8 @@ router.delete("/:pageName/components/:componentIndex/items/:itemIndex", deleteIt
 
 // Bir component'in images içerisinden belirli bir image'ı silme
 router.delete("/:pageName/components/:componentIndex/images/:imageIndex", deleteImageFromComponent);
+
+router.get("/page/:pageName/translations", getTranslations); 
 
 
 export default router;

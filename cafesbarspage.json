@@ -1,232 +1,481 @@
 {
-    "pageName": "cafesbarspage",
-    "components": [
-         {
+  "pageName": "cafesbarspage",
+  "translations": {
+    "en": [
+      {
         "type": "MainSection",
         "props": {
-            "image":{
-              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
-              "altText": {
-                "en": "Beach View",
-                "tr": "Plaj Manzarası",
-                "de": "Strandblick",
-                "ru": "Вид на пляж"
-              },
-              "width": 1920,
-              "height": 469
+          "image": {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+            "altText": "Beach View",
+            "width": 1920,
+            "height": 469
           },
-            "header":{
-              "en":" BARS & CAFES",
-              "tr":" BARS & CAFES",
-              "de":" BARS & CAFES",
-              "ru":" BARS & CAFES"
-          },
-          "text":{
-              "en":"Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли.",
-              "tr":"Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли.",
-              "de":"Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли.",
-              "ru":"Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли."
-          }
+          "header": "BARS & CAFES",
+          "text": "Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли."
         }
-    },
+      },
       {
         "type": "FilterCafeSection",
         "props": {
-          "header":{
-              "en":"FIND A'LA CARTE",
-              "tr":"FIND A'LA CARTE",
-              "de":"FIND A'LA CARTE",
-              "ru":"FIND A'LA CARTE"
-          },
-          "iconImage":{
-              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
-              "altText": {
-                "en": "Beach View",
-                "tr": "Plaj Manzarası",
-                "de": "Strandblick",
-                "ru": "Вид на пляж"
-              },
-              "width": 1920,
-              "height": 1080
-          },
-           "text":{
-              "en":" 7/24",
-              "tr":" 7/24",
-              "de":" 7/24",
-              "ru":" 7/24"
-          },
-          "text2":{
-               "en":"Kids Friendly",
-              "tr":"Kids Friendly",
-              "de":"Kids Friendly",
-              "ru":"Kids Friendly"
-          },
-          "text3":{
-               "en":"+18",
-              "tr":"+18",
-              "de":"+18",
-              "ru":"+18"
-          },
-
-    "filterItems": [
-               {
-        "image":{
+          "header": "FIND A'LA CARTE",
+          "iconImage": {
             "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
-            "altText": {
-                "en": "Beach View",
-                "tr": "Plaj Manzarası",
-                "de": "Strandblick",
-                "ru": "Вид на пляж"
+            "altText": "Beach View",
+            "width": 1920,
+            "height": 1080
+          },
+          "text": "7/24",
+          "text2": "Kids Friendly",
+          "text3": "+18",
+          "filterItems": [
+            {
+              "image": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Beach View",
+                "width": 1920,
+                "height": 1080
               },
-              "width": 1920,
-              "height": 1080
-        },
-
-        "iconImage":{
-            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
-            "altText": {
-                "en": "Beach View",
-                "tr": "Plaj Manzarası",
-                "de": "Strandblick",
-                "ru": "Вид на пляж"
+              "iconImage": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Beach View",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
               },
-              "largeWidth": 30.12,
-              "largeHeight": 47.63,
-              "smallWidth": 24,
-              "smallHeight": 38
-        },
-
-        "header": {
-          "en": "FAR EAST A'LA CARTE",
-          "tr": "FAR EAST A'LA CARTE",
-          "de": "FAR EAST A'LA CARTE",
-          "ru": "FAR EAST A'LA CARTE"
-        },
-
-        "text": {
-          "en": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
-          "tr": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
-          "de":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
-          "ru":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."
-        },
-
-        "buttonText": {
-          "en": "BELEK . ANTALYA",
-          "tr": "BELEK . ANTALYA TR",
-          "de": "BELEK . ANTALYA DE",
-          "ru": "БЕЛЕК . АНТАЛЬЯ"
-        },
-
-        "buttonLink": {
-          "en": "/far-east",
-          "tr": "/far-east",
-          "de": "/far-east",
-          "ru":"/far-east"
-        },
-
-        "time": {
-          "en": "7/24",
-          "tr":"7/24",
-          "de": "7/24",
-          "ru": "7/24"
-        },
-
-        "kidsFriendly": {
-          "en": "true",
-          "tr": "true",
-          "de": "true",
-          "ru": "true"
-        },
-
-        "ageLimit": {
-          "en": "7",
-          "tr": "7",
-          "de": "7",
-          "ru": "7"
+              "header": "FAR EAST A'LA CARTE",
+              "text": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+              "buttonText": "BELEK . ANTALYA",
+              "buttonLink": "/far-east",
+              "time": "7/24",
+              "kidsFriendly": "true",
+              "ageLimit": "7"
+            },
+            {
+              "image": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Beach View",
+                "width": 1920,
+                "height": 1080
+              },
+              "iconImage": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Beach View",
+                "largeWidth": 24,
+                "largeHeight": 29,
+                "smallWidth": 24,
+                "smallHeight": 38
+              },
+              "header": "Davidoff Cafe",
+              "text": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+              "buttonText": "BELEK . ANTALYA",
+              "buttonLink": "/far-east",
+              "time": "7/24",
+              "kidsFriendly": "false",
+              "ageLimit": "+18"
+            }
+          ]
         }
-
       },
-
       {
+    "type": "ContactSection",
+    "props": {
+        "header":"Free contact call center",
+
+        "text":"Or online booking",
+
+        "phone":"+ 90 (242) 731 07 07",
+        "email":"info@portnature.com.tr",
+
+        "buttonText":"Send",
+
+        "buttonLink":"/",
+
         "image":{
-            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
-            "altText": {
-                "en": "Beach View",
-                "tr": "Plaj Manzarası",
-                "de": "Strandblick",
-                "ru": "Вид на пляж"
-              },
-              "width": 1920,
-              "height": 1080
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734603783214callcenter.webp?alt=media&token=a50e406b-9351-44ce-9c4d-89608796392c",
+          "altText": "callcenter",
+          "width": 317,
+          "height": 283
         },
 
-        "iconImage":{
-            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
-            "altText": {
-                "en": "Beach View",
-                "tr": "Plaj Manzarası",
-                "de": "Strandblick",
-                "ru": "Вид на пляж"
-              },
-              "largeWidth": 24,
-              "largeHeight": 29,
-              "smallWidth": 24,
-              "smallHeight": 38
-        },
+         "header2":"Send Message",
 
-        "header": {
-          "en": "Davidoff Cafe",
-          "tr": "Davidoff Cafe",
-          "de": "Davidoff Cafe",
-          "ru": "Davidoff Cafe"
-        },
+        "text2":"All your questions, options, suggestions",
 
-        "text": {
-          "en": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
-          "tr": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
-          "de":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
-          "ru":"We always offer the freshest. This is the secret of our taste. The freshest was chosen for you."
-        },
-
-        "buttonText": {
-          "en": "BELEK . ANTALYA",
-          "tr": "BELEK . ANTALYA TR",
-          "de": "BELEK . ANTALYA DE",
-          "ru": "БЕЛЕК . АНТАЛЬЯ"
-        },
-
-        "buttonLink": {
-          "en": "/far-east",
-          "tr": "/far-east",
-          "de": "/far-east",
-          "ru":"/far-east"
-        },
-
-        "time": {
-          "en": "7/24",
-          "tr":"7/24",
-          "de": "7/24",
-          "ru": "7/24"
-        },
-
-        "kidsFriendly": {
-          "en": "false",
-          "tr": "false",
-          "de": "false",
-          "ru": "false"
-        },
-
-        "ageLimit": {
-          "en": "+18",
-          "tr": "+18",
-          "de": "+18",
-          "ru": "+18"
+        "checkboxText":"Ben robot değilim",
+                   "iconImage":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+          "altText":"leafIcon",
+          "width": 20,
+          "height": 20
+         },
+           "iconImage2":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+          "altText": "leafIcon",
+          "width": 20,
+          "height": 20
+}
+    }
+         
+}
+    ],
+    "tr": [
+      {
+        "type": "MainSection",
+        "props": {
+          "image": {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+            "altText": "Plaj Manzarası",
+            "width": 1920,
+            "height": 469
+          },
+          "header": "BARS & CAFES",
+          "text": "Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли."
         }
-
-      }
-    ]
+      },
+      {
+        "type": "FilterCafeSection",
+        "props": {
+          "header": "FIND A'LA CARTE",
+          "iconImage": {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": "Plaj Manzarası",
+            "width": 1920,
+            "height": 1080
+          },
+          "text": "7/24",
+          "text2": "Kids Friendly",
+          "text3": "+18",
+          "filterItems": [
+            {
+              "image": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "width": 1920,
+                "height": 1080
+              },
+              "iconImage": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
+              },
+              "header": "FAR EAST A'LA CARTE",
+              "text": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+              "buttonText": "BELEK . ANTALYA",
+              "buttonLink": "/far-east",
+              "time": "7/24",
+              "kidsFriendly": "true",
+              "ageLimit": "7"
+            },
+            {
+              "image": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "width": 1920,
+                "height": 1080
+              },
+              "iconImage": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "largeWidth": 24,
+                "largeHeight": 29,
+                "smallWidth": 24,
+                "smallHeight": 38
+              },
+              "header": "Davidoff Cafe",
+              "text": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+              "buttonText": "BELEK . ANTALYA",
+              "buttonLink": "/far-east",
+              "time": "7/24",
+              "kidsFriendly": "false",
+              "ageLimit": "+18"
+            }
+          ]
         }
-      }
-  
+      },
+      {
+    "type": "ContactSection",
+    "props": {
+        "header":"Free contact call center",
+
+        "text":"Or online booking",
+
+        "phone":"+ 90 (242) 731 07 07",
+        "email":"info@portnature.com.tr",
+
+        "buttonText":"Send",
+
+        "buttonLink":"/",
+
+        "image":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734603783214callcenter.webp?alt=media&token=a50e406b-9351-44ce-9c4d-89608796392c",
+          "altText": "callcenter",
+          "width": 317,
+          "height": 283
+        },
+
+         "header2":"Send Message",
+
+        "text2":"All your questions, options, suggestions",
+
+        "checkboxText":"Ben robot değilim",
+                   "iconImage":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+          "altText":"leafIcon",
+          "width": 20,
+          "height": 20
+         },
+           "iconImage2":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+          "altText": "leafIcon",
+          "width": 20,
+          "height": 20
+}
+    }
+         
+}
+    ],
+    "de": [
+      {
+        "type": "MainSection",
+        "props": {
+          "image": {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+            "altText": "Plaj Manzarası",
+            "width": 1920,
+            "height": 469
+          },
+          "header": "BARS & CAFES",
+          "text": "Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли."
+        }
+      },
+      {
+        "type": "FilterCafeSection",
+        "props": {
+          "header": "FIND A'LA CARTE",
+          "iconImage": {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": "Plaj Manzarası",
+            "width": 1920,
+            "height": 1080
+          },
+          "text": "7/24",
+          "text2": "Kids Friendly",
+          "text3": "+18",
+          "filterItems": [
+            {
+              "image": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "width": 1920,
+                "height": 1080
+              },
+              "iconImage": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
+              },
+              "header": "FAR EAST A'LA CARTE",
+              "text": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+              "buttonText": "BELEK . ANTALYA",
+              "buttonLink": "/far-east",
+              "time": "7/24",
+              "kidsFriendly": "true",
+              "ageLimit": "7"
+            },
+            {
+              "image": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "width": 1920,
+                "height": 1080
+              },
+              "iconImage": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "largeWidth": 24,
+                "largeHeight": 29,
+                "smallWidth": 24,
+                "smallHeight": 38
+              },
+              "header": "Davidoff Cafe",
+              "text": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+              "buttonText": "BELEK . ANTALYA",
+              "buttonLink": "/far-east",
+              "time": "7/24",
+              "kidsFriendly": "false",
+              "ageLimit": "+18"
+            }
+          ]
+        }
+      },
+      {
+    "type": "ContactSection",
+    "props": {
+        "header":"Free contact call center",
+
+        "text":"Or online booking",
+
+        "phone":"+ 90 (242) 731 07 07",
+        "email":"info@portnature.com.tr",
+
+        "buttonText":"Send",
+
+        "buttonLink":"/",
+
+        "image":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734603783214callcenter.webp?alt=media&token=a50e406b-9351-44ce-9c4d-89608796392c",
+          "altText": "callcenter",
+          "width": 317,
+          "height": 283
+        },
+
+         "header2":"Send Message",
+
+        "text2":"All your questions, options, suggestions",
+
+        "checkboxText":"Ben robot değilim",
+                   "iconImage":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+          "altText":"leafIcon",
+          "width": 20,
+          "height": 20
+         },
+           "iconImage2":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+          "altText": "leafIcon",
+          "width": 20,
+          "height": 20
+}
+    }
+         
+}
+    ],
+    "ru": [
+      {
+        "type": "MainSection",
+        "props": {
+          "image": {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+            "altText": "Plaj Manzarası",
+            "width": 1920,
+            "height": 469
+          },
+          "header": "BARS & CAFES",
+          "text": "Отведайте вкусную выпечку, бутерброды и хлебобулочные изделия свежих ингредиентов высочайшего качества с свежевыжатым соком и напитками в наших кафе. Или посетите наши бары и откройте для себя импортные алкогольные напитки со всего мира и искусно приготовленные коктейли."
+        }
+      },
+      {
+        "type": "FilterCafeSection",
+        "props": {
+          "header": "FIND A'LA CARTE",
+          "iconImage": {
+            "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+            "altText": "Plaj Manzarası",
+            "width": 1920,
+            "height": 1080
+          },
+          "text": "7/24",
+          "text2": "Kids Friendly",
+          "text3": "+18",
+          "filterItems": [
+            {
+              "image": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "width": 1920,
+                "height": 1080
+              },
+              "iconImage": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "largeWidth": 30.12,
+                "largeHeight": 47.63,
+                "smallWidth": 24,
+                "smallHeight": 38
+              },
+              "header": "FAR EAST A'LA CARTE",
+              "text": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+              "buttonText": "BELEK . ANTALYA",
+              "buttonLink": "/far-east",
+              "time": "7/24",
+              "kidsFriendly": "true",
+              "ageLimit": "7"
+            },
+            {
+              "image": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "width": 1920,
+                "height": 1080
+              },
+              "iconImage": {
+                "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734421426249locationIcon.png?alt=media&token=ef4cf75c-5127-49ed-a6b2-15bf44feee19",
+                "altText": "Plaj Manzarası",
+                "largeWidth": 24,
+                "largeHeight": 29,
+                "smallWidth": 24,
+                "smallHeight": 38
+              },
+              "header": "Davidoff Cafe",
+              "text": "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
+              "buttonText": "BELEK . ANTALYA",
+              "buttonLink": "/far-east",
+              "time": "7/24",
+              "kidsFriendly": "false",
+              "ageLimit": "+18"
+            }
+          ]
+        }
+      },
+      {
+    "type": "ContactSection",
+    "props": {
+        "header":"Free contact call center",
+
+        "text":"Or online booking",
+
+        "phone":"+ 90 (242) 731 07 07",
+        "email":"info@portnature.com.tr",
+
+        "buttonText":"Send",
+
+        "buttonLink":"/",
+
+        "image":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734603783214callcenter.webp?alt=media&token=a50e406b-9351-44ce-9c4d-89608796392c",
+          "altText": "callcenter",
+          "width": 317,
+          "height": 283
+        },
+
+         "header2":"Send Message",
+
+        "text2":"All your questions, options, suggestions",
+
+        "checkboxText":"Ben robot değilim",
+                   "iconImage":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+          "altText":"leafIcon",
+          "width": 20,
+          "height": 20
+         },
+           "iconImage2":{
+          "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1734593246615leaf.png?alt=media&token=22ba1b0e-340e-4c0f-a84c-91490bc4a26c",
+          "altText": "leafIcon",
+          "width": 20,
+          "height": 20
+}
+    }
+         
+}
     ]
   }
+}

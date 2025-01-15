@@ -5,7 +5,7 @@ import RoomFeatures from "./components/RoomFeatures";
 import RoomsInfoCarousel from "./components/RoomsInfoCarousel";
 import Cookies from "js-cookie";
 
-const Rooms = ({links,linkstext,text1,text2,text3,images1,images2,images3}) => {
+const Rooms = () => {
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
   const [roomsCarouselData, setRoomsCarouselData] = useState(null);
   const [roomsFeaturesData, setRoomsFeaturesData] = useState(null);
@@ -22,8 +22,15 @@ const Rooms = ({links,linkstext,text1,text2,text3,images1,images2,images3}) => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
+         // Dil bazında transactions verisini al
+         const localizedComponents = data.translations[lang];
+
+         if (!localizedComponents) {
+          throw new Error(`No translations found for language: ${lang}`);
+        }
+
         // MainBackground verilerini çek
-        const mainBackgroundComponent = data.components.find(
+        const mainBackgroundComponent = localizedComponents.find(
           (comp) => comp.type === "MainBackground"
         );
 
@@ -34,7 +41,7 @@ const Rooms = ({links,linkstext,text1,text2,text3,images1,images2,images3}) => {
         }
 
         // RoomsInfoCarousel verilerini çek
-        const roomsCarouselComponent = data.components.find(
+        const roomsCarouselComponent = localizedComponents.find(
           (comp) => comp.type === "RoomsInfoCarousel"
         );
 
@@ -45,7 +52,7 @@ const Rooms = ({links,linkstext,text1,text2,text3,images1,images2,images3}) => {
         }
 
         // RoomsFeatures verilerini çek
-        const roomsFeaturesComponent = data.components.find(
+        const roomsFeaturesComponent = localizedComponents.find(
           (comp) => comp.type === "RoomsFeatures"
         );
 
@@ -60,20 +67,20 @@ const Rooms = ({links,linkstext,text1,text2,text3,images1,images2,images3}) => {
       }
     };
     fetchPageData();
-  }, []);
+  }, [lang]);
 
   if (error) return <p>Error: {error}</p>;
   if (!mainBackgroundData && !roomsCarouselData && !roomsFeaturesData) return <p>Loading...</p>;
 
   return (
     <div>
-      <MainBackgroundRooms {...mainBackgroundData} lang={lang}/>
+      <MainBackgroundRooms {...mainBackgroundData} />
       {/* <RoomInfo links={links} linkstext={linkstext} text1={text1} text2={text2} text3={text3} images1={images1} images2={images2} images3={images3}/> */}
-      <RoomsInfoCarousel {...roomsCarouselData} lang={lang}/>
+      <RoomsInfoCarousel {...roomsCarouselData} />
         {/* <RoomsInfoCarousel images={images2} text={text2}/>
         <RoomsInfoCarousel images={images3} text={text3}/> */}
 
-        <RoomFeatures {...roomsFeaturesData} lang={lang}/>
+        <RoomFeatures {...roomsFeaturesData} />
       {/* <ContactSection/> */}
     </div>
   )

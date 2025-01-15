@@ -4,7 +4,7 @@ import Autoplay from 'embla-carousel-autoplay'
 import { Link } from 'react-router-dom'
 
 
-const SpecialOffers = ({header, headers=[],lang,images=[], links=[]}) => {
+const SpecialOffers = ({header, headers=[],images=[], links=[]}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: 'start' },
     [Autoplay({ delay: 3000 })]
@@ -26,7 +26,7 @@ const SpecialOffers = ({header, headers=[],lang,images=[], links=[]}) => {
     <section className="my-24">
       <div className="flex mb-11 w-3/4 ml-auto justify-start">
         <h2 className="text-[28px] leading-10 italic font-lora font-normal text-black">
-         {header[lang]}
+         {header}
         </h2>
       </div>
       
@@ -34,7 +34,7 @@ const SpecialOffers = ({header, headers=[],lang,images=[], links=[]}) => {
         <div className="flex gap-x-4">
           {images.map((image, index) => (
             <Link 
-              to={links[index][lang]}
+              to={links[index]}
               className="relative flex-[0_0_25%] flex justify-center items-start" 
               key={index}
               style={{ position: 'relative' }}
@@ -42,11 +42,11 @@ const SpecialOffers = ({header, headers=[],lang,images=[], links=[]}) => {
               <div className="absolute border border-dotted border-[#CFCFCF] top-0 right-0 w-10/12 h-[450px] z-10"></div>
               <img
                 src={image.firebaseUrl}
-                alt={image.altText[lang]}
+                alt={image.altText}
                 className="object-cover w-10/12 h-[450px] relative z-20 mt-10 mr-1"
               />
               <div className="absolute top-10 left-1/2 transform -translate-x-1/2  bg-opacity-70 text-white px-4 py-2 rounded z-30">
-                <p className="text-[25px] font-lora whitespace-nowrap font-medium text-start leading-normal">{headers[index][lang]}</p>
+                <p className="text-[25px] font-lora whitespace-nowrap font-medium text-start leading-normal">{headers[index]}</p>
               </div>
             </Link>
           ))}
