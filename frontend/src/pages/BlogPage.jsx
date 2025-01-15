@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../src/context/LanguageContext";
 // import HomeCarousel from "../components/homepage/HomeCarousel";
 // import Reservation from "../components/homepage/Reservation";
 // import ContactSection from "../components/homepage/ContactSection";
@@ -8,7 +9,9 @@ const BlogPage = () => {
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [language, setLanguage] = useState("en");
+ // const [language, setLanguage] = useState("en");
+
+  const { language: lang } = useLanguage(); 
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -35,7 +38,7 @@ const BlogPage = () => {
   return (
     <main>
       <div className="flex flex-col w-full pb-4 justify-center items-center">
-        <div className="flex gap-2 mb-4">
+        {/* <div className="flex gap-2 mb-4">
           <button onClick={() => setLanguage("tr")} className="px-4 py-2 bg-gray-200 rounded">
             Türkçe
           </button>
@@ -48,15 +51,15 @@ const BlogPage = () => {
           <button onClick={() => setLanguage("de")} className="px-4 py-2 bg-gray-200 rounded">
             Almanca
           </button>
-        </div>
+        </div> */}
 
         <h1 className="text-2xl font-bold mb-4">Bloglar</h1>
 
         <div className="flex w-11/12 items-center justify-center">
           <div className="grid grid-cols-4 gap-5 items-center justify-center w-full xl:max-w-[1440px] pb-8">
             {blogs.map((blog) => {
-              const blogUrl = blog.urls?.[language] || blog.urls?.tr;
-              const sectionsForLang = blog.sections?.[language];
+              const blogUrl = blog.urls?.[lang] || blog.urls?.tr;
+              const sectionsForLang = blog.sections?.[lang];
 
               if (!sectionsForLang || sectionsForLang.length === 0) {
                 return (
@@ -73,7 +76,7 @@ const BlogPage = () => {
               return (
                 <Link 
                   key={blog._id} 
-                  to={`/blog/${language}/${blogUrl}`}
+                  to={`/blog/${lang}/${blogUrl}`}
                   className="w-[350px] h-[324px] flex flex-col text-black p-4 text-center items-center justify-center gap-2 border"
                 >
                   {blog.thumbnail && (

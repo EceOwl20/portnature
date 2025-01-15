@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import { useLanguage } from "../../../src/context/LanguageContext";
 import PubBarMainSection from '../../components/food/PubBarMainSection'
 import ContactSection from '../../components/homepage/ContactSection'
 import OtherRestaurants from "../Kids/components/OtherRestaurants";
@@ -10,7 +10,7 @@ const PubBarPage = ({page}) => {
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
+  const { language: lang } = useLanguage(); 
 
   useEffect(() => {
     const fetchPageData = async () => {

@@ -4,7 +4,7 @@ import MınıClubSection1 from './components/MınıClubSection1';
 import MiniClubSection2 from './components/MiniClubSection2';
 import ContactSection from '../../components/homepage/ContactSection';
 import SpecialOffers from '../../components/SpecialOffers';
-import Cookies from "js-cookie";
+import { useLanguage } from "../../../src/context/LanguageContext";
 
 const MiniClub = () => {
   const [miniClubSliderData, setMiniClubSliderData] = useState(null);
@@ -13,7 +13,7 @@ const MiniClub = () => {
   const [specialOffersData, setSpecialOffersData] = useState(null);
   const [error, setError] = useState(null);
 
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
+  const { language: lang } = useLanguage(); 
 
   useEffect(() => {
     const fetchPageData = async () => {

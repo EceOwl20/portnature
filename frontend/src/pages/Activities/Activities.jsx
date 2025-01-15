@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import { useLanguage } from "../../../src/context/LanguageContext";
 import Section1 from './Components/Section1'
 import Section2 from './Components/Section2'
 import Section3 from './Components/Section3'
@@ -8,6 +8,8 @@ const Activities = () => {
   const [carouselData, setCarouselData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
+
+  const { language: lang } = useLanguage(); 
 
   // useEffect(() => {
   //   const fetchPageData = async () => {

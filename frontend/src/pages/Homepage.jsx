@@ -22,8 +22,10 @@ import SpecialOffersCarousel from '../components/homepage/SpecialOffersCarousel'
 import MultipleImages from '../components/Image/MultipleImages'
 // import InstagramSection from "../components/homepage/InstagramSection"
 import Cookies from "js-cookie";
+import { useLanguage } from "../context/LanguageContext";
 
 const Homepage = () => {
+  const { language: lang } = useLanguage(); // Cookie yerine context'i kullan
   const [carouselData, setCarouselData] = useState(null);
   const [barLoungeData, setBarLoungeData] = useState(null);
   const [iconSectionData, setIconSectionData] = useState(null);
@@ -35,7 +37,7 @@ const Homepage = () => {
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
+  //const [lang, setLang] = useState(Cookies.get("language") || "en");
 
   useEffect(() => {
     const fetchPageData = async () => {

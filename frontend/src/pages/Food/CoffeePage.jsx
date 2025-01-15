@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DavidoffCarousel from '../../components/food/DavidoffCarousel'
 import ContactSection from "../../components/homepage/ContactSection"
 import CoffeeTextSection from '../../components/food/CoffeeTextSection'
-import Cookies from "js-cookie";
+import { useLanguage } from "../../../src/context/LanguageContext";
 
 const CoffeePage = ({page}) => {
   const [cafeCarouselData, setCafeCarouselData] = useState(null);
@@ -10,7 +10,7 @@ const CoffeePage = ({page}) => {
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
+  const { language: lang } = useLanguage(); 
 
   useEffect(() => {
     const fetchPageData = async () => {

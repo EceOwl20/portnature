@@ -5,7 +5,7 @@ import RoomFeatures from './components/RoomFeatures'
 import ContactSection from '../../components/homepage/ContactSection'
 import RoomPlan from './components/RoomPlan'
 import OtherOptions from './components/OtherOptions'
-import Cookies from "js-cookie";
+import { useLanguage } from "../../../src/context/LanguageContext";
 
 const SubRooms = ({page}) => {
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
@@ -14,7 +14,7 @@ const SubRooms = ({page}) => {
   const [roomPlanData, setRoomPlanData] = useState(null);
   const [error, setError] = useState(null);
 
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
+  const { language: lang } = useLanguage(); 
 
   useEffect(() => {
     const fetchPageData = async () => {

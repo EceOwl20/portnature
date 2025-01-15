@@ -3,7 +3,7 @@ import AquaParkSection1 from './components/AquaParkSection1'
 import AquaParkSection2 from './components/AquaParkSection2'
 import ContactSection from '../../components/homepage/ContactSection'
 import SpecialOffers from '../../components/SpecialOffers'
-import Cookies from "js-cookie";
+import { useLanguage } from "../../../src/context/LanguageContext";
 
 const AquaPark = () => {
   const [aquaSectionData, setAquaSectionData] = useState(null);
@@ -11,7 +11,7 @@ const AquaPark = () => {
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
+  const { language: lang } = useLanguage(); 
 
   useEffect(() => {
     const fetchPageData = async () => {
