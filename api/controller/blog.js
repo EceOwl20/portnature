@@ -10,6 +10,26 @@ export const yeniMakale = async (request, response, next) => {
         next(error);
     }
   }
+
+  export const makaleGetirByLangAndSlug = async (req, res, next) => {
+    try {
+      const { lang, slug } = req.params;
+      const blog = await Blog.findOne({
+        [`urls.${lang}`]: slug,
+      });
+  
+      if (!blog) {
+        return res
+          .status(404)
+          .json({ success: false, message: "Bu slug için blog bulunamadı." });
+      }
+  
+      return res.status(200).json({ success: true, blog });
+    } catch (error) {
+      console.error("makaleGetirByLangAndSlug Hatası:", error);
+      next(error);
+    }
+  };  
   
 
 export const makaleListele = async (request, reponse, next) => {
