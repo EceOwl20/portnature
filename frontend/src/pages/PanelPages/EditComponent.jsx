@@ -10,6 +10,8 @@ const EditComponent = () => {
   const { pageName, componentIndex, language } = useParams();
   const navigate = useNavigate();
 
+  const supportedLanguages = ["en", "tr", "de", "ru"];
+
   // --------------------------------------------------
   // STATE: COMPONENT DATA, ERROR, SUCCESS
   // --------------------------------------------------
@@ -74,31 +76,24 @@ const EditComponent = () => {
   useEffect(() => {
     const fetchComponentData = async () => {
       try {
-        const response = await fetch(`/api/page/${pageName}/translations`);
+        const response = await fetch(
+          `http://localhost:3000/api/page/${pageName}/translations/${language}/components/${componentIndex}`
+        );
         const data = await response.json();
-  
+
         if (!response.ok) {
           throw new Error(data.message || "Failed to fetch component data");
         }
-  
-        // Seçilen dili kullanarak ilgili veriyi çek
-        const translatedComponents = data.translations[language || "en"]; // Varsayılan olarak "en"
-  
-        // İlgili componentIndex'e göre veriyi ayıkla
-        const selectedComponent = translatedComponents[componentIndex];
-  
-        if (!selectedComponent) {
-          throw new Error("Component not found");
-        }
-  
-        setComponentData(selectedComponent);
+
+        setComponentData(data); // Veriyi state'e ata
       } catch (err) {
         setError(err.message);
       }
     };
-  
+
     fetchComponentData();
-  }, [pageName, componentIndex, language]); // Dil değişikliği durumunda tekrar çalışır
+  }, [pageName, language, componentIndex]);
+
 
   // --------------------------------------------------
   // useEffect: SEARCH QUERY DEBOUNCING (searchQuery)
@@ -300,7 +295,7 @@ const EditComponent = () => {
           field === "images" || field === "subImages"
             ? {
                 firebaseUrl: "",
-                altText: { en: "", tr: "", de: "", ru: "" },
+                altText: "",
                 width: 0,
                 height: 0,
               }
@@ -394,7 +389,7 @@ const EditComponent = () => {
         [field]: {
           ...prev.props[field],
           firebaseUrl: selectedImage.firebaseUrl,
-          altText: selectedImage.altText,
+          altText: selectedImage.altText[language],
         },
       },
     }));
@@ -402,7 +397,7 @@ const EditComponent = () => {
 
   const handleReplaceImage = (field, index, selectedImage) => {
     handleArrayChange(field, index, "firebaseUrl", selectedImage.firebaseUrl);
-    handleArrayChange(field, index, "altText", selectedImage.altText);
+    handleArrayChange(field, index, "altText", selectedImage.altText[language],);
   };
 
   const handleReplaceFilterItemImage = (index, field, selectedImage) => {
@@ -413,7 +408,7 @@ const EditComponent = () => {
         [field]: {
           ...updatedArray[index][field],
           firebaseUrl: selectedImage.firebaseUrl,
-          altText: selectedImage.altText,
+          altText: selectedImage.altText[language],
         },
       };
       return {
@@ -434,7 +429,7 @@ const EditComponent = () => {
         [field]: {
           ...updatedArray[index][field],
           firebaseUrl: selectedImage.firebaseUrl,
-          altText: selectedImage.altText,
+          altText: selectedImage.altText[language],
         },
       };
       return {
@@ -613,9 +608,25 @@ const EditComponent = () => {
   // --------------------------------------------------
   return (
     <div className="flex flex-col items-start font-monserrat z-50 bg-transparent justify-start m-5">
+      <div className="flex flex-row items-center justify-between w-full">
       <h1 className="text-[25px] font-medium my-4 text-[#ffffff]">
         Edit Component: {componentData.type}
       </h1>
+      {/* Dil Butonları */}
+      <div className="flex gap-2">
+          {supportedLanguages.map((lang) => (
+            <button
+              key={lang}
+              onClick={() => navigate(`/panel/pages/${pageName}/translations/${lang}/components/${componentIndex}`)}
+              className={`px-4 py-2 rounded ${
+                lang === language ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
+            >
+              {lang.toUpperCase()}
+            </button>
+          ))}
+        </div>
+      </div>
 
       {/* GRID WRAPPER */}
       <div className="grid grid-cols-2 items-start justify-center w-[40%] gap-[2%]">
@@ -726,21 +737,19 @@ const EditComponent = () => {
               className="border p-2"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-            {singleImage.altText &&
-              Object.keys(singleImage.altText).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label>Alt Text ({lang})</label>
+            <h3 className="font-semibold mt-4">Alt Text </h3>
+                <div  className="flex flex-col gap-2">
+                  <label>Alt Text </label>
                   <input
                     type="text"
-                    value={singleImage.altText[lang]}
+                    value={singleImage.altText}
                     onChange={(e) =>
-                      handleImageAltTextChange(lang, e.target.value)
+                      handleImageAltTextChange(e.target.value)
                     }
                     className="border p-2"
                   />
                 </div>
-              ))}
+          
               <button
                   className="bg-blue-600 text-white px-4 py-2 rounded mt-2"
                   onClick={() => {
@@ -814,19 +823,17 @@ const EditComponent = () => {
               className="border p-2"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-            {singleImage2.altText &&
-              Object.keys(singleImage2.altText).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label>Alt Text ({lang})</label>
+            <h3 className="font-semibold mt-4">Alt Text </h3>
+
+                <div  className="flex flex-col gap-2">
+                  <label>Alt Text </label>
                   <input
                     type="text"
-                    value={singleImage2.altText[lang]}
-                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    value={singleImage2.altText}
+                    onChange={(e) => handleImageAltTextChange(e.target.value)}
                     className="border p-2"
                   />
                 </div>
-              ))}
           </div>
         )}
 
@@ -883,19 +890,17 @@ const EditComponent = () => {
               className="border p-2"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-            {singleIconImage.altText &&
-              Object.keys(singleIconImage.altText).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label>Alt Text ({lang})</label>
+            <h3 className="font-semibold mt-4">Alt Text </h3>
+                <div className="flex flex-col gap-2">
+                  <label>Alt Text </label>
                   <input
                     type="text"
-                    value={singleIconImage.altText[lang]}
-                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    value={singleIconImage.altText}
+                    onChange={(e) => handleImageAltTextChange(e.target.value)}
                     className="border p-2"
                   />
                 </div>
-              ))}
+    
           </div>
         )}
 
@@ -952,19 +957,16 @@ const EditComponent = () => {
               className="border p-2"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-            {singleIconImage2.altText &&
-              Object.keys(singleIconImage2.altText).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label>Alt Text ({lang})</label>
+            <h3 className="font-semibold mt-4">Alt Text</h3>
+                <div className="flex flex-col gap-2">
+                  <label>Alt Text </label>
                   <input
                     type="text"
-                    value={singleIconImage2.altText[lang]}
-                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    value={singleIconImage2.altText}
+                    onChange={(e) => handleImageAltTextChange(e.target.value)}
                     className="border p-2"
                   />
                 </div>
-              ))}
           </div>
         )}
 
@@ -1021,92 +1023,83 @@ const EditComponent = () => {
               className="border p-2"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-            {singleButtonImage.altText &&
-              Object.keys(singleButtonImage.altText).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label>Alt Text ({lang})</label>
+            <h3 className="font-semibold mt-4">Alt Text </h3>
+
+                <div className="flex flex-col gap-2">
+                  <label>Alt Text </label>
                   <input
                     type="text"
-                    value={singleButtonImage.altText[lang]}
-                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    value={singleButtonImage.altText}
+                    onChange={(e) => handleImageAltTextChange(e.target.value)}
                     className="border p-2"
                   />
                 </div>
-              ))}
           </div>
         )}
 
         {singleButtonText && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">Button Text (Multi-language)</h2>
-            {Object.keys(singleButtonText).map((lang) => (
-              <div key={lang} className="flex flex-col gap-2">
-                <label>Button Text ({lang})</label>
+            <h2 className="font-bold text-xl">Button Text </h2>
+              <div className="flex flex-col gap-2">
+                <label>Button Text </label>
                 <input
                   type="text"
-                  value={singleButtonText[lang]}
+                  value={singleButtonText}
                   onChange={(e) =>
-                    handleLangFieldChange("buttonText", lang, e.target.value)
+                    handleLangFieldChange("buttonText", e.target.value)
                   }
                   className="border p-2"
                 />
               </div>
-            ))}
           </div>
         )}
 
         {/* --------------- SINGLE HEADER --------------- */}
         {singleHeader && (
           <div className="flex flex-col gap-4 w-[100%] p-4 rounded my-4 bg-white">
-            <h2 className="font-bold text-[15px]">Header (Multi-language)</h2>
-            {Object.keys(singleHeader).map((lang) => (
-              <div key={lang} className="flex flex-col gap-2">
-                <label className="text-[12px]">Header ({lang})</label>
+            <h2 className="font-bold text-[15px]">Header </h2>
+              <div className="flex flex-col gap-2">
+                <label className="text-[12px]">Header </label>
                 <input
                   type="text"
-                  value={singleHeader[lang]}
-                  onChange={(e) => handleLangFieldChange("header", lang, e.target.value)}
+                  value={singleHeader}
+                  onChange={(e) => handleLangFieldChange("header", e.target.value)}
                   className="border p-2 text-[10px]"
                 />
               </div>
-            ))}
+          
           </div>
         )}
 
         {/* --------------- SINGLE TEXT --------------- */}
         {singleText && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">Text (Multi-language)</h2>
-            {Object.keys(singleText).map((lang) => (
-              <div key={lang} className="flex flex-col gap-2">
-                <label>Text ({lang})</label>
+            <h2 className="font-bold text-xl">Text </h2>
+              <div  className="flex flex-col gap-2">
+                <label>Text </label>
                 <input
                   type="text"
-                  value={singleText[lang]}
-                  onChange={(e) => handleLangFieldChange("text", lang, e.target.value)}
+                  value={singleText}
+                  onChange={(e) => handleLangFieldChange("text", e.target.value)}
                   className="border p-2"
                 />
               </div>
-            ))}
           </div>
         )}
 
         {/* --------------- SINGLE SPAN --------------- */}
         {singleSpan && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">Text (Multi-language)</h2>
-            {Object.keys(singleSpan).map((lang) => (
-              <div key={lang} className="flex flex-col gap-2">
-                <label>Span Text ({lang})</label>
+            <h2 className="font-bold text-xl">Text </h2>
+              <div className="flex flex-col gap-2">
+                <label>Span Text </label>
                 <input
                   type="text"
-                  value={singleSpan[lang]}
-                  onChange={(e) => handleLangFieldChange("span", lang, e.target.value)}
+                  value={singleSpan}
+                  onChange={(e) => handleLangFieldChange("span", e.target.value)}
                   className="border p-2"
                 />
               </div>
-            ))}
           </div>
         )}
 
@@ -1230,15 +1223,13 @@ const EditComponent = () => {
               </div>
 
               {/* image altText */}
-              {item.image?.altText &&
-                Object.keys(item.image.altText).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1">
                     <label className="text-sm font-semibold">
-                      AltText ({lang})
+                      AltText 
                     </label>
                     <input
                       type="text"
-                      value={item.image.altText[lang]}
+                      value={item.image.altText}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1263,7 +1254,7 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
+               
 
               {/* iconImage alanı */}
               <label className="font-semibold text-[16px] mt-4">
@@ -1294,15 +1285,14 @@ const EditComponent = () => {
               />
 
               {/* iconImage altText */}
-              {item.iconImage?.altText &&
-                Object.keys(item.iconImage.altText).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1">
+
+                  <div className="flex flex-col gap-1">
                     <label className="text-sm font-semibold">
-                      Icon AltText ({lang})
+                      Icon AltText 
                     </label>
                     <input
                       type="text"
-                      value={item.iconImage.altText[lang]}
+                      value={item.iconImage.altText}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1327,7 +1317,6 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* iconImage dimensions */}
               <div className="flex gap-2 mt-2">
@@ -1441,15 +1430,13 @@ const EditComponent = () => {
               </div>
 
               {/* header (çok dilli) */}
-              {item.header &&
-                Object.keys(item.header).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Header ({lang})
+                      Header 
                     </label>
                     <input
                       type="text"
-                      value={item.header[lang]}
+                      value={item.header}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1471,18 +1458,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* text (çok dilli) */}
-              {item.text &&
-                Object.keys(item.text).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Text ({lang})
+                      Text 
                     </label>
                     <input
                       type="text"
-                      value={item.text[lang]}
+                      value={item.text}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1504,18 +1488,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* buttonText (çok dilli) */}
-              {item.buttonText &&
-                Object.keys(item.buttonText).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Button Text ({lang})
+                      Button Text 
                     </label>
                     <input
                       type="text"
-                      value={item.buttonText[lang]}
+                      value={item.buttonText}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1537,18 +1518,16 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
+
 
               {/* buttonLink (çok dilli) */}
-              {item.buttonLink &&
-                Object.keys(item.buttonLink).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Button Link ({lang})
+                      Button Link 
                     </label>
                     <input
                       type="text"
-                      value={item.buttonLink[lang]}
+                      value={item.buttonLink}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1570,18 +1549,16 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
+
 
               {/* time (çok dilli) */}
-              {item.time &&
-                Object.keys(item.time).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Time ({lang})
+                      Time 
                     </label>
                     <input
                       type="text"
-                      value={item.time[lang]}
+                      value={item.time}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1603,18 +1580,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* kidsFriendly (çok dilli) */}
-              {item.kidsFriendly &&
-                Object.keys(item.kidsFriendly).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div  className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Kids Friendly? ({lang})
+                      Kids Friendly? 
                     </label>
                     <input
                       type="text"
-                      value={item.kidsFriendly[lang]}
+                      value={item.kidsFriendly}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1636,18 +1610,16 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* ageLimit (çok dilli) */}
-              {item.ageLimit &&
-                Object.keys(item.ageLimit).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Age Limit ({lang})
+                      Age Limit 
                     </label>
                     <input
                       type="text"
-                      value={item.ageLimit[lang]}
+                      value={item.ageLimit}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1669,7 +1641,6 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
             </div>
           ))}
         </div>
@@ -1752,13 +1723,11 @@ const EditComponent = () => {
               </div>
 
               {/* image altText */}
-              {item.image?.altText &&
-                Object.keys(item.image.altText).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1">
-                    <label className="text-sm font-semibold">AltText ({lang})</label>
+                  <div  className="flex flex-col gap-1">
+                    <label className="text-sm font-semibold">AltText</label>
                     <input
                       type="text"
-                      value={item.image.altText[lang]}
+                      value={item.image.altText}
                       onChange={(e) => {
                         const updatedArray = [...componentData.props.restaurantItems];
                         updatedArray[index] = {
@@ -1781,18 +1750,16 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
+
 
               {/* header (çok dilli) */}
-              {item.header &&
-                Object.keys(item.header).map((lang) => (
                   <div key={lang} className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Header ({lang})
+                      Header 
                     </label>
                     <input
                       type="text"
-                      value={item.header[lang]}
+                      value={item.header}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.restaurantItems,
@@ -1814,18 +1781,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* text (çok dilli) */}
-              {item.text &&
-                Object.keys(item.text).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Text ({lang})
+                      Text 
                     </label>
                     <input
                       type="text"
-                      value={item.text[lang]}
+                      value={item.text}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.restaurantItems,
@@ -1847,16 +1811,13 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* span (çok dilli) */}
-              {item.span &&
-                Object.keys(item.span).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">Span ({lang})</label>
+                  <div className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">Span</label>
                     <input
                       type="text"
-                      value={item.span[lang]}
+                      value={item.span}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.restaurantItems,
@@ -1878,18 +1839,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* buttonText (çok dilli) */}
-              {item.buttonText &&
-                Object.keys(item.buttonText).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Button Text ({lang})
+                      Button Text 
                     </label>
                     <input
                       type="text"
-                      value={item.buttonText[lang]}
+                      value={item.buttonText}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.restaurantItems,
@@ -1911,18 +1869,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* buttonLink (çok dilli) */}
-              {item.buttonLink &&
-                Object.keys(item.buttonLink).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Button Link ({lang})
+                      Button Link
                     </label>
                     <input
                       type="text"
-                      value={item.buttonLink[lang]}
+                      value={item.buttonLink}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.restaurantItems,
@@ -1944,7 +1899,6 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
             </div>
           ))}
         </div>
@@ -2022,51 +1976,50 @@ const EditComponent = () => {
                   )}
                 </div>
 
-                {Object.keys(image.altText || {}).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-2">
+          
+                  <div className="flex flex-col gap-2">
                     <label className="text-black text-[15px] font-semibold">
-                      Alt Text ({lang})
+                      Alt Text 
                     </label>
                     <input
                       type="text"
-                      value={image.altText[lang]}
+                      value={image.altText}
                       className="text-[12px] border p-1"
                       onChange={(e) =>
-                        handleAltTextChange("images", index, lang, e.target.value)
+                        handleAltTextChange("images", index, e.target.value)
                       }
                     />
                   </div>
-                ))}
+           
 
-                {Object.keys(image.header || {}).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2">
                     <label className="text-black text-[18px] font-semibold">
-                      Header ({lang})
+                      Header 
                     </label>
                     <input
                       type="text"
-                      value={image.header[lang]}
+                      value={image.header}
                       onChange={(e) =>
-                        handleHeaderChange("images", index, lang, e.target.value)
+                        handleHeaderChange("images", index, e.target.value)
                       }
                     />
                   </div>
-                ))}
 
-                {Object.keys(image.text || {}).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-2">
+
+                {/* {Object.keys(image.text || {}).map(() => ( */}
+                  <div className="flex flex-col gap-2">
                     <label className="text-black text-[18px] font-semibold">
-                      Text ({lang})
+                      Text 
                     </label>
                     <input
                       type="text"
-                      value={image.text[lang]}
+                      value={image.text}
                       onChange={(e) =>
-                        handleTextChange("images", index, lang, e.target.value)
+                        handleTextChange("images", index, e.target.value)
                       }
                     />
                   </div>
-                ))}
+                {/* ))} */}
               </div>
             ))}
           </div>
@@ -2099,20 +2052,18 @@ const EditComponent = () => {
                 }
               />
 
-              {Object.keys(subImage.altText || {}).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2">
                   <label className="text-[#246cfc] text-[18px] font-semibold">
-                    Alt Text ({lang})
+                    Alt Text 
                   </label>
                   <input
                     type="text"
-                    value={subImage.altText[lang]}
+                    value={subImage.altText}
                     onChange={(e) =>
-                      handleAltTextChange("subImages", index, lang, e.target.value)
+                      handleAltTextChange("subImages", index, e.target.value)
                     }
                   />
                 </div>
-              ))}
 
               {/* SubImage search */}
               <div className="flex flex-col gap-2 items-center">
@@ -2173,16 +2124,16 @@ const EditComponent = () => {
           {componentData.props.headers.map((header, index) => (
             <div key={index} className="flex flex-col gap-2 border p-4 rounded-md">
               <h3>Header {index + 1}</h3>
-              {Object.keys(header || {}).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
+              {Object.keys(header || {}).map(() => (
+                <div className="flex flex-col gap-2">
                   <label className="text-[#246cfc] text-[18px] font-semibold">
-                    header({lang})
+                    header
                   </label>
                   <input
                     type="text"
-                    value={header[lang]}
+                    value={header}
                     onChange={(e) =>
-                      handleArrayHeaderChange("headers", index, lang, e.target.value)
+                      handleArrayHeaderChange("headers", index, e.target.value)
                     }
                   />
                 </div>
@@ -2252,17 +2203,15 @@ const EditComponent = () => {
               />
 
               <label>Text</label>
-              {Object.keys(item.text).map((lang) => (
                 <input
-                  key={lang}
                   type="text"
-                  placeholder={`Text (${lang})`}
-                  value={item.text[lang]}
+                  placeholder={`Text `}
+                  value={item.text}
                   onChange={(e) =>
-                    handleItemTextChange("items", index, lang, e.target.value)
+                    handleItemTextChange("items", index, e.target.value)
                   }
                 />
-              ))}
+ 
 
               {/* SubImage search */}
               <div className="flex flex-col gap-2 items-center">

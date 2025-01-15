@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const PageList = () => {
   const [pages, setPages] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedLanguage, setSelectedLanguage] = useState("tr"); // Varsayılan dil
+  const [selectedLanguage, setSelectedLanguage] = useState("tr");
 
   useEffect(() => {
     const fetchPages = async () => {
@@ -52,29 +52,28 @@ const PageList = () => {
         <table className="min-w-full bg-white mt-10">
           <thead>
             <tr>
-              <th className="py-2 px-4 border">Başlık (TR)</th>
-              <th className="py-2 px-4 border">URL'ler</th>
+              <th className="py-2 px-4 border">Sayfa Adı</th>
+              <th className="py-2 px-4 border">Diller</th>
               <th className="py-2 px-4 border">İşlemler</th>
             </tr>
           </thead>
           <tbody>
             {pages.map((page) => (
               <tr key={page._id}>
-                <td className="py-2 px-4 border uppercase font-semibold">
-                  {page.pageName}
-                </td>
+                <td className="py-2 px-4 border">{page.pageName}</td>
                 <td className="py-2 px-4 border">
-                  <div className="flex flex-row gap-3 font-normal">
-                    <span>TR: "{page.urls?.tr || ""}"</span>
-                    <span>EN: "{page.urls?.en || ""}"</span>
-                    <span>RU: "{page.urls?.ru || ""}"</span>
-                    <span>DE: "{page.urls?.de || ""}"</span>
+                  <div className="flex flex-wrap gap-2">
+                    {Object.keys(page.translations || {}).map((lang) => (
+                      <span key={lang} className="bg-gray-200 px-2 py-1 rounded">
+                        {lang.toUpperCase()}
+                      </span>
+                    ))}
                   </div>
                 </td>
                 <td className="py-2 px-4 border">
                   <Link to={`/panel/pages/${page.pageName}/${selectedLanguage}`}>
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
-                      Düzenle
+                    <button className="bg-blue-500 text-white px-4 py-2 rounded">
+                      Görüntüle
                     </button>
                   </Link>
                 </td>
@@ -83,7 +82,7 @@ const PageList = () => {
           </tbody>
         </table>
       ) : (
-        <p className="text-white">Yükleniyor</p>
+        <p className="text-white">Yükleniyor...</p>
       )}
     </div>
   );
