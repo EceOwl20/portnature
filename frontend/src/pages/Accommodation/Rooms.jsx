@@ -3,14 +3,15 @@ import MainBackgroundRooms from './components/MainBackgroundRooms'
 import RoomInfo from "./components/RoomInfo";
 import RoomFeatures from "./components/RoomFeatures";
 import RoomsInfoCarousel from "./components/RoomsInfoCarousel";
-import Cookies from "js-cookie";
+import { useLanguage } from "../../../src/context/LanguageContext";
 
 const Rooms = () => {
+  const { language: lang } = useLanguage(); 
+
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
   const [roomsCarouselData, setRoomsCarouselData] = useState(null);
   const [roomsFeaturesData, setRoomsFeaturesData] = useState(null);
   const [error, setError] = useState(null);
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
 
   useEffect(() => {
     const fetchPageData = async () => {

@@ -56,10 +56,8 @@ const Header = () => {
     // Dili state'te güncelle
     setLanguage(newLang);
     // Cookie'yi güncelle
-    Cookies.set("language", newLang);
-    // Sayfayı yenile
-    window.location.reload();
-    // veya window.location.href = '/'; // istenirse anasayfaya yönlendirme
+    Cookies.set("language", newLang); // Cookie'yi güncelle
+    setIsOpen(false); // Dropdown menüyü kapat
   };
 
   useEffect(() => {

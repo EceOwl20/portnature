@@ -3,7 +3,7 @@ import pubImage from "../../../public/images/food/IrishPub2.png"
 import FilterFindCafe from './FilterFindCafe'
 import ContactSection from '../homepage/ContactSection'
 import CafeBarsMainSection from "./CafeBarsMainSection";
-import Cookies from "js-cookie";
+import { useLanguage } from "../../../src/context/LanguageContext";
 
 const CoffeeBarsMainPage = () => {
   const [cafesbarsMainSection, setCafesbarsMainSection] = useState(null);
@@ -11,7 +11,7 @@ const CoffeeBarsMainPage = () => {
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
+  const { language: lang } = useLanguage(); 
 
   useEffect(() => {
     const fetchPageData = async () => {

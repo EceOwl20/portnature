@@ -6,7 +6,7 @@ import ContactSection from "../../components/homepage/ContactSection";
 import FindRestaurantSection from "../../components/food/FindRestaurantSection";
 import RestaurantSection from "../../components/food/RestaurantSection";
 import AllRestaurantSection from "../../pages/Food/AllRestaurantSection"
-import Cookies from "js-cookie";
+import { useLanguage } from "../../../src/context/LanguageContext";
 
 const FoodDrinkPage = ({
   carouselImg,
@@ -23,7 +23,7 @@ const FoodDrinkPage = ({
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
+  const { language: lang } = useLanguage(); 
 
   useEffect(() => {
     const fetchPageData = async () => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AlaCarteMain from '../../components/food/AlaCarteMain'
 import FindRestaurantSection from '../../components/food/FindRestaurantSection'
 import ContactSection from '../../components/homepage/ContactSection'
-import Cookies from "js-cookie";
+import { useLanguage } from "../../../src/context/LanguageContext";
 
 const AlacartePage = () => {
   const [alacarteMainData, setAlacarteMainData] = useState(null);
@@ -10,7 +10,7 @@ const AlacartePage = () => {
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
+  const { language: lang } = useLanguage();
 
   useEffect(() => {
     const fetchPageData = async () => {

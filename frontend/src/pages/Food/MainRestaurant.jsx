@@ -3,6 +3,7 @@ import RestaurantMainSection from '../../components/food/RestaurantMainSection'
 import OtherRestaurants from '../Kids/components/OtherRestaurants'
 import Cookies from "js-cookie";
 import ContactSection from "../../components/homepage/ContactSection";
+import { useLanguage } from "../../../src/context/LanguageContext";
 
 const MainRestaurant = ({page}) => {
   const [mainSectionData, setMainSection] = useState(null);
@@ -10,7 +11,7 @@ const MainRestaurant = ({page}) => {
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
+  const { language: lang } = useLanguage(); 
 
   useEffect(() => {
     const fetchPageData = async () => {

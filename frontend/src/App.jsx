@@ -233,7 +233,7 @@ const App = () => {
             </>
           )}
           <main>
-          <ScrollToTop />
+          {/* <ScrollToTop /> */}
            <Routes>
            {/* <Route path="/homepage" element={<DynamicPage page="homepage" />} />
            <Route path="/about" element={<DynamicPage page="about" />} />
