@@ -389,7 +389,7 @@ const EditComponent = () => {
         [field]: {
           ...prev.props[field],
           firebaseUrl: selectedImage.firebaseUrl,
-          altText: selectedImage.altText,
+          altText: selectedImage.altText[language],
         },
       },
     }));
@@ -397,7 +397,7 @@ const EditComponent = () => {
 
   const handleReplaceImage = (field, index, selectedImage) => {
     handleArrayChange(field, index, "firebaseUrl", selectedImage.firebaseUrl);
-    handleArrayChange(field, index, "altText", selectedImage.altText);
+    handleArrayChange(field, index, "altText", selectedImage.altText[language],);
   };
 
   const handleReplaceFilterItemImage = (index, field, selectedImage) => {
@@ -408,7 +408,7 @@ const EditComponent = () => {
         [field]: {
           ...updatedArray[index][field],
           firebaseUrl: selectedImage.firebaseUrl,
-          altText: selectedImage.altText,
+          altText: selectedImage.altText[language],
         },
       };
       return {
@@ -429,7 +429,7 @@ const EditComponent = () => {
         [field]: {
           ...updatedArray[index][field],
           firebaseUrl: selectedImage.firebaseUrl,
-          altText: selectedImage.altText,
+          altText: selectedImage.altText[language],
         },
       };
       return {
@@ -737,21 +737,19 @@ const EditComponent = () => {
               className="border p-2"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-            {singleImage.altText &&
-              Object.keys(singleImage.altText).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label>Alt Text ({lang})</label>
+            <h3 className="font-semibold mt-4">Alt Text </h3>
+                <div  className="flex flex-col gap-2">
+                  <label>Alt Text </label>
                   <input
                     type="text"
-                    value={singleImage.altText[lang]}
+                    value={singleImage.altText}
                     onChange={(e) =>
-                      handleImageAltTextChange(lang, e.target.value)
+                      handleImageAltTextChange(e.target.value)
                     }
                     className="border p-2"
                   />
                 </div>
-              ))}
+          
               <button
                   className="bg-blue-600 text-white px-4 py-2 rounded mt-2"
                   onClick={() => {
@@ -825,19 +823,17 @@ const EditComponent = () => {
               className="border p-2"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-            {singleImage2.altText &&
-              Object.keys(singleImage2.altText).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label>Alt Text ({lang})</label>
+            <h3 className="font-semibold mt-4">Alt Text </h3>
+
+                <div  className="flex flex-col gap-2">
+                  <label>Alt Text </label>
                   <input
                     type="text"
-                    value={singleImage2.altText[lang]}
-                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    value={singleImage2.altText}
+                    onChange={(e) => handleImageAltTextChange(e.target.value)}
                     className="border p-2"
                   />
                 </div>
-              ))}
           </div>
         )}
 
@@ -894,19 +890,17 @@ const EditComponent = () => {
               className="border p-2"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-            {singleIconImage.altText &&
-              Object.keys(singleIconImage.altText).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label>Alt Text ({lang})</label>
+            <h3 className="font-semibold mt-4">Alt Text </h3>
+                <div className="flex flex-col gap-2">
+                  <label>Alt Text </label>
                   <input
                     type="text"
-                    value={singleIconImage.altText[lang]}
-                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    value={singleIconImage.altText}
+                    onChange={(e) => handleImageAltTextChange(e.target.value)}
                     className="border p-2"
                   />
                 </div>
-              ))}
+    
           </div>
         )}
 
@@ -963,19 +957,16 @@ const EditComponent = () => {
               className="border p-2"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-            {singleIconImage2.altText &&
-              Object.keys(singleIconImage2.altText).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label>Alt Text ({lang})</label>
+            <h3 className="font-semibold mt-4">Alt Text</h3>
+                <div className="flex flex-col gap-2">
+                  <label>Alt Text </label>
                   <input
                     type="text"
-                    value={singleIconImage2.altText[lang]}
-                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    value={singleIconImage2.altText}
+                    onChange={(e) => handleImageAltTextChange(e.target.value)}
                     className="border p-2"
                   />
                 </div>
-              ))}
           </div>
         )}
 
@@ -1232,15 +1223,13 @@ const EditComponent = () => {
               </div>
 
               {/* image altText */}
-              {item.image?.altText &&
-                Object.keys(item.image.altText).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1">
                     <label className="text-sm font-semibold">
-                      AltText ({lang})
+                      AltText 
                     </label>
                     <input
                       type="text"
-                      value={item.image.altText[lang]}
+                      value={item.image.altText}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1265,7 +1254,7 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
+               
 
               {/* iconImage alanı */}
               <label className="font-semibold text-[16px] mt-4">
@@ -1296,15 +1285,14 @@ const EditComponent = () => {
               />
 
               {/* iconImage altText */}
-              {item.iconImage?.altText &&
-                Object.keys(item.iconImage.altText).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1">
+
+                  <div className="flex flex-col gap-1">
                     <label className="text-sm font-semibold">
-                      Icon AltText ({lang})
+                      Icon AltText 
                     </label>
                     <input
                       type="text"
-                      value={item.iconImage.altText[lang]}
+                      value={item.iconImage.altText}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1329,7 +1317,6 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* iconImage dimensions */}
               <div className="flex gap-2 mt-2">
@@ -1443,15 +1430,13 @@ const EditComponent = () => {
               </div>
 
               {/* header (çok dilli) */}
-              {item.header &&
-                Object.keys(item.header).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Header ({lang})
+                      Header 
                     </label>
                     <input
                       type="text"
-                      value={item.header[lang]}
+                      value={item.header}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1473,18 +1458,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* text (çok dilli) */}
-              {item.text &&
-                Object.keys(item.text).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Text ({lang})
+                      Text 
                     </label>
                     <input
                       type="text"
-                      value={item.text[lang]}
+                      value={item.text}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1506,18 +1488,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* buttonText (çok dilli) */}
-              {item.buttonText &&
-                Object.keys(item.buttonText).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Button Text ({lang})
+                      Button Text 
                     </label>
                     <input
                       type="text"
-                      value={item.buttonText[lang]}
+                      value={item.buttonText}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1539,18 +1518,16 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
+
 
               {/* buttonLink (çok dilli) */}
-              {item.buttonLink &&
-                Object.keys(item.buttonLink).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Button Link ({lang})
+                      Button Link 
                     </label>
                     <input
                       type="text"
-                      value={item.buttonLink[lang]}
+                      value={item.buttonLink}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1572,18 +1549,16 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
+
 
               {/* time (çok dilli) */}
-              {item.time &&
-                Object.keys(item.time).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Time ({lang})
+                      Time 
                     </label>
                     <input
                       type="text"
-                      value={item.time[lang]}
+                      value={item.time}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1605,18 +1580,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* kidsFriendly (çok dilli) */}
-              {item.kidsFriendly &&
-                Object.keys(item.kidsFriendly).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div  className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Kids Friendly? ({lang})
+                      Kids Friendly? 
                     </label>
                     <input
                       type="text"
-                      value={item.kidsFriendly[lang]}
+                      value={item.kidsFriendly}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1638,18 +1610,16 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* ageLimit (çok dilli) */}
-              {item.ageLimit &&
-                Object.keys(item.ageLimit).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Age Limit ({lang})
+                      Age Limit 
                     </label>
                     <input
                       type="text"
-                      value={item.ageLimit[lang]}
+                      value={item.ageLimit}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.filterItems,
@@ -1671,7 +1641,6 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
             </div>
           ))}
         </div>
@@ -1754,13 +1723,11 @@ const EditComponent = () => {
               </div>
 
               {/* image altText */}
-              {item.image?.altText &&
-                Object.keys(item.image.altText).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1">
-                    <label className="text-sm font-semibold">AltText ({lang})</label>
+                  <div  className="flex flex-col gap-1">
+                    <label className="text-sm font-semibold">AltText</label>
                     <input
                       type="text"
-                      value={item.image.altText[lang]}
+                      value={item.image.altText}
                       onChange={(e) => {
                         const updatedArray = [...componentData.props.restaurantItems];
                         updatedArray[index] = {
@@ -1783,18 +1750,16 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
+
 
               {/* header (çok dilli) */}
-              {item.header &&
-                Object.keys(item.header).map((lang) => (
                   <div key={lang} className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Header ({lang})
+                      Header 
                     </label>
                     <input
                       type="text"
-                      value={item.header[lang]}
+                      value={item.header}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.restaurantItems,
@@ -1816,18 +1781,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* text (çok dilli) */}
-              {item.text &&
-                Object.keys(item.text).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Text ({lang})
+                      Text 
                     </label>
                     <input
                       type="text"
-                      value={item.text[lang]}
+                      value={item.text}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.restaurantItems,
@@ -1849,16 +1811,13 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* span (çok dilli) */}
-              {item.span &&
-                Object.keys(item.span).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">Span ({lang})</label>
+                  <div className="flex flex-col gap-1 mt-2">
+                    <label className="text-sm font-semibold">Span</label>
                     <input
                       type="text"
-                      value={item.span[lang]}
+                      value={item.span}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.restaurantItems,
@@ -1880,18 +1839,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* buttonText (çok dilli) */}
-              {item.buttonText &&
-                Object.keys(item.buttonText).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Button Text ({lang})
+                      Button Text 
                     </label>
                     <input
                       type="text"
-                      value={item.buttonText[lang]}
+                      value={item.buttonText}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.restaurantItems,
@@ -1913,18 +1869,15 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
 
               {/* buttonLink (çok dilli) */}
-              {item.buttonLink &&
-                Object.keys(item.buttonLink).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
+                  <div className="flex flex-col gap-1 mt-2">
                     <label className="text-sm font-semibold">
-                      Button Link ({lang})
+                      Button Link
                     </label>
                     <input
                       type="text"
-                      value={item.buttonLink[lang]}
+                      value={item.buttonLink}
                       onChange={(e) => {
                         const updatedArray = [
                           ...componentData.props.restaurantItems,
@@ -1946,7 +1899,6 @@ const EditComponent = () => {
                       }}
                     />
                   </div>
-                ))}
             </div>
           ))}
         </div>
@@ -2100,20 +2052,18 @@ const EditComponent = () => {
                 }
               />
 
-              {Object.keys(subImage.altText || {}).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2">
                   <label className="text-[#246cfc] text-[18px] font-semibold">
-                    Alt Text ({lang})
+                    Alt Text 
                   </label>
                   <input
                     type="text"
-                    value={subImage.altText[lang]}
+                    value={subImage.altText}
                     onChange={(e) =>
-                      handleAltTextChange("subImages", index, lang, e.target.value)
+                      handleAltTextChange("subImages", index, e.target.value)
                     }
                   />
                 </div>
-              ))}
 
               {/* SubImage search */}
               <div className="flex flex-col gap-2 items-center">
@@ -2174,16 +2124,16 @@ const EditComponent = () => {
           {componentData.props.headers.map((header, index) => (
             <div key={index} className="flex flex-col gap-2 border p-4 rounded-md">
               <h3>Header {index + 1}</h3>
-              {Object.keys(header || {}).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
+              {Object.keys(header || {}).map(() => (
+                <div className="flex flex-col gap-2">
                   <label className="text-[#246cfc] text-[18px] font-semibold">
-                    header({lang})
+                    header
                   </label>
                   <input
                     type="text"
-                    value={header[lang]}
+                    value={header}
                     onChange={(e) =>
-                      handleArrayHeaderChange("headers", index, lang, e.target.value)
+                      handleArrayHeaderChange("headers", index, e.target.value)
                     }
                   />
                 </div>
@@ -2253,17 +2203,15 @@ const EditComponent = () => {
               />
 
               <label>Text</label>
-              {Object.keys(item.text).map((lang) => (
                 <input
-                  key={lang}
                   type="text"
-                  placeholder={`Text (${lang})`}
-                  value={item.text[lang]}
+                  placeholder={`Text `}
+                  value={item.text}
                   onChange={(e) =>
-                    handleItemTextChange("items", index, lang, e.target.value)
+                    handleItemTextChange("items", index, e.target.value)
                   }
                 />
-              ))}
+ 
 
               {/* SubImage search */}
               <div className="flex flex-col gap-2 items-center">
