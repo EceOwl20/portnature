@@ -2,22 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
 const PageDetails = () => {
-  const { pageName, language } = useParams(); // Dil parametresini ekledik
-  const [pageDetails, setPageDetails] = useState(null);
+  const { pageName, language } = useParams();
+  const [pageDetails, setPageDetails] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPageDetails = async () => {
       try {
-        const response = await fetch(`/api/page/${pageName}/translations/${language}`);
+        const response = await fetch(
+          `http://localhost:3000/api/page/${pageName}/translations/${language}`
+        );
         const data = await response.json();
 
         if (!response.ok) {
           throw new Error(data.message || "Failed to fetch page details");
         }
 
-        const translatedData = data.translations[language || "tr"]; // Varsayılan dil "tr"
-        setPageDetails(translatedData);
+        // Yanıtın doğrudan `translations` key'i içinde olduğunu varsayalım
+        setPageDetails(data.translations || []);
       } catch (err) {
         setError(err.message);
       }
@@ -27,7 +29,7 @@ const PageDetails = () => {
   }, [pageName, language]);
 
   if (error) return <p>Error: {error}</p>;
-  if (!pageDetails) return <p>Loading...</p>;
+  if (!pageDetails.length) return <p>Loading...</p>;
 
   return (
     <div className="container mx-auto px-4 pb-4 min-h-screen">
@@ -35,7 +37,7 @@ const PageDetails = () => {
         {pageName} - {language.toUpperCase()} Component Listesi
       </h1>
 
-      {pageDetails.components.length > 0 ? (
+      {pageDetails.length > 0 ? (
         <table className="min-w-full bg-white mt-10">
           <thead>
             <tr>
@@ -44,8 +46,8 @@ const PageDetails = () => {
             </tr>
           </thead>
           <tbody>
-            {pageDetails.components.map((component, index) => (
-              <tr key={component._id}>
+            {pageDetails.map((component, index) => (
+              <tr key={index}>
                 <td className="py-2 px-4 border">{component.type}</td>
                 <td className="py-2 px-4 border">
                   <Link

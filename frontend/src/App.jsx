@@ -297,8 +297,8 @@ const App = () => {
                 <Route path="/panel/edit/:page" element={<EditDynamicPage />} />
                 
                 <Route path="/panel/pages" element={<PageList />} />
-                <Route path="/panel/pages/:pageName" element={<PageDetails />} />
-                <Route path="/panel/pages/:pageName/components/:componentIndex" element={<EditComponent />} />
+                <Route path="/panel/pages/:pageName/:language" element={<PageDetails />} />
+                <Route path="/panel/pages/:pageName/:language/:componentIndex" element={<EditComponent />} />
 
 
             </Route>

@@ -211,16 +211,23 @@ export const deleteImageFromComponent = async (req, res) => {
   }
 };
 
-export const getTranslations = async (req, res) => {
-  const { pageName } = req.params;
+// Sayfa çevirilerini döndüren controller
+export const getPageTranslations = async (req, res) => {
+  const { pageName, language } = req.params;
 
   try {
+    // Sayfayı veritabanından çek
     const page = await Page.findOne({ pageName });
+
+    // Eğer sayfa bulunamazsa 404 döndür
     if (!page) {
       return res.status(404).json({ message: "Page not found" });
     }
 
-    res.status(200).json(page.translations);
+    // İlgili dil için çevirileri al, yoksa boş array döndür
+    const translations = page.translations[language] || [];
+
+    res.status(200).json({ translations });
   } catch (error) {
     console.error("Error fetching translations:", error);
     res.status(500).json({ message: "Server error", error });
