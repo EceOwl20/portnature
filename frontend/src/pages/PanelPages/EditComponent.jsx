@@ -74,31 +74,24 @@ const EditComponent = () => {
   useEffect(() => {
     const fetchComponentData = async () => {
       try {
-        const response = await fetch(`/api/page/${pageName}/translations`);
+        const response = await fetch(
+          `http://localhost:3000/api/page/${pageName}/translations/${language}/components/${componentIndex}`
+        );
         const data = await response.json();
-  
+
         if (!response.ok) {
           throw new Error(data.message || "Failed to fetch component data");
         }
-  
-        // Seçilen dili kullanarak ilgili veriyi çek
-        const translatedComponents = data.translations[language || "en"]; // Varsayılan olarak "en"
-  
-        // İlgili componentIndex'e göre veriyi ayıkla
-        const selectedComponent = translatedComponents[componentIndex];
-  
-        if (!selectedComponent) {
-          throw new Error("Component not found");
-        }
-  
-        setComponentData(selectedComponent);
+
+        setComponentData(data); // Veriyi state'e ata
       } catch (err) {
         setError(err.message);
       }
     };
-  
+
     fetchComponentData();
-  }, [pageName, componentIndex, language]); // Dil değişikliği durumunda tekrar çalışır
+  }, [pageName, language, componentIndex]);
+
 
   // --------------------------------------------------
   // useEffect: SEARCH QUERY DEBOUNCING (searchQuery)
@@ -300,7 +293,7 @@ const EditComponent = () => {
           field === "images" || field === "subImages"
             ? {
                 firebaseUrl: "",
-                altText: { en: "", tr: "", de: "", ru: "" },
+                altText: "",
                 width: 0,
                 height: 0,
               }
@@ -1021,92 +1014,83 @@ const EditComponent = () => {
               className="border p-2"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text (Multi-language)</h3>
-            {singleButtonImage.altText &&
-              Object.keys(singleButtonImage.altText).map((lang) => (
-                <div key={lang} className="flex flex-col gap-2">
-                  <label>Alt Text ({lang})</label>
+            <h3 className="font-semibold mt-4">Alt Text </h3>
+
+                <div className="flex flex-col gap-2">
+                  <label>Alt Text </label>
                   <input
                     type="text"
-                    value={singleButtonImage.altText[lang]}
-                    onChange={(e) => handleImageAltTextChange(lang, e.target.value)}
+                    value={singleButtonImage.altText}
+                    onChange={(e) => handleImageAltTextChange(e.target.value)}
                     className="border p-2"
                   />
                 </div>
-              ))}
           </div>
         )}
 
         {singleButtonText && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">Button Text (Multi-language)</h2>
-            {Object.keys(singleButtonText).map((lang) => (
-              <div key={lang} className="flex flex-col gap-2">
-                <label>Button Text ({lang})</label>
+            <h2 className="font-bold text-xl">Button Text </h2>
+              <div className="flex flex-col gap-2">
+                <label>Button Text </label>
                 <input
                   type="text"
-                  value={singleButtonText[lang]}
+                  value={singleButtonText}
                   onChange={(e) =>
-                    handleLangFieldChange("buttonText", lang, e.target.value)
+                    handleLangFieldChange("buttonText", e.target.value)
                   }
                   className="border p-2"
                 />
               </div>
-            ))}
           </div>
         )}
 
         {/* --------------- SINGLE HEADER --------------- */}
         {singleHeader && (
           <div className="flex flex-col gap-4 w-[100%] p-4 rounded my-4 bg-white">
-            <h2 className="font-bold text-[15px]">Header (Multi-language)</h2>
-            {Object.keys(singleHeader).map((lang) => (
-              <div key={lang} className="flex flex-col gap-2">
-                <label className="text-[12px]">Header ({lang})</label>
+            <h2 className="font-bold text-[15px]">Header </h2>
+              <div className="flex flex-col gap-2">
+                <label className="text-[12px]">Header </label>
                 <input
                   type="text"
-                  value={singleHeader[lang]}
-                  onChange={(e) => handleLangFieldChange("header", lang, e.target.value)}
+                  value={singleHeader}
+                  onChange={(e) => handleLangFieldChange("header", e.target.value)}
                   className="border p-2 text-[10px]"
                 />
               </div>
-            ))}
+          
           </div>
         )}
 
         {/* --------------- SINGLE TEXT --------------- */}
         {singleText && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">Text (Multi-language)</h2>
-            {Object.keys(singleText).map((lang) => (
-              <div key={lang} className="flex flex-col gap-2">
-                <label>Text ({lang})</label>
+            <h2 className="font-bold text-xl">Text </h2>
+              <div  className="flex flex-col gap-2">
+                <label>Text </label>
                 <input
                   type="text"
-                  value={singleText[lang]}
-                  onChange={(e) => handleLangFieldChange("text", lang, e.target.value)}
+                  value={singleText}
+                  onChange={(e) => handleLangFieldChange("text", e.target.value)}
                   className="border p-2"
                 />
               </div>
-            ))}
           </div>
         )}
 
         {/* --------------- SINGLE SPAN --------------- */}
         {singleSpan && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">Text (Multi-language)</h2>
-            {Object.keys(singleSpan).map((lang) => (
-              <div key={lang} className="flex flex-col gap-2">
-                <label>Span Text ({lang})</label>
+            <h2 className="font-bold text-xl">Text </h2>
+              <div className="flex flex-col gap-2">
+                <label>Span Text </label>
                 <input
                   type="text"
-                  value={singleSpan[lang]}
-                  onChange={(e) => handleLangFieldChange("span", lang, e.target.value)}
+                  value={singleSpan}
+                  onChange={(e) => handleLangFieldChange("span", e.target.value)}
                   className="border p-2"
                 />
               </div>
-            ))}
           </div>
         )}
 
@@ -2022,51 +2006,50 @@ const EditComponent = () => {
                   )}
                 </div>
 
-                {Object.keys(image.altText || {}).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-2">
+          
+                  <div className="flex flex-col gap-2">
                     <label className="text-black text-[15px] font-semibold">
-                      Alt Text ({lang})
+                      Alt Text 
                     </label>
                     <input
                       type="text"
-                      value={image.altText[lang]}
+                      value={image.altText}
                       className="text-[12px] border p-1"
                       onChange={(e) =>
-                        handleAltTextChange("images", index, lang, e.target.value)
+                        handleAltTextChange("images", index, e.target.value)
                       }
                     />
                   </div>
-                ))}
+           
 
-                {Object.keys(image.header || {}).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2">
                     <label className="text-black text-[18px] font-semibold">
-                      Header ({lang})
+                      Header 
                     </label>
                     <input
                       type="text"
-                      value={image.header[lang]}
+                      value={image.header}
                       onChange={(e) =>
-                        handleHeaderChange("images", index, lang, e.target.value)
+                        handleHeaderChange("images", index, e.target.value)
                       }
                     />
                   </div>
-                ))}
 
-                {Object.keys(image.text || {}).map((lang) => (
-                  <div key={lang} className="flex flex-col gap-2">
+
+                {/* {Object.keys(image.text || {}).map(() => ( */}
+                  <div className="flex flex-col gap-2">
                     <label className="text-black text-[18px] font-semibold">
-                      Text ({lang})
+                      Text 
                     </label>
                     <input
                       type="text"
-                      value={image.text[lang]}
+                      value={image.text}
                       onChange={(e) =>
-                        handleTextChange("images", index, lang, e.target.value)
+                        handleTextChange("images", index, e.target.value)
                       }
                     />
                   </div>
-                ))}
+                {/* ))} */}
               </div>
             ))}
           </div>

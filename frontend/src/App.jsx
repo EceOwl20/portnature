@@ -298,7 +298,7 @@ const App = () => {
                 
                 <Route path="/panel/pages" element={<PageList />} />
                 <Route path="/panel/pages/:pageName/:language" element={<PageDetails />} />
-                <Route path="/panel/pages/:pageName/:language/:componentIndex" element={<EditComponent />} />
+                <Route path="/panel/pages/:pageName/translations/:language/components/:componentIndex" element={<EditComponent />} />
 
 
             </Route>

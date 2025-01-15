@@ -8,7 +8,8 @@ import {
   updateComponent,
   deleteItemFromComponent,
   deleteImageFromComponent,
-  getPageTranslations
+  getPageTranslations,
+  getComponentByIndex
 } from "../controller/page.js";
 
 const router = express.Router();
@@ -29,7 +30,7 @@ router.put("/:pageName", updatePage);
 router.delete("/:pageName", deletePage);
 
 // Belirli bir component'i güncelleme
-router.put("/:pageName/components/:componentIndex", updateComponent);
+router.put("/:pageName/translations/:language/components/:componentIndex", updateComponent);
 
 // Bir component'in items içerisinden belirli bir item'ı silme
 router.delete("/:pageName/components/:componentIndex/items/:itemIndex", deleteItemFromComponent);
@@ -38,6 +39,9 @@ router.delete("/:pageName/components/:componentIndex/items/:itemIndex", deleteIt
 router.delete("/:pageName/components/:componentIndex/images/:imageIndex", deleteImageFromComponent);
 
 router.get("/:pageName/translations/:language", getPageTranslations); 
+
+router.get("/:pageName/translations/:language/components/:componentIndex", getComponentByIndex);
+
 
 
 export default router;

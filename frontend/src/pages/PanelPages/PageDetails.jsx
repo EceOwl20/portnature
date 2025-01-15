@@ -51,7 +51,7 @@ const PageDetails = () => {
                 <td className="py-2 px-4 border">{component.type}</td>
                 <td className="py-2 px-4 border">
                   <Link
-                    to={`/panel/pages/${pageName}/components/${index}/${language}`}
+                    to={`/panel/pages/${pageName}/translations/${language}/components/${index}`}
                   >
                     <button className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
                       Düzenle

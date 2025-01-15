@@ -127,27 +127,27 @@ export const updateLanguageComponents = async (req, res) => {
 
 
 
-// Belirli bir component'i güncelleme
-export const updateComponent = async (req, res) => {
-  const { pageName, language, componentIndex } = req.params;
-  const updatedData = req.body;
+// // Belirli bir component'i güncelleme
+// export const updateComponent = async (req, res) => {
+//   const { pageName, language, componentIndex } = req.params;
+//   const updatedData = req.body;
 
-  try {
-    const page = await Page.findOne({ pageName });
-    if (!page) return res.status(404).json({ message: "Page not found" });
+//   try {
+//     const page = await Page.findOne({ pageName });
+//     if (!page) return res.status(404).json({ message: "Page not found" });
 
-    const translation = page.translations.find((t) => t.language === language);
-    if (!translation) return res.status(404).json({ message: `Translation for ${language} not found` });
+//     const translation = page.translations.find((t) => t.language === language);
+//     if (!translation) return res.status(404).json({ message: `Translation for ${language} not found` });
 
-    translation.components[componentIndex] = updatedData;
-    await page.save();
+//     translation.components[componentIndex] = updatedData;
+//     await page.save();
 
-    res.status(200).json({ message: "Component updated successfully" });
-  } catch (error) {
-    console.error("Error updating component:", error);
-    res.status(500).json({ message: "Server error", error });
-  }
-};
+//     res.status(200).json({ message: "Component updated successfully" });
+//   } catch (error) {
+//     console.error("Error updating component:", error);
+//     res.status(500).json({ message: "Server error", error });
+//   }
+// };
 
 
 export const deleteItemFromComponent = async (req, res) => {
@@ -233,6 +233,74 @@ export const getPageTranslations = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
+
+export const updateComponent = async (req, res) => {
+  const { pageName, language, componentIndex } = req.params; // "language" ve "componentIndex" parametreleri
+  const updatedData = req.body; // Güncellenmiş component verisi
+
+  try {
+    // Sayfayı bul
+    const page = await Page.findOne({ pageName });
+    if (!page) {
+      return res.status(404).json({ message: "Page not found" });
+    }
+
+    // İlgili dil için çevirileri al
+    const translation = page.translations[language];
+    if (!translation) {
+      return res.status(404).json({ message: `No translations found for language: ${language}` });
+    }
+
+    // Component indexini kontrol et
+    if (!translation[componentIndex]) {
+      return res.status(404).json({ message: "Component not found" });
+    }
+
+    // Component'i güncelle
+    translation[componentIndex] = updatedData;
+
+    // Güncellemeyi kaydet
+    await page.save();
+
+    res.status(200).json({ message: "Component updated successfully" });
+  } catch (error) {
+    console.error("Error updating component:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+
+export const getComponentByIndex = async (req, res) => {
+  const { pageName, language, componentIndex } = req.params;
+
+  try {
+    const page = await Page.findOne({ pageName });
+    if (!page) {
+      return res.status(404).json({ message: "Page not found" });
+    }
+
+    const translation = page.translations[language];
+    if (!translation) {
+      return res.status(404).json({ message: `No translations found for language: ${language}` });
+    }
+
+    const component = translation[componentIndex];
+    if (!component) {
+      return res.status(404).json({ message: "Component not found" });
+    }
+
+    res.status(200).json(component);
+  } catch (error) {
+    console.error("Error fetching component:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+
+
+
+
 
 
 

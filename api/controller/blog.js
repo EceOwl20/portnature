@@ -24,7 +24,7 @@ export const makaleListele = async (request, reponse, next) => {
 export const makaleGetir = async (request, response, next) => {
     const {id } = request.params;
     try {
-        const blog = await Blog.findById({ id });
+        const blog = await Blog.findById( id );
         if (blog) {
             response.status(200).json({ success: true, blog });
         } else {
