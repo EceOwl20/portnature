@@ -10,6 +10,8 @@ const EditComponent = () => {
   const { pageName, componentIndex, language } = useParams();
   const navigate = useNavigate();
 
+  const supportedLanguages = ["en", "tr", "de", "ru"];
+
   // --------------------------------------------------
   // STATE: COMPONENT DATA, ERROR, SUCCESS
   // --------------------------------------------------
@@ -606,9 +608,25 @@ const EditComponent = () => {
   // --------------------------------------------------
   return (
     <div className="flex flex-col items-start font-monserrat z-50 bg-transparent justify-start m-5">
+      <div className="flex flex-row items-center justify-between w-full">
       <h1 className="text-[25px] font-medium my-4 text-[#ffffff]">
         Edit Component: {componentData.type}
       </h1>
+      {/* Dil Butonları */}
+      <div className="flex gap-2">
+          {supportedLanguages.map((lang) => (
+            <button
+              key={lang}
+              onClick={() => navigate(`/panel/pages/${pageName}/translations/${lang}/components/${componentIndex}`)}
+              className={`px-4 py-2 rounded ${
+                lang === language ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
+            >
+              {lang.toUpperCase()}
+            </button>
+          ))}
+        </div>
+      </div>
 
       {/* GRID WRAPPER */}
       <div className="grid grid-cols-2 items-start justify-center w-[40%] gap-[2%]">
