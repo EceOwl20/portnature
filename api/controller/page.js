@@ -236,31 +236,36 @@ export const getPageTranslations = async (req, res) => {
 
 
 export const updateComponent = async (req, res) => {
-  const { pageName, language, componentIndex } = req.params; // "language" ve "componentIndex" parametreleri
-  const updatedData = req.body; // Güncellenmiş component verisi
+  const { pageName, language, componentIndex } = req.params;
+  const updatedComponent = req.body; // Güncellenmiş component verisi
 
   try {
-    // Sayfayı bul
     const page = await Page.findOne({ pageName });
     if (!page) {
       return res.status(404).json({ message: "Page not found" });
     }
 
-    // İlgili dil için çevirileri al
     const translation = page.translations[language];
     if (!translation) {
-      return res.status(404).json({ message: `No translations found for language: ${language}` });
+      return res
+        .status(404)
+        .json({ message: `No translations found for language: ${language}` });
     }
 
-    // Component indexini kontrol et
     if (!translation[componentIndex]) {
       return res.status(404).json({ message: "Component not found" });
     }
 
-    // Component'i güncelle
-    translation[componentIndex] = updatedData;
+    // Mevcut component'i koruyarak güncelle
+    translation[componentIndex] = {
+      ...translation[componentIndex], // Mevcut verileri koru
+      ...updatedComponent,           // Yeni verilerle güncelle
+      props: {
+        ...translation[componentIndex].props, // Mevcut props'u koru
+        ...updatedComponent.props,           // Yeni props'u ekle
+      },
+    };
 
-    // Güncellemeyi kaydet
     await page.save();
 
     res.status(200).json({ message: "Component updated successfully" });
@@ -269,6 +274,8 @@ export const updateComponent = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
+
 
 
 export const getComponentByIndex = async (req, res) => {

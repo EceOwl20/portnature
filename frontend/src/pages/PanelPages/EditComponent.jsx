@@ -80,19 +80,15 @@ const EditComponent = () => {
           `http://localhost:3000/api/page/${pageName}/translations/${language}/components/${componentIndex}`
         );
         const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.message || "Failed to fetch component data");
-        }
-
-        setComponentData(data); // Veriyi state'e ata
+        if (!response.ok) throw new Error(data.message || "Data fetch failed.");
+        setComponentData(data);
       } catch (err) {
         setError(err.message);
       }
     };
-
     fetchComponentData();
   }, [pageName, language, componentIndex]);
+  
 
 
   // --------------------------------------------------
@@ -178,7 +174,7 @@ const EditComponent = () => {
   const handleHeaderChange = (field, index, lang, value) => {
     setComponentData((prev) => {
       const updatedArray = [...prev.props[field]];
-      updatedArray[index].header[lang] = value;
+      updatedArray[index].header = value;
 
       return {
         ...prev,
@@ -269,7 +265,6 @@ const EditComponent = () => {
         ...prev.props,
         [field]: {
           ...prev.props[field],
-          [lang]: value,
         },
       },
     }));
@@ -446,55 +441,21 @@ const EditComponent = () => {
   // HANDLERS: SAVE CHANGES
   // --------------------------------------------------
   const handleSave = async () => {
-    setError(null);
-    setSuccess(false);
-  
     try {
-      // Translations yapısını oluştur
-      const translations = {
-        en: [],
-        tr: [],
-        de: [],
-        ru: [],
-      };
-  
-      // Mevcut `componentData`yı dillere göre ayır
-      componentData.forEach((component) => {
-        Object.keys(translations).forEach((lang) => {
-          const translatedComponent = { ...component, props: {} };
-  
-          Object.keys(component.props).forEach((key) => {
-            const value = component.props[key];
-  
-            // Eğer değer bir nesne ise ve içinde dil bilgisi varsa
-            if (typeof value === "object" && value[lang] !== undefined) {
-              translatedComponent.props[key] = value[lang];
-            } else {
-              translatedComponent.props[key] = value; // Düz metin veya diğer veri türlerini koru
-            }
-          });
-  
-          translations[lang].push(translatedComponent);
-        });
-      });
-  
       const response = await fetch(
-        `http://localhost:/api/page/${pageName}/translations`,
+        `http://localhost:3000/api/page/${pageName}/translations/${language}/components/${componentIndex}`,
         {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ translations }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(componentData),
         }
       );
-  
       if (!response.ok) {
-        throw new Error("Failed to save component data");
+        const data = await response.json();
+        throw new Error(data.message || "Save failed.");
       }
-  
       setSuccess(true);
-      navigate(`/panel/pages/${pageName}`);
+      alert("Component updated successfully!");
     } catch (err) {
       setError(err.message);
     }
@@ -522,7 +483,7 @@ const EditComponent = () => {
   const handleItemTextChange = (field, index, lang, value) => {
     setComponentData((prev) => {
       const updatedItems = [...prev.props.items];
-      updatedItems[index].text = { ...updatedItems[index].text, [lang]: value };
+      updatedItems[index].text = value;
 
       return {
         ...prev,
@@ -2205,7 +2166,7 @@ const EditComponent = () => {
               <label>Text</label>
                 <input
                   type="text"
-                  placeholder={`Text `}
+                  placeholder={`Text`}
                   value={item.text}
                   onChange={(e) =>
                     handleItemTextChange("items", index, e.target.value)
