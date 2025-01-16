@@ -60,7 +60,7 @@ const PageList = () => {
           <tbody>
             {pages.map((page) => (
               <tr key={page._id}>
-                <td className="py-2 px-4 border">{page.pageName}</td>
+                <td className="py-2 px-4 border uppercase">{page.pageName}</td>
                 <td className="py-2 px-4 border">
                   <div className="flex flex-wrap gap-2">
                     {Object.keys(page.translations || {}).map((lang) => (

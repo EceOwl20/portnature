@@ -292,7 +292,7 @@ const App = () => {
                 <Route path="users/:id" element={<ProfilEditor />} />
 
                 <Route path="/panel/bloglar" element={<BlogListele />} />
-                <Route path="/panel/blog/guncelle/:id" element={<BlogDüzenle />} />
+                <Route path="/panel/blog/guncelle/:slug" element={<BlogDüzenle />} />
                 <Route path="/panel/yeniblogekle" element={<BlogEkle />} />
                 <Route path="/panel/edit/:page" element={<EditDynamicPage />} />
                 

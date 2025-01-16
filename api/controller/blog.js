@@ -54,20 +54,34 @@ export const makaleGetir = async (request, response, next) => {
 }
 
 export const makaleGuncelle = async (req, res, next) => {
-    try {
-      const blog = await Blog.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-      }, { new: true });
-  
-      if (!blog) {
-        return res.status(404).json({ success: false, message: "Blog bulunamadı" });
-      }
-      
-      return res.status(200).json({ success: true, message: "Blog güncellendi", blog });
-    } catch (error) {
-      next(error);
+  try {
+    const { slug } = req.params; // Slug ile blogu bul
+    const updatedData = req.body; // Güncellenmiş veriler
+
+    // Blogu slug'a göre bul ve güncelle
+    const blog = await Blog.findOneAndUpdate(
+      { $or: [
+          { "urls.tr": slug },
+          { "urls.en": slug },
+          { "urls.ru": slug },
+          { "urls.de": slug },
+        ] 
+      },
+      { $set: updatedData }, // Yeni verilerle güncelle
+      { new: true } // Güncellenmiş veriyi döndür
+    );
+
+    if (!blog) {
+      return res.status(404).json({ success: false, message: "Blog bulunamadı" });
     }
+
+    return res.status(200).json({ success: true, message: "Blog güncellendi", blog });
+  } catch (error) {
+    console.error("Güncelleme hatası:", error);
+    next(error);
   }
+};
+
   
 
 export const makaleSil = async (request, response, next) => {
