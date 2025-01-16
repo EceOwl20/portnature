@@ -2123,14 +2123,15 @@ const EditComponent = () => {
 
       {/* --------------- ITEMS ARRAY --------------- */}
       {componentData.props.items?.length > 0 && (
-        <div className="flex flex-col gap-4 w-full mt-8">
-          <h2 className="text-[20px] text-[#0e0c1b] font-semibold ml-2">Items</h2>
+        <div className="flex flex-col gap-4 w-[40%] mt-8">
+          <h2 className="text-[15px] text-white font-semibold ml-2">Items</h2>
           {componentData.props.items.map((item, index) => (
-            <div key={index} className="border p-4 rounded-md flex flex-col gap-2">
-              <h3>Item {index + 1}</h3>
+            <div key={index} className="border p-4 rounded-md flex flex-col gap-2 text-black bg-white text-[12px]">
+              <h3 className="text-white">Item {index + 1}</h3>
 
               <label>Image URL</label>
               <input
+             className="border p-2 text-[10px]"
                 type="text"
                 value={item.firebaseUrl}
                 onChange={(e) =>
@@ -2140,6 +2141,7 @@ const EditComponent = () => {
 
               <label>Large Dimensions</label>
               <input
+              className="border p-2 text-[10px]"
                 type="number"
                 placeholder="Width"
                 value={item.largeWidth}
@@ -2148,6 +2150,7 @@ const EditComponent = () => {
                 }
               />
               <input
+              className="border p-2 text-[10px]"
                 type="number"
                 placeholder="Height"
                 value={item.largeHeight}
@@ -2158,6 +2161,7 @@ const EditComponent = () => {
 
               <label>Small Dimensions</label>
               <input
+              className="border p-2 text-[10px]"
                 type="number"
                 placeholder="Width"
                 value={item.smallWidth}
@@ -2166,6 +2170,7 @@ const EditComponent = () => {
                 }
               />
               <input
+              className="border p-2 text-[10px]"
                 type="number"
                 placeholder="Height"
                 value={item.smallHeight}
@@ -2176,6 +2181,7 @@ const EditComponent = () => {
 
               <label>Text</label>
                 <input
+               className="border p-2 text-[10px]"
                   type="text"
                   placeholder={`Text`}
                   value={item.text}
@@ -2229,7 +2235,7 @@ const EditComponent = () => {
 
               <button
                 onClick={() => handleRemoveItem(index)}
-                className="w-1/6 bg-red-600 text-white py-1 px-3 rounded"
+                className="w-1/5 bg-red-600 text-white py-1 px-3 rounded whitespace-nowrap"
               >
                 Remove Item
               </button>
