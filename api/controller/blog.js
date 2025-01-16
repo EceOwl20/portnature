@@ -13,10 +13,8 @@ export const yeniMakale = async (request, response, next) => {
 
   export const makaleGetirByLangAndSlug = async (req, res, next) => {
     try {
-      const { lang, slug } = req.params;
-      const blog = await Blog.findOne({
-        [`urls.${lang}`]: slug,
-      });
+      const { title, language } = req.params;
+      const blog = await Blog.findOne({ title });
   
       if (!blog) {
         return res
@@ -85,3 +83,41 @@ export const makaleSil = async (request, response, next) => {
         response.status(500).json({ success: false, message: 'Sunucu hatası' });
     }
 };
+
+
+export const getBlogBySlug = async (req, res) => {
+  try {
+    const { slug } = req.params; // URL'den slug'ı al
+
+    // Blog'u slug'a göre bul
+    const blog = await Blog.findOne({
+      $or: [
+        { "urls.tr": slug },
+        { "urls.en": slug },
+        { "urls.ru": slug },
+        { "urls.de": slug },
+      ],
+    });
+
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found for the given slug." });
+    }
+
+    res.status(200).json({ success: true, blog });
+  } catch (error) {
+    console.error("Error fetching blog:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const getBlogList = async (req, res) => {
+  try {
+    const blogs = await Blog.find({}, "urls sections thumbnail"); // Sadece gerekli alanları getir
+    res.status(200).json({ success: true, blogs });
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+    res.status(500).json({ success: false, message: "Error fetching blogs", error });
+  }
+};
+
+
