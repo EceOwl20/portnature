@@ -258,17 +258,28 @@ const EditComponent = () => {
     }));
   };
 
-  const handleLangFieldChange = (field, lang, value) => {
+  // const handleLangFieldChange = (field, lang, value) => {
+  //   setComponentData((prev) => ({
+  //     ...prev,
+  //     props: {
+  //       ...prev.props,
+  //       [field]: {
+  //         ...prev.props[value],
+  //       },
+  //     },
+  //   }));
+  // };
+
+  const handleFieldChange = (fieldName, value) => {
     setComponentData((prev) => ({
       ...prev,
       props: {
         ...prev.props,
-        [field]: {
-          ...prev.props[field],
-        },
+        [fieldName]: value,
       },
     }));
   };
+  
 
   const handleAutoplayChange = (newValue) => {
     setComponentData((prev) => ({
@@ -1007,7 +1018,7 @@ const EditComponent = () => {
                   type="text"
                   value={singleButtonText}
                   onChange={(e) =>
-                    handleLangFieldChange("buttonText", e.target.value)
+                    handleFieldChange("buttonText", e.target.value)
                   }
                   className="border p-2"
                 />
@@ -1024,7 +1035,7 @@ const EditComponent = () => {
                 <input
                   type="text"
                   value={singleHeader}
-                  onChange={(e) => handleLangFieldChange("header", e.target.value)}
+                  onChange={(e) => handleFieldChange("header", e.target.value)}
                   className="border p-2 text-[10px]"
                 />
               </div>
@@ -1041,7 +1052,7 @@ const EditComponent = () => {
                 <input
                   type="text"
                   value={singleText}
-                  onChange={(e) => handleLangFieldChange("text", e.target.value)}
+                  onChange={(e) => handleFieldChange("text", e.target.value)}
                   className="border p-2"
                 />
               </div>
@@ -1057,7 +1068,7 @@ const EditComponent = () => {
                 <input
                   type="text"
                   value={singleSpan}
-                  onChange={(e) => handleLangFieldChange("span", e.target.value)}
+                  onChange={(e) => handleFieldChange("span", e.target.value)}
                   className="border p-2"
                 />
               </div>

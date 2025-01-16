@@ -5,97 +5,58 @@ import { useLanguage } from "../../src/context/LanguageContext";
 const BlogDetails = () => {
   const { slug } = useParams(); // URL'deki slug
   const navigate = useNavigate();
-  const { language: lang } = useLanguage(); // Context'teki dil
+  const { language } = useLanguage(); // Dil bilgisi Context'ten alınır
 
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchBlog = async () => {
-      setLoading(true); // Yükleme durumunu başlat
-      setError(null); // Hataları sıfırla
-      setBlog(null); // Blog içeriğini sıfırla
-  
-      try {
-        const response = await fetch(`http://localhost:3000/api/blog/getir/${lang}/${slug}`);
-        const data = await response.json();
-  
-        if (data.success) {
-          setBlog(data.blog);
-        } else {
-          throw new Error(data.message || "Blog bulunamadı.");
-        }
-      } catch (error) {
-        setError(error.message || "Beklenmeyen bir hata oluştu.");
-      } finally {
-        setLoading(false); // Yükleme durumunu kapat
-      }
-    };
-  
-    // Eğer lang ve slug mevcutsa veriyi çek
-    if (lang && slug) {
-      fetchBlog();
-    }
-  }, [lang, slug]); // lang veya slug değiştiğinde çalışır
-  
-  useEffect(() => {
-    if (blog && blog.urls && blog.urls[lang]) {
-      const newSlug = blog.urls[lang];
-      if (newSlug && (newSlug !== slug || blog.lang !== lang)) {
-        navigate(`/blog/${lang}/${newSlug}`, { replace: true });
-      }
-    }
-  }, [lang, blog, slug, navigate]);
-  
+  // Backend'den blog verisini çek
   useEffect(() => {
     const fetchBlog = async () => {
       setLoading(true);
+      setError(null);
       setBlog(null);
-  
+
       try {
-        const response = await fetch(`http://localhost:3000/api/blog/getir/${lang}/${slug}`);
+        const response = await fetch(
+          `http://localhost:3000/api/blog/${slug}` // Backend'e sadece slug ile istek at
+        );
         const data = await response.json();
-  
+
         if (data.success) {
           setBlog(data.blog);
         } else {
-          setError(data.message || "Blog bulunamadı.");
+          throw new Error(data.message || "Blog not found.");
         }
       } catch (error) {
-        setError(error.message || "Beklenmeyen bir hata oluştu.");
+        setError(error.message || "Unexpected error occurred.");
       } finally {
         setLoading(false);
       }
     };
-  
-    fetchBlog();
-  }, [lang, slug]); // Dil veya slug değiştiğinde yeni veriyi çek
-  
-  
-  
 
-  if (loading) return <p>Yükleniyor...</p>;
-  if (error) return <p>Hata: {error}</p>;
-  if (!blog) return <p>Blog bulunamadı.</p>;
+    if (slug) {
+      fetchBlog();
+    }
+  }, [slug]); // slug değiştiğinde veriyi yeniden çek
 
-  const sections = blog.sections[lang] || [];
+  // Dil değiştiğinde ilgili slug'a yönlendir
+  useEffect(() => {
+    if (blog && blog.urls) {
+      const newSlug = blog.urls[language]; // Yeni dilin slug'ını al
+      if (newSlug && newSlug !== slug) {
+        navigate(`/blog/${newSlug}`, { replace: true }); // Yeni slug ile yönlendir
+      }
+    }
+  }, [language, blog, slug, navigate]); // language veya blog değiştiğinde çalışır
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (!blog) return <p>Blog not found.</p>;
+
+  const sections = blog.sections[language] || [];
   const images = blog.images || [];
-
-  const sectionsWithOrder = sections.map((section, index) => ({
-    ...section,
-    type: "section",
-    order: index * 2,
-  }));
-
-  const imagesWithOrder = images.map((image, index) => ({
-    src: image,
-    type: "image",
-    order: index * 10 + 5,
-  }));
-
-  const combinedContent = [...sectionsWithOrder, ...imagesWithOrder];
-  combinedContent.sort((a, b) => a.order - b.order);
 
   return (
     <div className="flex flex-col px-4 pb-4 items-center justify-center">
@@ -107,36 +68,23 @@ const BlogDetails = () => {
         />
       )}
 
-      {combinedContent.length > 0 ? (
-        combinedContent.map((item, index) => {
-          if (item.type === "section") {
-            return (
-              <div key={item._id || `section-${index}`} className="flex flex-col items-center gap-7 w-7/12 mb-6">
-                {item.title && (
-                  <h2 className="mb-2 text-[40px] font-lora font-medium">
-                    {item.title}
-                  </h2>
-                )}
-                {item.content && <p className="text-[14px] font-monserrat">{item.content}</p>}
-              </div>
-            );
-          } else if (item.type === "image") {
-            return (
-              <div key={`image-${index}`} className="w-5/12 mb-6">
-                <img
-                  src={item.src}
-                  alt={`Blog Image ${index + 1}`}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            );
-          } else {
-            return null;
-          }
-        })
-      ) : (
-        <p>Bu dil için içerik bulunamadı.</p>
-      )}
+      {sections.map((section, index) => (
+        <div key={section._id || index} className="flex flex-col items-center mb-6">
+          {section.title && (
+            <h2 className="mb-2 text-2xl font-bold">{section.title}</h2>
+          )}
+          {section.content && <p className="text-lg">{section.content}</p>}
+        </div>
+      ))}
+
+      {images.map((image, index) => (
+        <img
+          key={index}
+          src={image}
+          alt={`Blog Image ${index}`}
+          className="mb-6 w-5/12"
+        />
+      ))}
     </div>
   );
 };
