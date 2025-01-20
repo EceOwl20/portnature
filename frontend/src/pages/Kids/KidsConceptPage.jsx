@@ -12,7 +12,7 @@ const images = [mainImg, mainImg, mainImg];
 const KidsConceptPage = ({ items }) => {
   return (
     <div>
-      <MainBackgroundRooms img={mainImg} header="KIDS CONCEPT" />
+      {/* <MainBackgroundRooms img={mainImg} header="KIDS CONCEPT" /> */}
       <InfoIconSection
         items={items}
         text="Port Nature kids' concept hotel is a family-friendly establishment specifically for children's needs and interests.
@@ -21,7 +21,7 @@ We provide play areas, children's menus, and organized activities."
       <BorderCarousel />
       <BorderCarousel2 />
       <KidsBannerSection />
-      <ContactSection/> 
+      {/* <ContactSection/>  */}
     </div>
   );
 };
