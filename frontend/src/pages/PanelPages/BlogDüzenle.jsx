@@ -14,7 +14,7 @@ import { app } from "../../firebase";
 import GaleriPopup from "./PanelComponents/GaleriPopup";
 
 const BlogDüzenle = () => {
-  const { id } = useParams();
+  const { slug, id } = useParams();
   const [form, setForm] = useState({
     urls: { tr: "", en: "", ru: "", de: "" },
     author: "",
@@ -44,7 +44,7 @@ const BlogDüzenle = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/blog/getir/${id}`);
+        const response = await fetch(`http://localhost:3000/api/blog/${slug}`);
         const data = await response.json();
         if (data.success) {
           setForm(data.blog);
@@ -58,7 +58,7 @@ const BlogDüzenle = () => {
       }
     };
     fetchBlog();
-  }, [id]);
+  }, [slug]);
 
   // sections değiştiğinde urls'i (slug) güncelle
   useEffect(() => {
@@ -74,18 +74,19 @@ const BlogDüzenle = () => {
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
     };
-
+  
     const newUrls = { ...form.urls };
     const languages = ["tr", "en", "ru", "de"];
-
+  
     languages.forEach((lang) => {
       if (form.sections[lang]?.length > 0 && form.sections[lang][0]?.title) {
-        newUrls[lang] = generateSlug(form.sections[lang][0].title);
+        newUrls[lang] = generateSlug(form.sections[lang][0].title); // Yeni slug oluştur
       }
     });
-
-    setForm((prevForm) => ({ ...prevForm, urls: newUrls }));
+  
+    setForm((prevForm) => ({ ...prevForm, urls: newUrls })); // Güncellenmiş slug'ları kaydet
   }, [form.sections]);
+  
 
   // Form alanları değişimi
   const handleFormChange = (e) => {
@@ -197,17 +198,17 @@ const BlogDüzenle = () => {
     setWait(true);
     setError(null);
     setSuccess(false);
-
+  
     try {
-      const response = await fetch(`/api/blog/guncelle/${id}`, {
+      const response = await fetch(`/api/blog/guncelle/${slug}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify(form), // Formdaki tüm verileri gönder
       });
       const data = await response.json();
-
+  
       if (data.success) {
         setSuccess(data.message || "Blog başarıyla güncellendi.");
       } else {
@@ -219,6 +220,7 @@ const BlogDüzenle = () => {
       setWait(false);
     }
   };
+  
 
   if (loading) {
     return (

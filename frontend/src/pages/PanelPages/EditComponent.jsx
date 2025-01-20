@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import GaleriPopup from "./PanelComponents/GaleriPopup";
-import GaleriPage from "./GaleriPage";
+import CarouselPreview from "./PanelComponents/CarouselPreview"
+import HomeCarousel from "../../components/homepage/HomeCarousel";
 
 const EditComponent = () => {
   // --------------------------------------------------
@@ -34,41 +35,42 @@ const EditComponent = () => {
   const [filterImageSearchQuery, setFilterImageSearchQuery] = useState("");
   const [filterImageSearchResults, setFilterImageSearchResults] = useState([]);
 
-  const [restaurantImageSearchQuery, setRestaurantImageSearchQuery] = useState("");
-  const [restaurantImageSearchResults, setRestaurantImageSearchResults] = useState([]);
+  const [restaurantImageSearchQuery, setRestaurantImageSearchQuery] =
+    useState("");
+  const [restaurantImageSearchResults, setRestaurantImageSearchResults] =
+    useState([]);
 
   // --------------------------------------------------
   // STATE: GALERİ OPEN/CLOSE
   // --------------------------------------------------
   const [isGaleriOpen, setGaleriOpen] = useState(false);
-    // #### EKLENDİ: Hangi alanı güncelleyeceğimizi tutan state
-    const [activeField, setActiveField] = useState(null);
+  // #### EKLENDİ: Hangi alanı güncelleyeceğimizi tutan state
+  const [activeField, setActiveField] = useState(null);
 
-    // #### EKLENDİ: Galeri üzerinden seçilen resmi "activeField"’e göre ekle
-    const handleGalleryImageSelect = (selectedImage) => {
-      if (activeField === "singleImage") {
-        // Tek bir alanı güncelle
-        setComponentData((prev) => ({
-          ...prev,
-          props: {
-            ...prev.props,
-            image: {
-              ...prev.props.image,
-              firebaseUrl: selectedImage.firebaseUrl,
-              altText: selectedImage.altText,
-            },
+  // #### EKLENDİ: Galeri üzerinden seçilen resmi "activeField"’e göre ekle
+  const handleGalleryImageSelect = (selectedImage) => {
+    if (activeField === "singleImage") {
+      // Tek bir alanı güncelle
+      setComponentData((prev) => ({
+        ...prev,
+        props: {
+          ...prev.props,
+          image: {
+            ...prev.props.image,
+            firebaseUrl: selectedImage.firebaseUrl,
+            altText: selectedImage.altText,
           },
-        }));
-      }
-      else if (activeField?.type === "images") {
-        // images dizisi => handleReplaceImage("images", activeField.index, selectedImage);
-        handleReplaceImage("images", activeField.index, selectedImage);
-      }
-    
-      setGaleriOpen(false);
-    };
-    
-  
+        },
+      }));
+    } else if (activeField?.type === "images") {
+      // images dizisi => handleReplaceImage("images", activeField.index, selectedImage);
+      handleReplaceImage("images", activeField.index, selectedImage);
+    } else if (activeField?.type === "subImages") {
+      handleReplaceImage("subImages", activeField.index, selectedImage);
+    }
+
+    setGaleriOpen(false);
+  };
 
   // --------------------------------------------------
   // useEffect: FETCH COMPONENT DATA ON MOUNT
@@ -88,8 +90,6 @@ const EditComponent = () => {
     };
     fetchComponentData();
   }, [pageName, language, componentIndex]);
-  
-
 
   // --------------------------------------------------
   // useEffect: SEARCH QUERY DEBOUNCING (searchQuery)
@@ -279,7 +279,6 @@ const EditComponent = () => {
       },
     }));
   };
-  
 
   const handleAutoplayChange = (newValue) => {
     setComponentData((prev) => ({
@@ -316,7 +315,9 @@ const EditComponent = () => {
   // --------------------------------------------------
   const handleSearch = async () => {
     try {
-      const response = await fetch(`/api/images/search?name=${searchQuery}&lang=en`);
+      const response = await fetch(
+        `/api/images/search?name=${searchQuery}&lang=en`
+      );
       const data = await response.json();
 
       if (!response.ok) {
@@ -330,7 +331,9 @@ const EditComponent = () => {
 
   const handleSubImageSearch = async () => {
     try {
-      const response = await fetch(`/api/images/search?name=${subImageSearchQuery}&lang=en`);
+      const response = await fetch(
+        `/api/images/search?name=${subImageSearchQuery}&lang=en`
+      );
       const data = await response.json();
 
       if (!response.ok) {
@@ -344,7 +347,9 @@ const EditComponent = () => {
 
   const handleItemSearch = async () => {
     try {
-      const response = await fetch(`/api/images/search?name=${itemSearchQuery}&lang=en`);
+      const response = await fetch(
+        `/api/images/search?name=${itemSearchQuery}&lang=en`
+      );
       const data = await response.json();
 
       if (!response.ok) {
@@ -358,7 +363,9 @@ const EditComponent = () => {
 
   const handleFilterImageSearch = async () => {
     try {
-      const response = await fetch(`/api/images/search?name=${filterImageSearchQuery}&lang=en`);
+      const response = await fetch(
+        `/api/images/search?name=${filterImageSearchQuery}&lang=en`
+      );
       const data = await response.json();
 
       if (!response.ok) {
@@ -372,7 +379,9 @@ const EditComponent = () => {
 
   const handleRestaurantImageSearch = async () => {
     try {
-      const response = await fetch(`/api/images/search?name=${restaurantImageSearchQuery}&lang=en`);
+      const response = await fetch(
+        `/api/images/search?name=${restaurantImageSearchQuery}&lang=en`
+      );
       const data = await response.json();
 
       if (!response.ok) {
@@ -403,7 +412,7 @@ const EditComponent = () => {
 
   const handleReplaceImage = (field, index, selectedImage) => {
     handleArrayChange(field, index, "firebaseUrl", selectedImage.firebaseUrl);
-    handleArrayChange(field, index, "altText", selectedImage.altText[language],);
+    handleArrayChange(field, index, "altText", selectedImage.altText);
   };
 
   const handleReplaceFilterItemImage = (index, field, selectedImage) => {
@@ -471,7 +480,6 @@ const EditComponent = () => {
       setError(err.message);
     }
   };
-  
 
   // --------------------------------------------------
   // HANDLERS: ITEM CRUD
@@ -554,6 +562,33 @@ const EditComponent = () => {
     }
   };
 
+  const renderComponentPreview = (data) => {
+    switch (data.type) {
+      case "Carousel":
+        return (
+          <Carousel
+            images={data.props.images || []}
+            delay={data.props.delay || 3000}
+            autoplay={data.props.autoplay || false}
+          />
+        );
+      case "ImageWithText":
+        return (
+          <div className="flex flex-col items-center">
+            <img
+              src={data.props.image?.firebaseUrl || ""}
+              alt={data.props.image?.altText || "Image"}
+              className="w-full max-w-md rounded"
+            />
+            <h3 className="mt-4 text-xl font-semibold">{data.props.header}</h3>
+            <p className="mt-2 text-gray-600">{data.props.text}</p>
+          </div>
+        );
+      default:
+        return <p>No preview available for this component type.</p>;
+    }
+  };
+
   // --------------------------------------------------
   // EARLY RETURNS IF NO DATA OR ERROR
   // --------------------------------------------------
@@ -569,6 +604,7 @@ const EditComponent = () => {
   const singleButtonText = componentData.props.buttonText;
   const singleHeader = componentData.props.header;
   const singleText = componentData.props.text;
+  const singleText2 = componentData.props.text2;
   const singleSpan = componentData.props.span;
   const singleDelay = componentData.props.delay;
   const singleAutoplay = componentData.props.autoplay;
@@ -581,15 +617,19 @@ const EditComponent = () => {
   return (
     <div className="flex flex-col items-start font-monserrat z-50 bg-transparent justify-start m-5">
       <div className="flex flex-row items-center justify-between w-full">
-      <h1 className="text-[25px] font-medium my-4 text-[#ffffff]">
-        Edit Component: {componentData.type}
-      </h1>
-      {/* Dil Butonları */}
-      <div className="flex gap-2">
+        <h1 className="text-[25px] font-medium my-4 text-[#ffffff]">
+          Edit Component: {componentData.type}
+        </h1>
+        {/* Dil Butonları */}
+        <div className="flex gap-2">
           {supportedLanguages.map((lang) => (
             <button
               key={lang}
-              onClick={() => navigate(`/panel/pages/${pageName}/translations/${lang}/components/${componentIndex}`)}
+              onClick={() =>
+                navigate(
+                  `/panel/pages/${pageName}/translations/${lang}/components/${componentIndex}`
+                )
+              }
               className={`px-4 py-2 rounded ${
                 lang === language ? "bg-blue-500 text-white" : "bg-gray-200"
               }`}
@@ -602,7 +642,6 @@ const EditComponent = () => {
 
       {/* GRID WRAPPER */}
       <div className="grid grid-cols-2 items-start justify-center w-[40%] gap-[2%]">
-        
         {/* GALERİ POPUP */}
         {isGaleriOpen && (
           <GaleriPopup
@@ -643,7 +682,9 @@ const EditComponent = () => {
           const isLangObject =
             value &&
             typeof value === "object" &&
-            ["en", "tr", "de", "ru"].every((lang) => value.hasOwnProperty(lang));
+            ["en", "tr", "de", "ru"].every((lang) =>
+              value.hasOwnProperty(lang)
+            );
 
           if (isLangObject) {
             return (
@@ -654,7 +695,7 @@ const EditComponent = () => {
                 <h3 className="font-bold text-lg">{key} (Multi-language)</h3>
                 {Object.keys(value).map((lang) => (
                   <div key={lang} className="flex flex-col gap-2">
-                    <label className="text-[#246cfc] text-[18px] font-semibold">
+                    <label className="text-black text-[18px] font-semibold">
                       {key} ({lang})
                     </label>
                     <input
@@ -682,12 +723,13 @@ const EditComponent = () => {
             return (
               <div
                 key={key}
-                className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full"
+                className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full bg-white"
               >
-                <label className="text-[#246cfc] text-[18px] font-semibold">
+                <label className="text-black text-[13px] font-semibold">
                   {key}
                 </label>
                 <input
+                  className="border p-2 text-[10px]"
                   type="text"
                   value={componentData.props[key]}
                   onChange={(e) => handleInputChange(key, e.target.value)}
@@ -699,50 +741,49 @@ const EditComponent = () => {
 
         {/* --------------- SINGLE IMAGE 1 --------------- */}
         {singleImage && (
-          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">Single Image</h2>
-            <label className="font-semibold">Firebase URL</label>
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
+            <h2 className="font-bold text-[16px]">Single Image</h2>
+            <label className="font-semibold hidden">Firebase URL</label>
             <input
               type="text"
               value={singleImage.firebaseUrl || ""}
               onChange={(e) => handleImageUrlChange(e.target.value)}
-              className="border p-2"
+              className="border p-2 hidden"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text </h3>
-                <div  className="flex flex-col gap-2">
-                  <label>Alt Text </label>
-                  <input
-                    type="text"
-                    value={singleImage.altText}
-                    onChange={(e) =>
-                      handleImageAltTextChange(e.target.value)
-                    }
-                    className="border p-2"
-                  />
-                </div>
-          
-              <button
-                  className="bg-blue-600 text-white px-4 py-2 rounded mt-2"
-                  onClick={() => {
-                    setActiveField("singleImage");  // “image” alanını güncelleyeceğimizi belirt
-                    setGaleriOpen(true);            // popup’ı aç
-                  }}
-                >
-                  Galeri Aç
-              </button>
-              {singleImage.firebaseUrl && (
-                <img
-                  src={singleImage.firebaseUrl}
-                  alt="Preview"
-                  className="w-[200px] h-auto object-contain mt-2 border rounded"
-                />
-              )}
+            {singleImage.firebaseUrl && (
+              <img
+                src={singleImage.firebaseUrl}
+                alt="Preview"
+                className="w-[200px] h-auto object-contain mt-2 border rounded"
+              />
+            )}
+
+            <button
+              className="bg-blue-600 text-white px-2 py-1 w-[80%] rounded mt-2 text-[12px]"
+              onClick={() => {
+                setActiveField("singleImage"); // “image” alanını güncelleyeceğimizi belirt
+                setGaleriOpen(true); // popup’ı aç
+              }}
+            >
+              Galeri Aç
+            </button>
+
+            <h3 className="font-semibold mt-4 text-[15px]">Alt Text </h3>
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px]">Alt Text </label>
+              <input
+                type="text"
+                value={singleImage.altText}
+                onChange={(e) => handleImageAltTextChange(e.target.value)}
+                className="border p-2 text-[12px]"
+              />
+            </div>
           </div>
         )}
 
         {/* Search for a new image for Image1 */}
-        {singleImage && (
+        {/* {singleImage && (
           <div className="flex flex-col gap-2 items-center mt-4">
             <label className="text-[#e45252] text-[18px] font-semibold">
               Search for a new image for Image1
@@ -780,103 +821,75 @@ const EditComponent = () => {
                 ))}
               </div>
             )}
-          </div>
-        )}
+          </div> 
+        )}*/}
 
         {/* --------------- SINGLE IMAGE 2 --------------- */}
         {singleImage2 && (
-          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">Single Image</h2>
-            <label className="font-semibold">Firebase URL</label>
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
+            <h2 className="font-bold text-[16px]">Single Image</h2>
+            <label className="font-semibold hidden ">Firebase URL</label>
             <input
               type="text"
               value={singleImage2.firebaseUrl || ""}
               onChange={(e) => handleImageUrlChange(e.target.value)}
-              className="border p-2"
+              className="border p-2 hidden font-semibold"
             />
 
-            <h3 className="font-semibold mt-4">Alt Text </h3>
-
-                <div  className="flex flex-col gap-2">
-                  <label>Alt Text </label>
-                  <input
-                    type="text"
-                    value={singleImage2.altText}
-                    onChange={(e) => handleImageAltTextChange(e.target.value)}
-                    className="border p-2"
-                  />
-                </div>
-          </div>
-        )}
-
-        {singleImage2 && (
-          <div className="flex flex-col gap-2 items-center mt-4">
-            <label className="text-[#e45252] text-[18px] font-semibold">
-              Search for a new image for Image1
-            </label>
-            <input
-              type="text"
-              placeholder="Enter image name"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="border py-2 px-3 w-[50%]"
-            />
-            <button
-              onClick={handleSearch}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-            >
-              Search
-            </button>
-
-            {searchResults.length > 0 && (
-              <div className="flex flex-col gap-2 mt-2">
-                <h4>Search Results</h4>
-                {searchResults.map((result, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-                    onClick={() => handleReplaceSingleImage("image2", result)}
-                  >
-                    <img
-                      src={result.firebaseUrl}
-                      alt={result.altText.en}
-                      className="w-16 h-16 object-cover"
-                    />
-                    <p>{result.altText.en}</p>
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="flex flex-col gap-2 text-[12px] font-semibold">
+              <label>Alt Text </label>
+              <input
+                type="text"
+                value={singleImage2.altText}
+                onChange={(e) => handleImageAltTextChange(e.target.value)}
+                className="border p-2 text-[12px] font-normal"
+              />
+            </div>
           </div>
         )}
 
         {/* --------------- ICON IMAGE --------------- */}
         {singleIconImage && (
-          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">IconImage</h2>
-            <label className="font-semibold">Firebase URL</label>
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
+            <h2 className="font-bold text-[16px]">IconImage</h2>
+            <label className="font-semibold hidden">Firebase URL</label>
             <input
               type="text"
               value={singleIconImage.firebaseUrl || ""}
               onChange={(e) => handleImageUrlChange(e.target.value)}
-              className="border p-2"
+              className="border p-2 text-[12px] hidden"
             />
+             {singleIconImage.firebaseUrl && (
+              <img
+                src={singleIconImage.firebaseUrl}
+                alt="Preview"
+                className="w-24 h-auto object-contain mt-2 border rounded"
+              />
+            )}
+            <button
+              className="bg-blue-600 text-white px-2 py-1 w-[80%] rounded mt-2 text-[12px]"
+              onClick={() => {
+                setActiveField("singleIconImage"); // “image” alanını güncelleyeceğimizi belirt
+                setGaleriOpen(true); // popup’ı aç
+              }}
+            >
+              Galeri Aç
+            </button>
 
-            <h3 className="font-semibold mt-4">Alt Text </h3>
-                <div className="flex flex-col gap-2">
-                  <label>Alt Text </label>
-                  <input
-                    type="text"
-                    value={singleIconImage.altText}
-                    onChange={(e) => handleImageAltTextChange(e.target.value)}
-                    className="border p-2"
-                  />
-                </div>
-    
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px] font-semibold">Alt Text </label>
+              <input
+                type="text"
+                value={singleIconImage.altText}
+                onChange={(e) => handleImageAltTextChange(e.target.value)}
+                className="border p-2 font-normal text-[12px]"
+              />
+            </div>
           </div>
         )}
 
-        {singleIconImage && (
+
+        {/* {singleIconImage && (
           <div className="flex flex-col gap-2 items-center mt-4">
             <label className="text-[#e45252] text-[18px] font-semibold">
               Search for a new image for IconImage
@@ -902,7 +915,9 @@ const EditComponent = () => {
                   <div
                     key={i}
                     className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-                    onClick={() => handleReplaceSingleImage("iconImage", result)}
+                    onClick={() =>
+                      handleReplaceSingleImage("iconImage", result)
+                    }
                   >
                     <img
                       src={result.firebaseUrl}
@@ -915,11 +930,11 @@ const EditComponent = () => {
               </div>
             )}
           </div>
-        )}
+        )} */}
 
         {/* --------------- ICON IMAGE 2 --------------- */}
         {singleIconImage2 && (
-          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
             <h2 className="font-bold text-xl">IconImage 2</h2>
             <label className="font-semibold">Firebase URL</label>
             <input
@@ -930,20 +945,20 @@ const EditComponent = () => {
             />
 
             <h3 className="font-semibold mt-4">Alt Text</h3>
-                <div className="flex flex-col gap-2">
-                  <label>Alt Text </label>
-                  <input
-                    type="text"
-                    value={singleIconImage2.altText}
-                    onChange={(e) => handleImageAltTextChange(e.target.value)}
-                    className="border p-2"
-                  />
-                </div>
+            <div className="flex flex-col gap-2">
+              <label>Alt Text </label>
+              <input
+                type="text"
+                value={singleIconImage2.altText}
+                onChange={(e) => handleImageAltTextChange(e.target.value)}
+                className="border p-2"
+              />
+            </div>
           </div>
         )}
 
         {singleIconImage2 && (
-          <div className="flex flex-col gap-2 items-center mt-4">
+          <div className="flex flex-col gap-2 items-center mt-4 ">
             <label className="text-[#e45252] text-[18px] font-semibold">
               Search for a new image for IconImage2
             </label>
@@ -968,7 +983,9 @@ const EditComponent = () => {
                   <div
                     key={i}
                     className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-                    onClick={() => handleReplaceSingleImage("iconImage2", result)}
+                    onClick={() =>
+                      handleReplaceSingleImage("iconImage2", result)
+                    }
                   >
                     <img
                       src={result.firebaseUrl}
@@ -985,7 +1002,7 @@ const EditComponent = () => {
 
         {/* --------------- BUTTON IMAGE & TEXT --------------- */}
         {singleButtonImage && (
-          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
             <h2 className="font-bold text-xl">Single Image</h2>
             <label className="font-semibold">Firebase URL</label>
             <input
@@ -997,32 +1014,32 @@ const EditComponent = () => {
 
             <h3 className="font-semibold mt-4">Alt Text </h3>
 
-                <div className="flex flex-col gap-2">
-                  <label>Alt Text </label>
-                  <input
-                    type="text"
-                    value={singleButtonImage.altText}
-                    onChange={(e) => handleImageAltTextChange(e.target.value)}
-                    className="border p-2"
-                  />
-                </div>
+            <div className="flex flex-col gap-2">
+              <label>Alt Text </label>
+              <input
+                type="text"
+                value={singleButtonImage.altText}
+                onChange={(e) => handleImageAltTextChange(e.target.value)}
+                className="border p-2"
+              />
+            </div>
           </div>
         )}
 
         {singleButtonText && (
-          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">Button Text </h2>
-              <div className="flex flex-col gap-2">
-                <label>Button Text </label>
-                <input
-                  type="text"
-                  value={singleButtonText}
-                  onChange={(e) =>
-                    handleFieldChange("buttonText", e.target.value)
-                  }
-                  className="border p-2"
-                />
-              </div>
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
+            <h2 className="font-bold text-[15px]">Button Text </h2>
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px]">Button Text </label>
+              <input
+                type="text"
+                value={singleButtonText}
+                onChange={(e) =>
+                  handleFieldChange("buttonText", e.target.value)
+                }
+                className="border p-2 text-[12px]"
+              />
+            </div>
           </div>
         )}
 
@@ -1030,87 +1047,90 @@ const EditComponent = () => {
         {singleHeader && (
           <div className="flex flex-col gap-4 w-[100%] p-4 rounded my-4 bg-white">
             <h2 className="font-bold text-[15px]">Header </h2>
-              <div className="flex flex-col gap-2">
-                <label className="text-[12px]">Header </label>
-                <input
-                  type="text"
-                  value={singleHeader}
-                  onChange={(e) => handleFieldChange("header", e.target.value)}
-                  className="border p-2 text-[10px]"
-                />
-              </div>
-          
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px]">Header </label>
+              <input
+                type="text"
+                value={singleHeader}
+                onChange={(e) => handleFieldChange("header", e.target.value)}
+                className="border p-2 text-[10px]"
+              />
+            </div>
           </div>
         )}
 
         {/* --------------- SINGLE TEXT --------------- */}
         {singleText && (
-          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">Text </h2>
-              <div  className="flex flex-col gap-2">
-                <label>Text </label>
-                <input
-                  type="text"
-                  value={singleText}
-                  onChange={(e) => handleFieldChange("text", e.target.value)}
-                  className="border p-2"
-                />
-              </div>
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white text-black">
+            <h2 className="font-bold text-[15px]">Text </h2>
+            <div className="flex flex-col gap-2">
+              <label>Text </label>
+              <input
+                type="text"
+                value={singleText}
+                onChange={(e) => handleFieldChange("text", e.target.value)}
+                className="border p-2"
+              />
+            </div>
           </div>
         )}
 
         {/* --------------- SINGLE SPAN --------------- */}
         {singleSpan && (
-          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4">
-            <h2 className="font-bold text-xl">Text </h2>
-              <div className="flex flex-col gap-2">
-                <label>Span Text </label>
-                <input
-                  type="text"
-                  value={singleSpan}
-                  onChange={(e) => handleFieldChange("span", e.target.value)}
-                  className="border p-2"
-                />
-              </div>
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
+            <h2 className="font-bold text-[12px]">Span </h2>
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px]">Span Text </label>
+              <input
+                type="text"
+                value={singleSpan}
+                onChange={(e) => handleFieldChange("span", e.target.value)}
+                className="border p-2 text-[10px]"
+              />
+            </div>
           </div>
         )}
 
         {/* --------------- DELAY & AUTOPLAY --------------- */}
-        <div className="flex flex-col border p-3 mt-4 justify-center items-center bg-white rounded">
-          {/* SINGLE DELAY */}
-          {singleDelay !== undefined && (
-            <div className="flex flex-col gap-4 w-full">
-              <h2 className="font-bold text-[15px]">Delay</h2>
-              <label className="text-[12px]">Delay (saniye)</label>
-              <input
-                type="text"
-                value={singleDelay / 1000}
-                onChange={(e) => handleDelayChange(e.target.value * 1000)}
-                className="border p-2 text-[10px]"
-              />
-            </div>
-          )}
+        {(singleDelay !== undefined || singleAutoplay !== undefined) && (
+          <div className="flex flex-col border p-3 mt-4 justify-center items-center bg-white rounded">
+            {/* SINGLE DELAY */}
+            {singleDelay !== undefined && (
+              <div className="flex flex-col gap-4 w-full">
+                <h2 className="font-bold text-[15px]">Delay</h2>
+                <label className="text-[12px]">Delay (saniye)</label>
+                <input
+                  type="text"
+                  value={singleDelay / 1000}
+                  onChange={(e) => handleDelayChange(e.target.value * 1000)}
+                  className="border p-2 text-[10px]"
+                />
+              </div>
+            )}
 
-          {/* SINGLE AUTOPLAY */}
-          {singleAutoplay !== undefined && (
-            <div className="flex flex-col gap-4 w-full my-4">
-              <h2 className="font-bold text-[15px]">Autoplay</h2>
-              <label className="font-semibold text-[12px]">Autoplay</label>
-              <select
-                value={singleAutoplay ? "true" : "false"}
-                onChange={(e) => handleAutoplayChange(e.target.value === "true")}
-                className="border p-2 text-[10px]"
-              >
-                <option className="text-[10px]" value="true">
-                  true
-                </option>
-                <option className="text-[10px]" value="false">
-                  false
-                </option>
-              </select>
-            </div>
-          )}
-        </div>
+            {/* SINGLE AUTOPLAY */}
+            {singleAutoplay !== undefined && (
+              <div className="flex flex-col gap-4 w-full my-4">
+                <h2 className="font-bold text-[15px]">Autoplay</h2>
+                <label className="font-semibold text-[12px]">Autoplay</label>
+                <select
+                  value={singleAutoplay ? "true" : "false"}
+                  onChange={(e) =>
+                    handleAutoplayChange(e.target.value === "true")
+                  }
+                  className="border p-2 text-[10px]"
+                >
+                  <option className="text-[10px]" value="true">
+                    true
+                  </option>
+                  <option className="text-[10px]" value="false">
+                    false
+                  </option>
+                </select>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* --------------- FILTER ITEMS --------------- */}
@@ -1132,9 +1152,7 @@ const EditComponent = () => {
                 type="text"
                 value={item.image?.firebaseUrl || ""}
                 onChange={(e) => {
-                  const updatedArray = [
-                    ...componentData.props.filterItems,
-                  ];
+                  const updatedArray = [...componentData.props.filterItems];
                   updatedArray[index] = {
                     ...updatedArray[index],
                     image: {
@@ -1154,7 +1172,7 @@ const EditComponent = () => {
 
               {/* Search for a new main image */}
               <div className="flex flex-col gap-2 items-center my-2">
-                <label className="text-[#246cfc] text-[18px] font-semibold">
+                <label className="text-black text-[18px] font-semibold">
                   Search for a new image
                 </label>
                 <input
@@ -1195,38 +1213,33 @@ const EditComponent = () => {
               </div>
 
               {/* image altText */}
-                  <div className="flex flex-col gap-1">
-                    <label className="text-sm font-semibold">
-                      AltText 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.image.altText}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.filterItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          image: {
-                            ...updatedArray[index].image,
-                            altText: {
-                              ...updatedArray[index].image.altText,
-                              [lang]: e.target.value,
-                            },
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            filterItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
-               
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-semibold">AltText</label>
+                <input
+                  type="text"
+                  value={item.image.altText}
+                  onChange={(e) => {
+                    const updatedArray = [...componentData.props.filterItems];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      image: {
+                        ...updatedArray[index].image,
+                        altText: {
+                          ...updatedArray[index].image.altText,
+                          [lang]: e.target.value,
+                        },
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        filterItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* iconImage alanı */}
               <label className="font-semibold text-[16px] mt-4">
@@ -1236,9 +1249,7 @@ const EditComponent = () => {
                 type="text"
                 value={item.iconImage?.firebaseUrl || ""}
                 onChange={(e) => {
-                  const updatedArray = [
-                    ...componentData.props.filterItems,
-                  ];
+                  const updatedArray = [...componentData.props.filterItems];
                   updatedArray[index] = {
                     ...updatedArray[index],
                     iconImage: {
@@ -1258,37 +1269,33 @@ const EditComponent = () => {
 
               {/* iconImage altText */}
 
-                  <div className="flex flex-col gap-1">
-                    <label className="text-sm font-semibold">
-                      Icon AltText 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.iconImage.altText}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.filterItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          iconImage: {
-                            ...updatedArray[index].iconImage,
-                            altText: {
-                              ...updatedArray[index].iconImage.altText,
-                              [lang]: e.target.value,
-                            },
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            filterItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-semibold">Icon AltText</label>
+                <input
+                  type="text"
+                  value={item.iconImage.altText}
+                  onChange={(e) => {
+                    const updatedArray = [...componentData.props.filterItems];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      iconImage: {
+                        ...updatedArray[index].iconImage,
+                        altText: {
+                          ...updatedArray[index].iconImage.altText,
+                          [lang]: e.target.value,
+                        },
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        filterItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* iconImage dimensions */}
               <div className="flex gap-2 mt-2">
@@ -1298,9 +1305,7 @@ const EditComponent = () => {
                     type="number"
                     value={item.iconImage?.largeWidth || 0}
                     onChange={(e) => {
-                      const updatedArray = [
-                        ...componentData.props.filterItems,
-                      ];
+                      const updatedArray = [...componentData.props.filterItems];
                       updatedArray[index] = {
                         ...updatedArray[index],
                         iconImage: {
@@ -1324,9 +1329,7 @@ const EditComponent = () => {
                     type="number"
                     value={item.iconImage?.largeHeight || 0}
                     onChange={(e) => {
-                      const updatedArray = [
-                        ...componentData.props.filterItems,
-                      ];
+                      const updatedArray = [...componentData.props.filterItems];
                       updatedArray[index] = {
                         ...updatedArray[index],
                         iconImage: {
@@ -1353,9 +1356,7 @@ const EditComponent = () => {
                     type="number"
                     value={item.iconImage?.smallWidth || 0}
                     onChange={(e) => {
-                      const updatedArray = [
-                        ...componentData.props.filterItems,
-                      ];
+                      const updatedArray = [...componentData.props.filterItems];
                       updatedArray[index] = {
                         ...updatedArray[index],
                         iconImage: {
@@ -1379,9 +1380,7 @@ const EditComponent = () => {
                     type="number"
                     value={item.iconImage?.smallHeight || 0}
                     onChange={(e) => {
-                      const updatedArray = [
-                        ...componentData.props.filterItems,
-                      ];
+                      const updatedArray = [...componentData.props.filterItems];
                       updatedArray[index] = {
                         ...updatedArray[index],
                         iconImage: {
@@ -1402,217 +1401,187 @@ const EditComponent = () => {
               </div>
 
               {/* header (çok dilli) */}
-                  <div className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">
-                      Header 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.header}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.filterItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          header: {
-                            ...updatedArray[index].header,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            filterItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Header</label>
+                <input
+                  type="text"
+                  value={item.header}
+                  onChange={(e) => {
+                    const updatedArray = [...componentData.props.filterItems];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      header: {
+                        ...updatedArray[index].header,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        filterItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* text (çok dilli) */}
-                  <div className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">
-                      Text 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.text}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.filterItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          text: {
-                            ...updatedArray[index].text,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            filterItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Text</label>
+                <input
+                  type="text"
+                  value={item.text}
+                  onChange={(e) => {
+                    const updatedArray = [...componentData.props.filterItems];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      text: {
+                        ...updatedArray[index].text,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        filterItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* buttonText (çok dilli) */}
-                  <div className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">
-                      Button Text 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.buttonText}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.filterItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          buttonText: {
-                            ...updatedArray[index].buttonText,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            filterItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
-
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Button Text</label>
+                <input
+                  type="text"
+                  value={item.buttonText}
+                  onChange={(e) => {
+                    const updatedArray = [...componentData.props.filterItems];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      buttonText: {
+                        ...updatedArray[index].buttonText,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        filterItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* buttonLink (çok dilli) */}
-                  <div className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">
-                      Button Link 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.buttonLink}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.filterItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          buttonLink: {
-                            ...updatedArray[index].buttonLink,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            filterItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
-
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Button Link</label>
+                <input
+                  type="text"
+                  value={item.buttonLink}
+                  onChange={(e) => {
+                    const updatedArray = [...componentData.props.filterItems];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      buttonLink: {
+                        ...updatedArray[index].buttonLink,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        filterItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* time (çok dilli) */}
-                  <div className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">
-                      Time 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.time}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.filterItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          time: {
-                            ...updatedArray[index].time,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            filterItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Time</label>
+                <input
+                  type="text"
+                  value={item.time}
+                  onChange={(e) => {
+                    const updatedArray = [...componentData.props.filterItems];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      time: {
+                        ...updatedArray[index].time,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        filterItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* kidsFriendly (çok dilli) */}
-                  <div  className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">
-                      Kids Friendly? 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.kidsFriendly}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.filterItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          kidsFriendly: {
-                            ...updatedArray[index].kidsFriendly,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            filterItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Kids Friendly?</label>
+                <input
+                  type="text"
+                  value={item.kidsFriendly}
+                  onChange={(e) => {
+                    const updatedArray = [...componentData.props.filterItems];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      kidsFriendly: {
+                        ...updatedArray[index].kidsFriendly,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        filterItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* ageLimit (çok dilli) */}
 
-                  <div className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">
-                      Age Limit 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.ageLimit}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.filterItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          ageLimit: {
-                            ...updatedArray[index].ageLimit,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            filterItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Age Limit</label>
+                <input
+                  type="text"
+                  value={item.ageLimit}
+                  onChange={(e) => {
+                    const updatedArray = [...componentData.props.filterItems];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      ageLimit: {
+                        ...updatedArray[index].ageLimit,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        filterItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -1625,7 +1594,10 @@ const EditComponent = () => {
             Restaurant Items
           </h2>
           {componentData.props.restaurantItems.map((item, index) => (
-            <div key={index} className="border p-4 rounded-md flex flex-col gap-2">
+            <div
+              key={index}
+              className="border p-4 rounded-md flex flex-col gap-2"
+            >
               <h3>Restaurant Item {index + 1}</h3>
 
               {/* image alanı */}
@@ -1654,14 +1626,16 @@ const EditComponent = () => {
 
               {/* Search for a new main image */}
               <div className="flex flex-col gap-2 items-center my-2">
-                <label className="text-[#246cfc] text-[18px] font-semibold">
+                <label className="text-black text-[18px] font-semibold">
                   Search for a new image
                 </label>
                 <input
                   type="text"
                   placeholder="Enter image name"
                   value={restaurantImageSearchQuery}
-                  onChange={(e) => setRestaurantImageSearchQuery(e.target.value)}
+                  onChange={(e) =>
+                    setRestaurantImageSearchQuery(e.target.value)
+                  }
                   className="border py-2 px-3 w-[50%]"
                 />
                 <button
@@ -1679,7 +1653,11 @@ const EditComponent = () => {
                         key={i}
                         className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
                         onClick={() =>
-                          handleReplaceRestaurantItemImage(index, "image", result)
+                          handleReplaceRestaurantItemImage(
+                            index,
+                            "image",
+                            result
+                          )
                         }
                       >
                         <img
@@ -1695,182 +1673,175 @@ const EditComponent = () => {
               </div>
 
               {/* image altText */}
-                  <div  className="flex flex-col gap-1">
-                    <label className="text-sm font-semibold">AltText</label>
-                    <input
-                      type="text"
-                      value={item.image.altText}
-                      onChange={(e) => {
-                        const updatedArray = [...componentData.props.restaurantItems];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          image: {
-                            ...updatedArray[index].image,
-                            altText: {
-                              ...updatedArray[index].image.altText,
-                              [lang]: e.target.value,
-                            },
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            restaurantItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
-
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-semibold">AltText</label>
+                <input
+                  type="text"
+                  value={item.image.altText}
+                  onChange={(e) => {
+                    const updatedArray = [
+                      ...componentData.props.restaurantItems,
+                    ];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      image: {
+                        ...updatedArray[index].image,
+                        altText: {
+                          ...updatedArray[index].image.altText,
+                          [lang]: e.target.value,
+                        },
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        restaurantItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* header (çok dilli) */}
-                  <div key={lang} className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">
-                      Header 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.header}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.restaurantItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          header: {
-                            ...updatedArray[index].header,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            restaurantItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
+              <div key={lang} className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Header</label>
+                <input
+                  type="text"
+                  value={item.header}
+                  onChange={(e) => {
+                    const updatedArray = [
+                      ...componentData.props.restaurantItems,
+                    ];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      header: {
+                        ...updatedArray[index].header,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        restaurantItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* text (çok dilli) */}
-                  <div className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">
-                      Text 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.text}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.restaurantItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          text: {
-                            ...updatedArray[index].text,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            restaurantItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Text</label>
+                <input
+                  type="text"
+                  value={item.text}
+                  onChange={(e) => {
+                    const updatedArray = [
+                      ...componentData.props.restaurantItems,
+                    ];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      text: {
+                        ...updatedArray[index].text,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        restaurantItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* span (çok dilli) */}
-                  <div className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">Span</label>
-                    <input
-                      type="text"
-                      value={item.span}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.restaurantItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          span: {
-                            ...updatedArray[index].span,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            restaurantItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Span</label>
+                <input
+                  type="text"
+                  value={item.span}
+                  onChange={(e) => {
+                    const updatedArray = [
+                      ...componentData.props.restaurantItems,
+                    ];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      span: {
+                        ...updatedArray[index].span,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        restaurantItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* buttonText (çok dilli) */}
-                  <div className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">
-                      Button Text 
-                    </label>
-                    <input
-                      type="text"
-                      value={item.buttonText}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.restaurantItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          buttonText: {
-                            ...updatedArray[index].buttonText,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            restaurantItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Button Text</label>
+                <input
+                  type="text"
+                  value={item.buttonText}
+                  onChange={(e) => {
+                    const updatedArray = [
+                      ...componentData.props.restaurantItems,
+                    ];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      buttonText: {
+                        ...updatedArray[index].buttonText,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        restaurantItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
 
               {/* buttonLink (çok dilli) */}
-                  <div className="flex flex-col gap-1 mt-2">
-                    <label className="text-sm font-semibold">
-                      Button Link
-                    </label>
-                    <input
-                      type="text"
-                      value={item.buttonLink}
-                      onChange={(e) => {
-                        const updatedArray = [
-                          ...componentData.props.restaurantItems,
-                        ];
-                        updatedArray[index] = {
-                          ...updatedArray[index],
-                          buttonLink: {
-                            ...updatedArray[index].buttonLink,
-                            [lang]: e.target.value,
-                          },
-                        };
-                        setComponentData((prev) => ({
-                          ...prev,
-                          props: {
-                            ...prev.props,
-                            restaurantItems: updatedArray,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
+              <div className="flex flex-col gap-1 mt-2">
+                <label className="text-sm font-semibold">Button Link</label>
+                <input
+                  type="text"
+                  value={item.buttonLink}
+                  onChange={(e) => {
+                    const updatedArray = [
+                      ...componentData.props.restaurantItems,
+                    ];
+                    updatedArray[index] = {
+                      ...updatedArray[index],
+                      buttonLink: {
+                        ...updatedArray[index].buttonLink,
+                        [lang]: e.target.value,
+                      },
+                    };
+                    setComponentData((prev) => ({
+                      ...prev,
+                      props: {
+                        ...prev.props,
+                        restaurantItems: updatedArray,
+                      },
+                    }));
+                  }}
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -1878,212 +1849,257 @@ const EditComponent = () => {
 
       {/* --------------- IMAGES ARRAY --------------- */}
       {componentData.props.images?.length > 0 && (
-        <div className="flex flex-col gap-4 col-span-2 w-full overflow-hidden">
-          <h2 className="text-white text-[20px] font-bold pl-2"></h2>
-          <div className="flex flex-row gap-3 w-full">
-            {componentData.props.images.map((image, index) => (
-              <div
-                key={index}
-                className="flex flex-col gap-2 border p-4 rounded-md bg-white w-full h-96 overflow-y-scroll"
-              >
-                <h3 className="font-semibold">Görsel {index + 1}</h3>
-                <label className="text-black text-[18px] font-semibold hidden">
-                  Firebase URL
-                </label>
-                <input
-                  type="text"
-                  value={image.firebaseUrl}
-                  className="hidden"
-                  onChange={(e) =>
-                    handleArrayChange("images", index, "firebaseUrl", e.target.value)
-                  }
-                />
-                {image.firebaseUrl && (
-                  <img
-                    src={image.firebaseUrl}
-                    alt={`Preview of Image ${index + 1}`}
-                    className="w-full h-32 object-cover mt-2 border rounded-md"
-                  />
-                )}
+        <div className="w-[100%] flex flex-col gap-[4%] items-start justify-center">
+          <div className="w-[50%] overflow-x-scroll grid col-span-2">
+            <div className="flex flex-col gap-4 w-full">
+              <h2 className="text-white text-[20px] font-bold pl-2"></h2>
+              <div className="flex flex-row gap-3 w-full">
+                {componentData.props.images.map((image, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col gap-2 border p-4 rounded-md bg-white w-full h-96 overflow-y-scroll"
+                  >
+                    <h3 className="font-semibold">Görsel {index + 1}</h3>
+                    <label className="text-black text-[18px] font-semibold hidden">
+                      Firebase URL
+                    </label>
+                    <input
+                      type="text"
+                      value={image.firebaseUrl}
+                      className="hidden"
+                      onChange={(e) =>
+                        handleArrayChange(
+                          "images",
+                          index,
+                          "firebaseUrl",
+                          e.target.value
+                        )
+                      }
+                    />
+                    {image.firebaseUrl && (
+                      <img
+                        src={image.firebaseUrl}
+                        alt={`Preview of Image ${index + 1}`}
+                        className="w-full h-32 object-cover mt-2 border rounded-md"
+                      />
+                    )}
 
-                {/* Image search */}
-                <div className="flex flex-col gap-2 items-center">
-                  <div className="flex w-full items-center justify-center gap-3">
-                    <button
-                      onClick={() => {
-                        setActiveField({ type: "images", index }); // <--- EKLE
-                        setGaleriOpen(true);                      // <--- EKLE
-                      }}
-                      className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
-                    >
-                      Galeri
-                    </button>
-
-                    <button
-                      onClick={handleSearch}
-                      className="bg-green-700 text-white px-2 py-1 rounded text-[12px] whitespace-nowrap"
-                    >
-                      Resim Yükle
-                    </button>
-                  </div>
-
-                  {searchResults.length > 0 && (
-                    <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px]">
-                      <h4>Search Results</h4>
-                      {searchResults.map((result, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-                          onClick={() => handleReplaceImage("images", index, result)}
+                    {/* Image search */}
+                    <div className="flex flex-col gap-2 items-center">
+                      <div className="flex w-full items-center justify-center gap-3">
+                        <button
+                          onClick={() => {
+                            setActiveField({ type: "images", index }); // <--- EKLE
+                            setGaleriOpen(true); // <--- EKLE
+                          }}
+                          className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
                         >
-                          <img
-                            src={result.firebaseUrl}
-                            alt={result.altText.en}
-                            className="w-16 h-16 object-cover"
-                          />
-                          <p>{result.altText.en}</p>
+                          Galeri
+                        </button>
+
+                        <button
+                          onClick={handleSearch}
+                          className="bg-green-700 text-white px-2 py-1 rounded text-[12px] whitespace-nowrap"
+                        >
+                          Resim Yükle
+                        </button>
+                      </div>
+
+                      {searchResults.length > 0 && (
+                        <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px]">
+                          <h4>Search Results</h4>
+                          {searchResults.map((result, i) => (
+                            <div
+                              key={i}
+                              className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                              onClick={() =>
+                                handleReplaceImage("images", index, result)
+                              }
+                            >
+                              <img
+                                src={result.firebaseUrl}
+                                alt={result.altText.en}
+                                className="w-16 h-16 object-cover"
+                              />
+                              <p>{result.altText.en}</p>
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      )}
                     </div>
-                  )}
-                </div>
 
-          
-                  <div className="flex flex-col gap-2">
-                    <label className="text-black text-[15px] font-semibold">
-                      Alt Text 
-                    </label>
-                    <input
-                      type="text"
-                      value={image.altText}
-                      className="text-[12px] border p-1"
-                      onChange={(e) =>
-                        handleAltTextChange("images", index, e.target.value)
-                      }
-                    />
+                    <div className="flex flex-col gap-2">
+                      <label className="text-black text-[15px] font-semibold">
+                        Alt Text
+                      </label>
+                      <input
+                        type="text"
+                        value={image.altText}
+                        className="text-[12px] border p-1"
+                        onChange={(e) =>
+                          handleAltTextChange("images", index, e.target.value)
+                        }
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <label className="text-black text-[18px] font-semibold">
+                        Header
+                      </label>
+                      <input
+                        type="text"
+                        value={image.header}
+                        onChange={(e) =>
+                          handleHeaderChange("images", index, e.target.value)
+                        }
+                      />
+                    </div>
+
+                    {/* {Object.keys(image.text || {}).map(() => ( */}
+                    <div className="flex flex-col gap-2">
+                      <label className="text-black text-[18px] font-semibold">
+                        Text
+                      </label>
+                      <input
+                        type="text"
+                        value={image.text}
+                        onChange={(e) =>
+                          handleTextChange("images", index, e.target.value)
+                        }
+                      />
+                    </div>
+                    {/* ))} */}
                   </div>
-           
-
-                  <div className="flex flex-col gap-2">
-                    <label className="text-black text-[18px] font-semibold">
-                      Header 
-                    </label>
-                    <input
-                      type="text"
-                      value={image.header}
-                      onChange={(e) =>
-                        handleHeaderChange("images", index, e.target.value)
-                      }
-                    />
-                  </div>
-
-
-                {/* {Object.keys(image.text || {}).map(() => ( */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-black text-[18px] font-semibold">
-                      Text 
-                    </label>
-                    <input
-                      type="text"
-                      value={image.text}
-                      onChange={(e) =>
-                        handleTextChange("images", index, e.target.value)
-                      }
-                    />
-                  </div>
-                {/* ))} */}
+                ))}
               </div>
-            ))}
+              <button
+                onClick={() => handleAddItem("images")}
+                className="bg-green-700 text-white px-4 py-2 rounded w-[30%] my-4 whitespace-nowrap"
+              >
+                Add New Image
+              </button>
+            </div>
           </div>
-          <button
-            onClick={() => handleAddItem("images")}
-            className="bg-green-700 text-white px-4 py-2 rounded w-[50%] my-4 whitespace-nowrap"
-          >
-            Add New Image
-          </button>
+          {/* Sağ Taraf: Preview */}
+          <div className="w-[100%] bg-white p-4 border-l rounded">
+            <h2 className="text-lg font-semibold mb-4">Preview</h2>
+            <div className="border rounded p-4">
+              {componentData && componentData.props.images ? (
+                // <CarouselPreview images={componentData.props.images} />
+                <HomeCarousel images={componentData.props.images} header={componentData.props.header} delay={5} />
+              ) : (
+                <p>No images to preview.</p>
+              )}
+            </div>
+          </div>
         </div>
       )}
 
       {/* --------------- SUBIMAGES ARRAY --------------- */}
       {componentData.props.subImages?.length > 0 && (
-        <div className="flex flex-col gap-4 w-full">
-          <h2 className="text-[20px] text-[#0e0c1b] font-semibold mt-6 ml-2">
-            Sub Images
-          </h2>
-          {componentData.props.subImages.map((subImage, index) => (
-            <div key={index} className="flex flex-col gap-2 border p-4 rounded-md">
-              <h3>Sub Image {index + 1}</h3>
-              <label className="text-[#246cfc] text-[18px] font-semibold">
-                Firebase URL
-              </label>
-              <input
-                type="text"
-                value={subImage.firebaseUrl}
-                onChange={(e) =>
-                  handleArrayChange("subImages", index, "firebaseUrl", e.target.value)
-                }
-              />
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-[#246cfc] text-[18px] font-semibold">
-                    Alt Text 
+        <div className="w-[40%] overflow-x-scroll grid col-span-2">
+          <div className="flex flex-col gap-4 w-full">
+            <h2 className="text-[16px] text-white font-semibold mt-6 ml-2">
+              Sub Images
+            </h2>
+            <div className="flex flex-row gap-3 w-full">
+              {componentData.props.subImages.map((subImage, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col gap-2 border p-4 rounded-md bg-white w-full h-96 overflow-y-scroll"
+                >
+                  <h3>Sub Image {index + 1}</h3>
+                  <label className="text-black text-[18px] font-semibold hidden ">
+                    Firebase URL
                   </label>
                   <input
                     type="text"
-                    value={subImage.altText}
+                    value={subImage.firebaseUrl}
+                    className="hidden"
                     onChange={(e) =>
-                      handleAltTextChange("subImages", index, e.target.value)
+                      handleArrayChange(
+                        "subImages",
+                        index,
+                        "firebaseUrl",
+                        e.target.value
+                      )
                     }
                   />
-                </div>
 
-              {/* SubImage search */}
-              <div className="flex flex-col gap-2 items-center">
-                <label className="text-[#246cfc] text-[18px] font-semibold">
-                  Search for a new sub-image
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter sub-image name"
-                  value={subImageSearchQuery}
-                  onChange={(e) => setSubImageSearchQuery(e.target.value)}
-                  className="border py-2 px-3 w-[50%]"
-                />
-                <button
-                  onClick={handleSubImageSearch}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Search
-                </button>
+                  {subImage.firebaseUrl && (
+                    <img
+                      src={subImage.firebaseUrl}
+                      alt={`Preview of subImage ${index + 1}`}
+                      className="w-full h-32 object-cover mt-2 border rounded-md"
+                    />
+                  )}
 
-                {subImageSearchResults.length > 0 && (
-                  <div className="flex flex-col gap-2 mt-2">
-                    <h4>Search Results</h4>
-                    {subImageSearchResults.map((result, i) => (
-                      <div
-                        key={i}
-                        className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-                        onClick={() => handleReplaceImage("subImages", index, result)}
+                  {/* SubImage search */}
+                  <div className="flex flex-col gap-2 items-center mt-1">
+                    <div className="flex w-full items-center justify-center gap-3">
+                      <button
+                        onClick={() => {
+                          setActiveField({ type: "subImages", index }); // <--- EKLE
+                          setGaleriOpen(true); // <--- EKLE
+                        }}
+                        className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
                       >
-                        <img
-                          src={result.firebaseUrl}
-                          alt={result.altText.en}
-                          className="w-16 h-16 object-cover"
-                        />
-                        <p>{result.altText.en}</p>
+                        Galeri
+                      </button>
+
+                      <button
+                        onClick={handleSubImageSearch}
+                        className="bg-green-700 text-white px-2 py-1 rounded text-[12px] whitespace-nowrap"
+                      >
+                        Resim Yükle
+                      </button>
+                    </div>
+
+                    {subImageSearchResults.length > 0 && (
+                      <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px]">
+                        <h4>Search Results</h4>
+                        {subImageSearchResults.map((result, i) => (
+                          <div
+                            key={i}
+                            className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                            onClick={() =>
+                              handleReplaceImage("subImages", index, result)
+                            }
+                          >
+                            <img
+                              src={result.firebaseUrl}
+                              alt={result.altText.en}
+                              className="w-16 h-16 object-cover"
+                            />
+                            <p>{result.altText.en}</p>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    )}
                   </div>
-                )}
-              </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label className="text-black text-[15px] font-semibold">
+                      Alt Text
+                    </label>
+                    <input
+                      type="text"
+                      value={subImage.altText}
+                      onChange={(e) =>
+                        handleAltTextChange("subImages", index, e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-          <button
-            onClick={() => handleAddItem("subImages")}
-            className="bg-green-700 text-white px-4 py-2 rounded w-[20%] my-4"
-          >
-            Add New SubImage
-          </button>
+            <button
+              onClick={() => handleAddItem("subImages")}
+              className="bg-green-700 text-white px-4 py-2 rounded w-[25%] whitespace-nowrap my-4"
+            >
+              Add New SubImage
+            </button>
+          </div>
         </div>
       )}
 
@@ -2094,11 +2110,14 @@ const EditComponent = () => {
             Headers
           </h2>
           {componentData.props.headers.map((header, index) => (
-            <div key={index} className="flex flex-col gap-2 border p-4 rounded-md">
+            <div
+              key={index}
+              className="flex flex-col gap-2 border p-4 rounded-md"
+            >
               <h3>Header {index + 1}</h3>
               {Object.keys(header || {}).map(() => (
                 <div className="flex flex-col gap-2">
-                  <label className="text-[#246cfc] text-[18px] font-semibold">
+                  <label className="text-black text-[18px] font-semibold">
                     header
                   </label>
                   <input
@@ -2123,96 +2142,67 @@ const EditComponent = () => {
 
       {/* --------------- ITEMS ARRAY --------------- */}
       {componentData.props.items?.length > 0 && (
-        <div className="flex flex-col gap-4 w-full mt-8">
-          <h2 className="text-[20px] text-[#0e0c1b] font-semibold ml-2">Items</h2>
+        <div className="flex flex-col gap-4 w-[40%] mt-8">
+          <h2 className="text-[15px] text-white font-semibold ml-2">Items</h2>
           {componentData.props.items.map((item, index) => (
-            <div key={index} className="border p-4 rounded-md flex flex-col gap-2">
-              <h3>Item {index + 1}</h3>
+            <div
+              key={index}
+              className="border p-4 rounded-md flex flex-col gap-2 text-black bg-white text-[12px] items-center justify-center w-full"
+            >
+              <h3 className="text-black">Item {index + 1}</h3>
 
-              <label>Image URL</label>
+              <label className="hidden">Image URL</label>
               <input
+                className="border p-2 text-[10px] hidden"
                 type="text"
                 value={item.firebaseUrl}
                 onChange={(e) =>
-                  handleItemInputChange("items", index, "firebaseUrl", e.target.value)
+                  handleItemInputChange(
+                    "items",
+                    index,
+                    "firebaseUrl",
+                    e.target.value
+                  )
                 }
               />
 
-              <label>Large Dimensions</label>
-              <input
-                type="number"
-                placeholder="Width"
-                value={item.largeWidth}
-                onChange={(e) =>
-                  handleItemInputChange("items", index, "largeWidth", e.target.value)
-                }
-              />
-              <input
-                type="number"
-                placeholder="Height"
-                value={item.largeHeight}
-                onChange={(e) =>
-                  handleItemInputChange("items", index, "largeHeight", e.target.value)
-                }
-              />
-
-              <label>Small Dimensions</label>
-              <input
-                type="number"
-                placeholder="Width"
-                value={item.smallWidth}
-                onChange={(e) =>
-                  handleItemInputChange("items", index, "smallWidth", e.target.value)
-                }
-              />
-              <input
-                type="number"
-                placeholder="Height"
-                value={item.smallHeight}
-                onChange={(e) =>
-                  handleItemInputChange("items", index, "smallHeight", e.target.value)
-                }
-              />
-
-              <label>Text</label>
-                <input
-                  type="text"
-                  placeholder={`Text`}
-                  value={item.text}
-                  onChange={(e) =>
-                    handleItemTextChange("items", index, e.target.value)
-                  }
+              {item.firebaseUrl && (
+                <img
+                  src={item.firebaseUrl}
+                  alt={`Preview of subImage ${index + 1}`}
+                  className="w-24 h-auto object-cover mt-2 border rounded-md "
                 />
- 
+              )}
 
-              {/* SubImage search */}
-              <div className="flex flex-col gap-2 items-center">
-                <label className="text-[#246cfc] text-[18px] font-semibold">
-                  Search for a new item
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter sub-image name"
-                  value={itemSearchQuery}
-                  onChange={(e) => setItemSearchQuery(e.target.value)}
-                  className="border py-2 px-3 w-[50%]"
-                />
-                <button
-                  onClick={handleItemSearch}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Search
-                </button>
+              <div className="flex flex-col gap-2 items-center mt-1">
+                <div className="flex w-full items-center justify-center gap-3">
+                  <button
+                    onClick={() => {
+                      setActiveField({ type: "subImages", index }); // <--- EKLE
+                      setGaleriOpen(true); // <--- EKLE
+                    }}
+                    className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
+                  >
+                    Galeri
+                  </button>
 
-                {itemSearchResults.length > 0 && (
-                  <div className="flex flex-col gap-2 mt-2">
+                  <button
+                    onClick={handleSubImageSearch}
+                    className="bg-green-700 text-white px-2 py-1 rounded text-[12px] whitespace-nowrap"
+                  >
+                    Resim Yükle
+                  </button>
+                </div>
+
+                {subImageSearchResults.length > 0 && (
+                  <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px]">
                     <h4>Search Results</h4>
-                    {itemSearchResults.map((result, i) => (
+                    {subImageSearchResults.map((result, i) => (
                       <div
                         key={i}
-                         className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                        className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
                         onClick={() =>
-                          handleReplaceImage("items", index, result)
+                          handleReplaceImage("subImages", index, result)
                         }
                       >
                         <img
@@ -2227,9 +2217,82 @@ const EditComponent = () => {
                 )}
               </div>
 
+              <div className="flex flex-col w-[95%] gap-3">
+                <label className="text-[12px]">Large Dimensions</label>
+                <input
+                  className="border p-2 text-[10px]"
+                  type="number"
+                  placeholder="Width"
+                  value={item.largeWidth}
+                  onChange={(e) =>
+                    handleItemInputChange(
+                      "items",
+                      index,
+                      "largeWidth",
+                      e.target.value
+                    )
+                  }
+                />
+                <input
+                  className="border p-2 text-[10px]"
+                  type="number"
+                  placeholder="Height"
+                  value={item.largeHeight}
+                  onChange={(e) =>
+                    handleItemInputChange(
+                      "items",
+                      index,
+                      "largeHeight",
+                      e.target.value
+                    )
+                  }
+                />
+
+                <label className="text-[12px]">Small Dimensions</label>
+                <input
+                  className="border p-2 text-[10px]"
+                  type="number"
+                  placeholder="Width"
+                  value={item.smallWidth}
+                  onChange={(e) =>
+                    handleItemInputChange(
+                      "items",
+                      index,
+                      "smallWidth",
+                      e.target.value
+                    )
+                  }
+                />
+                <input
+                  className="border p-2 text-[10px]"
+                  type="number"
+                  placeholder="Height"
+                  value={item.smallHeight}
+                  onChange={(e) =>
+                    handleItemInputChange(
+                      "items",
+                      index,
+                      "smallHeight",
+                      e.target.value
+                    )
+                  }
+                />
+
+                <label>Text</label>
+                <input
+                  className="border p-2 text-[10px]"
+                  type="text"
+                  placeholder={`Text`}
+                  value={item.text}
+                  onChange={(e) =>
+                    handleItemTextChange("items", index, e.target.value)
+                  }
+                />
+              </div>
+
               <button
                 onClick={() => handleRemoveItem(index)}
-                className="w-1/6 bg-red-600 text-white py-1 px-3 rounded"
+                className="w-1/3 bg-red-600 text-white py-1 px-4 rounded whitespace-nowrap"
               >
                 Remove Item
               </button>
@@ -2247,11 +2310,13 @@ const EditComponent = () => {
       {/* --------------- SAVE BUTTON --------------- */}
       <button
         onClick={handleSave}
-        className="bg-[#342d64] text-white text-[18px] font-semibold px-4 py-2 rounded my-5"
+        className="bg-[#818cca] text-white text-[16px] font-semibold px-4 py-2 rounded my-5 mt-12"
       >
         Save Changes
       </button>
-      {success && <p className="text-green-500">Component updated successfully!</p>}
+      {success && (
+        <p className="text-green-500">Component updated successfully!</p>
+      )}
     </div>
   );
 };
