@@ -29,7 +29,7 @@ const FoodDrinkPage = ({
     const fetchPageData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/api/page/fooddrinks"
+          "/api/page/fooddrinks"
         );
         const data = await response.json();
 

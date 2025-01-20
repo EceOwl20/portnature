@@ -14,7 +14,7 @@ const Activities = () => {
   // useEffect(() => {
   //   const fetchPageData = async () => {
   //     try {
-  //       const response = await fetch("http://localhost:3000/api/page/activities");
+  //       const response = await fetch("/api/page/activities");
   //       const data = await response.json();
 
   //       if (!response.ok) {

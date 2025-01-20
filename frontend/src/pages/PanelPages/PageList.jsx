@@ -9,7 +9,7 @@ const PageList = () => {
   useEffect(() => {
     const fetchPages = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/page/all");
+        const response = await fetch("/api/page/all");
         const data = await response.json();
 
         if (!response.ok) {

@@ -21,7 +21,7 @@ const SearchImage = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/images/search?name=${search.name}&lang=${search.lang}`,
+        `/api/images/search?name=${search.name}&lang=${search.lang}`,
         {
           method: "GET",
         }

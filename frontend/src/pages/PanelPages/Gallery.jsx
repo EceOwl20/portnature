@@ -33,7 +33,7 @@ const Gallery = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/images/${id}`, {
+      const response = await fetch(`/api/images/${id}`, {
         method: "DELETE",
       });
 

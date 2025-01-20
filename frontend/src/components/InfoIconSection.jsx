@@ -32,8 +32,9 @@ const InfoIconSection = ({ items, text }) => {
             key={index}
             className="flex flex-col gap-[24px] lg:gap-[36px] justify-center items-center text-center list-none"
           >
-            
-            <item.SvgComponent aria-hidden="true" {...item.svgProps} />
+
+            <img src={item.firebaseUrl}  alt="icon" width={item.width} height={item.height}/>
+
             <p>{item.text}</p>
           </li>
         ))}

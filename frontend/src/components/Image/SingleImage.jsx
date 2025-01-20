@@ -8,7 +8,7 @@ const SingleImage = ({ name, lang = "en" }) => {
     const fetchImage = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/images/searchbyname?names=${name}&lang=${lang}`
+          `/api/images/searchbyname?names=${name}&lang=${lang}`
         );
         const data = await response.json();
 

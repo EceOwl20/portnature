@@ -4,10 +4,9 @@ import Autoplay from "embla-carousel-autoplay";
 import child1 from "../../public/images/child1.png"
 import child3 from "../../public/images/child3.png"
 
-const images=[child1,child3,child1,child3];
 const header=["","","",""]
 
-const BorderCarousel = () => {
+const BorderCarousel = ({images}) => {
     const [emblaRef, emblaApi] = useCarousel({
         loop: true,
         align:"start",
@@ -62,12 +61,12 @@ const BorderCarousel = () => {
                 height={589}
                 width={348}
                 layout="responsive"
-                src={image}
+                src={image.firebaseUrl}
                 alt={`Slide ${index + 1}`}
               />
               <div className="flex w-full items-end justify-end">
                 <div className="flex text-start justify-start items-center pt-[3%] w-[80%]">
-                    <p className="text-[12px] text-black font-monserrat font-normal leading-[18px] w-[88%]">A luxurious holiday  ones is waiting for you in Family Rooms, designed in the comfort of your home</p>
+                    <p className="text-[12px] text-black font-monserrat font-normal leading-[18px] w-[88%]">{images.text}</p>
                 </div>
               </div>
               </div>

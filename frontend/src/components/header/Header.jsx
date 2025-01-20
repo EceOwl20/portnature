@@ -196,7 +196,7 @@ const Header = () => {
               {/* Alt menü */}
               <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
                 <Link
-                  to="/accommodation/family-room"
+                  to="/miniclub"
                   className="block px-4 py-2"
                 >
                   Mini Club
@@ -257,7 +257,7 @@ const Header = () => {
             </div>
 
             <div className="relative group">
-              <Link to="/" className="flex items-center">
+              <Link to="/entertainment" className="flex items-center">
                 ENTERTAINMENT
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
@@ -267,7 +267,7 @@ const Header = () => {
               {/* Alt menü */}
               <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
                 <Link
-                  to="/accommodation/family-room"
+                  to="/concert"
                   className="block px-4 py-2"
                 >
                   Concerts
@@ -277,7 +277,7 @@ const Header = () => {
                   </div>
                 </Link>
                 <Link
-                  to="/accommodation/suite-room"
+                  to="/activities"
                   className="block px-4 py-2"
                 >
                   Activities
@@ -287,7 +287,7 @@ const Header = () => {
                   </div>
                 </Link>
                 <Link
-                  to="/accommodation/suite-room"
+                  to="/beach"
                   className="block px-4 py-2"
                 >
                   Beach
@@ -301,7 +301,7 @@ const Header = () => {
 
             <Link>CONTACTS</Link>
             <div className="relative group">
-              <Link to="/" className="flex items-center">
+              <Link to="/spa" className="flex items-center">
                 SPA
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
@@ -334,7 +334,7 @@ const Header = () => {
             </div>
 
             <div className="relative group">
-              <Link to="/" className="flex items-center">
+              <Link to="/meeting-congress" className="flex items-center">
                 MEETING & CONGRESS
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />

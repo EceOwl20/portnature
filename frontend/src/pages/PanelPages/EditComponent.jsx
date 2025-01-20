@@ -79,7 +79,7 @@ const EditComponent = () => {
     const fetchComponentData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/page/${pageName}/translations/${language}/components/${componentIndex}`
+          `/api/page/${pageName}/translations/${language}/components/${componentIndex}`
         );
         const data = await response.json();
         if (!response.ok) throw new Error(data.message || "Data fetch failed.");
@@ -463,7 +463,7 @@ const EditComponent = () => {
   const handleSave = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/page/${pageName}/translations/${language}/components/${componentIndex}`,
+        `/api/page/${pageName}/translations/${language}/components/${componentIndex}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -936,13 +936,30 @@ const EditComponent = () => {
         {singleIconImage2 && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
             <h2 className="font-bold text-xl">IconImage 2</h2>
-            <label className="font-semibold">Firebase URL</label>
+            <label className="font-semibold hidden ">Firebase URL</label>
             <input
               type="text"
               value={singleIconImage2.firebaseUrl || ""}
               onChange={(e) => handleImageUrlChange(e.target.value)}
-              className="border p-2"
+              className="border p-2 text-[12px] hidden"
             />
+
+        {singleIconImage2.firebaseUrl && (
+              <img
+                src={singleIconImage2.firebaseUrl}
+                alt="Preview"
+                className="w-24 h-auto object-contain mt-2 border rounded"
+              />
+            )}
+            <button
+              className="bg-blue-600 text-white px-2 py-1 w-[80%] rounded mt-2 text-[12px]"
+              onClick={() => {
+                setActiveField("singleIconImage2"); // “image” alanını güncelleyeceğimizi belirt
+                setGaleriOpen(true); // popup’ı aç
+              }}
+            >
+              Galeri Aç
+            </button>
 
             <h3 className="font-semibold mt-4">Alt Text</h3>
             <div className="flex flex-col gap-2">
@@ -954,49 +971,6 @@ const EditComponent = () => {
                 className="border p-2"
               />
             </div>
-          </div>
-        )}
-
-        {singleIconImage2 && (
-          <div className="flex flex-col gap-2 items-center mt-4 ">
-            <label className="text-[#e45252] text-[18px] font-semibold">
-              Search for a new image for IconImage2
-            </label>
-            <input
-              type="text"
-              placeholder="Enter image name"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="border py-2 px-3 w-[50%]"
-            />
-            <button
-              onClick={handleSearch}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-            >
-              Search
-            </button>
-
-            {searchResults.length > 0 && (
-              <div className="flex flex-col gap-2 mt-2">
-                <h4>Search Results</h4>
-                {searchResults.map((result, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-                    onClick={() =>
-                      handleReplaceSingleImage("iconImage2", result)
-                    }
-                  >
-                    <img
-                      src={result.firebaseUrl}
-                      alt={result.altText.en}
-                      className="w-16 h-16 object-cover"
-                    />
-                    <p>{result.altText.en}</p>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         )}
 

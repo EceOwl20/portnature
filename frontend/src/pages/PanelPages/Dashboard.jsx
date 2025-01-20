@@ -71,7 +71,7 @@ const Dashboard = () => {
   //----------------------------------
   const fetchPages = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/page/all");
+      const response = await fetch("/api/page/all");
       const data = await response.json();
 
       if (!response.ok) {
@@ -93,7 +93,7 @@ const Dashboard = () => {
   //----------------------------------
   const fetchMetrics = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/metric/metrics');
+      const response = await fetch('/api/metric/metrics');
       if (!response.ok) throw new Error('Veri çekilemedi');
 
       const data = await response.json();
@@ -115,7 +115,7 @@ const Dashboard = () => {
   const fetchUsers = async () => {
     try {
       // /api/user/all => arka uç { success: true, users: [...] }
-      const response = await fetch("http://localhost:3000/api/user/all");
+      const response = await fetch("/api/user/all");
       const data = await response.json();
 
       if (data.success) {
@@ -153,7 +153,7 @@ const Dashboard = () => {
     };
 
     try {
-      const res = await fetch('http://localhost:3000/api/metric', {
+      const res = await fetch('/api/metric', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

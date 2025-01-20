@@ -23,7 +23,7 @@ const StandardRooms = () => {
   useEffect(() => {
     const fetchPageData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/page/standardrooms");
+        const response = await fetch("/api/page/standardrooms");
         const data = await response.json();
 
         if (!response.ok) {
