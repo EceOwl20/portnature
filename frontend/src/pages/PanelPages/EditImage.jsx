@@ -24,7 +24,7 @@ const EditImage = () => {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/images/${id}`);
+        const response = await fetch(`/api/images/${id}`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -108,7 +108,7 @@ const EditImage = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:3000/api/images/${id}`, {
+      const response = await fetch(`/api/images/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

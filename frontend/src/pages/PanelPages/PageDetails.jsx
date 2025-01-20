@@ -10,7 +10,7 @@ const PageDetails = () => {
     const fetchPageDetails = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/page/${pageName}/translations/${language}`
+          `/api/page/${pageName}/translations/${language}`
         );
         const data = await response.json();
 

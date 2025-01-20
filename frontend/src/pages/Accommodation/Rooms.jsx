@@ -16,7 +16,7 @@ const Rooms = () => {
   useEffect(() => {
     const fetchPageData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/page/roomspage");
+        const response = await fetch("/api/page/roomspage");
         const data = await response.json();
 
         if (!response.ok) {

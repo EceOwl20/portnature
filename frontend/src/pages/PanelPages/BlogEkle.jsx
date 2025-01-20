@@ -188,7 +188,7 @@ const BlogEkle = () => {
     setWait(true);
 
     try {
-      const response = await fetch("http://localhost:3000/api/blog/yeni", {
+      const response = await fetch("/api/blog/yeni", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

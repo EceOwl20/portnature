@@ -11,7 +11,7 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/blog/liste"); // Blog listesini getir
+        const response = await fetch("/api/blog/liste"); // Blog listesini getir
         const data = await response.json();
 
         if (data.success) {

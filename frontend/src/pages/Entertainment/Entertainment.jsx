@@ -17,7 +17,7 @@ const Entertainment = () => {
   useEffect(() => {
     const fetchPageData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/page/entertainment");
+        const response = await fetch("/api/page/entertainment");
         const data = await response.json();
 
         if (!response.ok) {

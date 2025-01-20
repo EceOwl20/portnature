@@ -16,7 +16,7 @@ const AquaPark = () => {
   useEffect(() => {
     const fetchPageData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/page/aquapark`);
+        const response = await fetch(`/api/page/aquapark`);
         const data = await response.json();
 
         if (!response.ok) {

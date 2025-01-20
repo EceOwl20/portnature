@@ -18,7 +18,7 @@ const MiniClub = () => {
   useEffect(() => {
     const fetchPageData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/page/miniclub`);
+        const response = await fetch(`/api/page/miniclub`);
         const data = await response.json();
 
         if (!response.ok) {

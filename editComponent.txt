@@ -432,7 +432,7 @@ useEffect(() => {
     setSuccess(false);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/page/${pageName}/components/${componentIndex}`, {
+      const response = await fetch(`/api/page/${pageName}/components/${componentIndex}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

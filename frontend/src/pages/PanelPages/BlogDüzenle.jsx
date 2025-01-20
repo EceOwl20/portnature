@@ -44,7 +44,7 @@ const BlogDüzenle = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/blog/${slug}`);
+        const response = await fetch(`/api/blog/${slug}`);
         const data = await response.json();
         if (data.success) {
           setForm(data.blog);

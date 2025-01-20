@@ -42,7 +42,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchPageData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/page/homepage");
+        const response = await fetch("/api/page/homepage");
         const data = await response.json();
   
         if (!response.ok) {

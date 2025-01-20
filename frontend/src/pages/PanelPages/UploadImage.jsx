@@ -85,7 +85,7 @@ const UploadImage = () => {
         }
       
         try {
-          const response = await fetch("http://localhost:3000/api/images/upload", {
+          const response = await fetch("/api/images/upload", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

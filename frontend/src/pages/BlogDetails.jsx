@@ -20,7 +20,7 @@ const BlogDetails = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:3000/api/blog/${slug}` // Backend'e sadece slug ile istek at
+          `/api/blog/${slug}` // Backend'e sadece slug ile istek at
         );
         const data = await response.json();
 
