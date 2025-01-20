@@ -5,7 +5,7 @@ import Music from "../Icons/Group.png"
 import Vector from "../Icons/Vector.png"
 import Disco from "../Icons/Frame.png"
 
-const Section1 = () => {
+const Section1 = ({image,items=[],header, text}) => {
   return (
     <div className='flex flex-col justify-center items-center'>
         <div className='flex flex-col items-center justify-center w-full'>
@@ -18,13 +18,13 @@ const Section1 = () => {
             backgroundRepeat: "no-repeat",
         }}>
             <div className='flex flex-row items-center justify-center w-full pb-10 gap-96'>
-                <h1 className='text-white text-4xl'>ACTIVITIES</h1>
+                <h1 className='text-white text-4xl'>{header}</h1>
                 <div className='flex flex-row gap-8'>
                     <span className='text-white flex flex-col items-center'>
                         <div className="flex items-center justify-center h-12">
                             <img src={Bardak} alt="Free drinks" style={{ width: "39px", height: "50px" }} />
                         </div>
-                        <p className='mt-2'>Free drinks</p>
+                        <p className='mt-2'>items[0].text</p>
                     </span>
                     <span className='text-white flex flex-col items-center'>
                         <div className="flex items-center justify-center h-12">
