@@ -117,13 +117,16 @@ const KidsConceptPage = ({ items }) => {
   return (
     <div>
       <MainBackgroundRooms {...mainBackgroundData} />
+
       <InfoIconSection
         {...infoIconSectionData}
       />
+
       <BorderCarousel {...borderCarouselData}/>
       <BorderCarousel2 {...borderCarousel2Data}/>
       <KidsBannerSection {...bannerSectionData}/>
       <ContactSection {...contactSectionData}/> 
+
     </div>
   );
 };
