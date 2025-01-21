@@ -24,31 +24,31 @@ const Section1 = ({image,items=[],header, text}) => {
                         <div className="flex items-center justify-center h-12">
                             <img src={Bardak} alt="Free drinks" style={{ width: "39px", height: "50px" }} />
                         </div>
-                        <p className='mt-2'>items[0].text</p>
+                        <p className='mt-2'>{items[0].text}</p>
                     </span>
                     <span className='text-white flex flex-col items-center'>
                         <div className="flex items-center justify-center h-12">
                             <img src={Music} alt="Live music" style={{ width: "33px", height: "33px" }} />
                         </div>
-                        <p className='mt-2'>Live music</p>
+                        <p className='mt-2'>{items[1].text}</p>
                     </span>
                     <span className='text-white flex flex-col items-center'>
                         <div className="flex items-center justify-center h-12">
                             <img src={Vector} alt="Popular artists" style={{ width: "42px", height: "39px" }} />
                         </div>
-                        <p className='mt-2'>Popular artists</p>
+                        <p className='mt-2'>{items[2].text}</p>
                     </span>
                     <span className='text-white flex flex-col items-center'>
                         <div className="flex items-center justify-center h-12">
                             <img src={Disco} alt="Disco" style={{ width: "33px", height: "50px" }} />
                         </div>
-                        <p className='mt-2'>Disco</p>
+                        <p className='mt-2'>{items[3].text}</p>
                     </span>
                 </div>
             </div>
         </div>
         <p className='flex items-center justify-center w-5/12 text-center mt-24 mb-12 font-monserrat font-bold text-[20px] leading-6'>
-            You will recharge yourself with fun games and sports activities  <br/>in company with our professional animation team and you  <br/> will meet with special programs at fitness center
+            {text}
         </p>
     </div>
     </div>

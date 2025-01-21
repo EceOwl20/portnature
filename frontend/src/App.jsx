@@ -106,6 +106,7 @@ import Entertainment from "./pages/Entertainment/Entertainment";
 import Activities from "./pages/Activities/Activities";
 import Users from "./pages/PanelPages/Users";
 import ProfilEditor from "./pages/PanelPages/ProfilEditor";
+import ContactSection from "./components/homepage/ContactSection";
 
 
 
@@ -277,7 +278,8 @@ const App = () => {
             <Route path="/offers" element={<Offers/>}/>
             <Route path="/entertainment" element={<Entertainment/>}/>
             <Route path="/activities" element={<Activities/>}/>
-            
+            <Route path="/contacts" element={<ContactSection/>}/>
+
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />

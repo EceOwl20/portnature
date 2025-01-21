@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Section1 from './Components/Section1'
 import Section2 from './Components/Section2'
 import Section3 from './Components/Section3'
-import { useLanguage } from "../../../src/context/LanguageContext";
+import { useLanguage } from "../../context/LanguageContext";
 import ContactSection from "../../components/homepage/ContactSection";
 
 const Activities = () => {
@@ -87,12 +87,12 @@ const Activities = () => {
 
   if (error) return <p>Error: {error}</p>;
   if (!section1Data && !section2Data && !section3Data && !contactSectionData) return <p>Loading...</p>;
-  section1Data
+  
   return (
     <section>
         <Section1 {...section1Data}/>
-        {/* <Section2 {...section2Data}/>
-        <Section3 {...section3Data}/>   */}
+       <Section2 {...section2Data}/>
+         <Section3 {...section3Data}/>  
         <ContactSection {...contactSectionData}/>
     </section>
   )

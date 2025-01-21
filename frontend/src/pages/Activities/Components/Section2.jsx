@@ -18,7 +18,7 @@ import TenisCourt from './Images2/TenisCourt.png'
 import TableTennis from './Images2/TableTennis.png'
 import Basketball from './Images2/Basketball.png'
 
-const Section2 = () => {
+const Section2 = ({images=[], items=[]}) => {
   // İlk Slider için Slayt Verileri
   const slides = [
     { id: 1, title: 'CONCERTS', image: Festival },
@@ -54,13 +54,13 @@ const Section2 = () => {
         <div className="bg-custom-gradient-reverse h-[1px] w-[50%]" />
       </div>
       <div className="w-8/12 ml-auto items-end justify-end">
-        <EmblaCarousel slides={slides} options={options} />
+        <EmblaCarousel slides={images} options={options} />
       </div>
 
       {/* İkinci Slider - Soldan Başlama */}
       <div className="flex justify-start mt-5">
         <div className="w-8/12">
-          <EmblaCarousel slides={secondSlides} options={options} />
+          <EmblaCarousel slides={items} options={options} />
         </div>
       </div>
     </section>

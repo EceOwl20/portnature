@@ -436,25 +436,30 @@ const EditComponent = () => {
     });
   };
 
-  const handleReplaceRestaurantItemImage = (index, field, selectedImage) => {
-    setComponentData((prev) => {
-      const updatedArray = [...prev.props.restaurantItems];
-      updatedArray[index] = {
-        ...updatedArray[index],
-        [field]: {
-          ...updatedArray[index][field],
-          firebaseUrl: selectedImage.firebaseUrl,
-          altText: selectedImage.altText[language],
-        },
-      };
-      return {
-        ...prev,
-        props: {
-          ...prev.props,
-          restaurantItems: updatedArray,
-        },
-      };
-    });
+  // const handleReplaceRestaurantItemImage = (index, field, selectedImage) => {
+  //   setComponentData((prev) => {
+  //     const updatedArray = [...prev.props.restaurantItems];
+  //     updatedArray[index] = {
+  //       ...updatedArray[index],
+  //       [field]: {
+  //         ...updatedArray[index][field],
+  //         firebaseUrl: selectedImage.firebaseUrl,
+  //         altText: selectedImage.altText[language],
+  //       },
+  //     };
+  //     return {
+  //       ...prev,
+  //       props: {
+  //         ...prev.props,
+  //         restaurantItems: updatedArray,
+  //       },
+  //     };
+  //   });
+  // };
+
+  const handleReplaceRestaurantItemImage = (field, index, selectedImage) => {
+    handleArrayChange(field, index, "firebaseUrl", selectedImage.firebaseUrl);
+    handleArrayChange(field, index, "altText", selectedImage.altText);
   };
 
   // --------------------------------------------------
@@ -1020,7 +1025,7 @@ const EditComponent = () => {
         {/* --------------- SINGLE HEADER --------------- */}
         {singleHeader && (
           <div className="flex flex-col gap-4 w-[100%] p-4 rounded my-4 bg-white">
-            <h2 className="font-bold text-[15px]">Header </h2>
+            <h2 className="font-bold text-[12px]">Header </h2>
             <div className="flex flex-col gap-2">
               <label className="text-[12px]">Header </label>
               <input
@@ -1036,14 +1041,14 @@ const EditComponent = () => {
         {/* --------------- SINGLE TEXT --------------- */}
         {singleText && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white text-black">
-            <h2 className="font-bold text-[15px]">Text </h2>
+            <h2 className="font-bold text-[12px]">Text </h2>
             <div className="flex flex-col gap-2">
-              <label>Text </label>
+              <label className="text-[12px]">Text </label>
               <input
                 type="text"
                 value={singleText}
                 onChange={(e) => handleFieldChange("text", e.target.value)}
-                className="border p-2"
+                className="border p-2 text-[10px]"
               />
             </div>
           </div>
@@ -1563,8 +1568,8 @@ const EditComponent = () => {
 
       {/* --------------- RESTAURANT ITEMS --------------- */}
       {componentData.props.restaurantItems?.length > 0 && (
-        <div className="flex flex-col gap-4 w-full mt-8">
-          <h2 className="text-[20px] text-[#0e0c1b] font-semibold ml-2">
+        <div className="flex flex-col gap-8 w-full mt-8 text-white">
+          <h2 className="text-[20px] text-[#fff] font-semibold ml-2">
             Restaurant Items
           </h2>
           {componentData.props.restaurantItems.map((item, index) => (
@@ -1575,9 +1580,10 @@ const EditComponent = () => {
               <h3>Restaurant Item {index + 1}</h3>
 
               {/* image alanı */}
-              <label className="font-semibold text-[16px]">Image URL</label>
+              <label className="font-semibold text-[16px] hidden">Image URL</label>
               <input
                 type="text"
+                className="hidden"
                 value={item.image?.firebaseUrl || ""}
                 onChange={(e) => {
                   const updatedArray = [...componentData.props.restaurantItems];
@@ -1597,6 +1603,62 @@ const EditComponent = () => {
                   }));
                 }}
               />
+              
+
+
+              {image.firebaseUrl && (
+                      <img
+                        src={image.firebaseUrl}
+                        alt={`Preview of Image ${index + 1}`}
+                        className="w-full h-32 object-cover mt-2 border rounded-md"
+                      />
+                    )}
+
+                    {/* Image search */}
+                    <div className="flex flex-col gap-2 items-center">
+                      <div className="flex w-full items-center justify-center gap-3">
+                        <button
+                          onClick={() => {
+                            setActiveField({ type: "images", index }); // <--- EKLE
+                            setGaleriOpen(true); // <--- EKLE
+                          }}
+                          className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
+                        >
+                          Galeri
+                        </button>
+
+                        <button
+                          onClick={handleRestaurantImageSearch}
+                          className="bg-green-700 text-white px-2 py-1 rounded text-[12px] whitespace-nowrap"
+                        >
+                          Resim Yükle
+                        </button>
+                      </div>
+
+                      {restaurantImageSearchResults.length > 0 && (
+                        <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px]">
+                          <h4>Search Results</h4>
+                          {restaurantImageSearchResults.map((result, i) => (
+                            <div
+                              key={i}
+                              className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                              onClick={() =>
+                                handleReplaceRestaurantItemImage(index,
+                                  "image",
+                                  result)
+                              }
+                            >
+                              <img
+                                src={result.firebaseUrl}
+                                alt={result.altText}
+                                className="w-16 h-16 object-cover"
+                              />
+                              <p>{result.altText}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
 
               {/* Search for a new main image */}
               <div className="flex flex-col gap-2 items-center my-2">
@@ -1636,10 +1698,10 @@ const EditComponent = () => {
                       >
                         <img
                           src={result.firebaseUrl}
-                          alt={result.altText.en}
+                          alt={result.altText}
                           className="w-16 h-16 object-cover"
                         />
-                        <p>{result.altText.en}</p>
+                        <p>{result.altText}</p>
                       </div>
                     ))}
                   </div>
@@ -1678,7 +1740,7 @@ const EditComponent = () => {
               </div>
 
               {/* header (çok dilli) */}
-              <div key={lang} className="flex flex-col gap-1 mt-2">
+              <div className="flex flex-col gap-1 mt-2">
                 <label className="text-sm font-semibold">Header</label>
                 <input
                   type="text"
@@ -1955,7 +2017,7 @@ const EditComponent = () => {
             </div>
           </div>
           {/* Sağ Taraf: Preview */}
-          <div className="w-[100%] bg-white p-4 border-l rounded">
+          {/* <div className="w-[100%] bg-white p-4 border-l rounded">
             <h2 className="text-lg font-semibold mb-4">Preview</h2>
             <div className="border rounded p-4">
               {componentData && componentData.props.images ? (
@@ -1965,7 +2027,7 @@ const EditComponent = () => {
                 <p>No images to preview.</p>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
       )}
 

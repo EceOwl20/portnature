@@ -46,19 +46,10 @@
             }
           ],
 
-        "header":{
-            "en":"ACTIVITIES",
-            "tr":"ACTIVITIES",
-            "de":"ACTIVITIES",
-            "ru":"ACTIVITIES"
-        },
-         "text":{
-            "en":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "tr":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "de":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "ru":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. "
-        }
+        "header":"ACTIVITIES",
         
+         "text":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. "
+
       }
     },
      {
@@ -210,33 +201,11 @@
               "height": 602
         },
 
-        "header":{
-            "en":"AQUAPARK",
-            "tr":"AQUAPARK",
-            "de":"AQUAPARK",
-            "ru":"AQUAPARK"
-        },
-         "text":{
-            "en":"18 slides · Safety for your child",
-            "tr":"18 slides · Safety for your child",
-            "de":"18 slides · Safety for your child",
-            "ru":"18 slides · Safety for your child"
-        },
+        "header":"AQUAPARK",
+         "text":"18 slides · Safety for your child",
+         "buttonText":"More About",
 
-         "buttonText":{
-            "en":"More About",
-            "tr":"More About",
-            "de":"More About",
-            "ru":"More About"
-        },
-
-         "buttonLink":{
-            "en":"/aquapark",
-            "tr":"/aquapark",
-            "de":"/aquapark",
-            "ru":"/aquapark"
-        }
-        
+         "buttonLink":"/aquapark"
       }
     },
     {
@@ -327,18 +296,8 @@
             }
           ],
 
-        "header":{
-            "en":"ACTIVITIES",
-            "tr":"ACTIVITIES",
-            "de":"ACTIVITIES",
-            "ru":"ACTIVITIES"
-        },
-         "text":{
-            "en":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "tr":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "de":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "ru":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. "
-        }
+        "header":"ACTIVITIES",
+         "text":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. "
         
       }
     },
@@ -491,32 +450,12 @@
               "height": 602
         },
 
-        "header":{
-            "en":"AQUAPARK",
-            "tr":"AQUAPARK",
-            "de":"AQUAPARK",
-            "ru":"AQUAPARK"
-        },
-         "text":{
-            "en":"18 slides · Safety for your child",
-            "tr":"18 slides · Safety for your child",
-            "de":"18 slides · Safety for your child",
-            "ru":"18 slides · Safety for your child"
-        },
+        "header":"AQUAPARK",
+         "text":"18 slides · Safety for your child",
 
-         "buttonText":{
-            "en":"More About",
-            "tr":"More About",
-            "de":"More About",
-            "ru":"More About"
-        },
+         "buttonText":"More About",
 
-         "buttonLink":{
-            "en":"/aquapark",
-            "tr":"/aquapark",
-            "de":"/aquapark",
-            "ru":"/aquapark"
-        }
+         "buttonLink":"/aquapark"
         
       }
     },
@@ -608,18 +547,9 @@
             }
           ],
 
-        "header":{
-            "en":"ACTIVITIES",
-            "tr":"ACTIVITIES",
-            "de":"ACTIVITIES",
-            "ru":"ACTIVITIES"
-        },
-         "text":{
-            "en":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "tr":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "de":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "ru":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. "
-        }
+        "header":"ACTIVITIES",
+
+         "text":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. "
         
       }
     },
@@ -772,32 +702,13 @@
               "height": 602
         },
 
-        "header":{
-            "en":"AQUAPARK",
-            "tr":"AQUAPARK",
-            "de":"AQUAPARK",
-            "ru":"AQUAPARK"
-        },
-         "text":{
-            "en":"18 slides · Safety for your child",
-            "tr":"18 slides · Safety for your child",
-            "de":"18 slides · Safety for your child",
-            "ru":"18 slides · Safety for your child"
-        },
+        "header":"AQUAPARK",
 
-         "buttonText":{
-            "en":"More About",
-            "tr":"More About",
-            "de":"More About",
-            "ru":"More About"
-        },
+         "text":"18 slides · Safety for your child",
 
-         "buttonLink":{
-            "en":"/aquapark",
-            "tr":"/aquapark",
-            "de":"/aquapark",
-            "ru":"/aquapark"
-        }
+         "buttonText":"More About",
+
+         "buttonLink":"/aquapark"
         
       }
     },
@@ -889,18 +800,9 @@
             }
           ],
 
-        "header":{
-            "en":"ACTIVITIES",
-            "tr":"ACTIVITIES",
-            "de":"ACTIVITIES",
-            "ru":"ACTIVITIES"
-        },
-         "text":{
-            "en":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "tr":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "de":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. ",
-            "ru":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. "
-        }
+        "header":"ACTIVITIES",
+
+         "text":"With a convivial and welcoming ambiance, our A'la Cartes are the perfect spot to catch up with family, or simply take a break and indulge in some much-needed delicious food. "
         
       }
     },
@@ -1053,32 +955,12 @@
               "height": 602
         },
 
-        "header":{
-            "en":"AQUAPARK",
-            "tr":"AQUAPARK",
-            "de":"AQUAPARK",
-            "ru":"AQUAPARK"
-        },
-         "text":{
-            "en":"18 slides · Safety for your child",
-            "tr":"18 slides · Safety for your child",
-            "de":"18 slides · Safety for your child",
-            "ru":"18 slides · Safety for your child"
-        },
+        "header":"AQUAPARK",
+         "text":"18 slides · Safety for your child",
 
-         "buttonText":{
-            "en":"More About",
-            "tr":"More About",
-            "de":"More About",
-            "ru":"More About"
-        },
+         "buttonText":"More About",
 
-         "buttonLink":{
-            "en":"/aquapark",
-            "tr":"/aquapark",
-            "de":"/aquapark",
-            "ru":"/aquapark"
-        }
+         "buttonLink":"/aquapark"
         
       }
     },

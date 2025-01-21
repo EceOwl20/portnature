@@ -151,7 +151,7 @@ const Header = () => {
           <nav className="text-white hidden lgxl-custom:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[14px] text-center items-center justify-between w-[72%]">
             <div className="relative group">
               <Link to="/rooms" className="flex items-center">
-                ACCOMMODATION
+                ROOMS
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
                 </svg>
@@ -311,7 +311,7 @@ const Header = () => {
               {/* Alt menü */}
               <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
                 <Link
-                  to="/accommodation/family-room"
+                  to="/spa-wellness"
                   className="block px-4 py-2"
                 >
                   Spa & Wellness
@@ -321,7 +321,7 @@ const Header = () => {
                   </div>
                 </Link>
                 <Link
-                  to="/accommodation/suite-room"
+                  to="/indoor-pool"
                   className="block px-4 py-2"
                 >
                   Indoor Pool
@@ -470,7 +470,7 @@ const Header = () => {
 
           <nav className="flex flex-col w-[75%] text-[16px] font-normal leading-normal uppercase font-monserrat text-start gap-[20px]">
             <Link to="/" onClick={toggleSidebar}>
-              ACCOMMODATION
+              ROOMS
             </Link>
             <div className="flex bg-[#DDD] h-[1px] w-full"></div>
             <Link to="/" onClick={toggleSidebar}>

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import MainBackgroundRooms from './components/MainBackgroundRooms'
-import sideview from "../../../public/images/rooms/sideview.png"
-import landview from "../../../public/images/rooms/landview.png"
 import RoomInfo from './components/RoomInfo'
 import StandardRoomComponent from './components/StandardRoomComponent'
-import { Link } from 'react-router-dom'
 import ContactSection from '../../components/homepage/ContactSection'
 import RoomFeatures from './components/RoomFeatures'
-import Cookies from "js-cookie";
+import { useLanguage } from "../../context/LanguageContext";
 
 const StandardRooms = () => {
+  const { language: lang } = useLanguage();
+
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
   const [standardRoomsSecData, setStandardRoomsSecData] = useState(null);
   const [standardRoomsSecData2, setStandardRoomsSecData2] = useState(null);
@@ -17,8 +16,6 @@ const StandardRooms = () => {
   const [roomsFeaturesData, setRoomsFeaturesData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
-
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -89,18 +86,16 @@ const StandardRooms = () => {
           console.warn("RoomsFeatures data not found in Standard Rooms page");
         }
 
-        // Contact verilerini çek
+      // ContactSection verilerini çek
         const contactSectionComponent = localizedComponents.find(
           (comp) => comp.type === "ContactSection"
         );
-
+  
         if (contactSectionComponent) {
           setContactSectionData(contactSectionComponent.props);
         } else {
-          console.warn("Contact data not found in homepage");
+          console.warn("ContactSection data not found");
         }
-
-
       } catch (err) {
         setError(err.message);
       }
@@ -113,7 +108,7 @@ const StandardRooms = () => {
 
   return (
     <div className='flex flex-col justify-center items-center'>
-        <MainBackgroundRooms {...mainBackgroundData} />
+         <MainBackgroundRooms {...mainBackgroundData} />
         <StandardRoomComponent {...standardRoomsSecData} />
         <StandardRoomComponent {...standardRoomsSecData2} />
         <StandardRoomComponent {...standardRoomsSecData3} />

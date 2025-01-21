@@ -2,8 +2,7 @@ import React, { useState } from "react";
 
 const SearchImage = () => {
   const [search, setSearch] = useState({ name: "", lang: "en" });
-  // Artık bir array tutuyoruz
-  const [images, setImages] = useState([]); 
+  const [images, setImages] = useState([]); // Arama sonuçları
   const [wait, setWait] = useState(false);
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +15,7 @@ const SearchImage = () => {
     e.preventDefault();
     setWait(true);
     setError(null);
-    // Arama öncesi dizi boşaltıyoruz
-    setImages([]);
+    setImages([]); // Önceki sonuçları sıfırla
 
     try {
       const response = await fetch(
@@ -29,17 +27,16 @@ const SearchImage = () => {
 
       const data = await response.json();
 
-      if (!response.ok || !data) {
-        setError(data?.message || "Image(s) not found");
+      if (!response.ok || !data.length) {
+        setError(data?.message || "No images found");
         setWait(false);
         return;
       }
 
-      // Artık data bir DİZİ [ {...}, {...} ]
-      setImages(data);
-      setWait(false);
+      setImages(data); // Yeni sonuçları yükle
     } catch (err) {
       setError("An unexpected error occurred.");
+    } finally {
       setWait(false);
     }
   };
@@ -52,8 +49,13 @@ const SearchImage = () => {
   return (
     <div className="flex flex-col items-center justify-center w-screen h-auto my-12">
       <div className="flex flex-col w-[70%] items-start justify-center p-[3%]">
-        <h2 className="text-[30px] font-medium font-monserrat text-[#fff]">Resim Ara</h2>
-        <form onSubmit={handleSearch} className="flex w-[80%] items-center justify-start m-4 gap-6 mt-10">
+        <h2 className="text-[30px] font-medium font-monserrat text-[#fff]">
+          Resim Ara
+        </h2>
+        <form
+          onSubmit={handleSearch}
+          className="flex w-[80%] items-center justify-start m-4 gap-6 mt-10"
+        >
           <input
             className="flex border border-[#0E0C1B] py-1 px-2"
             type="text"
@@ -82,30 +84,21 @@ const SearchImage = () => {
             </button>
             {isOpen && (
               <ul className="absolute bg-white border border-[#0E0C1B] w-full z-10">
-                <li
-                  className="py-2 px-4 cursor-pointer hover:bg-gray-200"
-                  onClick={() => handleLanguageSelection("en")}
-                >
-                  English
-                </li>
-                <li
-                  className="py-2 px-4 cursor-pointer hover:bg-gray-200"
-                  onClick={() => handleLanguageSelection("ru")}
-                >
-                  Russian
-                </li>
-                <li
-                  className="py-2 px-4 cursor-pointer hover:bg-gray-200"
-                  onClick={() => handleLanguageSelection("de")}
-                >
-                  German
-                </li>
-                <li
-                  className="py-2 px-4 cursor-pointer hover:bg-gray-200"
-                  onClick={() => handleLanguageSelection("tr")}
-                >
-                  Türkçe
-                </li>
+                {["en", "ru", "de", "tr"].map((lang) => (
+                  <li
+                    key={lang}
+                    className="py-2 px-4 cursor-pointer hover:bg-gray-200"
+                    onClick={() => handleLanguageSelection(lang)}
+                  >
+                    {lang === "en"
+                      ? "English"
+                      : lang === "ru"
+                      ? "Russian"
+                      : lang === "de"
+                      ? "German"
+                      : "Türkçe"}
+                  </li>
+                ))}
               </ul>
             )}
           </div>
@@ -126,8 +119,14 @@ const SearchImage = () => {
           <div className="flex flex-wrap gap-4 mt-4">
             {images.map((img, index) => (
               <div key={index} className="w-[25%] h-auto flex flex-col border p-2">
-                <img src={img.firebaseUrl} alt={img.altText[search.lang]} />
-                <p>{img.altText[search.lang]}</p>
+                <img
+                  src={img.firebaseUrl}
+                  alt={img.altText[search.lang]}
+                  className="max-w-full"
+                />
+                <p className="text-center text-sm mt-2">
+                  {img.altText[search.lang]}
+                </p>
               </div>
             ))}
           </div>

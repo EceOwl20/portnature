@@ -1,6 +1,5 @@
-// GaleriPage.jsx
 import React, { useEffect, useState } from 'react';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject, listAll } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { getApp } from "firebase/app";
 
 const GaleriPage = () => {
@@ -11,29 +10,20 @@ const GaleriPage = () => {
   const app = getApp();
   const storage = getStorage(app);
 
-  // Storage'dan resimleri çekme fonksiyonu
-  const fetchGalleryImages = async () => {
-    const galleryRef = ref(storage, 'images/');
-    const listResult = await listAll(galleryRef);
-    const urls = [];
-
-    // Her dosya için URL al
-    for (const itemRef of listResult.items) {
-      const url = await getDownloadURL(itemRef);
-      // fileName'i itemRef.name üzerinden alabilirsiniz
-      urls.push({ url, fileName: itemRef.name });
+  // Veritabanından resimleri çek
+  const fetchImagesFromDB = async () => {
+    try {
+      const response = await fetch('/api/images/all'); // Tüm resimleri getir
+      if (!response.ok) throw new Error('Failed to fetch images');
+      const data = await response.json();
+      setImages(data); // Verileri state'e kaydet
+    } catch (error) {
+      console.error("Resimler alınamadı:", error);
     }
-
-    return urls;
   };
 
   useEffect(() => {
-    // Sayfa yüklendiğinde mevcut resimleri Storage'dan çek
-    fetchGalleryImages().then((fetchedImages) => {
-      setImages(fetchedImages);
-    }).catch((error) => {
-      console.error("Resimler alınamadı:", error);
-    });
+    fetchImagesFromDB(); // Sayfa yüklendiğinde veritabanından resimleri al
   }, []);
 
   const handleFileChange = (e) => {
@@ -47,14 +37,15 @@ const GaleriPage = () => {
 
     setWait(true);
     try {
-      const fileName = Date.now() + file.name;
-      const storageRef = ref(storage, "images/");
+      const fileName = `${Date.now()}-${file.name}`;
+      const storageRef = ref(storage, `images/${fileName}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       await new Promise((resolve, reject) => {
-        uploadTask.on('state_changed', 
+        uploadTask.on(
+          'state_changed',
           (snapshot) => {
-            // Yükleme ilerlemesini takip edebilirsiniz
+            // Yükleme ilerlemesi burada izlenebilir
           },
           (error) => reject(error),
           () => resolve()
@@ -62,9 +53,25 @@ const GaleriPage = () => {
       });
 
       const downloadURL = await getDownloadURL(storageRef);
-      
-      // Yeni resmi images state'ine ekle
-      setImages((prev) => [{ url: downloadURL, fileName }, ...prev]);
+
+      // Veritabanına yeni resim kaydet
+      const newImage = {
+        name: { en: fileName, tr: fileName, de: fileName, ru: fileName },
+        altText: { en: fileName, tr: fileName, de: fileName, ru: fileName },
+        firebaseUrl: downloadURL,
+      };
+
+      const response = await fetch('/api/images/upload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newImage),
+      });
+
+      if (!response.ok) throw new Error('Failed to upload image');
+      const savedImage = await response.json();
+
+      // Yeni resmi state'e ekle
+      setImages((prev) => [savedImage.newImage, ...prev]);
       setFile(null);
     } catch (error) {
       console.error("Yükleme Hatası:", error);
@@ -73,16 +80,23 @@ const GaleriPage = () => {
     }
   };
 
-  const handleDelete = async (fileName) => {
+  const handleDelete = async (image) => {
     setWait(true);
     try {
-      const fileRef = ref(storage, `gallery/${fileName}`);
+      const fileRef = ref(storage, `images/${image.name.en}`);
 
-      // Storage'dan sil
+      // Firebase'den sil
       await deleteObject(fileRef);
 
-      // images state'ini güncelle
-      setImages((prev) => prev.filter((img) => img.fileName !== fileName));
+      // Veritabanından kaydı sil
+      const response = await fetch(`/api/images/${image._id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) throw new Error('Failed to delete image');
+
+      // State'den sil
+      setImages((prev) => prev.filter((img) => img._id !== image._id));
     } catch (error) {
       console.error("Silme Hatası:", error);
     } finally {
@@ -101,11 +115,11 @@ const GaleriPage = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-4">
-        {images.map((img, index) => (
-          <div key={img.fileName || index} className="border p-2 flex flex-col items-center">
-            <img src={img.url} alt={`Image ${index}`} className="w-full" />
+        {images.map((img) => (
+          <div key={img._id} className="border p-2 flex flex-col items-center">
+            <img src={img.firebaseUrl} alt={img.altText.en || "Resim"} className="w-full" />
             <button 
-              onClick={() => handleDelete(img.fileName)} 
+              onClick={() => handleDelete(img)} 
               disabled={wait}
               className="mt-2 text-red-500"
             >
