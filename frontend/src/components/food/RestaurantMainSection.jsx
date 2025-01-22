@@ -1,11 +1,8 @@
 import React,{ useEffect, useCallback, useState }  from "react";
-import image from "../../../public/images/alacarteMain.png";
 import useCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import LineVerticalSvg from "../../svg/LineVerticalSvg"
 import LineVertical2Svg from "../../svg/LineVertical2Svg"
-
-const images =[image,image,image]
 
 const RestaurantMainSection = ({images=[], header,text, span,videoLink}) => {
   const [emblaRef, emblaApi] = useCarousel({

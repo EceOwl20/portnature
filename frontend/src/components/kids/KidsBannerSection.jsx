@@ -1,5 +1,4 @@
 import React from 'react'
-import aquapark from "../../../public/images/children/Aquapark.png"
 import UnderLine from '../../svg/UnderLine/UnderLine'
 
 const KidsBannerSection = ({image,text, span}) => {

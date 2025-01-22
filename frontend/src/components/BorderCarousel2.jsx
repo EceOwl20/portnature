@@ -1,13 +1,8 @@
 import React, { useEffect, useCallback, useState } from "react";
 import useCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import child1 from "../../public/images/child1.png";
-import child3 from "../../public/images/child3.png";
 
-const images = [child1, child3, child1, child3];
-const header = ["", "", "", ""];
-
-const BorderCarousel2 = () => {
+const BorderCarousel2 = ({images}) => {
     
 
   const [emblaRef, emblaApi] = useCarousel(
@@ -68,13 +63,13 @@ const BorderCarousel2 = () => {
                   height={589}
                   width={348}
                   layout="responsive"
-                  src={image}
+                  src={image.firebaseUrl}
                   alt={`Slide ${index + 1}`}
                 />
                 <div className="flex w-full items-center justify-center">
                   <div className="flex text-start justify-start items-start pt-[3%] w-[80%]">
                     <p className="text-[12px] text-black font-monserrat font-normal leading-[18px] w-[88%]">
-                      A luxurious holiday is waiting for you in Family Rooms, designed in the comfort of your home
+                   {image.text}
                     </p>
                   </div>
                 </div>
@@ -82,7 +77,7 @@ const BorderCarousel2 = () => {
 
               <div className="absolute flex flex-col top-4 text-start items-center justify-center ">
                 <span className="text-[18px] font-lora lg:text-[25px] leading-normal text-white uppercase font-medium ">
-                  {header[index]}
+                {image.header}
                 </span>
               </div>
               <div className="absolute top-[8%] left-[18%] border border-[#CFCFCF] h-[55vh] w-[79%] z-1"></div>

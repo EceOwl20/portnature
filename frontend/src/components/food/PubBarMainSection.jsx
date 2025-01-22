@@ -2,10 +2,6 @@ import React, { useEffect, useCallback, useState } from "react";
 import useCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 
-import image from "../../../public/images/alacarteMain.png";
-import irishpub from "../../../public/images/food/irishpub6.png";
-import ThreeDrinkSvg from "../../svg/food/ThreeDrinkSvg";
-
 const PubBarMainSection = ({images=[], subImages=[], iconImage, header, text}) => {
   // 1. carousel için
   const [emblaRef1, emblaApi1] = useCarousel(

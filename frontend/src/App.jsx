@@ -73,6 +73,7 @@ import Activities from "./pages/Activities/Activities";
 import Users from "./pages/PanelPages/Users";
 import ProfilEditor from "./pages/PanelPages/ProfilEditor";
 import ContactSection from "./components/homepage/ContactSection";
+import ThreeVisualizerPage from "./pages/ThreeVisualizerPage";
 
 
 
@@ -207,6 +208,7 @@ const App = () => {
            <Route path="/page/:pageName" element={<DynamicPage page="homepage"/>} /> */}
 
             <Route path="/" element={<Homepage />} />
+            {/* <Route path="/three" element={<ThreeVisualizerPage />} /> */}
             <Route path="/rooms" element={<Rooms />}/>
             <Route path="/family-room" element={<SubRooms page="familyroom"/>}/>
             <Route path="/king-suite-room" element={<SubRooms page="kingsuiteroom"/>}/>
