@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import UnderLine from "../../svg/UnderLine/UnderLine";
 import ArrowSvg from "../../svg/ArrowSvg";
-import logo from "/header/logo.png";
 import MenuBar from "../../svg/MenuBar";
 import PhoneSvg from "../../svg/PhoneSvg";
 import darklogo from "../../../public/images/homepage/LogoPortDark.png";
@@ -13,7 +11,6 @@ import WkSvg from "../../svg/WkSvg";
 import TrivagoSvg from "../../svg/TrivagoSvg";
 import CrossSvg from "../../svg/CrossSvg";
 import NewUnderline from "../../svg/NewUnderline";
-import { app } from "../../firebase.js";
 import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 import Cookies from "js-cookie";
 import { useLanguage } from "../../context/LanguageContext";

@@ -73,10 +73,7 @@ import Activities from "./pages/Activities/Activities";
 import Users from "./pages/PanelPages/Users";
 import ProfilEditor from "./pages/PanelPages/ProfilEditor";
 import ContactSection from "./components/homepage/ContactSection";
-import ThreeVisualizerPage from "./pages/ThreeVisualizerPage";
-
-
-
+// import ThreeVisualizerPage from "./pages/ThreeVisualizerPage";
 
 const findRestaurants = [
   {
@@ -282,7 +279,7 @@ const App = () => {
           <div className="flex items-center w-screen justify-center mb-4">
           <ScrollToTopButton/>
           </div>
-          <Footer/>
+          {/* <Footer/> */}
        </LanguageProvider>
         </BrowserRouter>
       </HelmetProvider>

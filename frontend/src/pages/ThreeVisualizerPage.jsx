@@ -1,12 +1,12 @@
-import React from 'react'
-import ThreeVisualizer from '../components/ThreeVisualizer'
+// import React from 'react'
+// import ThreeVisualizer from '../components/ThreeVisualizer'
 
-const ThreeVisualizerPage = () => {
-  return (
-    <div>
-      <ThreeVisualizer/>
-    </div>
-  )
-}
+// const ThreeVisualizerPage = () => {
+//   return (
+//     <div>
+//       <ThreeVisualizer/>
+//     </div>
+//   )
+// }
 
-export default ThreeVisualizerPage
+// export default ThreeVisualizerPage
