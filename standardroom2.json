@@ -153,6 +153,41 @@
 }
     }
          
+},
+{
+    "type": "OtherOptions",
+    "props": {
+        "header":"Other Accommodation Options",
+        "text":"A luxurious holiday with your loved ones is waiting for you in Our Rooms, designed in the comfort of your home",
+
+        "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": "Port Nature Hotel",
+              "header":"KING SUITE",
+              "text":"A luxurious holiday with your loved ones is waiting for you in Family Room",
+              "span":"5 Adults + 1 · 110 m² · Sea View",
+              "buttonText":"More About",
+              "buttonLink":"/",
+              "width": 343,
+              "height": 504
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+               "width": 343,
+              "height": 504
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+               "width": 343,
+              "height": 504
+            }
+          ]
+       
+    }
+         
 }
     ],
     "tr": [
@@ -305,6 +340,41 @@
           "width": 20,
           "height": 20
 }
+    }
+         
+},
+{
+    "type": "OtherOptions",
+    "props": {
+        "header":"Other Accommodation Options",
+        "text":"A luxurious holiday with your loved ones is waiting for you in Our Rooms, designed in the comfort of your home",
+
+        "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": "Port Nature Hotel",
+              "header":"KING SUITE",
+              "text":"A luxurious holiday with your loved ones is waiting for you in Family Room",
+              "span":"5 Adults + 1 · 110 m² · Sea View",
+              "buttonText":"More About",
+              "buttonLink":"/",
+              "width": 343,
+              "height": 504
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+               "width": 343,
+              "height": 504
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+               "width": 343,
+              "height": 504
+            }
+          ]
+       
     }
          
 }
@@ -461,6 +531,41 @@
 }
     }
          
+},
+{
+    "type": "OtherOptions",
+    "props": {
+        "header":"Other Accommodation Options",
+        "text":"A luxurious holiday with your loved ones is waiting for you in Our Rooms, designed in the comfort of your home",
+
+        "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": "Port Nature Hotel",
+              "header":"KING SUITE",
+              "text":"A luxurious holiday with your loved ones is waiting for you in Family Room",
+              "span":"5 Adults + 1 · 110 m² · Sea View",
+              "buttonText":"More About",
+              "buttonLink":"/",
+              "width": 343,
+              "height": 504
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+               "width": 343,
+              "height": 504
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+               "width": 343,
+              "height": 504
+            }
+          ]
+       
+    }
+         
 }
     ],
     "ru": [
@@ -613,6 +718,41 @@
           "width": 20,
           "height": 20
 }
+    }
+         
+},
+{
+    "type": "OtherOptions",
+    "props": {
+        "header":"Other Accommodation Options",
+        "text":"A luxurious holiday with your loved ones is waiting for you in Our Rooms, designed in the comfort of your home",
+
+        "images": [
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913813358PortCover1.png?alt=media&token=60d513fd-8f9b-4f6c-bb0f-839cd5dfab47",
+              "altText": "Port Nature Hotel",
+              "header":"KING SUITE",
+              "text":"A luxurious holiday with your loved ones is waiting for you in Family Room",
+              "span":"5 Adults + 1 · 110 m² · Sea View",
+              "buttonText":"More About",
+              "buttonLink":"/",
+              "width": 343,
+              "height": 504
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+               "width": 343,
+              "height": 504
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+               "width": 343,
+              "height": 504
+            }
+          ]
+       
     }
          
 }

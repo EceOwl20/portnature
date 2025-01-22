@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import MainBackgroundRooms from './components/MainBackgroundRooms'
-import RoomInfo from "./components/RoomInfo";
 import RoomFeatures from "./components/RoomFeatures";
 import RoomsInfoCarousel from "./components/RoomsInfoCarousel";
 import { useLanguage } from "../../../src/context/LanguageContext";
+import ContactSection from "../../components/homepage/ContactSection";
 
 const Rooms = () => {
   const { language: lang } = useLanguage(); 
@@ -11,6 +11,7 @@ const Rooms = () => {
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
   const [roomsCarouselData, setRoomsCarouselData] = useState(null);
   const [roomsFeaturesData, setRoomsFeaturesData] = useState(null);
+  const [contactSectionData, setContactSectionData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -63,6 +64,17 @@ const Rooms = () => {
           console.warn("RoomsFeatures data not found in Rooms page");
         }
 
+        // ContactSection verilerini çek
+        const contactSectionComponent = localizedComponents.find(
+          (comp) => comp.type === "ContactSection"
+        );
+  
+        if (contactSectionComponent) {
+          setContactSectionData(contactSectionComponent.props);
+        } else {
+          console.warn("ContactSection data not found in homepage");
+        }
+
       } catch (err) {
         setError(err.message);
       }
@@ -78,11 +90,8 @@ const Rooms = () => {
       <MainBackgroundRooms {...mainBackgroundData} />
       {/* <RoomInfo links={links} linkstext={linkstext} text1={text1} text2={text2} text3={text3} images1={images1} images2={images2} images3={images3}/> */}
       <RoomsInfoCarousel {...roomsCarouselData} />
-        {/* <RoomsInfoCarousel images={images2} text={text2}/>
-        <RoomsInfoCarousel images={images3} text={text3}/> */}
-
         <RoomFeatures {...roomsFeaturesData} />
-      {/* <ContactSection/> */}
+      <ContactSection {...contactSectionData}/>
     </div>
   )
 }

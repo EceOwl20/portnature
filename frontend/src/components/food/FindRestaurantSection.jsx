@@ -1,6 +1,4 @@
 import React from 'react'
-import farEast from "../../../public/images/FarEastRestaurant 1.png"
-import LocationSvg from "../../svg/LocationSvg"
 import FindRestaurantCard from './FindRestaurantCard'
 
 const FindRestaurantSection = ({header, iconImage, filterItems=[]}) => {

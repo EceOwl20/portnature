@@ -23,6 +23,9 @@ import MultipleImages from '../components/Image/MultipleImages'
 // import InstagramSection from "../components/homepage/InstagramSection"
 import Cookies from "js-cookie";
 import { useLanguage } from "../context/LanguageContext";
+import { InstagramSection } from "../components/homepage/InstagramSection";
+
+const instagramImages = [followus1,followus2,followus3,followus4,followus5,followus6,followus7]
 
 const Homepage = () => {
   const { language: lang } = useLanguage(); // Cookie yerine context'i kullan
@@ -34,7 +37,10 @@ const Homepage = () => {
   const [childrenSectionData, setChildrenSectionData] = useState(null);
   const [backgroundSectionData, setBackgroundSectionData] = useState(null);
   const [alacarteSectionData, setAlacarteSectionData] = useState(null);
+  const [accommodationData, setAccommodationData] = useState(null);
+  const [specialoffersData, setSpecialoffersData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
+  const [instagramData, setInstagramData] = useState(null);
   const [error, setError] = useState(null);
 
   //const [lang, setLang] = useState(Cookies.get("language") || "en");
@@ -143,6 +149,39 @@ const Homepage = () => {
         } else {
           console.warn("AlacarteSection data not found in homepage");
         }
+
+         // Accommodation verilerini çek
+         const accommodationComponent = localizedComponents.find(
+          (comp) => comp.type === "AccommodationSection"
+        );
+  
+        if (accommodationComponent) {
+          setAccommodationData(accommodationComponent.props);
+        } else {
+          console.warn("accommodationComponent data not found in homepage");
+        }
+        
+        // specialoffersComponent verilerini çek
+        const specialoffersComponent = localizedComponents.find(
+          (comp) => comp.type === "SpecialOffersSection"
+        );
+  
+        if (specialoffersComponent) {
+          setSpecialoffersData(specialoffersComponent.props);
+        } else {
+          console.warn("specialoffersComponent data not found in homepage");
+        }
+
+         // instagram verilerini çek
+         const instagramComponent = localizedComponents.find(
+          (comp) => comp.type === "InstagramSection"
+        );
+  
+        if (instagramComponent) {
+          setInstagramData(instagramComponent.props);
+        } else {
+          console.warn("instagramComponent data not found in homepage");
+        }
   
         // ContactSection verilerini çek
         const contactSectionComponent = localizedComponents.find(
@@ -164,11 +203,10 @@ const Homepage = () => {
   
 
   if (error) return <p>Error: {error}</p>;
-  if (!carouselData && !barLoungeData && !iconSectionData && !allInclusiveData && !childrenSectionData && !backgroundSectionData) return <p>Loading...</p>;
+  if (!carouselData && !barLoungeData && !iconSectionData && !allInclusiveData && !childrenSectionData && !backgroundSectionData && !accommodationData && !specialoffersData &&!instagramData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col items-center justify-center'>
-      {/* <HomeCarousel images={images}/> */}
       <HomeCarousel {...carouselData} />
       <Reservation/>
       <HomeIconSection {...iconSectionData} />
@@ -180,14 +218,14 @@ const Homepage = () => {
       </div>
       <AllInclusive {...allInclusiveData} />
       <HolidayImageSection  {...holidayImageSectionData} />
-      <Accommodation/>
+      <Accommodation {...accommodationData}/>
       <ChildrenSection {...childrenSectionData} />
-      <ImageBackgroundSection {...backgroundSectionData} />
-      <SpecialOffersCarousel/>
+      {/* <ImageBackgroundSection {...backgroundSectionData} /> */}
+      <SpecialOffersCarousel {...specialoffersData}/>
       <AlacarteSection {...alacarteSectionData} />
        <BarLoungeCarousel {...barLoungeData} />
       <ContactSection {...contactSectionData} />
-      {/* <InstagramSection images={instagramImages}/> */}
+      <InstagramSection {...instagramData}/>
       <img src={instagramImg} alt='instagram' width={323.06149} height={630.77972} className='flex md:hidden  '/>
     </div>
   )

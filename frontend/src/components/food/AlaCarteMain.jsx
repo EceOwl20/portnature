@@ -1,8 +1,4 @@
 import React from "react";
-import image from "../../../public/images/alacarteMain.png";
-import LeafSvg from "../../svg/LeafSvg";
-import FreeSvg from "../../svg/FreeSvg";
-import DrinksSvg from "../../svg/DrinksSvg";
 
 const AlaCarteMain = ({image, image2, header, text, text2, span, subImages=[]}) => {
   return (

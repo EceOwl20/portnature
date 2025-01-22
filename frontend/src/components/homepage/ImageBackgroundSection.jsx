@@ -14,7 +14,7 @@ const texts = [
   "Spend time together",
 ];
 
-const Accommodation = () => {
+const Accommodation = ({images=[]}) => {
   const [emblaRef, emblaApi] = useCarousel({
     loop: true,
     align: "center",
@@ -86,7 +86,7 @@ const Accommodation = () => {
                       className="cursor-pointer overflow-hidden object-cover h-[380px] z-20 w-full"
                       height={380}
                       width={261}
-                      src={image}
+                      src={image.firebaseUrl}
                       alt={headers[index] || `Slide ${index + 1}`}
                     />
 

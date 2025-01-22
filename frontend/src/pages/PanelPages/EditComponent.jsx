@@ -35,8 +35,7 @@ const EditComponent = () => {
   const [filterImageSearchQuery, setFilterImageSearchQuery] = useState("");
   const [filterImageSearchResults, setFilterImageSearchResults] = useState([]);
 
-  const [restaurantImageSearchQuery, setRestaurantImageSearchQuery] =
-    useState("");
+  const [restaurantImageSearchQuery, setRestaurantImageSearchQuery] = useState("");
   const [restaurantImageSearchResults, setRestaurantImageSearchResults] =
     useState([]);
 
@@ -120,6 +119,20 @@ const EditComponent = () => {
 
     return () => clearTimeout(timeoutId);
   }, [itemSearchQuery]);
+
+  // ------------restaurant-------------
+
+  useEffect(() => {
+    if (!restaurantImageSearchQuery) {
+      setRestaurantImageSearchResults([]);
+      return;
+    }
+    const timeoutId = setTimeout(() => {
+      handleRestaurantImageSearch();
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [restaurantImageSearchQuery]);
 
   // --------------------------------------------------
   // GALERİ OPEN/CLOSE HANDLER
@@ -1606,11 +1619,12 @@ const EditComponent = () => {
               
 
 
-              {image.firebaseUrl && (
+              {item.image.firebaseUrl && (
                       <img
-                        src={image.firebaseUrl}
+                        src={item.image.firebaseUrl}
                         alt={`Preview of Image ${index + 1}`}
-                        className="w-full h-32 object-cover mt-2 border rounded-md"
+                        className="w-60 h-40 object-cover mt-2 border rounded-md"
+                        
                       />
                     )}
 
@@ -1636,7 +1650,7 @@ const EditComponent = () => {
                       </div>
 
                       {restaurantImageSearchResults.length > 0 && (
-                        <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px]">
+                        <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px] ">
                           <h4>Search Results</h4>
                           {restaurantImageSearchResults.map((result, i) => (
                             <div
@@ -1662,24 +1676,6 @@ const EditComponent = () => {
 
               {/* Search for a new main image */}
               <div className="flex flex-col gap-2 items-center my-2">
-                <label className="text-black text-[18px] font-semibold">
-                  Search for a new image
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter image name"
-                  value={restaurantImageSearchQuery}
-                  onChange={(e) =>
-                    setRestaurantImageSearchQuery(e.target.value)
-                  }
-                  className="border py-2 px-3 w-[50%]"
-                />
-                <button
-                  onClick={handleRestaurantImageSearch}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Search
-                </button>
 
                 {restaurantImageSearchResults.length > 0 && (
                   <div className="flex flex-col gap-2 mt-2">
@@ -1712,6 +1708,7 @@ const EditComponent = () => {
               <div className="flex flex-col gap-1">
                 <label className="text-sm font-semibold">AltText</label>
                 <input
+                className="text-black"
                   type="text"
                   value={item.image.altText}
                   onChange={(e) => {
@@ -1744,6 +1741,7 @@ const EditComponent = () => {
                 <label className="text-sm font-semibold">Header</label>
                 <input
                   type="text"
+                  className="text-black"
                   value={item.header}
                   onChange={(e) => {
                     const updatedArray = [
@@ -1772,6 +1770,7 @@ const EditComponent = () => {
                 <label className="text-sm font-semibold">Text</label>
                 <input
                   type="text"
+                  className="text-black"
                   value={item.text}
                   onChange={(e) => {
                     const updatedArray = [
@@ -1800,6 +1799,7 @@ const EditComponent = () => {
                 <label className="text-sm font-semibold">Span</label>
                 <input
                   type="text"
+                  className="text-black"
                   value={item.span}
                   onChange={(e) => {
                     const updatedArray = [
@@ -1828,6 +1828,7 @@ const EditComponent = () => {
                 <label className="text-sm font-semibold">Button Text</label>
                 <input
                   type="text"
+                  className="text-black"
                   value={item.buttonText}
                   onChange={(e) => {
                     const updatedArray = [
@@ -1856,6 +1857,7 @@ const EditComponent = () => {
                 <label className="text-sm font-semibold">Button Link</label>
                 <input
                   type="text"
+                  className="text-black"
                   value={item.buttonLink}
                   onChange={(e) => {
                     const updatedArray = [
@@ -2243,10 +2245,10 @@ const EditComponent = () => {
                       >
                         <img
                           src={result.firebaseUrl}
-                          alt={result.altText.en}
+                          alt={result.altText}
                           className="w-16 h-16 object-cover"
                         />
-                        <p>{result.altText.en}</p>
+                        <p>{result.altText}</p>
                       </div>
                     ))}
                   </div>

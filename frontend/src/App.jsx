@@ -17,39 +17,13 @@ import Panel from "./pages/PanelPages/Panel";
 import "./App.css"
 import Rooms from "./pages/Accommodation/Rooms";
 import SubRooms from "./pages/Accommodation/SubRooms";
-import familyroomBanner from "../public/images/rooms/familyroom-banner.png"
-import kingsuiteBanner from "../public/images/rooms/kingsuite-banner.png"
-import familyroom1 from "../public/images/rooms/familyroom1.png"
-import familyroom2 from "../public/images/rooms/familyroom2.png"
-import familyroom3 from "../public/images/rooms/familyroom3.png"
-import kingsuite1 from "../public/images/rooms/kingsuite1.png"
-import kingsuite2 from "../public/images/rooms/kingsuite2.png"
-import kingsuite3 from "../public/images/rooms/kingsuite3.png"
-import familyroomPlan from "../public/images/rooms/familyroomPlan.png"
-import kingPlan from "../public/images/rooms/kingPlan.png"
 import PersonSvg from "./svg/room/PersonSvg"
 import SingleBedSvg from './svg/SingleBedSvg'
 import BedSvg from './svg/BedSvg'
 import AreaSvg from './svg/room/AreaSvg'
 import SeaViewSvg from './svg/SeaViewSvg'
 
-import allrooms from "../public/images/rooms/Photo-All-Rooms.png"
-import roomsfamily from "../public/images/rooms/familyroom-1.png"
-import roomskingsuite from "../public/images/rooms/kingSuite-1.png"
-import roomsstandardroom from "../public/images/rooms/standardRoom-1.png"
-import standardBanner from "../public/images/rooms/standardroom-banner.png"
-import StandardRoomComponent from "./pages/Accommodation/components/StandardRoomComponent";
 import StandardRooms from "./pages/Accommodation/StandardRooms";
-
-const allStandardroomslinks=["/standard-side-view","/standard-sea-view","/standard-land-view"];
-const allStandardroomslinkstexts=["Side Sea View","Sea View","Land View"];
-
-const allroomslinks=["/family-room","/king-suite-room","/standard-rooms"];
-const allroomslinkstexts=["Family Room","King Suite Room","Standard Room"];
-const roomsFamilyImg = [roomsfamily, roomsfamily, roomsfamily];
-const roomsKingImg = [roomskingsuite, roomskingsuite, roomskingsuite];
-const roomsStandardImg = [roomsstandardroom, roomsstandardroom, roomsstandardroom];
-
 import Dashboard from "./pages/PanelPages/Dashboard";
 import BlogEkle from "./pages/PanelPages/BlogEkle";
 import BlogPage from "./pages/BlogPage";
@@ -57,9 +31,6 @@ import BlogDetails from "./pages/BlogDetails";
 
 import FoodDrinkPage from "./pages/Food/FoodDrinkPage";
 import AlacartePage from "./pages/Food/AlacartePage";
-import food1 from "/images/food1.png"
-import barcafes from "/images/barcafes.png"
-import logo from "/images/hennessy.png"
 import farEast from "/images/FarEastRestaurant 1.png"
 
 import BlogListele from "./pages/PanelPages/BlogListele";
@@ -67,7 +38,6 @@ import EastFoodSvg from "./svg/food/EastFoodSvg"
 import CupcakeSvg from "./svg/food/CupcakeSvg"
 import CoffeePage from "./pages/Food/CoffeePage";
 import CoffeeBarsMainPage from "./components/food/CoffeeBarsMainPage";
-import alacarte from "../public/images/food/alacarte.png"
 import ScrollToTop from "./components/ScrollToTop";
 import MainRestaurant from "./pages/Food/MainRestaurant";
 
@@ -84,10 +54,6 @@ import UploadImage from "./pages/PanelPages/UploadImage";
 import SearchImage from "./pages/PanelPages/SearchImage";
 import AquaPark from "./pages/aquapark/AquaPark";
 
-import davidoffImg from "/images/davidoffMain2.png";
-import davidoffLogo from "/images/food/Davidoff_logo.png"
-import davidoffsubimg from "/images/food/davidoff2.png"
-import DavidoffSvg from "./svg/food/DavidoffSvg"
 import Gallery from "./pages/PanelPages/Gallery";
 import EditImage from "./pages/PanelPages/EditImage";
 import MiniAlaCarte from "./pages/Kids/MiniAlaCarte";
