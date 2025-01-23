@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from "react";
-import img from "../../../public/images/footerMain.jpeg"
+import React from "react";
 import YoutubeSvg from '../../svg/YoutubeSvg'
 import FacebookSvg from '../../svg/FacebookSvg'
 import InstagramSvg from '../../svg/InstagramSvg'
 import WkSvg from '../../svg/WkSvg'
 import TrivagoSvg from '../../svg/TrivagoSvg'
-import logo from "../../../public/header/LogoGold.png"
-import logo2 from "../../../public/header/port-gold-logo.png"
 import Location2Svg from '../../svg/Location2Svg'
 import WhatsappSvg from '../../svg/WhatsappSvg'
 import FooterLineSvg from '../../svg/FooterLineSvg'
-import { useLanguage } from "../../context/LanguageContext";
 
 const FooterData = ({image, image2}) => {
   return (
@@ -27,7 +23,7 @@ const FooterData = ({image, image2}) => {
           <TrivagoSvg width={43} height={27} className="flex" color="white"/>
         </div>
         <div className='flex lg:hidden h-[1px] w-full bg-[#FFFFFF4D]'></div>
-        <img src={image2.firebaseUrl} alt={image.altText} width={214} height={88} className='flex lg:hidden mt-[32px] mb-[16px] items-center justify-center'/>
+        <img src={image2.firebaseUrl} alt={image2.altText} width={214} height={88} className='flex lg:hidden mt-[32px] mb-[16px] items-center justify-center'/>
         <img src={image2.firebaseUrl} alt='logo' width={image2.width} height={image2.height} className='hidden lg:flex items-center justify-center'/>
        </div>
 

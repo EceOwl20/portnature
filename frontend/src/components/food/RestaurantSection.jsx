@@ -1,5 +1,4 @@
 import React from 'react'
-import img from "../../../public/images/food/alacarte.png"
 import UnderLine from '../../svg/UnderLine/UnderLine'
 import Underline from "../../svg/UnderLine/UnderLine"
 import { Link } from 'react-router-dom'

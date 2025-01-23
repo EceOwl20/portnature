@@ -44,7 +44,7 @@ export function InstagramSection({ images=[], image }) {
 
 
   return (
-    <div className="flex flex-col w-full h-auto items-center justify-center my-[60px] relative">
+    <div className="flex flex-col w-full h-auto items-center justify-center mt-[60px] relative">
       <div className="overflow-hidden relative h-auto" ref={emblaRef}>
           <div className="flex grid-flow-col">
             {images.map((image, index) => (

@@ -1,9 +1,7 @@
 import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import portlogo from "../../../public/images/LogoPortbig.png";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
-import barimg from "../../../public/images/homepage/chivas.png";
 import UnderLine from "../../svg/UnderLine/UnderLine";
 import FooterLineSvg from "../../svg/FooterLineSvg";
 import NewUnderline from "../../svg/NewUnderline";

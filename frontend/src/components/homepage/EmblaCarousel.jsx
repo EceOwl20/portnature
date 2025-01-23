@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import 'tailwindcss/tailwind.css';
-import img from "../../../public/images/homepage/KingRoom.png"
 
 const carouselItems = [
   {

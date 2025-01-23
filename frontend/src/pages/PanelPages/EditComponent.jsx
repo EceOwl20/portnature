@@ -49,7 +49,6 @@ const EditComponent = () => {
   // #### EKLENDİ: Galeri üzerinden seçilen resmi "activeField"’e göre ekle
   const handleGalleryImageSelect = (selectedImage) => {
     if (activeField === "singleImage") {
-      // Tek bir alanı güncelle
       setComponentData((prev) => ({
         ...prev,
         props: {
@@ -61,15 +60,27 @@ const EditComponent = () => {
           },
         },
       }));
+    } else if (activeField === "singleImage2") {
+      setComponentData((prev) => ({
+        ...prev,
+        props: {
+          ...prev.props,
+          image2: {
+            ...prev.props.image2, // image2'yi doğru şekilde güncelliyoruz
+            firebaseUrl: selectedImage.firebaseUrl,
+            altText: selectedImage.altText,
+          },
+        },
+      }));
     } else if (activeField?.type === "images") {
-      // images dizisi => handleReplaceImage("images", activeField.index, selectedImage);
       handleReplaceImage("images", activeField.index, selectedImage);
     } else if (activeField?.type === "subImages") {
       handleReplaceImage("subImages", activeField.index, selectedImage);
     }
-
+  
     setGaleriOpen(false);
   };
+  
 
   // --------------------------------------------------
   // useEffect: FETCH COMPONENT DATA ON MOUNT
@@ -255,15 +266,15 @@ const EditComponent = () => {
     }));
   };
 
-  const handleImageAltTextChange = (lang, value) => {
+  const handleImageAltTextChange = (field,lang, value) => {
     setComponentData((prev) => ({
       ...prev,
       props: {
         ...prev.props,
-        image: {
-          ...prev.props.image,
+        [field]: {
+          ...prev.props[field],
           altText: {
-            ...prev.props.image.altText,
+            ...prev.props[field].altText,
             [lang]: value,
           },
         },
@@ -846,21 +857,40 @@ const EditComponent = () => {
         {singleImage2 && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
             <h2 className="font-bold text-[16px]">Single Image</h2>
-            <label className="font-semibold hidden ">Firebase URL</label>
+            <label className="font-semibold hidden">Firebase URL</label>
             <input
               type="text"
               value={singleImage2.firebaseUrl || ""}
               onChange={(e) => handleImageUrlChange(e.target.value)}
-              className="border p-2 hidden font-semibold"
+              className="border p-2 hidden"
             />
 
-            <div className="flex flex-col gap-2 text-[12px] font-semibold">
-              <label>Alt Text </label>
+            {singleImage2.firebaseUrl && (
+              <img
+                src={singleImage2.firebaseUrl}
+                alt="Preview"
+                className="w-[200px] h-auto object-contain mt-2 border rounded"
+              />
+            )}
+
+            <button
+              className="bg-blue-600 text-white px-2 py-1 w-[80%] rounded mt-2 text-[12px]"
+              onClick={() => {
+                setActiveField("singleImage2"); // “image” alanını güncelleyeceğimizi belirt
+                setGaleriOpen(true); // popup’ı aç
+              }}
+            >
+              Galeri Aç
+            </button>
+
+            <h3 className="font-semibold mt-4 text-[15px]">Alt Text </h3>
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px]">Alt Text </label>
               <input
                 type="text"
                 value={singleImage2.altText}
                 onChange={(e) => handleImageAltTextChange(e.target.value)}
-                className="border p-2 text-[12px] font-normal"
+                className="border p-2 text-[12px]"
               />
             </div>
           </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Aquapark from "../Images/Aquapark1.png";
 import { Link } from "react-router-dom";
 
 const Section3 = ({image,header,text,buttonText,buttonLink}) => {

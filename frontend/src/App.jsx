@@ -279,7 +279,7 @@ const App = () => {
           <div className="flex items-center w-screen justify-center mb-4">
           <ScrollToTopButton/>
           </div>
-          {/* <Footer/> */}
+          <Footer/>
        </LanguageProvider>
         </BrowserRouter>
       </HelmetProvider>

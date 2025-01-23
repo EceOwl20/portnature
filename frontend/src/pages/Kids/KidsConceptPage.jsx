@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import MainBackgroundRooms from "../Accommodation/components/MainBackgroundRooms";
-import mainImg from "../../../public/images/children/kidsconcept.png";
 import InfoIconSection from "../../components/InfoIconSection";
 import BorderCarousel from "../../components/BorderCarousel";
 import BorderCarousel2 from "../../components/BorderCarousel2";
 import KidsBannerSection from "../../components/kids/KidsBannerSection";
 import ContactSection from "../../components/homepage/ContactSection";
 import { useLanguage } from "../../context/LanguageContext";
-
-const images = [mainImg, mainImg, mainImg];
 
 const KidsConceptPage = ({ items }) => {
   const { language: lang } = useLanguage(); 

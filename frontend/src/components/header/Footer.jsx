@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import img from "../../../public/images/footerMain.jpeg"
 import YoutubeSvg from '../../svg/YoutubeSvg'
 import FacebookSvg from '../../svg/FacebookSvg'
 import InstagramSvg from '../../svg/InstagramSvg'
 import WkSvg from '../../svg/WkSvg'
 import TrivagoSvg from '../../svg/TrivagoSvg'
-import logo from "../../../public/header/LogoGold.png"
-import logo2 from "../../../public/header/port-gold-logo.png"
 import Location2Svg from '../../svg/Location2Svg'
 import WhatsappSvg from '../../svg/WhatsappSvg'
 import FooterLineSvg from '../../svg/FooterLineSvg'
@@ -17,6 +14,7 @@ const Footer = () => {
   const { language: lang } = useLanguage(); // Cookie yerine context'i kullan
 
   const [footerData, setFooterData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPageData = async () => {

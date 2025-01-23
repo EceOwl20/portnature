@@ -8,24 +8,13 @@ import Accommodation from '../components/homepage/Accommodation'
 import ChildrenSection from '../components/homepage/ChildrenSection'
 import ImageBackgroundSection from '../components/homepage/ImageBackgroundSection'
 import ContactSection from '../components/homepage/ContactSection'
-import followus1 from "../../public/images/homepage/follow1.png"
-import followus2 from "../../public/images/homepage/follow2.png"
-import followus3 from "../../public/images/homepage/follow3.png"
-import followus4 from "../../public/images/homepage/follow4.png"
-import followus5 from "../../public/images/homepage/follow5.png"
-import followus6 from "../../public/images/homepage/follow6.png"
-import followus7 from "../../public/images/homepage/follow7.png"
-import instagramImg from "../../public/images/homepage/newinsta.png"
 import BarLoungeCarousel from '../components/homepage/BarLoungeCarousel'
 import AlacarteSection from '../components/homepage/AlacarteSection'
 import SpecialOffersCarousel from '../components/homepage/SpecialOffersCarousel'
-import MultipleImages from '../components/Image/MultipleImages'
 // import InstagramSection from "../components/homepage/InstagramSection"
 import Cookies from "js-cookie";
 import { useLanguage } from "../context/LanguageContext";
 import { InstagramSection } from "../components/homepage/InstagramSection";
-
-const instagramImages = [followus1,followus2,followus3,followus4,followus5,followus6,followus7]
 
 const Homepage = () => {
   const { language: lang } = useLanguage(); // Cookie yerine context'i kullan
@@ -203,7 +192,7 @@ const Homepage = () => {
   
 
   if (error) return <p>Error: {error}</p>;
-  if (!carouselData && !barLoungeData && !iconSectionData && !allInclusiveData && !childrenSectionData && !backgroundSectionData && !accommodationData && !specialoffersData &&!instagramData) return <p>Loading...</p>;
+  if (!carouselData && !barLoungeData && !iconSectionData && !allInclusiveData && !childrenSectionData && !backgroundSectionData && !accommodationData && !specialoffersData && !instagramData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col items-center justify-center'>
@@ -226,7 +215,7 @@ const Homepage = () => {
        <BarLoungeCarousel {...barLoungeData} />
       <ContactSection {...contactSectionData} />
       <InstagramSection {...instagramData}/>
-      <img src={instagramImg} alt='instagram' width={323.06149} height={630.77972} className='flex md:hidden  '/>
+     
     </div>
   )
 }
