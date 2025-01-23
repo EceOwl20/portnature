@@ -100,11 +100,6 @@ const Beach = () => {
   if (error) return <p>Error: {error}</p>;
   if (!miniClubSliderData && !contactSectionData && !beachSectionData && !beachSection2Data && !specialOffersData) return <p>Loading...</p>;
 
-    const slides = [
-        '/images/Beach/beach1.png',
-        '/images/Beach/beach2.png',
-        '/images/Beach/beach3.png',
-      ];
       
     
       const OPTIONS = { loop: true }
@@ -113,7 +108,7 @@ const Beach = () => {
 
   return (
     <section>
-        <MiniClubSlider slides={slides} options={OPTIONS} {...miniClubSliderData} />
+        <MiniClubSlider options={OPTIONS} {...miniClubSliderData} />
         {/* <BeachSection1 /> */}
         <BeachSection2 {...beachSection2Data} />
         <ContactSection {...contactSectionData} />

@@ -1,6 +1,4 @@
 import React, { useState }  from 'react'
-import farEast from "../../../public/images/FarEastRestaurant 1.png"
-import LocationSvg from "../../svg/LocationSvg"
 import FindRestaurantCard from './FindRestaurantCard'
 
 const FilterFindCafe = ({image, iconImage, header, text, text2, text3, filterItems=[]}) => {

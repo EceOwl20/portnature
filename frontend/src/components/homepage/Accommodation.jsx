@@ -1,7 +1,4 @@
 import React from "react";
-import familyroom from "../../../public/images/homepage/FamilyRoom.png";
-import kingroom from "../../../public/images/homepage/KingRoom.png";
-import standardroom from "../../../public/images/homepage/StandardRoom.png";
 import { RoomCarousel } from "./RoomCarousel";
 
 const Accommodation = ({images=[],header,text}) => {

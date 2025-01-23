@@ -17,11 +17,6 @@ import Panel from "./pages/PanelPages/Panel";
 import "./App.css"
 import Rooms from "./pages/Accommodation/Rooms";
 import SubRooms from "./pages/Accommodation/SubRooms";
-import PersonSvg from "./svg/room/PersonSvg"
-import SingleBedSvg from './svg/SingleBedSvg'
-import BedSvg from './svg/BedSvg'
-import AreaSvg from './svg/room/AreaSvg'
-import SeaViewSvg from './svg/SeaViewSvg'
 
 import StandardRooms from "./pages/Accommodation/StandardRooms";
 import Dashboard from "./pages/PanelPages/Dashboard";
@@ -31,11 +26,8 @@ import BlogDetails from "./pages/BlogDetails";
 
 import FoodDrinkPage from "./pages/Food/FoodDrinkPage";
 import AlacartePage from "./pages/Food/AlacartePage";
-import farEast from "/images/FarEastRestaurant 1.png"
 
 import BlogListele from "./pages/PanelPages/BlogListele";
-import EastFoodSvg from "./svg/food/EastFoodSvg"
-import CupcakeSvg from "./svg/food/CupcakeSvg"
 import CoffeePage from "./pages/Food/CoffeePage";
 import CoffeeBarsMainPage from "./components/food/CoffeeBarsMainPage";
 import ScrollToTop from "./components/ScrollToTop";
@@ -75,113 +67,6 @@ import ProfilEditor from "./pages/PanelPages/ProfilEditor";
 import ContactSection from "./components/homepage/ContactSection";
 // import ThreeVisualizerPage from "./pages/ThreeVisualizerPage";
 
-const findRestaurants = [
-  {
-    header: "FAR EAST A'LA CARTE",
-    text: "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
-    link: "/far-east",
-    image: farEast, 
-    icon: { Icon: EastFoodSvg, width: 31, height: 29, color: "red-500" },
-    time:"",
-    kidsFriendly:false,
-    ageLimit:"+18"
-  },
-  {
-    header: "FAR EAST A'LA CARTE",
-    text: "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
-    link: "/cupcake",
-    image: farEast, 
-    icon: { Icon: CupcakeSvg, width: 31, height: 29, color: "blue-500" },
-    time:"",
-    kidsFriendly:false,
-    ageLimit:"+18"
-  },
-];
-
-const filterfindRestaurants = [
-  {
-    header: "FAR EAST A'LA CARTE",
-    text: "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
-    link: "/far-east",
-    image: farEast, 
-    icon: { Icon: EastFoodSvg, width: 31, height: 29, color: "red-500" },
-    time:"7/24",
-    kidsFriendly:"true",
-    ageLimit:"7"
-  },
-  {
-    header: "Davidoff Cafe",
-    text: "We always offer the freshest. This is the secret of our taste. The freshest was chosen for you.",
-    link: "/davidoff-cafe",
-    image: farEast, 
-    icon: { Icon: CupcakeSvg, width: 31, height: 29, color: "blue-500" },
-    time:"",
-    kidsFriendly:"false",
-    ageLimit:"+18"
-  },
-];
-
-const familyText=["FAMILY ROOM","A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home","2","2","45m2","Corner Sea View",];
-const kingText=["KING SUITE","A luxurious holiday with your loved ones is waiting for you in Family Rooms, designed in the comfort of your own home","1","2","110m2","Sea View",];
-const standardText=["STANDARD ROOM","You will find the unique harmony of modern architecture in comfortable and spacious rooms decorated in pastel colors","1","1","35m2","Side View/Sea View/Land View ",];
-
-const FamilyItems = [
-  {
-    SvgComponent: PersonSvg,
-    svgProps: { width: 53, height: 35 },
-    text: '4 Adults + 1',
-  },
-  {
-    SvgComponent: SingleBedSvg,
-    svgProps: { width: 26, height: 44, color: "#CFCFCF" },
-    text: '2 Single Beds',
-  },
-  {
-    SvgComponent: BedSvg,
-    svgProps: { width: 43, height: 47, color: "#CFCFCF" },
-    text: '1 Double Bed',
-  },
-  {
-    SvgComponent: AreaSvg,
-    svgProps: { width: 41, height: 41 },
-    text: '45 m2',
-  },
-  {
-    SvgComponent: SeaViewSvg,
-    svgProps: { width: 40, height: 28, color: "#CFCFCF" },
-    text: 'Corner Sea View',
-  },
-];
-
-const KidsConceptItems = [
-  {
-    SvgComponent: SpoonForkSvg,
-    svgProps: { width: 37, height: 41 },
-    text: "MINI A'LA CARTE",
-  },
-  {
-    SvgComponent: TedyBearSvg,
-    svgProps: { width: 39, height: 35, color: "#CFCFCF" },
-    text: 'BABYSITTING',
-  },
-  {
-    SvgComponent: AquaparkSvg,
-    svgProps: { width: 44, height: 45, color: "#CFCFCF" },
-    text: 'AQUAPARK',
-  },
-  {
-    SvgComponent: ConcertSvg,
-    svgProps: { width: 33, height: 46 },
-    text: 'MINI DISCO',
-  },
-  {
-    SvgComponent: SpecialSvg,
-    svgProps: { width: 40, height: 37, color: "#CFCFCF" },
-    text: 'SPECIAL COURSES',
-  },
-];
-
-
 const App = () => {
  const { activeUser } = useSelector((state) => state.user);
 
@@ -200,10 +85,6 @@ const App = () => {
           <main>
           {/* <ScrollToTop /> */}
            <Routes>
-           {/* <Route path="/homepage" element={<DynamicPage page="homepage" />} />
-           <Route path="/about" element={<DynamicPage page="about" />} />
-           <Route path="/page/:pageName" element={<DynamicPage page="homepage"/>} /> */}
-
             <Route path="/" element={<Homepage />} />
             {/* <Route path="/three" element={<ThreeVisualizerPage />} /> */}
             <Route path="/rooms" element={<Rooms />}/>
@@ -213,7 +94,6 @@ const App = () => {
             <Route path="/standard-sea-view-room" element={<SubRooms page="standardseaview"/>}/>
             <Route path="/standard-side-view-room" element={<SubRooms page="standardsideview"/>}/>
             <Route path="/standard-land-view-room" element={<SubRooms page="standardlandview"/>}/>
-            {/* links={allStandardroomslinks} linkstext={allStandardroomslinkstext} images1={roomsFamilyImg} images2={roomsKingImg} images3={roomsStandardImg} text1={familyText} text2={kingText} text3={standardText} */}
             <Route path="/food-drinks" element={<FoodDrinkPage />}/>
             <Route path="/davidoff-cafe" element={<CoffeePage  page="davidoffcafe" />}/>
             <Route path="/kit-kat-cafe" element={<CoffeePage  page="kitkatcafe" />}/>
@@ -235,7 +115,7 @@ const App = () => {
             <Route path="/lobby-bar" element={<PubBarPage page="lobbybar"/>}/>
             <Route path="/flamingo-bar" element={<PubBarPage page="flamingobar"/>}/>
 
-            <Route path="/kids-concept" element={<KidsConceptPage items={KidsConceptItems}/>}/>
+            <Route path="/kids-concept" element={<KidsConceptPage/>}/>
             <Route path="/aquapark" element={<AquaPark />}/>
             {/* <Route path='/minialacarte' element={<MiniAlaCarte/>}/> */}
             <Route path='/miniclub' element={<MiniClub/>}/>

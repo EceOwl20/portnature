@@ -7,7 +7,7 @@ import KidsBannerSection from "../../components/kids/KidsBannerSection";
 import ContactSection from "../../components/homepage/ContactSection";
 import { useLanguage } from "../../context/LanguageContext";
 
-const KidsConceptPage = ({ items }) => {
+const KidsConceptPage = () => {
   const { language: lang } = useLanguage(); 
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
   const [infoIconSectionData, setInfoIconSectionData] = useState(null);
