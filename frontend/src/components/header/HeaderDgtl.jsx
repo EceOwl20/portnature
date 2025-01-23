@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { logOutError, logOutStart, logOutSuccess } from "../../redux/userSlice";
 import LogoArka from "../../../public/logo/LogoArka.jsx";
-import photo from "../../../public/images/homepage/follow5.png"
 import { FiLogOut, FiEdit } from "react-icons/fi";
 
 const HeaderDgtl = () => {
@@ -91,13 +90,13 @@ const HeaderDgtl = () => {
               onClick={toggleProfileDropdown}
               className="flex items-center justify-center gap-1 focus:outline-none"
             >
-              <img
+              {/* <img
                 src={photo}
                 alt="profile"
                 width={photo.width}
                 height={photo.height}
                 className="w-[50px] h-[50px] rounded-lg"
-              />
+              /> */}
               <div className="flex flex-col gap-0 items-start justify-center text-left">
                 <span className="hover:bg-white hover:text-[#0e0c1b] py-1 px-2 rounded-md capitalize">
                   {activeUser.name}

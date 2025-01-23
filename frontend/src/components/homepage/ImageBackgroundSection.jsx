@@ -1,12 +1,6 @@
 import React, { useEffect, useCallback, useState } from "react";
 import useCarousel from "embla-carousel-react";
-import VipSvg from "../../svg/VipSvg";
 
-import vip from "../../../public/images/homepage/vip-customer.jpeg";
-import mixology from "../../../public/images/homepage/mixology.jpeg";
-import wedding from "../../../public/images/homepage/wedding.jpeg";
-
-const images = [vip, mixology, wedding];
 const headers = ["Become a VIP customer", "Mixology Expert", "Wedding gift"];
 const texts = [
   "By booking a trip on our website",
@@ -96,7 +90,7 @@ const Accommodation = ({images=[]}) => {
                     
                     <figcaption className="absolute flex flex-col top-10 left-1/3 -translate-x-1/3 text-center items-center justify-center z-20">
                       
-                      <VipSvg width={54} height={40} aria-hidden="true" />
+                      {/* <VipSvg width={54} height={40} aria-hidden="true" /> */}
 
                       <h3 className="text-[17.552px] font-lora lg:text-[23px] lg:leading-[42px] text-white font-medium leading-[32px] italic">
                         {headers[index]}
