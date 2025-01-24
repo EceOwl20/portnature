@@ -4,7 +4,7 @@ import Autoplay from "embla-carousel-autoplay";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { BsChevronDown } from "react-icons/bs";
-import RoomsCarousel from "./RoomsCarousel";
+// import RoomsCarousel from "./RoomsCarousel";
 
 const PlanYourTrip = ({image,header,text,span,button,images=[],restaurantItems=[]}) => {
   // ROOM STATE
@@ -275,7 +275,7 @@ const PlanYourTrip = ({image,header,text,span,button,images=[],restaurantItems=[
 
       <div className="flex flex-col w-[55%] h-full items-center justify-center">
         <div className="flex ">
-          <RoomsCarousel images={restaurantItems}/>
+          {/* <RoomsCarousel images={restaurantItems}/> */}
         </div>
 
         <div className="flex w-full items-center justify-center">
