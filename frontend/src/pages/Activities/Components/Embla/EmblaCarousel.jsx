@@ -46,15 +46,17 @@ const EmblaCarousel = ({ slides = [], options = {} }) => {
                 <div className="h-[606px] w-full relative bg-gray-200 shadow-md overflow-hidden">
                   {/* Slide Resmi */}
                   <img
-                    src={slide.image}
+                    src={slide.firebaseUrl}
                     alt={slide.title}
                     className="h-full w-full object-cover"
+                    width={slide.width}
+                    height={slide.height}
                   />
 
                   {/* Yazı Katmanı */}
                   <div className="absolute inset-0 bg-black/10 flex flex-col leading-normal justify-start font-lora text-[25px] font-thin text-white p-4">
-                    <h2 className="text-2xl font-bold">{slide.title}</h2>
-                    <p className="text-sm mt-2">{slide.description}</p>
+                    <h2 className="text-2xl font-bold">{slide.text}</h2>
+                    {/* <p className="text-sm mt-2">{slide.description}</p> */}
                   </div>
                 </div>
               </div>

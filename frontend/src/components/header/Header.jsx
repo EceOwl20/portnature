@@ -1,21 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import UnderLine from "../../svg/UnderLine/UnderLine";
 import ArrowSvg from "../../svg/ArrowSvg";
-import logo from "/header/logo.png";
 import MenuBar from "../../svg/MenuBar";
 import PhoneSvg from "../../svg/PhoneSvg";
-import darklogo from "../../../public/images/homepage/LogoPortDark.png";
 import YoutubeSvg from "../../svg/YoutubeSvg";
 import FacebookSvg from "../../svg/FacebookSvg";
 import InstagramSvg from "../../svg/InstagramSvg";
 import WkSvg from "../../svg/WkSvg";
 import TrivagoSvg from "../../svg/TrivagoSvg";
 import CrossSvg from "../../svg/CrossSvg";
-import NewUnderline from "../../svg/NewUnderline";
-import { app } from "../../firebase.js";
-import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
-import Cookies from "js-cookie";
 import { useLanguage } from "../../context/LanguageContext";
 
 const Header = () => {
@@ -25,15 +18,16 @@ const Header = () => {
 
   const [headerImages, setHeaderImages] = useState([]);
 
-  const { language, setLanguage } = useLanguage();
+  const { language: lang, setLanguage } = useLanguage(); // useLanguage'den setLanguage'i aldım
 
+  const [headerData, setHeaderData] = useState(null);
+  const [error, setError] = useState(null);
   const options = ["en", "tr", "de", "ru"];
+
   const [isOpen, setIsOpen] = useState(false);
 
-  // Dışarı tıklanınca menüyü kapatmak için referans
   const dropdownRef = useRef(null);
 
-  // Dışarı tıklama ile kapatma (basit versiyon)
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -51,33 +45,43 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
-  // Yeni fonksiyon
   const handleChange = (newLang) => {
-    // Dili state'te güncelle
-    setLanguage(newLang);
-    // Cookie'yi güncelle
-    Cookies.set("language", newLang); // Cookie'yi güncelle
-    setIsOpen(false); // Dropdown menüyü kapat
+    setLanguage(newLang); // Doğru şekilde dili güncelliyoruz
+    setIsOpen(false);
   };
 
   useEffect(() => {
-    const fetchHeaderImages = async () => {
-      const storage = getStorage();
-      const storageRef = ref(storage, "images/header");
-
+    const fetchPageData = async () => {
       try {
-        const result = await listAll(storageRef);
-        const urls = await Promise.all(
-          result.items.map((item) => getDownloadURL(item))
+        const response = await fetch("/api/page/layout");
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch page data");
+        }
+
+        const localizedComponents = data.translations[lang];
+
+        if (!localizedComponents) {
+          throw new Error(`No translations found for language: ${lang}`);
+        }
+
+        const headerComponent = localizedComponents.find(
+          (comp) => comp.type === "Header"
         );
-        setHeaderImages(urls);
-      } catch (error) {
-        console.error("Error fetching header images:", error);
+
+        if (headerComponent) {
+          setHeaderData(headerComponent.props);
+        } else {
+          console.warn("headerComponent data not found");
+        }
+      } catch (err) {
+        setError(err.message);
       }
     };
 
-    fetchHeaderImages();
-  }, []);
+    fetchPageData();
+  }, [lang]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,18 +103,13 @@ const Header = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  //lang
   const handleLanguageChange = (e) => {
     const newLang = e.target.value;
-    setLanguage(newLang);
-    window.location.reload();
-
-    // Eğer dil değiştirdiğinde sayfayı yenilemek istiyorsanız:
-    // window.location.reload();
-
-    // Yada anasayfaya yönlendirmek istiyorsanız:
-    // window.location.href = "/";
+    setLanguage(newLang); // Dili doğru şekilde context'ten güncelledik
   };
+
+  if (error) return <p>Error: {error}</p>;
+  if (!headerData) return <p>Loading...</p>;
 
   return (
     <>
@@ -133,14 +132,14 @@ const Header = () => {
             </button>
             <Link to="/">
               <img
-                src={headerImages[1]}
+                src={headerData?.image.firebaseUrl}
                 alt="Logo"
                 width={197.315}
                 height={111.838}
                 className="hidden xl:flex"
               />
               <img
-                src={headerImages[1]}
+                src={headerData?.image.firebaseUrl}
                 alt="Logo"
                 width={120.973}
                 height={68.762}
@@ -151,7 +150,7 @@ const Header = () => {
           <nav className="text-white hidden lgxl-custom:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[14px] text-center items-center justify-between w-[72%]">
             <div className="relative group">
               <Link to="/rooms" className="flex items-center">
-                ACCOMMODATION
+                ROOMS
                 <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
                 </svg>
@@ -214,7 +213,7 @@ const Header = () => {
                 </Link>
               </div>
             </div>
-            <Link>OFFERS 2023</Link>
+            <Link to="/offers">OFFERS 2023</Link>
             <div className="relative group">
               <Link to="/food-drinks" className="flex items-center">
                 FOOD & DRINK
@@ -311,7 +310,7 @@ const Header = () => {
               {/* Alt menü */}
               <div className="absolute left-0 hidden group-hover:block bg-[#233038] text-white pt-8 z-10 text-start">
                 <Link
-                  to="/accommodation/family-room"
+                  to="/spa-wellness"
                   className="block px-4 py-2"
                 >
                   Spa & Wellness
@@ -321,7 +320,7 @@ const Header = () => {
                   </div>
                 </Link>
                 <Link
-                  to="/accommodation/suite-room"
+                  to="/indoor-pool"
                   className="block px-4 py-2"
                 >
                   Indoor Pool
@@ -401,7 +400,7 @@ const Header = () => {
                 onClick={handleToggle}
                 className="flex flex-row items-center justify-center gap-1 px-4 py-2 bg-inherit text-white rounded uppercase"
               >
-                {language}
+                {lang}
                 <ArrowSvg className="flex" width={9} height={4} />
               </button>
 
@@ -438,10 +437,10 @@ const Header = () => {
                 <CrossSvg width={24} height={24} className="flex" />
               </button>
               <img
-                src={darklogo}
+                src={headerData?.image2.firebaseUrl}
                 alt="logo dark"
-                width={darklogo.width}
-                height={darklogo.height}
+                width={headerData?.image2.width}
+                height={headerData?.image2.height}
               />
             </div>
             <div className="flex gap-4">
@@ -455,7 +454,7 @@ const Header = () => {
                 <select
                   id="selectBox"
                   className="bg-[#233038] text-[16px]"
-                  value={language} // Seçili dili context'ten alıyoruz
+                  value={lang} // Seçili dili context'ten alıyoruz
                   onChange={handleLanguageChange}
                 >
                   <option value="en">EN</option>
@@ -470,7 +469,7 @@ const Header = () => {
 
           <nav className="flex flex-col w-[75%] text-[16px] font-normal leading-normal uppercase font-monserrat text-start gap-[20px]">
             <Link to="/" onClick={toggleSidebar}>
-              ACCOMMODATION
+              ROOMS
             </Link>
             <div className="flex bg-[#DDD] h-[1px] w-full"></div>
             <Link to="/" onClick={toggleSidebar}>

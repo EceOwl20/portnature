@@ -36,6 +36,10 @@ exp.use(cors())
 exp.listen(3000, () => {
     console.log("Port Açıldı. Sorun yok");
 });
+// 1) Ana sayfa rotası
+exp.get("/", (req, res) => {
+  res.send("Welcome to my API");
+});
 
 exp.use("/api/giris", loginRegister);
 exp.use("/api/user", userRoute);

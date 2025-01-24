@@ -2,7 +2,7 @@ import React from 'react'
 import UnderLine from '../../svg/UnderLine/UnderLine'
 import { Link } from 'react-router-dom'
 
-const ReverseRestaurantSection = ({image,header,text,span,buttonText, buttonLink, lang="en"}) => {
+const ReverseRestaurantSection = ({image,header,text,span,buttonText, buttonLink}) => {
   return (
     <section className='flex w-screen h-auto my-12 items-center justify-center'>
     <div className='flex w-[100%] lg:w-[90%] flex-col-reverse lg:flex-row-reverse items-center justify-center gap-5 lg:gap-0'>

@@ -3,8 +3,6 @@ import FoodCarousel from "../../components/food/FoodCarousel";
 import FoodMenu from "../../components/food/FoodMenu";
 import LogoSection from "../../components/LogoSection";
 import ContactSection from "../../components/homepage/ContactSection";
-import FindRestaurantSection from "../../components/food/FindRestaurantSection";
-import RestaurantSection from "../../components/food/RestaurantSection";
 import AllRestaurantSection from "../../pages/Food/AllRestaurantSection"
 import { useLanguage } from "../../../src/context/LanguageContext";
 
@@ -124,7 +122,7 @@ const FoodDrinkPage = ({
        <LogoSection {...logoSectionData} />
       <AllRestaurantSection {...restaurantSectionData} />
       {/* <FindRestaurantSection findRestaurants={findRestaurants} /> */}
-      {/* <ContactSection/> */}
+      <ContactSection {...contactSectionData}/>
     </div>
   );
 };

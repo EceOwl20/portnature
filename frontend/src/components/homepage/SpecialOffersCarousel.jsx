@@ -1,19 +1,9 @@
 import React, { useEffect, useCallback, useState } from "react";
 import useCarousel from "embla-carousel-react";
-import familyroom from "../../../public/images/homepage/FamilyRoom.png"
-import kingroom from "../../../public/images/homepage/KingRoom.png"
-import standardroom from "../../../public/images/homepage/StandardRoom.png"
 import { RoomCarousel } from './RoomCarousel';
 import VipSvg from "../../svg/VipSvg"
-import vip from "../../../public/images/homepage/vip-customer.jpeg"
-import mixology from "../../../public/images/homepage/mixology.jpeg"
-import wedding from "../../../public/images/homepage/wedding.jpeg"
 
-const images = [vip,mixology,wedding];
-const header=["Become a VIP customer","Mixology Expert","Wedding gift"];
-const text=["By booking a trip on our website","Presentation special for you","Spend time together"];
-
-const Accommodation = () => {
+const Accommodation = ({images=[],header}) => {
     const [emblaRef, emblaApi] = useCarousel({
         loop: true,
         align:"center",
@@ -54,9 +44,9 @@ const Accommodation = () => {
       }, [emblaApi, onSelect]);
 
   return (
-    <div className='flex flex-col w-screen h-auto items-center justify-around mb-10 gap-10'>
+    <div className='flex flex-col w-screen h-auto items-center justify-around my-32 gap-1'>
       <div className='flex flex-col w-[90%] lg:w-[50%] text-center items-center justify-center gap-[30px]'>
-        <h2 className='font-lora text-[25px] lg:text-[40px] font-medium leading-normal text-[#233038]'>Special Offers</h2>
+        <h2 className='font-lora text-[25px] lg:text-[40px] font-medium leading-normal text-[#233038]'>{header}</h2>
       </div>
       <div className='flex w-[90%] items-center justify-center'>
        <div className="flex flex-col lg:w-11/12 xl:w-11/12 w-full h-[416px] items-center justify-center">
@@ -69,7 +59,7 @@ const Accommodation = () => {
                   height={380}
                   width={261}
                   layout="responsive"
-                  src={image}
+                  src={image.firebaseUrl}
                   alt={`Slide ${index + 1}`}
                 />
 
@@ -77,8 +67,8 @@ const Accommodation = () => {
 
                 <div className="absolute flex flex-col top-10 left-1/3 -translate-x-1/3 text-center items-center justify-center z-20">
                     <VipSvg width={54} height={40}/>
-                  <span className="text-[17.552px] font-lora lg:text-[23px] lg:leading-[42px] text-white font-medium leading-[31.996px] italic">{header[index]}</span>
-                  <p className="w-[60%] text-[15px] text-[#CFCFCF] font-normal leading-[22.5px] font-monserrat">{text[index]}</p>
+                  <span className="text-[17.552px] font-lora lg:text-[23px] lg:leading-[42px] text-white font-medium leading-[31.996px] italic">{image.header}</span>
+                  <p className="w-[60%] text-[15px] text-[#CFCFCF] font-normal leading-[22.5px] font-monserrat">{image.text}</p>
                 </div>
                 
                

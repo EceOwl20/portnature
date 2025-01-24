@@ -1,8 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 import useCarousel from "embla-carousel-react";
-import instagram from "../../../public/images/homepage/newinsta.png"
 
-export function InstagramSection({ images }) {
+export function InstagramSection({ images=[], image }) {
 
   const [emblaRef, emblaApi] = useCarousel({
     loop: true,
@@ -45,7 +44,7 @@ export function InstagramSection({ images }) {
 
 
   return (
-    <div className="flex flex-col w-full h-auto items-center justify-center my-[60px] relative">
+    <div className="flex flex-col w-full h-auto items-center justify-center mt-[60px] relative">
       <div className="overflow-hidden relative h-auto" ref={emblaRef}>
           <div className="flex grid-flow-col">
             {images.map((image, index) => (
@@ -54,7 +53,7 @@ export function InstagramSection({ images }) {
                   className="cursor-pointer overflow-hidden object-cover h-[270px]"
                   height={270}
                   width={270}
-                  src={image}
+                  src={image.firebaseUrl}
                   alt={`Slide ${index + 1}`}
                 />
 
@@ -67,7 +66,7 @@ export function InstagramSection({ images }) {
             ))}
           </div>
       </div>
-      <img src={instagram} alt="instagram" width={instagram.width} height={instagram.height} className="hidden md:flex absolute md:left-[50%] -translate-x-1/2 lg:-translate-x-0 lg:left-[18.5%]"/>
+      <img src={image.firebaseUrl} alt="instagram" width={image.width} height={image.height} className="hidden md:flex absolute md:left-[50%] -translate-x-1/2 lg:-translate-x-0 lg:left-[18.5%]"/>
     </div>
   );
 }

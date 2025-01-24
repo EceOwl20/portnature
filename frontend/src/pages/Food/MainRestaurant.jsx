@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RestaurantMainSection from '../../components/food/RestaurantMainSection'
 import OtherRestaurants from '../Kids/components/OtherRestaurants'
-import Cookies from "js-cookie";
 import ContactSection from "../../components/homepage/ContactSection";
 import { useLanguage } from "../../../src/context/LanguageContext";
 

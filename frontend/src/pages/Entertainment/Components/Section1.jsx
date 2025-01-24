@@ -1,5 +1,4 @@
 import React from 'react'
-import PortNatureConcert from "../Images/PortNatureConcert.png"
 
 const Section1 = ({header,text,image}) => {
 

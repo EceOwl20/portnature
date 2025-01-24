@@ -1,7 +1,8 @@
 import React, { useEffect, useCallback, useState } from "react";
 import useCarousel from "embla-carousel-react";
+import { Link } from "react-router-dom";
 
-export function RoomCarousel({ images, header }) {
+export function RoomCarousel({ images }) {
 
   const [emblaRef, emblaApi] = useCarousel({
     loop: true,
@@ -54,17 +55,17 @@ export function RoomCarousel({ images, header }) {
                   height={589}
                   width={348}
                   layout="responsive"
-                  src={image}
+                  src={image.firebaseUrl}
                   alt={`Slide ${index + 1}`}
                 />
 
                 <div className="absolute flex flex-col top-4 text-start items-center justify-center ">
-                  <span className="text-[18px] font-lora lg:text-[25px] leading-normal text-white uppercase font-medium ">{header[index]}</span>
+                  <span className="text-[18px] font-lora lg:text-[25px] leading-normal text-white uppercase font-medium ">{image.header}</span>
                 </div>
                 
-                <button className="absolute bottom-12 bg-white text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-black border border-[#000] py-[12px] px-[32px] hover:bg-black hover:text-white">
-                    <p >More About</p>
-                </button>
+                <Link to={image.buttonLink} className="absolute bottom-12 bg-white text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-black border border-[#000] py-[12px] px-[32px] hover:bg-black hover:text-white">
+                    <p >{image.buttonText}</p>
+                </Link>
               </div>
             ))}
           </div>

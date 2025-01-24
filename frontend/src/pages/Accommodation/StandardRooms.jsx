@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
 import MainBackgroundRooms from './components/MainBackgroundRooms'
-import sideview from "../../../public/images/rooms/sideview.png"
-import landview from "../../../public/images/rooms/landview.png"
 import RoomInfo from './components/RoomInfo'
 import StandardRoomComponent from './components/StandardRoomComponent'
-import { Link } from 'react-router-dom'
 import ContactSection from '../../components/homepage/ContactSection'
 import RoomFeatures from './components/RoomFeatures'
-import Cookies from "js-cookie";
+import { useLanguage } from "../../context/LanguageContext";
+import OtherOptions from "./components/OtherOptions";
 
 const StandardRooms = () => {
+  const { language: lang } = useLanguage();
+
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
   const [standardRoomsSecData, setStandardRoomsSecData] = useState(null);
   const [standardRoomsSecData2, setStandardRoomsSecData2] = useState(null);
   const [standardRoomsSecData3, setStandardRoomsSecData3] = useState(null);
   const [roomsFeaturesData, setRoomsFeaturesData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
+  const [othersectionData, setOthersectionData] = useState(null);
   const [error, setError] = useState(null);
-
-  const [lang, setLang] = useState(Cookies.get("language") || "en");
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -30,12 +29,12 @@ const StandardRooms = () => {
           throw new Error(data.message || "Failed to fetch page data");
         }
 
-        // Dil bazında transactions verisini al
-        const localizedComponents = data.translations[lang];
-  
-        if (!localizedComponents) {
-          throw new Error(`No translations found for language: ${lang}`);
-        }
+         // Dil bazında transactions verisini al
+         const localizedComponents = data.translations[lang];
+
+         if (!localizedComponents) {
+           throw new Error(`No translations found for language: ${lang}`);
+         }
 
         // MainBackground verilerini çek
         const mainBackgroundComponent = localizedComponents.find(
@@ -89,17 +88,27 @@ const StandardRooms = () => {
           console.warn("RoomsFeatures data not found in Standard Rooms page");
         }
 
-        // Contact verilerini çek
+      // ContactSection verilerini çek
         const contactSectionComponent = localizedComponents.find(
           (comp) => comp.type === "ContactSection"
         );
-
+  
         if (contactSectionComponent) {
           setContactSectionData(contactSectionComponent.props);
         } else {
-          console.warn("Contact data not found in homepage");
+          console.warn("ContactSection data not found");
         }
 
+        // otheroptionsComponent verilerini çek
+        const otheroptionsComponent = localizedComponents.find(
+          (comp) => comp.type === "OtherOptions"
+        );
+
+        if (otheroptionsComponent) {
+          setOthersectionData(otheroptionsComponent.props);
+        } else {
+          console.warn("otheroptionsComponent data not found ");
+        }
 
       } catch (err) {
         setError(err.message);
@@ -109,16 +118,17 @@ const StandardRooms = () => {
   }, [lang]);
 
   if (error) return <p>Error: {error}</p>;
-  if (!mainBackgroundData && !standardRoomsSecData && standardRoomsSecData2 && standardRoomsSecData3 && !roomsFeaturesData && !contactSectionData) return <p>Loading...</p>;
+  if (!mainBackgroundData && !standardRoomsSecData && standardRoomsSecData2 && standardRoomsSecData3 && !roomsFeaturesData && !contactSectionData && !othersectionData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col justify-center items-center'>
-        <MainBackgroundRooms {...mainBackgroundData} />
+         <MainBackgroundRooms {...mainBackgroundData} />
         <StandardRoomComponent {...standardRoomsSecData} />
         <StandardRoomComponent {...standardRoomsSecData2} />
         <StandardRoomComponent {...standardRoomsSecData3} />
         <RoomFeatures {...roomsFeaturesData} />
         <ContactSection {...contactSectionData} />
+        <OtherOptions {...othersectionData}/>
     </div>
   )
 }

@@ -1,20 +1,4 @@
 import React, {useState} from "react";
-import BalconySvg from "../../../svg/room/BalconySvg";
-import WCSvg from "../../../svg/room/WCSvg";
-import AirConditionerSvg from "../../../svg/room/AirConditionerSvg";
-import HotDrinkSvg from "../../../svg/room/HotDrinkSvg";
-import DigitalSafeSvg from "../../../svg/room/DigitalSafeSvg";
-import LedTvSvg from "../../../svg/room/LedTvSvg";
-import TowerSvg from "../../../svg/room/TowelSvg";
-import DialPhoneSvg from "../../../svg/room/DialPhoneSvg";
-import BroadcastingSvg from "../../../svg/room/BroadcastingSvg";
-import MinibarSvg from "../../../svg/room/MinibarSvg";
-import TableChairSvg from "../../../svg/room/TableChairSvg";
-import MakeupMirrorSvg from "../../../svg/room/MakeupMirrorSvg";
-import WifiSvg from "../../../svg/room/WifiSvg";
-import ParquetFlooringSvg from "../../../svg/room/ParquetFlooringSvg";
-import HairDryerSvg from "../../../svg/room/HairDryerSvg";
-import SlippersSvg from "../../../svg/room/SlippersSvg";
 
 const RoomFeatures = ({header, items=[], buttonText, buttonText2}) => {
     const [showMore, setShowMore] = useState(false);

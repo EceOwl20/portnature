@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import portlogo from "../../../public/images/LogoPortbig.png";
 
 const HomeCarousel = ({ images = [], header, autoplay, delay }) => {
   const plugins = autoplay ? [Autoplay({ delay })] : [];
@@ -43,7 +42,7 @@ const HomeCarousel = ({ images = [], header, autoplay, delay }) => {
                 <h2 className="text-[28px] lg:text-[40px] leading-normal text-white uppercase font-medium font-lora mb-[10px] lg:mb-[20px]">
                   {header}
                 </h2>
-                <img
+                {/* <img
                   src={portlogo}
                   alt="Port Logo"
                   width={portlogo.width}
@@ -56,7 +55,7 @@ const HomeCarousel = ({ images = [], header, autoplay, delay }) => {
                   width={280.94}
                   height={110.68}
                   className="flex lg:hidden"
-                />
+                /> */}
               </figcaption>
             </figure>
           ))}

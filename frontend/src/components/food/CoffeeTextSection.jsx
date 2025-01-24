@@ -1,6 +1,4 @@
 import React from 'react'
-import davidoffImage from "../../../public/images/food/davidoff2.png"
-import DavidoffSvg from "../../svg/food/DavidoffSvg"
 
 const CoffeeTextSection = ({image,header,text, text2, iconImage}) => {
   return (

@@ -1,7 +1,4 @@
 import React, {useState} from 'react'
-import PhoneSvg from "../../svg/PhoneSvg"
-import MessageSvg from "../../svg/MessageSvg"
-import WhatsappSvg from "../../svg/WhatsappSvg"
 
 const ContactSection = ({header,header2,text,text2,phone, email, image,buttonText, buttonLink,checkboxText, iconImage,iconImage2}) => {
 

@@ -1,10 +1,6 @@
 import React, { useEffect, useCallback, useState } from "react";
 import useCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import child1 from "../../public/images/child1.png"
-import child3 from "../../public/images/child3.png"
-
-const header=["","","",""]
 
 const BorderCarousel = ({images}) => {
     const [emblaRef, emblaApi] = useCarousel({
@@ -72,7 +68,7 @@ const BorderCarousel = ({images}) => {
               </div>
 
               <div className="absolute flex flex-col top-4 text-start items-center justify-center ">
-                <span className="text-[18px] font-lora lg:text-[25px] leading-normal text-white uppercase font-medium ">{header[index]}</span>
+                <span className="text-[18px] font-lora lg:text-[25px] leading-normal text-white uppercase font-medium ">{image.header}</span>
               </div>
               <div className="absolute top-[8%] left-[18%] border border-[#CFCFCF] h-[55vh] w-[70%] z-1">
 

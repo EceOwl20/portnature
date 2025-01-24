@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
-import MainBackgroundRooms from './components/MainBackgroundRooms'
-import SubroomsInfoSection from './components/SubroomsInfoSection'
-import RoomFeatures from './components/RoomFeatures'
-import ContactSection from '../../components/homepage/ContactSection'
-import RoomPlan from './components/RoomPlan'
-import OtherOptions from './components/OtherOptions'
+import MainBackgroundRooms from "./components/MainBackgroundRooms";
+import SubroomsInfoSection from "./components/SubroomsInfoSection";
+import RoomFeatures from "./components/RoomFeatures";
+import ContactSection from "../../components/homepage/ContactSection";
+import RoomPlan from "./components/RoomPlan";
+import OtherOptions from "./components/OtherOptions";
 import { useLanguage } from "../../../src/context/LanguageContext";
 
-const SubRooms = ({page}) => {
+const SubRooms = ({ page }) => {
   const [mainBackgroundData, setMainBackgroundData] = useState(null);
   const [subroomInfoSecData, setSubroomInfoSecData] = useState(null);
   const [roomsFeaturesData, setRoomsFeaturesData] = useState(null);
   const [roomPlanData, setRoomPlanData] = useState(null);
+  const [contactSectionData, setContactSectionData] = useState(null);
+  const [othersectionData, setOthersectionData] = useState(null);
   const [error, setError] = useState(null);
 
-  const { language: lang } = useLanguage(); 
+  const { language: lang } = useLanguage();
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -24,15 +26,14 @@ const SubRooms = ({page}) => {
 
         if (!response.ok) {
           throw new Error(data.message || "Failed to fetch page data");
-          
         }
 
-         // Dil bazında transactions verisini al
-         const localizedComponents = data.translations[lang];
-  
-         if (!localizedComponents) {
-           throw new Error(`No translations found for language: ${lang}`);
-         }
+        // Dil bazında transactions verisini al
+        const localizedComponents = data.translations[lang];
+
+        if (!localizedComponents) {
+          throw new Error(`No translations found for language: ${lang}`);
+        }
 
         // MainBackground verilerini çek
         const mainBackgroundComponent = localizedComponents.find(
@@ -78,6 +79,28 @@ const SubRooms = ({page}) => {
           console.warn("RoomPlan data not found in Rooms page");
         }
 
+        // ContactSection verilerini çek
+        const contactSectionComponent = localizedComponents.find(
+          (comp) => comp.type === "ContactSection"
+        );
+
+        if (contactSectionComponent) {
+          setContactSectionData(contactSectionComponent.props);
+        } else {
+          console.warn("ContactSection data not found in homepage");
+        }
+        
+         // otheroptionsComponent verilerini çek
+         const otheroptionsComponent = localizedComponents.find(
+          (comp) => comp.type === "OtherOptions"
+        );
+
+        if (otheroptionsComponent) {
+          setOthersectionData(otheroptionsComponent.props);
+        } else {
+          console.warn("otheroptionsComponent data not found in Rooms page");
+        }
+
       } catch (err) {
         setError(err.message);
       }
@@ -86,19 +109,26 @@ const SubRooms = ({page}) => {
   }, []);
 
   if (error) return <p>Error: {error}</p>;
-  if (!mainBackgroundData && !roomsFeaturesData && !subroomInfoSecData && !roomPlanData) return <p>Loading...</p>;
-
+  if (
+    !mainBackgroundData &&
+    !roomsFeaturesData &&
+    !subroomInfoSecData &&
+    !roomPlanData &&
+    !contactSectionData &&
+    !othersectionData
+  )
+    return <p>Loading...</p>;
 
   return (
     <div>
-      <MainBackgroundRooms {...mainBackgroundData}/>
+      <MainBackgroundRooms {...mainBackgroundData} />
       <SubroomsInfoSection {...subroomInfoSecData} />
       <RoomFeatures {...roomsFeaturesData} />
       <RoomPlan {...roomPlanData} />
-      {/* <ContactSection/> */}
-      <OtherOptions/>
+      <ContactSection {...contactSectionData}/>
+      <OtherOptions {...othersectionData}/>
     </div>
-  )
-}
+  );
+};
 
-export default SubRooms
+export default SubRooms;

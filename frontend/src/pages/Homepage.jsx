@@ -8,21 +8,13 @@ import Accommodation from '../components/homepage/Accommodation'
 import ChildrenSection from '../components/homepage/ChildrenSection'
 import ImageBackgroundSection from '../components/homepage/ImageBackgroundSection'
 import ContactSection from '../components/homepage/ContactSection'
-import followus1 from "../../public/images/homepage/follow1.png"
-import followus2 from "../../public/images/homepage/follow2.png"
-import followus3 from "../../public/images/homepage/follow3.png"
-import followus4 from "../../public/images/homepage/follow4.png"
-import followus5 from "../../public/images/homepage/follow5.png"
-import followus6 from "../../public/images/homepage/follow6.png"
-import followus7 from "../../public/images/homepage/follow7.png"
-import instagramImg from "../../public/images/homepage/newinsta.png"
 import BarLoungeCarousel from '../components/homepage/BarLoungeCarousel'
 import AlacarteSection from '../components/homepage/AlacarteSection'
 import SpecialOffersCarousel from '../components/homepage/SpecialOffersCarousel'
-import MultipleImages from '../components/Image/MultipleImages'
 // import InstagramSection from "../components/homepage/InstagramSection"
 import Cookies from "js-cookie";
 import { useLanguage } from "../context/LanguageContext";
+import { InstagramSection } from "../components/homepage/InstagramSection";
 
 const Homepage = () => {
   const { language: lang } = useLanguage(); // Cookie yerine context'i kullan
@@ -34,7 +26,10 @@ const Homepage = () => {
   const [childrenSectionData, setChildrenSectionData] = useState(null);
   const [backgroundSectionData, setBackgroundSectionData] = useState(null);
   const [alacarteSectionData, setAlacarteSectionData] = useState(null);
+  const [accommodationData, setAccommodationData] = useState(null);
+  const [specialoffersData, setSpecialoffersData] = useState(null);
   const [contactSectionData, setContactSectionData] = useState(null);
+  const [instagramData, setInstagramData] = useState(null);
   const [error, setError] = useState(null);
 
   //const [lang, setLang] = useState(Cookies.get("language") || "en");
@@ -143,6 +138,39 @@ const Homepage = () => {
         } else {
           console.warn("AlacarteSection data not found in homepage");
         }
+
+         // Accommodation verilerini çek
+         const accommodationComponent = localizedComponents.find(
+          (comp) => comp.type === "AccommodationSection"
+        );
+  
+        if (accommodationComponent) {
+          setAccommodationData(accommodationComponent.props);
+        } else {
+          console.warn("accommodationComponent data not found in homepage");
+        }
+        
+        // specialoffersComponent verilerini çek
+        const specialoffersComponent = localizedComponents.find(
+          (comp) => comp.type === "SpecialOffersSection"
+        );
+  
+        if (specialoffersComponent) {
+          setSpecialoffersData(specialoffersComponent.props);
+        } else {
+          console.warn("specialoffersComponent data not found in homepage");
+        }
+
+         // instagram verilerini çek
+         const instagramComponent = localizedComponents.find(
+          (comp) => comp.type === "InstagramSection"
+        );
+  
+        if (instagramComponent) {
+          setInstagramData(instagramComponent.props);
+        } else {
+          console.warn("instagramComponent data not found in homepage");
+        }
   
         // ContactSection verilerini çek
         const contactSectionComponent = localizedComponents.find(
@@ -164,11 +192,10 @@ const Homepage = () => {
   
 
   if (error) return <p>Error: {error}</p>;
-  if (!carouselData && !barLoungeData && !iconSectionData && !allInclusiveData && !childrenSectionData && !backgroundSectionData) return <p>Loading...</p>;
+  if (!carouselData && !barLoungeData && !iconSectionData && !allInclusiveData && !childrenSectionData && !backgroundSectionData && !accommodationData && !specialoffersData && !instagramData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col items-center justify-center'>
-      {/* <HomeCarousel images={images}/> */}
       <HomeCarousel {...carouselData} />
       <Reservation/>
       <HomeIconSection {...iconSectionData} />
@@ -180,15 +207,15 @@ const Homepage = () => {
       </div>
       <AllInclusive {...allInclusiveData} />
       <HolidayImageSection  {...holidayImageSectionData} />
-      <Accommodation/>
+      <Accommodation {...accommodationData}/>
       <ChildrenSection {...childrenSectionData} />
-      <ImageBackgroundSection {...backgroundSectionData} />
-      <SpecialOffersCarousel/>
+      {/* <ImageBackgroundSection {...backgroundSectionData} /> */}
+      <SpecialOffersCarousel {...specialoffersData}/>
       <AlacarteSection {...alacarteSectionData} />
        <BarLoungeCarousel {...barLoungeData} />
       <ContactSection {...contactSectionData} />
-      {/* <InstagramSection images={instagramImages}/> */}
-      <img src={instagramImg} alt='instagram' width={323.06149} height={630.77972} className='flex md:hidden  '/>
+      <InstagramSection {...instagramData}/>
+     
     </div>
   )
 }

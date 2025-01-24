@@ -1,5 +1,4 @@
 import React from 'react'
-import VolleyballImg from '../Images/PortNatureVoleyball.png'
 import { Link } from 'react-router-dom'
 
 const Section2 = ({header,text,image, links, linksText}) => {

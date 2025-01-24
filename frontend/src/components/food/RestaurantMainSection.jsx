@@ -1,11 +1,8 @@
 import React,{ useEffect, useCallback, useState }  from "react";
-import image from "../../../public/images/alacarteMain.png";
 import useCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import LineVerticalSvg from "../../svg/LineVerticalSvg"
 import LineVertical2Svg from "../../svg/LineVertical2Svg"
-
-const images =[image,image,image]
 
 const RestaurantMainSection = ({images=[], header,text, span,videoLink}) => {
   const [emblaRef, emblaApi] = useCarousel({
@@ -55,7 +52,6 @@ const RestaurantMainSection = ({images=[], header,text, span,videoLink}) => {
     <div className='flex flex-col max-w-[1920px] mx-3 my-5 items-center justify-center'>
     <div className='flex flex-col lg:flex-row w-full gap-5 justify-center items-center lg:h-[30vh] xl:h-[46vh]'>
         <div className='flex w-full lg:w-1/2 h-full'>
-            {/* <img src='../../../../public/images/minialacarte/miniclubalacarte.png' alt='minialacarte' /> */}
             <div className="overflow-hidden relative w-full h-auto" ref={emblaRef}>
         <div className="flex grid-flow-col">
           {images.map((img, index) => (

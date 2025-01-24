@@ -1,93 +1,67 @@
-//yükleme listeleme silme
-//galeri mi bilgisayar mı
-// controllers/imageController.js
-import Image from "../models/images.js"
+import Image from "../models/images.js";
 
-// Resim kaydetme
+// Resim yükleme
 export const uploadImage = async (req, res) => {
   try {
     const { name, altText, firebaseUrl } = req.body;
 
+    // Eksik alan kontrolü
+    if (
+      !name ||
+      !altText ||
+      !firebaseUrl ||
+      !name.en ||
+      !name.tr ||
+      !name.ru ||
+      !name.de ||
+      !altText.en ||
+      !altText.tr ||
+      !altText.ru ||
+      !altText.de
+    ) {
+      return res.status(400).json({
+        message: "All fields (name, altText, firebaseUrl) are required in all languages",
+      });
+    }
+
     const newImage = new Image({ name, altText, firebaseUrl });
-    await newImage.save(); 
+    await newImage.save();
 
     res.status(201).json({ message: "Image saved successfully!", newImage });
   } catch (error) {
-    console.error(error);
+    console.error("Error saving image:", error);
     res.status(500).json({ message: "Error saving image", error });
   }
 };
 
-// Örnek: controller image.js
+// İsme göre resim arama
 export const searchImageByName = async (req, res) => {
   try {
     const { name, lang } = req.query;
+
     if (!name || !lang) {
       return res.status(400).json({ message: "Missing 'name' or 'lang' query" });
     }
 
-    // Kısmi arama: $regex + $options: "i" (case-insensitive)
     const images = await Image.find({
       [`name.${lang}`]: { $regex: name, $options: "i" },
     });
 
-    // Tek bir yerine bir dizi döndüreceğiz
     if (!images || images.length === 0) {
       return res.status(404).json({ message: "No images found" });
     }
 
-    res.status(200).json(images); // [ {..}, {..}, ... ]
+    res.status(200).json(images);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error fetching image", error });
+    console.error("Error searching image by name:", error);
+    res.status(500).json({ message: "Error searching image", error });
   }
 };
 
-
-// İsme göre resim arama
-// export const searchImageByName = async (req, res) => {
-//   try {
-//     const { name, lang } = req.query; // İsme ve dile göre arama
-//     const image = await Image.findOne({ [`name.${lang}`]: name });
-
-//     if (!image) {
-//       return res.status(404).json({ message: "Image not found" });
-//     }
-
-//     res.status(200).json(image);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Error fetching image", error });
-//   }
-// };
-
-export const getImagesByName = async (req, res) => {
-  try {
-    const { names, lang } = req.query; // names virgülle ayrılmış isimler
-    if (!names || !lang) {
-      return res.status(400).json({ message: "Names and lang are required" });
-    }
-
-    const nameArray = names.split(","); // İsimleri virgüle göre ayır
-    const images = await Image.find({
-      [`name.${lang}`]: { $in: nameArray }, // name.[lang] alanına göre sorgula
-    });
-
-    if (!images || images.length === 0) {
-      return res.status(404).json({ message: "No images found" });
-    }
-
-    res.status(200).json(images); // Resimleri döndür
-  } catch (error) {
-    console.error("Error fetching images:", error);
-    res.status(500).json({ message: "Error fetching images", error });
-  }
-};
-
-
+// Tüm resimleri getirme
 export const getAllImages = async (req, res) => {
   try {
-    const images = await Image.find(); // Tüm resimleri getir
+    const images = await Image.find();
     if (!images || images.length === 0) {
       return res.status(404).json({ message: "No images found" });
     }
@@ -98,31 +72,24 @@ export const getAllImages = async (req, res) => {
   }
 };
 
-export const deleteImage = async (req, res) => {
+// Resim ID ile getirme
+export const getImageById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // MongoDB'den resmi bul
     const image = await Image.findById(id);
     if (!image) {
       return res.status(404).json({ message: "Image not found" });
     }
 
-    // // Firebase Storage'dan resmi sil
-    // const storage = getStorage(app);
-    // const imageRef = ref(storage, image.firebaseUrl); // firebaseUrl burada tam dosya yolunu içermeli
-    // await deleteObject(imageRef);
-
-    // MongoDB'den resmi sil
-    await Image.findByIdAndDelete(id);
-
-    res.status(200).json({ message: "Image deleted successfully" });
+    res.status(200).json(image);
   } catch (error) {
-    console.error("Error deleting image:", error);
+    console.error("Error fetching image by ID:", error);
     res.status(500).json({ message: "Server error", error });
   }
 };
 
+// Resim güncelleme
 export const updateImage = async (req, res) => {
   try {
     const { id } = req.params;
@@ -163,62 +130,73 @@ export const updateImage = async (req, res) => {
   }
 };
 
-
-export const getImageById = async (req, res) => {
+// Resim silme
+export const deleteImage = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const image = await Image.findById(id); // ID ile resim arayın
+    const image = await Image.findById(id);
     if (!image) {
       return res.status(404).json({ message: "Image not found" });
     }
 
-    res.status(200).json(image); // Resmi JSON olarak döndür
+    await Image.findByIdAndDelete(id);
+
+    res.status(200).json({ message: "Image deleted successfully" });
   } catch (error) {
-    console.error("Error fetching image by ID:", error);
+    console.error("Error deleting image:", error);
     res.status(500).json({ message: "Server error", error });
   }
 };
 
-export const updateImageName = async (req, res) => {
-  try {
-    const { oldName, newName } = req.body;
-
-    if (!oldName || !newName) {
-      return res.status(400).json({ message: "Old name and new name are required" });
-    }
-
-    const updatedImage = await Image.findOneAndUpdate(
-      { "name.en": oldName }, // İngilizce isim üzerinden buluyoruz
-      { $set: { "name.en": newName } }, // Yeni ismi güncelliyoruz
-      { new: true }
-    );
-
-    if (!updatedImage) {
-      return res.status(404).json({ message: "Image not found" });
-    }
-
-    res.status(200).json(updatedImage);
-  } catch (error) {
-    console.error("Error updating image name:", error);
-    res.status(500).json({ message: "Error updating image name", error });
-  }
-};
-
-
+// Sayfaya göre resimleri getirme
 export const getImagesByPage = async (req, res) => {
   try {
     const { page } = req.query;
 
-    const images = await Image.find({ page }); // Sayfa adıyla ilişkilendirilmiş resimleri bulur
-
+    const images = await Image.find({ page });
     if (!images || images.length === 0) {
-      return res.status(404).json({ message: "No images found" });
+      return res.status(404).json({ message: "No images found for the specified page" });
     }
 
     res.status(200).json(images);
   } catch (error) {
-    console.error("Error fetching images:", error);
-    res.status(500).json({ message: "Error fetching images", error });
+    console.error("Error fetching images by page:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const getImagesByName = async (req, res) => {
+  try {
+    const { names, lang } = req.query; // names: virgülle ayrılmış isimler, lang: dil kodu
+    if (!names || !lang) {
+      return res.status(400).json({ message: "Both 'names' and 'lang' are required" });
+    }
+
+    // İsimleri virgüle göre ayır
+    const nameArray = names.split(",").map(name => name.trim());
+
+    // Veritabanından sorgula
+    const images = await Image.find({
+      [`name.${lang}`]: { $in: nameArray }, // name.[lang] alanına göre sorgu
+    });
+
+    // Eğer hiçbir eşleşme yoksa
+    if (!images || images.length === 0) {
+      return res.status(404).json({ message: "No images found for the provided names and language" });
+    }
+
+    // Başarılı yanıt
+    res.status(200).json({
+      message: "Images fetched successfully",
+      count: images.length,
+      images,
+    });
+  } catch (error) {
+    console.error("Error in getImagesByName:", error);
+    res.status(500).json({
+      message: "An error occurred while fetching images",
+      error: error.message,
+    });
   }
 };

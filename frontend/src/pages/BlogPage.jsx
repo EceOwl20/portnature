@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../src/context/LanguageContext";
+import HomeCarousel from "../components/homepage/HomeCarousel";
+import ContactSection from "../components/homepage/ContactSection";
 
 const BlogPage = () => {
+  const [carouselData, setCarouselData] = useState(null);
+  const [contactSectionData, setContactSectionData] = useState(null);
+
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -19,6 +24,43 @@ const BlogPage = () => {
         } else {
           setError("Bloglar getirilemedi.");
         }
+
+        const response2 = await fetch("/api/page/homepage");
+        const data2 = await response2.json();
+  
+        if (!response2.ok) {
+          throw new Error(data2.message || "Failed to fetch page data2");
+        }
+  
+        // Dil bazında transactions verisini al
+        const localizedComponents = data2.translations[lang];
+  
+        if (!localizedComponents) {
+          throw new Error(`No translations found for language: ${lang}`);
+        }
+  
+        // Carousel verilerini çek
+        const carouselComponent = localizedComponents.find(
+          (comp) => comp.type === "Carousel"
+        );
+  
+        if (carouselComponent) {
+          setCarouselData(carouselComponent.props);
+        } else {
+          console.warn("Carousel data2 not found ");
+        }
+
+         // ContactSection verilerini çek
+         const contactSectionComponent = localizedComponents.find(
+          (comp) => comp.type === "ContactSection"
+        );
+  
+        if (contactSectionComponent) {
+          setContactSectionData(contactSectionComponent.props);
+        } else {
+          console.warn("ContactSection data not found");
+        }
+
       } catch (error) {
         setError(error.message);
       } finally {
@@ -30,10 +72,12 @@ const BlogPage = () => {
 
   if (loading) return <p>Yükleniyor...</p>;
   if (error) return <p>Hata: {error}</p>;
+  if (!carouselData && !contactSectionData) return <p>Loading...</p>;
 
   return (
     <main>
       <div className="flex flex-col w-full pb-4 justify-center items-center">
+        <HomeCarousel {...carouselData}/>
         <h1 className="text-2xl font-bold mb-4">Bloglar</h1>
 
         <div className="flex w-11/12 items-center justify-center">
@@ -81,6 +125,7 @@ const BlogPage = () => {
             })}
           </div>
         </div>
+        <ContactSection {...contactSectionData}/>
       </div>
     </main>
   );

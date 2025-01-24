@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import pubImage from "../../../public/images/food/IrishPub2.png"
 import FilterFindCafe from './FilterFindCafe'
 import ContactSection from '../homepage/ContactSection'
 import CafeBarsMainSection from "./CafeBarsMainSection";
@@ -79,7 +78,7 @@ const CoffeeBarsMainPage = () => {
     <div className='flex flex-col w-screen h-auto items-center justify-center '>
       <CafeBarsMainSection {...cafesbarsMainSection} />
       <FilterFindCafe {...filterCafeSection} />
-      {/* <ContactSection/> */}
+      <ContactSection {...contactSectionData}/>
     </div>
   )
 }
