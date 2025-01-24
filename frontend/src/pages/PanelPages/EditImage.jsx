@@ -149,7 +149,7 @@ const EditImage = () => {
           className="border py-2 px-3"
         />
 
-        <text className="bg-white text-black p-2 rounded-md">{image.firebaseUrl}</text>
+        <p className="bg-white text-black p-2 rounded-md">{image.firebaseUrl}</p>
 
         {/* Dil bazında name ve altText alanları */}
         {["en", "ru", "de", "tr"].map((lang) => (
