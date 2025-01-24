@@ -62,7 +62,7 @@ const BorderCarousel = ({images}) => {
               />
               <div className="flex w-full items-end justify-end">
                 <div className="flex text-start justify-start items-center pt-[3%] w-[80%]">
-                    <p className="text-[12px] text-black font-monserrat font-normal leading-[18px] w-[88%]">{images.text}</p>
+                    <p className="text-[12px] text-black font-monserrat font-normal leading-[18px] w-[88%]">{image.text}</p>
                 </div>
               </div>
               </div>

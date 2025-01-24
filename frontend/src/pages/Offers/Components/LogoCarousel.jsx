@@ -1,22 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import expediaLogo from "../../../../public/images/expediaLogo.png";
 
-const images = [
-    expediaLogo,
-    expediaLogo,
-    expediaLogo,
-    expediaLogo,
-    expediaLogo,
-    expediaLogo,
-    expediaLogo,
-    expediaLogo,
-    expediaLogo,
-    expediaLogo
-  ];
-
-const LogoCarousel = () => {
+const LogoCarousel = ({images=[]}) => {
     // EMBLA
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "center",  slidesToScroll: 1,},
@@ -52,7 +38,7 @@ const LogoCarousel = () => {
             key={index}
           >
             <img
-              src={image}
+              src={image.firebaseUrl}
               width={118}
               height={34}
               alt="index"

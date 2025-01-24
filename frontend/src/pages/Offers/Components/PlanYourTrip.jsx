@@ -1,25 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import expediaLogo from "../../../../public/images/expediaLogo.png";
-import tripadvisorLogo from "../../../../public/images/Tripadvisor-Logo.png";
-import bookingcomLogo from "../../../../public/images/Booking.com_logo.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { BsChevronDown } from "react-icons/bs";
-import BigPlaneSvg from "../../../svg/offers/BigPlaneSvg"
 import RoomsCarousel from "./RoomsCarousel";
 
-const images = [
-  tripadvisorLogo,
-  bookingcomLogo,
-  expediaLogo,
-  tripadvisorLogo,
-  bookingcomLogo,
-  expediaLogo
-];
-
-const PlanYourTrip = () => {
+const PlanYourTrip = ({image,header,text,span,button,images=[],restaurantItems=[]}) => {
   // ROOM STATE
   const [selectRoom, setSelectRoom] = useState(null);
   const [showRoomDropdown, setShowRoomDropdown] = useState(false);
@@ -106,10 +93,10 @@ const PlanYourTrip = () => {
         {/* LEFT SIDE */}
         <div className="flex flex-col w-[90%] lg:w-1/2 xl:w-[80%] bg-[#243039] pt-[84px] pb-[51px] lg:min-h-[627px] text-white justify-center items-center text-center">
           <h3 className="text-[35px] font-normal uppercase font-lora leading-[50px]">
-            PLAN YOUR TRIP
+            {header}
           </h3>
           <span className="text-[20px] font-monserrat font-bold leading-[30px]">
-            With our hotel
+            {text}
           </span>
 
           {/* Embla carousel logos */}
@@ -122,7 +109,7 @@ const PlanYourTrip = () => {
                     key={index}
                   >
                     <img
-                      src={image}
+                      src={image.firebaseurl}
                       style={{ objectFit: "contain" }}
                       width={118}
                       height={34}
@@ -278,21 +265,21 @@ const PlanYourTrip = () => {
               onClick={() => console.log("Final Guest Information:", guestInfo)}
               className="border-[0.7px] border-[#00000033]  px-[3vw] py-[1.2vh] font-bold text-customGray bg-[#ffffff] lg:max-w-[304px] max-h-[60px] whitespace-nowrap"
             >
-              Book Now
+             {button}
             </button>
           </div>
         </div>
-        <span className="text-[20px] font-monserrat text-[#AAA] leading-[30px] font-bold">...and book ticket right away</span>
+        <span className="text-[20px] font-monserrat text-[#AAA] leading-[30px] font-bold">{span}</span>
         {/* RIGHT SIDE (if any) */}
       </div>
 
       <div className="flex flex-col w-[55%] h-full items-center justify-center">
         <div className="flex ">
-          <RoomsCarousel/>
+          <RoomsCarousel images={restaurantItems}/>
         </div>
 
         <div className="flex w-full items-center justify-center">
-          <BigPlaneSvg className="flex" width={841} height={238}/>
+          <img src={image.firebaseUrl} className="flex" width={841} height={238}/>
         </div>
       </div>
 
