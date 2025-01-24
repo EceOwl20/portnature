@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import MainBackgroundRooms from './components/MainBackgroundRooms'
-import RoomInfo from './components/RoomInfo'
 import StandardRoomComponent from './components/StandardRoomComponent'
 import ContactSection from '../../components/homepage/ContactSection'
 import RoomFeatures from './components/RoomFeatures'
@@ -36,16 +35,16 @@ const StandardRooms = () => {
            throw new Error(`No translations found for language: ${lang}`);
          }
 
-        // MainBackground verilerini çek
-        const mainBackgroundComponent = localizedComponents.find(
-          (comp) => comp.type === "MainBackground"
-        );
-
-        if (mainBackgroundComponent) {
-          setMainBackgroundData(mainBackgroundComponent.props);
-        } else {
-          console.warn("MainBackgroundData data not found in Standard Rooms page");
-        }
+          // MainBackground verilerini çek
+          const mainBackgroundComponent = localizedComponents.find(
+            (comp) => comp.type === "MainBackground"
+          );
+  
+          if (mainBackgroundComponent) {
+            setMainBackgroundData(mainBackgroundComponent.props);
+          } else {
+            console.warn("MainBackgroundData data not found in Rooms page");
+          }
 
         // StandardRoomComponent verilerini çek
         const standardRoomsSecComponent = localizedComponents.find(
@@ -118,7 +117,7 @@ const StandardRooms = () => {
   }, [lang]);
 
   if (error) return <p>Error: {error}</p>;
-  if (!mainBackgroundData && !standardRoomsSecData && standardRoomsSecData2 && standardRoomsSecData3 && !roomsFeaturesData && !contactSectionData && !othersectionData) return <p>Loading...</p>;
+  if (!mainBackgroundData && !standardRoomsSecData && !standardRoomsSecData2 && !standardRoomsSecData3 && !roomsFeaturesData && !contactSectionData && !othersectionData) return <p>Loading...</p>;
 
   return (
     <div className='flex flex-col justify-center items-center'>
