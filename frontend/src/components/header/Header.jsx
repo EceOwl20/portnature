@@ -213,7 +213,7 @@ const Header = () => {
                 </Link>
               </div>
             </div>
-            <Link>OFFERS 2023</Link>
+            <Link to="/offers">OFFERS 2023</Link>
             <div className="relative group">
               <Link to="/food-drinks" className="flex items-center">
                 FOOD & DRINK
