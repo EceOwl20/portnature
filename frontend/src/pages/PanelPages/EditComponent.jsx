@@ -77,6 +77,27 @@ const EditComponent = () => {
     } else if (activeField?.type === "subImages") {
       handleReplaceImage("subImages", activeField.index, selectedImage);
     }
+    else if (activeField?.type === "restaurantItems") {
+      const { index } = activeField; // RestaurantItems için index kontrolü
+      setComponentData((prev) => {
+        const updatedRestaurantItems = [...prev.props.restaurantItems];
+        updatedRestaurantItems[index] = {
+          ...updatedRestaurantItems[index],
+          image: {
+            firebaseUrl: selectedImage.firebaseUrl,
+            altText: selectedImage.altText,
+          },
+        };
+  
+        return {
+          ...prev,
+          props: {
+            ...prev.props,
+            restaurantItems: updatedRestaurantItems,
+          },
+        };
+      });
+    }
   
     setGaleriOpen(false);
   };
@@ -1663,7 +1684,7 @@ const EditComponent = () => {
                       <div className="flex w-full items-center justify-center gap-3">
                         <button
                           onClick={() => {
-                            setActiveField({ type: "images", index }); // <--- EKLE
+                            setActiveField({ type: "restaurantItems", index });
                             setGaleriOpen(true); // <--- EKLE
                           }}
                           className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
@@ -1688,7 +1709,7 @@ const EditComponent = () => {
                               className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
                               onClick={() =>
                                 handleReplaceRestaurantItemImage(index,
-                                  "image",
+                                  "restaurantImages",
                                   result)
                               }
                             >
