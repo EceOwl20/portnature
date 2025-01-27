@@ -69,6 +69,7 @@ import SpaPage from "./pages/Spa/SpaPage";
 import IndoorpoolPage from "./pages/Indoorpool/IndoorpoolPage";
 import MeetingPage from "./pages/Meeting/MeetingPage";
 import ContactPage from "./pages/Contact/ContactPage";
+import ConcertPage from "./pages/Concert/ConcertPage";
 // import ThreeVisualizerPage from "./pages/ThreeVisualizerPage";
 
 const App = () => {
@@ -131,6 +132,7 @@ const App = () => {
             <Route path="/spa-wellness" element={<SpaPage/>}/>
             <Route path="/indoor-pool" element={<IndoorpoolPage/>}/>
             <Route path="/meeting-congress" element={<MeetingPage/>}/>
+            <Route path="/concert" element={<ConcertPage/>}/>
 
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />

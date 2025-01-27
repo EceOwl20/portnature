@@ -1,45 +1,65 @@
 import React, { useEffect, useRef, useCallback, useState } from "react";
-import useCarousel from "embla-carousel-react";
+import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from "embla-carousel-autoplay";
 
-const TWEEN_FACTOR_BASE = 0.52;
+const TWEEN_FACTOR_BASE = 0.17;
 
-const DavidoffCarousel = ({images = [], header, text, text2, image}) => {
-  const [emblaRef, emblaApi] = useCarousel(
-    {
-      loop: true,
-      align: "center",
-      skipSnaps: false,
-      startIndex: 0,
-      containScroll: 'trim' // Bu ekleme ile başta/sonda oluşan boşluk azalır
-    },
-    [Autoplay({ delay: 3000 })]
-  );
+const numberWithinRange = (number, min, max) =>
+  Math.min(Math.max(number, min), max)
 
+const DavidoffCarousel = ({images = [], header, text, text2, image, options}) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(options)
+  const tweenFactor = useRef(0)
+  const tweenNodes = useRef([])
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const tweenFactor = useRef(TWEEN_FACTOR_BASE);
-  const tweenNodes = useRef([]);
 
   const setTweenNodes = useCallback((emblaApi) => {
-    tweenNodes.current = emblaApi.slideNodes();
-  }, []);
+    tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
+      return slideNode.querySelector('.slide-number') 
+    })
+  }, [])
 
-  const tweenScale = useCallback(() => {
-    if (!emblaApi) return;
+  const setTweenFactor = useCallback((emblaApi) => {
+    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length
+  }, [])
 
-    const scrollProgress = emblaApi.scrollProgress();
+  const tweenScale = useCallback((emblaApi, eventName) => {
+    const engine = emblaApi.internalEngine()
+    const scrollProgress = emblaApi.scrollProgress()
+    const slidesInView = emblaApi.slidesInView()
+    const isScrollEvent = eventName === 'scroll'
+
     emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-      const diffToTarget = scrollSnap - scrollProgress;
-      const scale = Math.max(
-        1 - Math.abs(diffToTarget) * tweenFactor.current,
-        0.30
-      );
-      const tweenNode = tweenNodes.current[snapIndex];
-      if (tweenNode) {
-        tweenNode.style.transform = `scale(${scale})`;
-      }
-    });
-  }, [emblaApi]);
+      let diffToTarget = scrollSnap - scrollProgress
+      const slidesInSnap = engine.slideRegistry[snapIndex]
+
+      slidesInSnap.forEach((slideIndex) => {
+        if (isScrollEvent && !slidesInView.includes(slideIndex)) return
+
+        if (engine.options.loop) {
+          engine.slideLooper.loopPoints.forEach((loopItem) => {
+            const target = loopItem.target()
+            if (slideIndex === loopItem.index && target !== 0) {
+              const sign = Math.sign(target)
+              if (sign === -1) {
+                diffToTarget = scrollSnap - (1 + scrollProgress)
+              }
+              if (sign === 1) {
+                diffToTarget = scrollSnap + (1 - scrollProgress)
+              }
+            }
+          })
+        }
+
+        const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current)
+        const scale = numberWithinRange(tweenValue, 0, 1).toString()
+        const tweenNode = tweenNodes.current[slideIndex]
+        if (tweenNode) {
+          tweenNode.style.transform = `scale(${scale})`
+        }
+      })
+    })
+  }, [])
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -47,41 +67,55 @@ const DavidoffCarousel = ({images = [], header, text, text2, image}) => {
   }, [emblaApi]);
 
   useEffect(() => {
-    if (!emblaApi) return;
+    if (!emblaApi) return
+    setTweenNodes(emblaApi)
+    setTweenFactor(emblaApi)
+    tweenScale(emblaApi)
+    
 
-    setTweenNodes(emblaApi);
-    tweenScale();
+    emblaApi
+      .on('reInit', setTweenNodes)
+      .on('reInit', setTweenFactor)
+      .on('reInit', tweenScale)
+      .on('scroll', tweenScale)
+      .on('slideFocus', tweenScale)
+      .on("select", onSelect);
+      
+  }, [emblaApi, tweenScale, setTweenNodes, setTweenFactor, onSelect])
 
-    emblaApi.on("scroll", tweenScale);
-    emblaApi.on("reInit", tweenScale);
-    emblaApi.on("select", onSelect);
+  // Autoplay Effect
+  useEffect(() => {
+    if (!emblaApi) return
 
-    return () => {
-      if (emblaApi) {
-        emblaApi.off("scroll", tweenScale);
-        emblaApi.off("reInit", tweenScale);
-        emblaApi.off("select", onSelect);
+    const AUTOPLAY_INTERVAL = 4000
+    const autoplay = () => {
+      if (!emblaApi.canScrollNext()) {
+        emblaApi.scrollTo(0)
+      } else {
+        emblaApi.scrollNext()
       }
-    };
-  }, [emblaApi, setTweenNodes, tweenScale, onSelect]);
+    }
+
+    const interval = setInterval(autoplay, AUTOPLAY_INTERVAL)
+    return () => clearInterval(interval)
+  }, [emblaApi])
+
 
   return (
-    <div className="flex flex-col w-full mt-3 h-auto  items-center justify-center">
-      <div className="overflow-hidden relative w-full items-center justify-center h-full" ref={emblaRef}>
+    <div className="flex flex-col w-full mt-3  items-center justify-center min-h-screen">
+      <div className="overflow-hidden w-full items-center justify-center h-screen flex max-h-[820px]" ref={emblaRef}>
         <div className="flex grid-flow-col">
           {images.map((img, index) => (
             <div
               key={index}
-              className={`relative flex-[0_0_auto] w-[90%-1rem] h-full lg:h-[653px] transition-transform duration-150 ease-in-out items-center justify-center ${
-                index === selectedIndex ? "bg-black/30 " : "bg-white/30"
-              }`}
+               className="flex-[0_0_60%] min-w-0 transform-gpu "
             >
-              <img
-                className="w-screen lg:w-full h-[40vh] lg:h-full object-cover rounded-md overflow-hidden"
+            <div className="slide-number shadow-inner relative border-gray-300 flex items-center justify-center  select-none overflow-hidden "> {/* Yükseklik artırıldı */}
+             <img
+                className="w-full h-full object-cover"
                 src={img.firebaseUrl}
                 alt={`Slide ${index + 1}`}
               />
-
               {(index === selectedIndex - 1 || index === selectedIndex + 1) && (
                 <div className="absolute inset-0 z-10 bg-white/30 flex flex-col items-end justify-center text-right text-white text-[28px] italic font-lora font-medium leading-[42px] pr-5">
                   {/* Yan slide'lar için isteğe bağlı alan */}
@@ -100,6 +134,11 @@ const DavidoffCarousel = ({images = [], header, text, text2, image}) => {
                   <p> {text}</p>
                 </div>
               )}
+             </div>
+
+              
+
+              
             </div>
           ))}
         </div>

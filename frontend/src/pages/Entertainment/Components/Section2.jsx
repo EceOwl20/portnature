@@ -5,7 +5,7 @@ const Section2 = ({header,text,image, links, linksText}) => {
   return (
     <div className='flex justify-center items-center'>
         <div className='flex flex-row gap-32 mt-12 mb-12 max-w-[1920px] items-center justify-center'>
-        <img src={image.firebaseUrl} className='w-5/12' />
+        <img src={image.firebaseUrl} className='w-7/12' />
         <div className='flex flex-col w-4/12 gap-7 relative'>
             <h2 className='flex font-lora text-[40px] font-medium leading-normal mb-4'>
                 {header}

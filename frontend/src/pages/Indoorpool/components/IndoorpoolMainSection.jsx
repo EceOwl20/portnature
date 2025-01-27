@@ -101,7 +101,7 @@ const IndoorpoolMainSection = ({images=[],header, text, span,
               key={index}
               className="flex-[0_0_50%] min-w-0 transform-gpu" // Genişlik %50'ye çıkarıldı
             >
-              <div className="slide-number shadow-inner border-gray-300 flex items-center justify-center h-[28rem] select-none overflow-hidden"> {/* Yükseklik artırıldı */}
+              <div className="slide-number shadow-inner border-gray-300 flex items-center justify-center select-none overflow-hidden"> {/* Yükseklik artırıldı */}
                 <img 
                   src={image.firebaseUrl} 
                   alt={image.altText} 
@@ -120,12 +120,16 @@ const IndoorpoolMainSection = ({images=[],header, text, span,
       <div className="flex flex-col gap-16 items-center justify-center w-full"> {/* İçerikler dikeyde ortalandı */}
         <div className="flex flex-col items-center justify-center gap-8 mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
           <h1 className="font-lora text-[40px] leading-normal font-medium text-center">{header}</h1>
-          <div className='flex w-full items-center justify-center gap-[104px]'>
-        <div className='flex justify-center items-center py-[33px] px-[107.5px] border border-[#CFCFCF] gap-[15px] text-[28px] font-lora italic font-normal text-customGray80 leading-[42px]'>{span}</div>
-        <div className='flex items-center justify-start text-start w-[35%]'>
-        <p className='text-[20px] text-customGray80 font-monserrat font-bold leading-[30px]'>{text}</p>
-        </div>
-      </div>
+          {text && span && (
+            <div className='flex w-full items-center justify-center gap-[104px]'>
+            <div className='flex justify-center items-center py-[33px] px-[107.5px] border border-[#CFCFCF] gap-[15px] text-[28px] font-lora italic font-normal text-customGray80 leading-[42px]'>{span}</div>
+            <div className='flex items-center justify-start text-start w-[35%]'>
+            <p className='text-[20px] text-customGray80 font-monserrat font-bold leading-[30px]'>{text}</p>
+            </div>
+          </div>
+          )
+
+          }
         </div>
       </div>
     </section>
