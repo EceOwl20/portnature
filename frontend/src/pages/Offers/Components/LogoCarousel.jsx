@@ -34,13 +34,13 @@ const LogoCarousel = ({images=[]}) => {
       <div className="flex grid-flow-col items-center justify-center w-full">
         {images.map((image, index) => (
           <div
-            className="flex-[0_0_auto] w-[calc(90%)] lg:w-[calc(25%)] xl:w-[calc(20%)] relative"
+            className="flex-[0_0_auto] w-[calc(90%)] lg:w-[calc(25%)] xl:w-[calc(20%)] relative justify-center items-center ml-2"
             key={index}
           >
             <img
               src={image.firebaseUrl}
-              width={118}
-              height={34}
+              width={image.width}
+              height={image.height}
               alt="index"
               className="cursor-pointer"
             />

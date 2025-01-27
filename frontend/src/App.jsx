@@ -66,6 +66,9 @@ import Users from "./pages/PanelPages/Users";
 import ProfilEditor from "./pages/PanelPages/ProfilEditor";
 import ContactSection from "./components/homepage/ContactSection";
 import SpaPage from "./pages/Spa/SpaPage";
+import IndoorpoolPage from "./pages/Indoorpool/IndoorpoolPage";
+import MeetingPage from "./pages/Meeting/MeetingPage";
+import ContactPage from "./pages/Contact/ContactPage";
 // import ThreeVisualizerPage from "./pages/ThreeVisualizerPage";
 
 const App = () => {
@@ -124,8 +127,10 @@ const App = () => {
             <Route path="/offers" element={<Offers/>}/>
             <Route path="/entertainment" element={<Entertainment/>}/>
             <Route path="/activities" element={<Activities/>}/>
-            <Route path="/contacts" element={<ContactSection/>}/>
+            <Route path="/contacts" element={<ContactPage/>}/>
             <Route path="/spa-wellness" element={<SpaPage/>}/>
+            <Route path="/indoor-pool" element={<IndoorpoolPage/>}/>
+            <Route path="/meeting-congress" element={<MeetingPage/>}/>
 
             <Route path="/panel" element={<Panel />} />
             <Route path="/giris" element={<Login />} />

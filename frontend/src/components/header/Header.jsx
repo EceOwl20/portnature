@@ -298,7 +298,7 @@ const Header = () => {
               </div>
             </div>
 
-            <Link>CONTACTS</Link>
+            <Link to="/contacts">CONTACTS</Link>
             <div className="relative group">
               <Link to="/spa" className="flex items-center">
                 SPA
@@ -488,7 +488,7 @@ const Header = () => {
               ENTERTAINMENT
             </Link>
             <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-            <Link to="/" onClick={toggleSidebar}>
+            <Link to="/contacts" onClick={toggleSidebar}>
               CONTACTS
             </Link>
             <div className="flex bg-[#DDD] h-[1px] w-full"></div>
