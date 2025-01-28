@@ -97,6 +97,7 @@ const IndoorpoolPage = () => {
       <IndoorBorderCarousel {...bordercarouselData}/>
       <ContactSection {...contactSectionData}/>
       <OtherRestaurants {...otheroptionsData}/>
+      
     </div>
   )
 }

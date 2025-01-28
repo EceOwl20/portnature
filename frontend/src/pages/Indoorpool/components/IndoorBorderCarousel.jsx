@@ -2,8 +2,9 @@ import React, { useEffect, useCallback, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { Link } from 'react-router-dom'
+import UnderLine from '../../../svg/UnderLine/UnderLine'
 
-const IndoorBorderCarousel = ({images=[]}) => {
+const IndoorBorderCarousel = ({images=[],header,text}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: 'start' },
     [Autoplay({ delay: 3000 })]
@@ -23,7 +24,14 @@ const IndoorBorderCarousel = ({images=[]}) => {
   }, [emblaApi, onSelect])
 
   return (
-    <section className="flex flex-col w-full my-24 justify-center items-center">
+    <section className="flex flex-col w-full my-24 justify-center items-center text-center">
+      {header && text && (
+        <div className='flex flex-col gap-4'>
+          <h2 className='text-[40px] font-lora font-medium leading-normal text-customGray'>{header}</h2>
+          <UnderLine/>
+          <p className='w-[50%] text-[20px] font-monserrat leading-[30px] font-bold text-customGray80'>{text}</p>
+        </div>
+      )}
       <div className="flex mb-11 md:w-3/4 justify-center items-center md:justify-center">
       </div>
       <div className="overflow-hidden relative w-5/6 justify-center items-center" ref={emblaRef}>

@@ -2,11 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useLanguage } from "../../../src/context/LanguageContext";
 import MiniClubSlider from "../Kids/components/MiniClubSlider";
 import IndoorpoolMainSection from "../Indoorpool/components/IndoorpoolMainSection";
+import ConcertImagesSection from "./components/ConcertImagesSection";
+import ContactSection from "../../components/homepage/ContactSection";
+import SingleImage from "./components/SingleImage";
+import OtherRestaurants from "../Kids/components/OtherRestaurants";
+import SingleVideo from "./components/SingleVideo";
+import IndoorBorderCarousel from "../Indoorpool/components/IndoorBorderCarousel";
 
 const ConcertPage = () => {
     const [mainCarouselData, setMainCarouselData] = useState(null);
+    const [imagesSectionData, setImagesSectionData] = useState(null);
     const [contactSectionData, setContactSectionData] = useState(null);
-    const [specialOffersData, setSpecialOffersData] = useState(null);
+    const [specialGuestsData, setSpecialGuestsData] = useState(null);
+    const [otherOptionsData, setOtherOptionsData] = useState(null);
     const [error, setError] = useState(null);
   
     const { language: lang } = useLanguage(); 
@@ -39,6 +47,17 @@ const ConcertPage = () => {
               } else {
                 console.warn("mainCarouselComponent data not found");
               }
+
+              // imagesSectionComponent verilerini çek
+              const imagesSectionComponent = localizedComponents.find(
+                (comp) => comp.type === "ImagesSection"
+              );
+      
+              if (imagesSectionComponent) {
+                setImagesSectionData(imagesSectionComponent.props);
+              } else {
+                console.warn("imagesSectionComponent data not found ");
+              }
     
     
                 // Contact verilerini çek
@@ -53,14 +72,25 @@ const ConcertPage = () => {
                 }
     
                 // specialOffers verilerini çek
-                const specialOffersComponents = localizedComponents.find(
-                  (comp) => comp.type === "SpecialOfferss"
+                const specialGuestsComponent = localizedComponents.find(
+                  (comp) => comp.type === "SpecialGuests"
                 );
         
-                if (specialOffersComponents) {
-                  setSpecialOffersData(specialOffersComponents.props);
+                if (specialGuestsComponent) {
+                  setSpecialGuestsData(specialGuestsComponent.props);
                 } else {
-                  console.warn("specialOffersComponents data not found ");
+                  console.warn("specialGuestsComponent data not found ");
+                }
+
+                 // specialOffers verilerini çek
+                 const otherOptionsComponent = localizedComponents.find(
+                  (comp) => comp.type === "OtherOptions"
+                );
+        
+                if (otherOptionsComponent) {
+                  setSpecialGuestsData(otherOptionsComponent.props);
+                } else {
+                  console.warn("otherOptionsComponent data not found ");
                 }
     
           } catch (err) {
@@ -72,13 +102,19 @@ const ConcertPage = () => {
       }, []);
     
       if (error) return <p>Error: {error}</p>;
-      if (!mainCarouselData && !contactSectionData && !specialOffersData) return <p>Loading...</p>;
+      if (!mainCarouselData && !imagesSectionData && !contactSectionData && !specialGuestsData && !otherOptionsData) return <p>Loading...</p>;
         
       const OPTIONS = { loop: true }
 
   return (
     <div>
       <IndoorpoolMainSection {...mainCarouselData} options={OPTIONS}/>
+      <SingleImage {...mainCarouselData}/>
+      <ConcertImagesSection {...imagesSectionData}/>
+      <IndoorBorderCarousel {...specialGuestsData}/>
+      <SingleVideo {...specialGuestsData}/>
+      <ContactSection {...contactSectionData}/>
+      <OtherRestaurants {...otherOptionsData}/>
     </div>
   )
 }
