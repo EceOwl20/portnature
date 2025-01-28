@@ -72,10 +72,42 @@ const EditComponent = () => {
           },
         },
       }));
-    } else if (activeField?.type === "images") {
+    }
+    else if (activeField === "singleIconImage") {
+      setComponentData((prev) => ({
+        ...prev,
+        props: {
+          ...prev.props,
+          iconImage: {
+            ...prev.props.iconImage, 
+            firebaseUrl: selectedImage.firebaseUrl,
+            altText: selectedImage.altText,
+          },
+        },
+      }));
+    }
+
+    else if (activeField === "singleIconImage2") {
+      setComponentData((prev) => ({
+        ...prev,
+        props: {
+          ...prev.props,
+          iconImage2: {
+            ...prev.props.iconImage2, 
+            firebaseUrl: selectedImage.firebaseUrl,
+            altText: selectedImage.altText,
+          },
+        },
+      }));
+    }
+
+    else if (activeField?.type === "images") {
       handleReplaceImage("images", activeField.index, selectedImage);
     } else if (activeField?.type === "subImages") {
       handleReplaceImage("subImages", activeField.index, selectedImage);
+    }
+    else if (activeField?.type === "items") {
+      handleReplaceImage("items", activeField.index, selectedImage);
     }
     else if (activeField?.type === "restaurantItems") {
       const { index } = activeField; // RestaurantItems için index kontrolü
@@ -201,16 +233,15 @@ const EditComponent = () => {
     });
   };
 
-  const handleAltTextChange = (field, index, lang, value) => {
+  const handleAltTextChange = (fieldType, index, lang, value) => {
     setComponentData((prev) => {
-      const updatedArray = [...prev.props[field]];
-      updatedArray[index].altText[lang] = value;
-
+      const updatedField = [...prev.props[fieldType]];
+      updatedField[index].altText[lang] = value; // Seçili dilin alt metnini güncelle
       return {
         ...prev,
         props: {
           ...prev.props,
-          [field]: updatedArray,
+          [fieldType]: updatedField,
         },
       };
     });
@@ -652,6 +683,11 @@ const EditComponent = () => {
   const singleImage2 = componentData.props.image2;
   const singleButtonImage = componentData.props.singleButtonImage;
   const singleButtonText = componentData.props.buttonText;
+  const singleButtonText2 = componentData.props.buttonText2;
+  const singleButtonText3 = componentData.props.buttonText3;
+  const singleButtonLink = componentData.props.buttonLink;
+  const singleButtonLink2 = componentData.props.buttonLink2;
+  const singleButtonLink3 = componentData.props.buttonLink3;
   const singleHeader = componentData.props.header;
   const singleText = componentData.props.text;
   const singleText2 = componentData.props.text2;
@@ -717,8 +753,14 @@ const EditComponent = () => {
             key === "image2" ||
             key === "buttonImage" ||
             key === "buttonText" ||
+            key === "buttonText2" ||
+            key === "buttonText3" ||
+            key === "buttonLink" ||
+            key === "buttonLink2" ||
+            key === "buttonLink3" ||
             key === "header" ||
             key === "text" ||
+            key === "text2" ||
             key === "span" ||
             key === "iconImage" ||
             key === "iconImage2" ||
@@ -768,25 +810,26 @@ const EditComponent = () => {
                 ))}
               </div>
             );
-          } else {
-            // Basit string/number ise
-            return (
-              <div
-                key={key}
-                className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full bg-white"
-              >
-                <label className="text-black text-[13px] font-semibold">
-                  {key}
-                </label>
-                <input
-                  className="border p-2 text-[10px]"
-                  type="text"
-                  value={componentData.props[key]}
-                  onChange={(e) => handleInputChange(key, e.target.value)}
-                />
-              </div>
-            );
-          }
+          } 
+          // else {
+          //   // Basit string/number ise
+          //   return (
+          //     <div
+          //       key={key}
+          //       className="flex flex-col gap-2 border p-4 rounded-md mt-4 w-full bg-white"
+          //     >
+          //       <label className="text-black text-[13px] font-semibold">
+          //         {key}
+          //       </label>
+          //       <input
+          //         className="border p-2 text-[10px]"
+          //         type="text"
+          //         value={componentData.props[key]}
+          //         onChange={(e) => handleInputChange(key, e.target.value)}
+          //       />
+          //     </div>
+          //   );
+          // }
         })}
 
         {/* --------------- SINGLE IMAGE 1 --------------- */}
@@ -821,10 +864,10 @@ const EditComponent = () => {
 
             <h3 className="font-semibold mt-4 text-[15px]">Alt Text </h3>
             <div className="flex flex-col gap-2">
-              <label className="text-[12px]">Alt Text </label>
+              <label className="text-[12px]">Alt Text ({language})</label>
               <input
                 type="text"
-                value={singleImage.altText}
+                value={singleImage.altText[language] || ""}
                 onChange={(e) => handleImageAltTextChange(e.target.value)}
                 className="border p-2 text-[12px]"
               />
@@ -1086,6 +1129,91 @@ const EditComponent = () => {
           </div>
         )}
 
+{singleButtonText2 && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
+            <h2 className="font-bold text-[15px]">Button Text 2</h2>
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px]">Button Text 2</label>
+              <input
+                type="text"
+                value={singleButtonText2}
+                onChange={(e) =>
+                  handleFieldChange("buttonText2", e.target.value)
+                }
+                className="border p-2 text-[12px]"
+              />
+            </div>
+          </div>
+        )}
+
+{singleButtonText3 && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
+            <h2 className="font-bold text-[15px]">Button Text 3</h2>
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px]">Button Text 3</label>
+              <input
+                type="text"
+                value={singleButtonText3}
+                onChange={(e) =>
+                  handleFieldChange("buttonText3", e.target.value)
+                }
+                className="border p-2 text-[12px]"
+              />
+            </div>
+          </div>
+        )}
+
+{singleButtonLink && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
+            <h2 className="font-bold text-[15px]">Button Link </h2>
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px]">Button Link </label>
+              <input
+                type="text"
+                value={singleButtonLink}
+                onChange={(e) =>
+                  handleFieldChange("buttonLink", e.target.value)
+                }
+                className="border p-2 text-[12px]"
+              />
+            </div>
+          </div>
+        )}
+
+{singleButtonLink2 && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
+            <h2 className="font-bold text-[15px]">Button Link 2 </h2>
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px]">Button Link 2 </label>
+              <input
+                type="text"
+                value={singleButtonLink2}
+                onChange={(e) =>
+                  handleFieldChange("buttonLink2", e.target.value)
+                }
+                className="border p-2 text-[12px]"
+              />
+            </div>
+          </div>
+        )}
+
+{singleButtonLink3 && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
+            <h2 className="font-bold text-[15px]">Button Link 3</h2>
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px]">Button Link 3</label>
+              <input
+                type="text"
+                value={singleButtonLink3}
+                onChange={(e) =>
+                  handleFieldChange("buttonLink3", e.target.value)
+                }
+                className="border p-2 text-[12px]"
+              />
+            </div>
+          </div>
+        )}
+
         {/* --------------- SINGLE HEADER --------------- */}
         {singleHeader && (
           <div className="flex flex-col gap-4 w-[100%] p-4 rounded my-4 bg-white">
@@ -1111,6 +1239,22 @@ const EditComponent = () => {
               <input
                 type="text"
                 value={singleText}
+                onChange={(e) => handleFieldChange("text", e.target.value)}
+                className="border p-2 text-[10px]"
+              />
+            </div>
+          </div>
+        )}
+
+         {/* --------------- SINGLE TEXT 2--------------- */}
+         {singleText2 && (
+          <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white text-black">
+            <h2 className="font-bold text-[12px]">Text 2</h2>
+            <div className="flex flex-col gap-2">
+              <label className="text-[12px]">Text 2</label>
+              <input
+                type="text"
+                value={singleText2}
                 onChange={(e) => handleFieldChange("text", e.target.value)}
                 className="border p-2 text-[10px]"
               />
@@ -1757,11 +1901,11 @@ const EditComponent = () => {
 
               {/* image altText */}
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-semibold">AltText</label>
+                <label className="text-sm font-semibold">AltText ({language})</label>
                 <input
                 className="text-black"
                   type="text"
-                  value={item.image.altText}
+                  value={item.image.altText[language] || ""}
                   onChange={(e) => {
                     const updatedArray = [
                       ...componentData.props.restaurantItems,
@@ -2017,19 +2161,25 @@ const EditComponent = () => {
                       )}
                     </div>
 
-                    <div className="flex flex-col gap-2">
-                      <label className="text-black text-[15px] font-semibold">
-                        Alt Text
-                      </label>
-                      <input
-                        type="text"
-                        value={image.altText}
-                        className="text-[12px] border p-1"
-                        onChange={(e) =>
-                          handleAltTextChange("images", index, e.target.value)
-                        }
-                      />
-                    </div>
+                      {/* Alt Text Düzenleme */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-black text-[15px] font-semibold">
+                      Alt Text ({language})
+                    </label>
+                    <input
+                      type="text"
+                      value={image.altText[language] || ""}
+                      className="text-[12px] border p-1"
+                      onChange={(e) =>
+                        handleAltTextChange(
+                          "images",
+                          index,
+                          language,
+                          e.target.value
+                        )
+                      }
+                    />
+                  </div>
 
                     <div className="flex flex-col gap-2">
                       <label className="text-black text-[18px] font-semibold">
@@ -2169,13 +2319,13 @@ const EditComponent = () => {
 
                   <div className="flex flex-col gap-2">
                     <label className="text-black text-[15px] font-semibold">
-                      Alt Text
+                      Alt Text ({language})
                     </label>
                     <input
                       type="text"
-                      value={subImage.altText}
+                      value={subImage.altText[language] || ""}
                       onChange={(e) =>
-                        handleAltTextChange("subImages", index, e.target.value)
+                        handleAltTextChange("subImages", index, language, e.target.value)
                       }
                     />
                   </div>
@@ -2267,7 +2417,7 @@ const EditComponent = () => {
                 <div className="flex w-full items-center justify-center gap-3">
                   <button
                     onClick={() => {
-                      setActiveField({ type: "subImages", index }); // <--- EKLE
+                      setActiveField({ type: "items", index }); // <--- EKLE
                       setGaleriOpen(true); // <--- EKLE
                     }}
                     className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
@@ -2283,23 +2433,23 @@ const EditComponent = () => {
                   </button>
                 </div>
 
-                {subImageSearchResults.length > 0 && (
+                {itemSearchResults.length > 0 && (
                   <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px]">
                     <h4>Search Results</h4>
-                    {subImageSearchResults.map((result, i) => (
+                    {itemSearchResults.map((result, i) => (
                       <div
                         key={i}
                         className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
                         onClick={() =>
-                          handleReplaceImage("subImages", index, result)
+                          handleReplaceImage("items", index, result)
                         }
                       >
                         <img
                           src={result.firebaseUrl}
-                          alt={result.altText}
+                          alt={result.altText.en}
                           className="w-16 h-16 object-cover"
                         />
-                        <p>{result.altText}</p>
+                        <p>{result.altText.en}</p>
                       </div>
                     ))}
                   </div>
