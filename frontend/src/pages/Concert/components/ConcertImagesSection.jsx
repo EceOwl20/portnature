@@ -1,5 +1,4 @@
 import React from 'react'
-import image from '../../../../public/header/concert.png'
 
 const ConcertImagesSection = ({images=[]}) => {
   return (

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import MiniClubSlider from '../Kids/components/MiniClubSlider'
-import BeachSection1 from './components/BeachSection1';
 import BeachSection2 from './components/BeachSection2';
 import ContactSection from '../../components/homepage/ContactSection';
 import SpecialOffers from '../../components/SpecialOffers';

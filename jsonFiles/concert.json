@@ -75,6 +75,12 @@
               "altText": "Beach View",
               "width": 1920,
               "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+              "width": 1920,
+              "height": 1080
             }
           ]
           
@@ -111,7 +117,7 @@
           ],
             "header":"SPECIAL GUESTS",
             "text":"We have prepared an entertainment area of 1000 m2, where our children can make a lot of friends",
-            "videoLink":"/"
+            "videoLink":"https://www.youtube.com/watch?v=bfJxxujrVwo"
       }
     },
     {
@@ -160,12 +166,6 @@
         "props": {
           "header": "Other activities",
           "images": [
-            {
-              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805053933alldaydinning.png?alt=media&token=95850017-8cf6-4d08-b794-db614eece8f5",
-              "altText": "Port Nature Hotel",
-              "width": 1920,
-              "height": 1080
-            },
             {
               "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805053933alldaydinning.png?alt=media&token=95850017-8cf6-4d08-b794-db614eece8f5",
               "altText": "Port Nature Hotel",
@@ -281,6 +281,12 @@
               "altText": "Beach View",
               "width": 1920,
               "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+              "width": 1920,
+              "height": 1080
             }
           ]
           
@@ -317,7 +323,7 @@
           ],
             "header":"SPECIAL GUESTS",
             "text":"We have prepared an entertainment area of 1000 m2, where our children can make a lot of friends",
-            "videoLink":"/"
+            "videoLink":"https://www.youtube.com/watch?v=bfJxxujrVwo"
       }
     },
     {
@@ -366,12 +372,6 @@
         "props": {
           "header": "Other activities",
           "images": [
-            {
-              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805053933alldaydinning.png?alt=media&token=95850017-8cf6-4d08-b794-db614eece8f5",
-              "altText": "Port Nature Hotel",
-              "width": 1920,
-              "height": 1080
-            },
             {
               "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805053933alldaydinning.png?alt=media&token=95850017-8cf6-4d08-b794-db614eece8f5",
               "altText": "Port Nature Hotel",
@@ -487,6 +487,12 @@
               "altText": "Beach View",
               "width": 1920,
               "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+              "width": 1920,
+              "height": 1080
             }
           ]
           
@@ -523,7 +529,8 @@
           ],
             "header":"SPECIAL GUESTS",
             "text":"We have prepared an entertainment area of 1000 m2, where our children can make a lot of friends",
-            "videoLink":"/"
+            "videoLink":"https://www.youtube.com/watch?v=bfJxxujrVwo"
+            
       }
     },
     {
@@ -572,12 +579,6 @@
         "props": {
           "header": "Other activities",
           "images": [
-            {
-              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805053933alldaydinning.png?alt=media&token=95850017-8cf6-4d08-b794-db614eece8f5",
-              "altText": "Port Nature Hotel",
-              "width": 1920,
-              "height": 1080
-            },
             {
               "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805053933alldaydinning.png?alt=media&token=95850017-8cf6-4d08-b794-db614eece8f5",
               "altText": "Port Nature Hotel",
@@ -693,6 +694,12 @@
               "altText": "Beach View",
               "width": 1920,
               "height": 1080
+            },
+            {
+              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1733913886565PortCover31.png?alt=media&token=c5c10142-a087-47af-a804-44544130ee19",
+              "altText": "Beach View",
+              "width": 1920,
+              "height": 1080
             }
           ]
           
@@ -729,7 +736,7 @@
           ],
             "header":"SPECIAL GUESTS",
             "text":"We have prepared an entertainment area of 1000 m2, where our children can make a lot of friends",
-            "videoLink":"/"
+            "videoLink":"https://www.youtube.com/watch?v=bfJxxujrVwo"
       }
     },
     {
@@ -778,12 +785,6 @@
         "props": {
           "header": "Other activities",
           "images": [
-            {
-              "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805053933alldaydinning.png?alt=media&token=95850017-8cf6-4d08-b794-db614eece8f5",
-              "altText": "Port Nature Hotel",
-              "width": 1920,
-              "height": 1080
-            },
             {
               "firebaseUrl": "https://firebasestorage.googleapis.com/v0/b/dgtlface-1.firebasestorage.app/o/1735805053933alldaydinning.png?alt=media&token=95850017-8cf6-4d08-b794-db614eece8f5",
               "altText": "Port Nature Hotel",

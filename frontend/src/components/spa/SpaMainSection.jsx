@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from "../../../public/images/spa/spaLogo.png"
-import bgImage from "../../../public/images/spa/girl-massage-spa-salon 1.png"
 
 const SpaMainSection = ({image, image2, header, text, span, buttonText, buttonLink, iconImage}) => {
   return (

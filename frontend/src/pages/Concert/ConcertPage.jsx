@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../../../src/context/LanguageContext";
-import MiniClubSlider from "../Kids/components/MiniClubSlider";
 import IndoorpoolMainSection from "../Indoorpool/components/IndoorpoolMainSection";
 import ConcertImagesSection from "./components/ConcertImagesSection";
 import ContactSection from "../../components/homepage/ContactSection";
@@ -88,7 +87,7 @@ const ConcertPage = () => {
                 );
         
                 if (otherOptionsComponent) {
-                  setSpecialGuestsData(otherOptionsComponent.props);
+                  setOtherOptionsData(otherOptionsComponent.props);
                 } else {
                   console.warn("otherOptionsComponent data not found ");
                 }
