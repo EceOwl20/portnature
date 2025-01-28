@@ -1905,7 +1905,7 @@ const EditComponent = () => {
                 <input
                 className="text-black"
                   type="text"
-                  value={item.image.altText[language] || ""}
+                  value={item.image.altText[language] || ""} //item.image.altText
                   onChange={(e) => {
                     const updatedArray = [
                       ...componentData.props.restaurantItems,
