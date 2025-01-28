@@ -32,9 +32,7 @@ const HomeCarousel = ({ images = [], header, autoplay, delay }) => {
                 width={image.width}
                 height={image.height}
                 alt={
-                  image.altText && image.altText.trim() !== ""
-                    ? image.altText
-                    : `Slide ${index + 1}`
+                  image.altText && image.altText["en"]
                 }
                 className="flex h-screen w-full"
               />

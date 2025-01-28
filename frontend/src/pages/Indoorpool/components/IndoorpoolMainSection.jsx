@@ -1,14 +1,12 @@
 import React, { useCallback, useEffect, useRef } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-import LineVerticalSvg from '../../../svg/LineVerticalSvg'
-import LineVertical2Svg from '../../../svg/LineVertical2Svg'
 
 const TWEEN_FACTOR_BASE = 0.12
 
 const numberWithinRange = (number, min, max) =>
   Math.min(Math.max(number, min), max)
 
-const MiniClubSlider = ({images=[],header, text, items=[],
+const IndoorpoolMainSection = ({images=[],header, text, span,
   options}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const tweenFactor = useRef(0)
@@ -74,7 +72,6 @@ const MiniClubSlider = ({images=[],header, text, items=[],
       .on('reInit', tweenScale)
       .on('scroll', tweenScale)
       .on('slideFocus', tweenScale)
-      
   }, [emblaApi, tweenScale, setTweenNodes, setTweenFactor])
 
   // Autoplay Effect
@@ -104,7 +101,7 @@ const MiniClubSlider = ({images=[],header, text, items=[],
               key={index}
               className="flex-[0_0_50%] min-w-0 transform-gpu" // Genişlik %50'ye çıkarıldı
             >
-              <div className="slide-number shadow-inner border-gray-300 flex items-center justify-center  select-none overflow-hidden"> {/* Yükseklik artırıldı */}
+              <div className="slide-number shadow-inner border-gray-300 flex items-center justify-center select-none overflow-hidden"> {/* Yükseklik artırıldı */}
                 <img 
                   src={image.firebaseUrl} 
                   alt={image.altText} 
@@ -119,29 +116,20 @@ const MiniClubSlider = ({images=[],header, text, items=[],
 
 
 
-<section className="flex items-center justify-center max-w-[1920px] mx-auto mt-32">
-      <div className="flex flex-col gap-16 items-center justify-center w-full"> 
-      <div className="flex flex-row items-center justify-center gap-60 font-monserrat text-[14px] font-bold leading-normal">
-      {items.map((item, index) => (
-        <div className="flex flex-col items-center justify-center" key={index}>
-          <img
-            src={item.firebaseUrl}
-            alt={item.text}
-            className="w-[39px] h-[39px] mb-4"
-          />
-          {item.text}
-        </div>
-      ))}
-    </div>
-        <div className="flex flex-row items-center justify-center gap-8 mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
+<section className="flex items-center justify-center max-w-[1920px] mx-auto mt-32"> {/* Tüm section tam ortalandı */}
+      <div className="flex flex-col gap-16 items-center justify-center w-full"> {/* İçerikler dikeyde ortalandı */}
+        <div className="flex flex-col items-center justify-center gap-8 mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
           <h1 className="font-lora text-[40px] leading-normal font-medium text-center">{header}</h1>
-          <div className="flex flex-col items-center justify-center">
-            <LineVerticalSvg width={1} height={90} />
-            <LineVertical2Svg width={1} height={90} />
+          {text && span && (
+            <div className='flex w-full items-center justify-center gap-[104px]'>
+            <div className='flex justify-center items-center py-[33px] px-[107.5px] border border-[#CFCFCF] gap-[15px] text-[28px] font-lora italic font-normal text-customGray80 leading-[42px]'>{span}</div>
+            <div className='flex items-center justify-start text-start w-[35%]'>
+            <p className='text-[20px] text-customGray80 font-monserrat font-bold leading-[30px]'>{text}</p>
+            </div>
           </div>
-          <p className="font-monserrat text-[15px] font-normal leading-5 w-7/12 text-left">
-           {text}
-          </p>
+          )
+
+          }
         </div>
       </div>
     </section>
@@ -149,4 +137,5 @@ const MiniClubSlider = ({images=[],header, text, items=[],
   )
 }
 
-export default MiniClubSlider
+export default IndoorpoolMainSection
+

@@ -73,10 +73,10 @@ const CoffeePage = ({page}) => {
 
   if (error) return <p>Error: {error}</p>;
   if (!cafeCarouselData && !cafeTextSectionData && !contactSectionData ) return <p>Loading...</p>;
-
+  const OPTIONS = { loop: true }
   return (
     <div>
-      <DavidoffCarousel {...cafeCarouselData} />
+      <DavidoffCarousel options={OPTIONS} {...cafeCarouselData} />
        <CoffeeTextSection {...cafeTextSectionData} />
       <ContactSection {...contactSectionData}/>
     </div>
