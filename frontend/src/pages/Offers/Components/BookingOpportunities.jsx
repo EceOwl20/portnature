@@ -6,7 +6,7 @@ const BookingOpportunities = ({ images = [], header }) => {
   const [emblaRef] = useEmblaCarousel({ loop: true, align:"start"});
 
   return (
-    <div className="flex w-screen items-center justify-center my-10 lg:my-20">
+    <div className="flex w-screen items-center justify-center mb-10 lg:my-20">
       <div className="flex flex-col w-[90%] items-center justify-center gap-[25px] lg:gap-[50px] text-center h-[85%]">
         <h2 className="text-customGray lg:text-[40px] text-[25px] leading-normal uppercase font-lora font-medium">
           {header}

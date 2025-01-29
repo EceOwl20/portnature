@@ -2,7 +2,7 @@ import React from 'react'
 
 const Section1 = ({image, image2, iconImage, iconImage2, header, text}) => {
   return (
-    <div className="flex flex-col w-full max-w-[1920px] mx-auto items-center justify-center gap-[150px] mb-12">
+    <div className="flex flex-col w-full max-w-[1920px] mx-auto items-center justify-center gap-[150px] lg:mb-12">
       {/* Üstteki resim */}
       <div className="flex w-full items-center justify-center">
         <img 

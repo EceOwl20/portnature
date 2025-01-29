@@ -24,11 +24,11 @@ const FoodCarousel = ({images = [], text, header}) => {
       
 
   return (
-    <div className="flex flex-col w-full h-auto items-center justify-center mt-10">
+    <div className="flex flex-col w-full h-auto items-center justify-center mt-0 lg:mt-10">
     <div className="overflow-hidden relative h-auto" ref={emblaRef}>
         <div className="flex grid-flow-col">
           {images.map((image, index) => (
-            <div className="relative z-10 flex-[0_0_auto] sm:mx-2 md:mx-1 sm:w-[calc(70%-1rem)] md:w-[calc(64%-1rem)] lg:mx-4 xl:mx-3 lg:w-[calc(33.3%-1rem)] xl:w-[calc(35%-7rem)] w-full flex justify-center group lg:max-h-[420px]" key={index}>
+            <div className="relative z-10 flex-[0_0_auto] sm:mx-2 md:mx-1 w-[calc(90%-1rem)] mr-4 sm:w-[calc(70%-1rem)] md:w-[calc(64%-1rem)] lg:mx-4 xl:mx-3 lg:w-[calc(33.3%-1rem)] xl:w-[calc(35%-7rem)] flex justify-center group lg:max-h-[420px]" key={index}>
               <img
                 className="cursor-pointer overflow-hidden object-cover"
                 height={image.height}
@@ -37,16 +37,17 @@ const FoodCarousel = ({images = [], text, header}) => {
                 alt={image.altText}
               />
               <div className="absolute inset-0 w-full flex bg-black/30 "></div>
+              <div className="flex flex-col absolute inset-0 w-full text-center text-white z-20 justify-start items-center top-1/2 -translate-y-1/2">
+            <h2 className="text-[25px] md:text-[40px] lg:text-[25px] xl:text-[40px] font-medium leading-normal font-monserrat w-[40%]">{header}</h2>
+            <p className="text-[#F8F8F8] text-[17px] md:text-[28px] lg:text-[18px] xl:text-[28px] leading-[42px] italic font-medium font-lora w-[40%]">{text}</p>
+        </div>
             </div>
             
           ))}        
           
         </div>
        
-        <div className="flex flex-col absolute inset-0 w-full text-center text-white z-20 justify-start items-start top-1/2 -translate-y-1/2">
-            <h2 className="text-[25px] md:text-[40px] lg:text-[25px] xl:text-[40px] font-medium leading-normal font-monserrat w-[40%]">{header}</h2>
-            <p className="text-[#F8F8F8] text-[18px] md:text-[28px] lg:text-[18px] xl:text-[28px] leading-[42px] italic font-medium font-lora w-[40%]">{text}</p>
-        </div>
+        
     </div>
   
   </div>
