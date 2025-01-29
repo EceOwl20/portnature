@@ -9,7 +9,8 @@ import {
   deleteItemFromComponent,
   deleteImageFromComponent,
   getPageTranslations,
-  getComponentByIndex
+  getComponentByIndex,
+  deleteHeaderFromComponent
 } from "../controller/page.js";
 
 const router = express.Router();
@@ -37,6 +38,8 @@ router.delete("/:pageName/components/:componentIndex/items/:itemIndex", deleteIt
 
 // Bir component'in images içerisinden belirli bir image'ı silme
 router.delete("/:pageName/components/:componentIndex/images/:imageIndex", deleteImageFromComponent);
+
+router.delete("/:pageName/translations/:language/components/:componentIndex/headers/:headerIndex", deleteHeaderFromComponent);
 
 router.get("/:pageName/translations/:language", getPageTranslations); 
 

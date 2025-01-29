@@ -211,6 +211,78 @@ export const deleteImageFromComponent = async (req, res) => {
   }
 };
 
+export const deleteHeaderFromComponent = async (req, res) => {
+  const { pageName, language, componentIndex, headerIndex } = req.params;
+
+  try {
+    console.log(`🟢 Silme işlemi başladı: ${pageName}, Dil: ${language}, Component Index: ${componentIndex}, Header Index: ${headerIndex}`);
+
+    // Sayfayı MongoDB'de bul
+    const page = await Page.findOne({ pageName });
+
+    if (!page) {
+      console.error("🔴 Sayfa bulunamadı:", pageName);
+      return res.status(404).json({ message: "Page not found" });
+    }
+
+    console.log("✅ Sayfa bulundu:", pageName);
+
+    // Eğer translations undefined ise kontrol ekle
+    if (!page.translations || !page.translations[language]) {
+      console.error(`🔴 ${language} dili için çeviri bulunamadı!`);
+      return res.status(404).json({ message: "Language translations not found" });
+    }
+
+    console.log(`🟡 ${language} dili için bileşenler mevcut.`);
+
+    // Bileşeni al
+    const components = page.translations[language];
+    if (!components || components.length <= componentIndex) {
+      console.error("🔴 Component bulunamadı veya index yanlış:", componentIndex);
+      return res.status(404).json({ message: "Component not found" });
+    }
+
+    console.log("✅ Component bulundu:", componentIndex);
+
+    const component = components[componentIndex];
+
+    // Headers kontrolü
+    if (!component.props?.headers || !Array.isArray(component.props.headers)) {
+      console.error("🔴 Headers dizisi yok veya tanımsız!");
+      return res.status(404).json({ message: "Headers array not found" });
+    }
+
+    console.log("🟢 Mevcut headers:", component.props.headers);
+
+    // Header index geçerli mi kontrol et
+    if (headerIndex < 0 || headerIndex >= component.props.headers.length) {
+      console.error("🔴 Geçersiz header index:", headerIndex);
+      return res.status(400).json({ message: "Invalid header index" });
+    }
+
+    console.log("🟢 Header siliniyor:", component.props.headers[headerIndex]);
+
+    // Header'ı sil
+    component.props.headers.splice(headerIndex, 1);
+
+    // Güncellenmiş sayfayı kaydet
+    await page.markModified(`translations.${language}`);
+    await page.save();
+
+    console.log("✅ Header başarıyla silindi ve veritabanı güncellendi!");
+
+    return res.status(200).json({ message: "Header deleted successfully" });
+
+  } catch (error) {
+    console.error("❌ Error deleting header:", error);
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
+
+
+
+
+
 // Sayfa çevirilerini döndüren controller
 export const getPageTranslations = async (req, res) => {
   const { pageName, language } = req.params;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import GaleriPopup from "./PanelComponents/GaleriPopup";
-import CarouselPreview from "./PanelComponents/CarouselPreview"
+import CarouselPreview from "./PanelComponents/CarouselPreview";
 import HomeCarousel from "../../components/homepage/HomeCarousel";
 
 const EditComponent = () => {
@@ -35,7 +35,8 @@ const EditComponent = () => {
   const [filterImageSearchQuery, setFilterImageSearchQuery] = useState("");
   const [filterImageSearchResults, setFilterImageSearchResults] = useState([]);
 
-  const [restaurantImageSearchQuery, setRestaurantImageSearchQuery] = useState("");
+  const [restaurantImageSearchQuery, setRestaurantImageSearchQuery] =
+    useState("");
   const [restaurantImageSearchResults, setRestaurantImageSearchResults] =
     useState([]);
 
@@ -72,44 +73,37 @@ const EditComponent = () => {
           },
         },
       }));
-    }
-    else if (activeField === "singleIconImage") {
+    } else if (activeField === "singleIconImage") {
       setComponentData((prev) => ({
         ...prev,
         props: {
           ...prev.props,
           iconImage: {
-            ...prev.props.iconImage, 
+            ...prev.props.iconImage,
             firebaseUrl: selectedImage.firebaseUrl,
             altText: selectedImage.altText,
           },
         },
       }));
-    }
-
-    else if (activeField === "singleIconImage2") {
+    } else if (activeField === "singleIconImage2") {
       setComponentData((prev) => ({
         ...prev,
         props: {
           ...prev.props,
           iconImage2: {
-            ...prev.props.iconImage2, 
+            ...prev.props.iconImage2,
             firebaseUrl: selectedImage.firebaseUrl,
             altText: selectedImage.altText,
           },
         },
       }));
-    }
-
-    else if (activeField?.type === "images") {
+    } else if (activeField?.type === "images") {
       handleReplaceImage("images", activeField.index, selectedImage);
     } else if (activeField?.type === "subImages") {
       handleReplaceImage("subImages", activeField.index, selectedImage);
-    }
-    else if (activeField?.type === "items") {
+    } else if (activeField?.type === "items") {
       handleReplaceImage("items", activeField.index, selectedImage);
-    }
-    else if (activeField?.type === "restaurantItems") {
+    } else if (activeField?.type === "restaurantItems") {
       const { index } = activeField; // RestaurantItems için index kontrolü
       setComponentData((prev) => {
         const updatedRestaurantItems = [...prev.props.restaurantItems];
@@ -120,7 +114,7 @@ const EditComponent = () => {
             altText: selectedImage.altText,
           },
         };
-  
+
         return {
           ...prev,
           props: {
@@ -130,10 +124,9 @@ const EditComponent = () => {
         };
       });
     }
-  
+
     setGaleriOpen(false);
   };
-  
 
   // --------------------------------------------------
   // useEffect: FETCH COMPONENT DATA ON MOUNT
@@ -262,10 +255,20 @@ const EditComponent = () => {
     });
   };
 
-  const handleArrayHeaderChange = (field, index, lang, value) => {
+  const handleArrayHeaderChange = (field, index, value) => {
     setComponentData((prev) => {
       const updatedArray = [...prev.props[field]];
-      updatedArray[index][lang] = value;
+
+      // Sadece string olan değeri güncelliyoruz.
+      if (typeof updatedArray[index] === "string") {
+        updatedArray[index] = value;
+      } else {
+        console.warn(
+          `Expected string but got ${typeof updatedArray[
+            index
+          ]} at index ${index}`
+        );
+      }
 
       return {
         ...prev,
@@ -277,11 +280,26 @@ const EditComponent = () => {
     });
   };
 
-  const handleTextChange = (field, index, lang, value) => {
+  // const handleTextChange = (field, index, lang, value) => {
+  //   setComponentData((prev) => {
+  //     const updatedArray = [...prev.props[field]];
+  //     updatedArray[index].text[lang] = value;
+
+  //     return {
+  //       ...prev,
+  //       props: {
+  //         ...prev.props,
+  //         [field]: updatedArray,
+  //       },
+  //     };
+  //   });
+  // };
+
+  const handleTextChange = (field, index, value) => {
     setComponentData((prev) => {
       const updatedArray = [...prev.props[field]];
-      updatedArray[index].text[lang] = value;
-
+      updatedArray[index].text = value; // ✅ DOĞRUDAN STRING OLARAK ATAMA YAPILDI
+  
       return {
         ...prev,
         props: {
@@ -291,6 +309,7 @@ const EditComponent = () => {
       };
     });
   };
+  
 
   const handleDelayChange = (field) => {
     setComponentData((prev) => ({
@@ -318,7 +337,7 @@ const EditComponent = () => {
     }));
   };
 
-  const handleImageAltTextChange = (field,lang, value) => {
+  const handleImageAltTextChange = (field, lang, value) => {
     setComponentData((prev) => ({
       ...prev,
       props: {
@@ -380,11 +399,13 @@ const EditComponent = () => {
                 width: 0,
                 height: 0,
               }
+            : field === "headers"
+            ? "" // Headers için yeni string ekliyoruz
             : { en: "", tr: "", de: "", ru: "" },
         ],
       },
     }));
-  };
+  };  
 
   // --------------------------------------------------
   // HANDLERS: SEARCH
@@ -643,6 +664,50 @@ const EditComponent = () => {
     }
   };
 
+
+  const handleRemoveHeader = async (index) => {
+    // Kullanıcıya onay mesajı göster
+    const confirmDelete = window.confirm("Bu başlığı silmek istediğinizden emin misiniz?");
+    
+    // Eğer kullanıcı "Vazgeç" derse, işlem iptal edilir.
+    if (!confirmDelete) {
+      console.log("🛑 Kullanıcı iptal etti, silme işlemi yapılmadı.");
+      return;
+    }
+  
+    try {
+      console.log(`🔵 Silme isteği gönderiliyor... Header Index: ${index}`);
+  
+      const response = await fetch(
+        `/api/page/${pageName}/translations/${language}/components/${componentIndex}/headers/${index}`,
+        {
+          method: "DELETE",
+        }
+      );
+  
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Failed to delete header");
+      }
+  
+      // UI'dan header'ı kaldır
+      setComponentData((prev) => ({
+        ...prev,
+        props: {
+          ...prev.props,
+          headers: prev.props.headers.filter((_, i) => i !== index),
+        },
+      }));
+  
+      console.log("✅ Header başarıyla silindi!");
+  
+    } catch (err) {
+      console.error("❌ Error deleting header:", err);
+    }
+  };
+  
+  
+
   const renderComponentPreview = (data) => {
     switch (data.type) {
       case "Carousel":
@@ -810,7 +875,7 @@ const EditComponent = () => {
                 ))}
               </div>
             );
-          } 
+          }
           // else {
           //   // Basit string/number ise
           //   return (
@@ -971,7 +1036,7 @@ const EditComponent = () => {
               onChange={(e) => handleImageUrlChange(e.target.value)}
               className="border p-2 text-[12px] hidden"
             />
-             {singleIconImage.firebaseUrl && (
+            {singleIconImage.firebaseUrl && (
               <img
                 src={singleIconImage.firebaseUrl}
                 alt="Preview"
@@ -999,7 +1064,6 @@ const EditComponent = () => {
             </div>
           </div>
         )}
-
 
         {/* {singleIconImage && (
           <div className="flex flex-col gap-2 items-center mt-4">
@@ -1056,7 +1120,7 @@ const EditComponent = () => {
               className="border p-2 text-[12px] hidden"
             />
 
-        {singleIconImage2.firebaseUrl && (
+            {singleIconImage2.firebaseUrl && (
               <img
                 src={singleIconImage2.firebaseUrl}
                 alt="Preview"
@@ -1129,7 +1193,7 @@ const EditComponent = () => {
           </div>
         )}
 
-{singleButtonText2 && (
+        {singleButtonText2 && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
             <h2 className="font-bold text-[15px]">Button Text 2</h2>
             <div className="flex flex-col gap-2">
@@ -1146,7 +1210,7 @@ const EditComponent = () => {
           </div>
         )}
 
-{singleButtonText3 && (
+        {singleButtonText3 && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
             <h2 className="font-bold text-[15px]">Button Text 3</h2>
             <div className="flex flex-col gap-2">
@@ -1163,7 +1227,7 @@ const EditComponent = () => {
           </div>
         )}
 
-{singleButtonLink && (
+        {singleButtonLink && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
             <h2 className="font-bold text-[15px]">Button Link </h2>
             <div className="flex flex-col gap-2">
@@ -1180,7 +1244,7 @@ const EditComponent = () => {
           </div>
         )}
 
-{singleButtonLink2 && (
+        {singleButtonLink2 && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
             <h2 className="font-bold text-[15px]">Button Link 2 </h2>
             <div className="flex flex-col gap-2">
@@ -1197,7 +1261,7 @@ const EditComponent = () => {
           </div>
         )}
 
-{singleButtonLink3 && (
+        {singleButtonLink3 && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white">
             <h2 className="font-bold text-[15px]">Button Link 3</h2>
             <div className="flex flex-col gap-2">
@@ -1246,8 +1310,8 @@ const EditComponent = () => {
           </div>
         )}
 
-         {/* --------------- SINGLE TEXT 2--------------- */}
-         {singleText2 && (
+        {/* --------------- SINGLE TEXT 2--------------- */}
+        {singleText2 && (
           <div className="flex flex-col gap-4 w-full border p-4 rounded my-4 bg-white text-black">
             <h2 className="font-bold text-[12px]">Text 2</h2>
             <div className="flex flex-col gap-2">
@@ -1788,7 +1852,9 @@ const EditComponent = () => {
               <h3>Restaurant Item {index + 1}</h3>
 
               {/* image alanı */}
-              <label className="font-semibold text-[16px] hidden">Image URL</label>
+              <label className="font-semibold text-[16px] hidden">
+                Image URL
+              </label>
               <input
                 type="text"
                 className="hidden"
@@ -1811,67 +1877,65 @@ const EditComponent = () => {
                   }));
                 }}
               />
-              
-
 
               {item.image.firebaseUrl && (
-                      <img
-                        src={item.image.firebaseUrl}
-                        alt={`Preview of Image ${index + 1}`}
-                        className="w-60 h-40 object-cover mt-2 border rounded-md"
-                        
-                      />
-                    )}
+                <img
+                  src={item.image.firebaseUrl}
+                  alt={`Preview of Image ${index + 1}`}
+                  className="w-60 h-40 object-cover mt-2 border rounded-md"
+                />
+              )}
 
-                    {/* Image search */}
-                    <div className="flex flex-col gap-2 items-center">
-                      <div className="flex w-full items-center justify-center gap-3">
-                        <button
-                          onClick={() => {
-                            setActiveField({ type: "restaurantItems", index });
-                            setGaleriOpen(true); // <--- EKLE
-                          }}
-                          className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
-                        >
-                          Galeri
-                        </button>
+              {/* Image search */}
+              <div className="flex flex-col gap-2 items-center">
+                <div className="flex w-full items-center justify-center gap-3">
+                  <button
+                    onClick={() => {
+                      setActiveField({ type: "restaurantItems", index });
+                      setGaleriOpen(true); // <--- EKLE
+                    }}
+                    className="bg-blue-500 text-white px-2 py-1 rounded text-[12px]"
+                  >
+                    Galeri
+                  </button>
 
-                        <button
-                          onClick={handleRestaurantImageSearch}
-                          className="bg-green-700 text-white px-2 py-1 rounded text-[12px] whitespace-nowrap"
-                        >
-                          Resim Yükle
-                        </button>
+                  <button
+                    onClick={handleRestaurantImageSearch}
+                    className="bg-green-700 text-white px-2 py-1 rounded text-[12px] whitespace-nowrap"
+                  >
+                    Resim Yükle
+                  </button>
+                </div>
+
+                {restaurantImageSearchResults.length > 0 && (
+                  <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px] ">
+                    <h4>Search Results</h4>
+                    {restaurantImageSearchResults.map((result, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
+                        onClick={() =>
+                          handleReplaceRestaurantItemImage(
+                            index,
+                            "restaurantImages",
+                            result
+                          )
+                        }
+                      >
+                        <img
+                          src={result.firebaseUrl}
+                          alt={result.altText}
+                          className="w-16 h-16 object-cover"
+                        />
+                        <p>{result.altText}</p>
                       </div>
-
-                      {restaurantImageSearchResults.length > 0 && (
-                        <div className="flex flex-col gap-2 mt-2 overflow-y-scroll h-[200px] ">
-                          <h4>Search Results</h4>
-                          {restaurantImageSearchResults.map((result, i) => (
-                            <div
-                              key={i}
-                              className="flex items-center gap-4 border p-2 rounded-md cursor-pointer"
-                              onClick={() =>
-                                handleReplaceRestaurantItemImage(index,
-                                  "restaurantImages",
-                                  result)
-                              }
-                            >
-                              <img
-                                src={result.firebaseUrl}
-                                alt={result.altText}
-                                className="w-16 h-16 object-cover"
-                              />
-                              <p>{result.altText}</p>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               {/* Search for a new main image */}
               <div className="flex flex-col gap-2 items-center my-2">
-
                 {restaurantImageSearchResults.length > 0 && (
                   <div className="flex flex-col gap-2 mt-2">
                     <h4>Search Results</h4>
@@ -1901,9 +1965,11 @@ const EditComponent = () => {
 
               {/* image altText */}
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-semibold">AltText ({language})</label>
+                <label className="text-sm font-semibold">
+                  AltText ({language})
+                </label>
                 <input
-                className="text-black"
+                  className="text-black"
                   type="text"
                   value={item.image.altText[language] || ""} //item.image.altText
                   onChange={(e) => {
@@ -2161,31 +2227,32 @@ const EditComponent = () => {
                       )}
                     </div>
 
-                      {/* Alt Text Düzenleme */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-black text-[15px] font-semibold">
-                      Alt Text ({language})
-                    </label>
-                    <input
-                      type="text"
-                      value={image.altText[language] || ""}
-                      className="text-[12px] border p-1"
-                      onChange={(e) =>
-                        handleAltTextChange(
-                          "images",
-                          index,
-                          language,
-                          e.target.value
-                        )
-                      }
-                    />
-                  </div>
+                    {/* Alt Text Düzenleme */}
+                    <div className="flex flex-col gap-2">
+                      <label className="text-black text-[15px] font-semibold">
+                        Alt Text ({language})
+                      </label>
+                      <input
+                        type="text"
+                        value={image.altText[language] || ""}
+                        className="text-[12px] border p-1"
+                        onChange={(e) =>
+                          handleAltTextChange(
+                            "images",
+                            index,
+                            language,
+                            e.target.value
+                          )
+                        }
+                      />
+                    </div>
 
                     <div className="flex flex-col gap-2">
                       <label className="text-black text-[18px] font-semibold">
                         Header
                       </label>
                       <input
+                        className="px-2 py-1 rounded-md border"
                         type="text"
                         value={image.header}
                         onChange={(e) =>
@@ -2200,6 +2267,7 @@ const EditComponent = () => {
                         Text
                       </label>
                       <input
+                      className="px-2 py-1 rounded-md border"
                         type="text"
                         value={image.text}
                         onChange={(e) =>
@@ -2207,13 +2275,19 @@ const EditComponent = () => {
                         }
                       />
                     </div>
-                    {/* ))} */}
+                    <button
+                onClick={() => handleRemoveItem(index)}
+                className=" mt-2 w-1/2 bg-red-600 text-white py-1 px-2 rounded whitespace-nowrap text-[12px]"
+              >
+                Remove
+              </button>
                   </div>
                 ))}
+                
               </div>
               <button
                 onClick={() => handleAddItem("images")}
-                className="bg-green-700 text-white px-4 py-2 rounded w-[30%] my-4 whitespace-nowrap"
+                className="bg-green-700 text-white px-4 py-2 rounded w-[18%] my-4 whitespace-nowrap text-[14px]"
               >
                 Add New Image
               </button>
@@ -2325,7 +2399,12 @@ const EditComponent = () => {
                       type="text"
                       value={subImage.altText[language] || ""}
                       onChange={(e) =>
-                        handleAltTextChange("subImages", index, language, e.target.value)
+                        handleAltTextChange(
+                          "subImages",
+                          index,
+                          language,
+                          e.target.value
+                        )
                       }
                     />
                   </div>
@@ -2334,7 +2413,7 @@ const EditComponent = () => {
             </div>
             <button
               onClick={() => handleAddItem("subImages")}
-              className="bg-green-700 text-white px-4 py-2 rounded w-[25%] whitespace-nowrap my-4"
+              className="bg-green-700 text-white px-4 py-2 rounded w-[20%] whitespace-nowrap my-4 text-[14px]"
             >
               Add New SubImage
             </button>
@@ -2344,35 +2423,40 @@ const EditComponent = () => {
 
       {/* --------------- HEADERS ARRAY --------------- */}
       {componentData.props.headers?.length > 0 && (
-        <div className="flex flex-col gap-4 w-full">
-          <h2 className="text-[20px] text-[#0e0c1b] font-semibold mt-6 ml-2">
+        <div className="flex flex-col gap-7 w-full">
+          <h2 className="text-[20px] text-white font-semibold mt-6 ml-2">
             Headers
           </h2>
           {componentData.props.headers.map((header, index) => (
             <div
               key={index}
-              className="flex flex-col gap-2 border p-4 rounded-md"
+              className="flex flex-col gap-2 border p-4 rounded-md w-[40%]"
             >
-              <h3>Header {index + 1}</h3>
-              {Object.keys(header || {}).map(() => (
-                <div className="flex flex-col gap-2">
-                  <label className="text-black text-[18px] font-semibold">
-                    header
-                  </label>
-                  <input
-                    type="text"
-                    value={header}
-                    onChange={(e) =>
-                      handleArrayHeaderChange("headers", index, e.target.value)
-                    }
-                  />
-                </div>
-              ))}
+              <h3 className="text-white text-[14px] font-medium">Header {index + 1}</h3>
+              <div className="flex flex-col gap-2">
+                <label className="text-white text-[14px] font-semibold">
+                  Header
+                </label>
+                <input
+                className="px-2 py-1 rounded-md text-[13px]"
+                  type="text"
+                  value={header || ""}
+                  onChange={(e) =>
+                    handleArrayHeaderChange("headers", index, e.target.value)
+                  }
+                />
+              </div>
+              <button
+                onClick={() => handleRemoveHeader(index)}
+                className="mt-5 w-[120px] bg-red-600 text-white py-1 px-2 rounded whitespace-nowrap text-[12px]"
+              >
+                Remove
+              </button>
             </div>
           ))}
           <button
             onClick={() => handleAddItem("headers")}
-            className="bg-green-700 text-white px-4 py-2 rounded w-[20%] my-4"
+            className="bg-green-700 text-white px-2 py-2 rounded w-[12%] my-4 text-[14px]"
           >
             Add New Headers
           </button>
@@ -2531,7 +2615,7 @@ const EditComponent = () => {
 
               <button
                 onClick={() => handleRemoveItem(index)}
-                className="w-1/3 bg-red-600 text-white py-1 px-4 rounded whitespace-nowrap"
+                className="w-1/3 bg-red-600 text-white py-1 px-4 rounded whitespace-nowrap text-[12px] mt-2"
               >
                 Remove Item
               </button>
@@ -2539,7 +2623,7 @@ const EditComponent = () => {
           ))}
           <button
             onClick={handleAddNewItem}
-            className="bg-green-700 text-white py-2 px-4 rounded mt-4"
+            className="bg-green-700 text-white py-2 px-4 rounded mt-4 w-[18%] text-[14px]"
           >
             Add New Item
           </button>
@@ -2549,7 +2633,7 @@ const EditComponent = () => {
       {/* --------------- SAVE BUTTON --------------- */}
       <button
         onClick={handleSave}
-        className="bg-[#818cca] text-white text-[16px] font-semibold px-4 py-2 rounded my-5 mt-12"
+        className="bg-[#818cca] hover:bg-[#231e43] text-white text-[16px] font-semibold px-4 py-2 rounded my-5 mt-12"
       >
         Save Changes
       </button>
