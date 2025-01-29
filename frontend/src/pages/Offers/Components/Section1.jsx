@@ -6,15 +6,15 @@ const Section1 = ({image, image2, iconImage, iconImage2, header, text}) => {
       {/* Üstteki resim */}
       <div className="flex w-full items-center justify-center">
         <img 
-          className="max-w-full h-auto" 
+          className="max-w-full h-[400px] object-cover lg:h-auto" 
           src={image.firebaseUrl}
           alt={image.altText} 
         />
       </div>
 
       {/* Metin ve sağındaki resim */}
-      <div className="flex flex-row items-center justify-center gap-36 pb-16 relative">
-        <div className="flex flex-col gap-8 max-w-[378px] ">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-36 pb-16 relative">
+        <div className="flex flex-col gap-8 w-[85%] lg:max-w-[378px] text-center lg:text-start">
           <div className='flex flex-col gap-12 h-16'>
             <img src={iconImage.firebaseUrl} alt={iconImage.altText} className="w-[117px]" />
             <img src={iconImage.firebaseUrl} alt={iconImage.altText} className="w-[78px] absolute -left-20 top-52" />
@@ -33,7 +33,7 @@ const Section1 = ({image, image2, iconImage, iconImage2, header, text}) => {
         <img 
           src={image2.firebaseUrl} 
           alt={image2.altText} 
-          className="max-w-[800px] max-h-[738px]" 
+          className="max-w-[800px] max-h-[738px] w-[95%]" 
         />
       </div>
     </div>

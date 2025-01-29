@@ -11,7 +11,7 @@ const images = [img,img,img,img,img,img];
 const RoomsCarousel = () => {
     const [emblaRef, emblaApi] = useCarousel({
         loop: true,
-        align:"center",
+        align:"start",
         startIndex:0,
       });
     
@@ -50,13 +50,13 @@ const RoomsCarousel = () => {
 
 
   return (
-     <div className="flex flex-col w-full h-full font-montserrat items-center">
+     <div className="flex flex-col w-[90%] h-full font-montserrat items-center">
       <div className="overflow-hidden relative h-auto " ref={emblaRef}>
           <div className="flex grid-flow-col">
             {images.map((image, index) => (
-              <div className="flex-[0_0_auto] mx-1 md:mx-2 sm:w-[calc(50%-1rem)] md:w-[calc(33.3%-1rem)] lg:mx-4 lg:w-[calc(33.3%-1rem)] xl:w-[calc(33.3%-2rem)] w-11/12 flex justify-center relative group" key={index}>
+              <div className="flex-[0_0_auto] mx-1 md:mx-2 w-[calc(95%-1rem)] md:w-[calc(80%-1rem)] lg:mx-4 lg:w-[calc(33.3%-1rem)] xl:w-[calc(33.3%-2rem)]  flex justify-center relative group" key={index}>
                 <img
-                  className="cursor-pointer overflow-hidden object-cover"
+                  className="cursor-pointer overflow-hidden object-cover w-[90%]"
                   height={img.height}
                   width={img.width}
                   src={image}
@@ -70,7 +70,7 @@ const RoomsCarousel = () => {
             <div className="flex items-center justify-center flex-col text-white text-center">
               
               <p className="text-[20px] text-grayLight leading-[27px] font-semibold px-4 xl:px-7">
-                jhbfjysr
+              
               </p>
             </div>
           </div>

@@ -14,13 +14,13 @@ const InfoIconSection = ({ items, text }) => {
       
       <div className="flex w-[80%] lg:w-[46%] justify-center items-center text-center text-customGray/80">
         
-        <p className="text-[20px] font-bold leading-[30px] font-monserrat">
+        <p className="text-[14px] lg:text-[20px] font-bold leading-[30px] font-monserrat">
           {text}
         </p>
       </div>
 
       
-      <div className="flex w-full mt-20">
+      <div className="flex w-full mt-8 lg:mt-20">
         <hr className="bg-custom-gradient h-[1px] w-[50%] border-0" />
         <hr className="bg-custom-gradient-reverse h-[1px] w-[50%] border-0" />
       </div>

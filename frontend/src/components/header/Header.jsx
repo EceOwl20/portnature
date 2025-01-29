@@ -118,8 +118,8 @@ const Header = () => {
       <header
         className={`${
           isSticky
-            ? "bg-[#233038]/50 w-full h-[92px] flex items-center justify-center sticky top-0 z-[9999]"
-            : "bg-[#233038] w-full h-[92px] flex items-center justify-center sticky top-0 z-[9999]"
+            ? "bg-[#233038]/50 w-screen h-[92px] flex items-center justify-center sticky top-0 z-[9999]"
+            : "bg-[#233038] w-screen h-[92px] flex items-center justify-center sticky top-0 z-[9999]"
         }`}
       >
         <div className="flex items-center justify-between w-[92%] lg:w-[97%]">
@@ -452,7 +452,7 @@ const Header = () => {
                 color="#233038"
                 fill="#233038"
               />
-              <div className="flex items-center gap-[9px] justify-center">
+              <div className="flex items-center gap-[9px] justify-center ">
                 <select
                   id="selectBox"
                   className="text-[#233038] font-medium text-[17px]"
@@ -479,24 +479,24 @@ const Header = () => {
             </button>
             {roomsOpen && (
               <div className="flex flex-col pl-4 gap-[10px] transition-all duration-300">
-                <Link to="/familyroom" onClick={toggleSidebar}>
+                <Link to="/family-room" onClick={toggleSidebar}>
                   Family Room
                 </Link>
-                <Link to="/standardroom" onClick={toggleSidebar}>
+                <Link to="/standard-rooms" onClick={toggleSidebar}>
                   Standard Room
                 </Link>
-                <Link to="/kingsuite" onClick={toggleSidebar}>
+                <Link to="/king-suite-room" onClick={toggleSidebar}>
                   King Suite
                 </Link>
               </div>
             )}
           </div>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/children" onClick={toggleSidebar}>CHILDREN</Link>
+          <Link to="/kids-concept" onClick={toggleSidebar}>CHILDREN</Link>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
           <Link to="/offers" onClick={toggleSidebar}>OFFERS 2023</Link>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/food-drink" onClick={toggleSidebar}>FOOD & DRINK</Link>
+          <Link to="/food-drinks" onClick={toggleSidebar}>FOOD & DRINK</Link>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
           <Link to="/entertainment" onClick={toggleSidebar}>ENTERTAINMENT</Link>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
