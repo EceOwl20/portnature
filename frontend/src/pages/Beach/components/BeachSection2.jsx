@@ -2,9 +2,9 @@ import React from 'react'
 
 const BeachSection2 = ({restaurantItems}) => {
   return (
-    <section className="flex flex-col max-w-[1920px] mx-auto items-center justify-center mt-28">
-        <div className="flex flex-row items-center justify-center max-w-[1920px] mx-auto gap-44">
-          <div className="flex w-[700px] h-[500px] items-center justify-center"> {/* Resim genişliği ve yüksekliği artırıldı */}
+    <section className="flex flex-col max-w-[1920px] mx-auto items-center justify-center mt-28 w-full">
+        <div className="flex flex-col-reverse lg:flex-row items-center w-[95%] justify-center max-w-[1920px] mx-auto gap-44">
+          <div className="flex max-w-[700px] max-h-[500px] items-center justify-center"> {/* Resim genişliği ve yüksekliği artırıldı */}
             <img 
               src={restaurantItems[0].image.firebaseUrl}
               className="w-full h-full object-cover" 

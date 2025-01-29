@@ -34,10 +34,10 @@ router.delete("/:pageName", deletePage);
 router.put("/:pageName/translations/:language/components/:componentIndex", updateComponent);
 
 // Bir component'in items içerisinden belirli bir item'ı silme
-router.delete("/:pageName/components/:componentIndex/items/:itemIndex", deleteItemFromComponent);
+router.delete("/:pageName/translations/:language/components/:componentIndex/items/:itemIndex", deleteItemFromComponent);
 
 // Bir component'in images içerisinden belirli bir image'ı silme
-router.delete("/:pageName/components/:componentIndex/images/:imageIndex", deleteImageFromComponent);
+router.delete("/:pageName/translations/:language/components/:componentIndex/images/:imageIndex", deleteImageFromComponent);
 
 router.delete("/:pageName/translations/:language/components/:componentIndex/headers/:headerIndex", deleteHeaderFromComponent);
 

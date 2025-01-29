@@ -154,62 +154,118 @@ export const deleteItemFromComponent = async (req, res) => {
   const { pageName, language, componentIndex, itemIndex } = req.params;
 
   try {
+    console.log(`🟢 Silme işlemi başladı: ${pageName}, Dil: ${language}, Component Index: ${componentIndex}, Item Index: ${itemIndex}`);
+
+    // Sayfayı bul
     const page = await Page.findOne({ pageName });
     if (!page) {
+      console.log("🔴 Sayfa bulunamadı!");
       return res.status(404).json({ message: "Page not found" });
     }
 
-    const translation = page.translations.find((t) => t.language === language);
-    if (!translation) return res.status(404).json({ message: `Translation for ${language} not found` });
+    console.log(`✅ Sayfa bulundu: ${pageName}`);
 
-    const component = translation.components[componentIndex];
-    if (!component) return res.status(404).json({ message: "Component not found" });
-
-    if (!component.props.items || !component.props.items[itemIndex]) {
-      return res.status(404).json({ message: "Item not found" });
+    // İlgili dili bul
+    const translation = page.translations[language];
+    if (!translation) {
+      console.log(`🔴 ${language} dili için çeviri bulunamadı.`);
+      return res.status(404).json({ message: `Translation for ${language} not found` });
     }
 
-    component.props.items.splice(itemIndex, 1);
-    await page.save();
+    console.log(`✅ ${language} dili için çeviri bulundu.`);
 
-    res.status(200).json({ message: "Item deleted successfully" });
-  } catch (error) {
-    console.error("Error deleting item:", error);
-    res.status(500).json({ message: "Server error", error });
-  }
-};
-
-
-export const deleteImageFromComponent = async (req, res) => {
-  const { pageName, componentIndex, imageIndex } = req.params;
-
-  try {
-    const page = await Page.findOne({ pageName });
-    if (!page) {
-      return res.status(404).json({ message: "Page not found" });
-    }
-
-    // İlgili component'e ulaş
-    const component = page.components[componentIndex];
+    // İlgili component'i bul
+    const component = translation[componentIndex];
     if (!component) {
+      console.log(`🔴 Component bulunamadı veya index yanlış: ${componentIndex}`);
       return res.status(404).json({ message: "Component not found" });
     }
 
-    // images yoksa veya imageIndex geçerli değilse hata ver
-    if (!component.props.images || !component.props.images[imageIndex]) {
-      return res.status(404).json({ message: "Image not found" });
+    console.log(`✅ Component bulundu: ${component.type}`);
+
+    // Eğer bileşenin `items` dizisi yoksa veya geçersiz bir index verilmişse hata döndür
+    if (!component.props.items || !component.props.items[itemIndex]) {
+      console.log(`🔴 Item bulunamadı!`);
+      return res.status(404).json({ message: "Item not found" });
     }
 
-    // Image'ı array'den çıkar
-    component.props.images.splice(imageIndex, 1);
+    console.log(`✅ Item bulundu, silme işlemi yapılıyor...`);
 
+    // Seçili item'ı array'den çıkar
+    component.props.items.splice(itemIndex, 1);
+
+    // Veriyi kaydet
     await page.save();
-    return res.status(200).json({ message: "Image deleted successfully" });
+
+    console.log("✅ Item başarıyla silindi!");
+
+    return res.status(200).json({ message: "Item deleted successfully" });
+
   } catch (error) {
-    console.error("Error deleting image:", error);
+    console.error("❌ Error deleting item:", error);
     return res.status(500).json({ message: "Server error", error });
   }
 };
+;
+
+export const deleteImageFromComponent = async (req, res) => {
+  const { pageName, language, componentIndex, imageIndex } = req.params;
+
+  try {
+    console.log(`🟢 Silme işlemi başladı: ${pageName}, Dil: ${language}, Component Index: ${componentIndex}, Image Index: ${imageIndex}`);
+
+    // Sayfayı bul
+    const page = await Page.findOne({ pageName });
+    if (!page) {
+      console.log("🔴 Sayfa bulunamadı!");
+      return res.status(404).json({ message: "Page not found" });
+    }
+
+    console.log(`✅ Sayfa bulundu: ${pageName}`);
+
+    // Sayfadaki ilgili dilin çevirisini al
+    const translation = page.translations[language];
+    if (!translation) {
+      console.log(`🔴 ${language} dili için çeviri bulunamadı.`);
+      return res.status(404).json({ message: "Language translation not found" });
+    }
+
+    console.log(`✅ ${language} dili için çeviri bulundu.`);
+
+    // İlgili bileşene ulaş
+    const component = translation[componentIndex];
+    if (!component) {
+      console.log(`🔴 Component bulunamadı veya index yanlış: ${componentIndex}`);
+      return res.status(404).json({ message: "Component not found" });
+    }
+
+    console.log(`✅ Component bulundu: ${component.type}`);
+
+    // Eğer bileşenin images array'i yoksa veya geçersiz bir index verilmişse hata döndür
+    if (!component.props.images || !component.props.images[imageIndex]) {
+      console.log(`🔴 Image bulunamadı!`);
+      return res.status(404).json({ message: "Image not found" });
+    }
+
+    console.log(`✅ Image bulundu, silme işlemi yapılıyor...`);
+
+    // Seçili image'ı array'den çıkar
+    component.props.images.splice(imageIndex, 1);
+
+    // Veriyi kaydet
+    await page.markModified(`translations.${language}`);
+    await page.save();
+
+    console.log("✅ Image başarıyla silindi!");
+
+    return res.status(200).json({ message: "Image deleted successfully" });
+
+  } catch (error) {
+    console.error("❌ Error deleting image:", error);
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
+
 
 export const deleteHeaderFromComponent = async (req, res) => {
   const { pageName, language, componentIndex, headerIndex } = req.params;

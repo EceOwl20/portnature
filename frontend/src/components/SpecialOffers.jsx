@@ -30,12 +30,12 @@ const SpecialOffers = ({header, headers=[],images=[], links=[]}) => {
         </h2>
       </div>
       
-      <div className="overflow-hidden relative w-5/6 ml-auto" ref={emblaRef}>
-        <div className="flex gap-x-4">
+      <div className="overflow-hidden relative w-11/12 md:w-5/6 ml-auto" ref={emblaRef}>
+        <div className="flex gap-x-4 ">
           {images.map((image, index) => (
             <Link 
               to={links[index]}
-              className="relative flex-[0_0_25%] flex justify-center items-start" 
+              className="relative flex-[0_0_95%] sm:flex-[0_0_65%] md:flex-[0_0_45%] lg:flex-[0_0_33%] xl:flex-[0_0_25%] flex justify-center items-start" 
               key={index}
               style={{ position: 'relative' }}
             >

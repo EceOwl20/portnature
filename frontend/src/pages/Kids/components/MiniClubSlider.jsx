@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import LineVerticalSvg from '../../../svg/LineVerticalSvg'
 import LineVertical2Svg from '../../../svg/LineVertical2Svg'
+import Underline from '../../../svg/UnderLine/UnderLine'
 
 const TWEEN_FACTOR_BASE = 0.12
 
@@ -96,19 +97,19 @@ const MiniClubSlider = ({images=[],header, text, items=[],
 
   return (
    <>
-    <div className="max-w-[1920px] mx-auto mt-10">
+    <div className="max-w-[1920px] mx-auto mt-0 lg:mt-10 ">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex"> {/* Resimler arasındaki boşluk minimuma indirildi */}
           {Array.isArray(images) && images.map((image, index) => (
             <div
               key={index}
-              className="flex-[0_0_50%] min-w-0 transform-gpu" // Genişlik %50'ye çıkarıldı
+              className="flex-[0_0_100%] md:flex-[0_0_50%] min-w-0 transform-gpu " // Genişlik %50'ye çıkarıldı
             >
-              <div className="slide-number shadow-inner border-gray-300 flex items-center justify-center  select-none overflow-hidden"> {/* Yükseklik artırıldı */}
+              <div className="slide-number shadow-inner border-gray-300 flex items-center justify-center  select-none overflow-hidden "> {/* Yükseklik artırıldı */}
                 <img 
                   src={image.firebaseUrl} 
                   alt={image.altText} 
-                  className="w-full h-full object-cover" // Kenar kıvrımları kaldırıldı
+                  className="w-full h-full object-cover min-h-[400px]" // Kenar kıvrımları kaldırıldı
                 />
               </div>
             </div>
@@ -119,9 +120,9 @@ const MiniClubSlider = ({images=[],header, text, items=[],
 
 
 
-<section className="flex items-center justify-center max-w-[1920px] mx-auto mt-32">
+<section className="flex items-center justify-center max-w-[1920px] mx-auto mt-10 lg:mt-32">
       <div className="flex flex-col gap-16 items-center justify-center w-full"> 
-      <div className="flex flex-row items-center justify-center gap-60 font-monserrat text-[14px] font-bold leading-normal">
+      <div className="flex flex-row items-center justify-center gap-10 lg:gap-60 font-monserrat text-[14px] font-bold leading-normal ">
       {items.map((item, index) => (
         <div className="flex flex-col items-center justify-center" key={index}>
           <img
@@ -133,13 +134,14 @@ const MiniClubSlider = ({images=[],header, text, items=[],
         </div>
       ))}
     </div>
-        <div className="flex flex-row items-center justify-center gap-8 mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
-          <h1 className="font-lora text-[40px] leading-normal font-medium text-center">{header}</h1>
+        <div className="flex flex-col md:flex-row items-center justify-center text-center lg:text-start gap-4 lg:gap-8 mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
+          <h1 className="font-lora lg:text-[40px] text-[25px] leading-normal font-medium text-center">{header}</h1>
           <div className="flex flex-col items-center justify-center">
-            <LineVerticalSvg width={1} height={90} />
-            <LineVertical2Svg width={1} height={90} />
+            <Underline className="flex md:hidden"/>
+            <LineVerticalSvg width={1} height={90} className="hidden md:flex"/>
+            <LineVertical2Svg width={1} height={90} className="hidden md:flex"/>
           </div>
-          <p className="font-monserrat text-[15px] font-normal leading-5 w-7/12 text-left">
+          <p className="font-monserrat text-[13px] lg:text-[15px] font-normal leading-5 w-[90%] lg:w-7/12 ">
            {text}
           </p>
         </div>

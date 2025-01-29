@@ -636,33 +636,51 @@ const EditComponent = () => {
     }));
   };
 
-  const handleRemoveItem = async (index) => {
+  const handleRemove = async (field, index) => {
+    if (!pageName || !language || componentIndex === undefined || index === undefined) {
+      console.error("🔴 Eksik parametreler! Silme işlemi yapılamadı.");
+      return;
+    }
+  
+    // Silme API endpoint'ini belirleme
+    let apiEndpoint;
+    if (field === "items") {
+      apiEndpoint = `/api/page/${pageName}/translations/${language}/components/${componentIndex}/items/${index}`;
+    } else if (field === "images") {
+      apiEndpoint = `/api/page/${pageName}/translations/${language}/components/${componentIndex}/images/${index}`;
+    } else {
+      console.error("❌ Geçersiz field:", field);
+      return;
+    }
+  
     try {
-      const response = await fetch(
-        `/api/page/${pageName}/components/${componentIndex}/items/${index}`,
-        {
-          method: "DELETE",
-        }
-      );
-
+      console.log(`🟡 Silme isteği gönderiliyor: ${field}, Index: ${index}, Component Index: ${componentIndex}`);
+  
+      const response = await fetch(apiEndpoint, { method: "DELETE" });
+  
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.message || "Failed to delete item");
+        console.error(`❌ ${field} silme başarısız:`, data.message);
+        throw new Error(data.message || `Failed to delete ${field}`);
       }
-
+  
+      // State'i güncelle (items veya images'den kaldır)
       setComponentData((prev) => ({
         ...prev,
         props: {
           ...prev.props,
-          items: prev.props.items.filter((_, i) => i !== index),
+          [field]: prev.props[field].filter((_, i) => i !== index),
         },
       }));
-
-      console.log("Item deleted from DB successfully!");
+  
+      console.log(`✅ ${field} başarıyla silindi!`);
+  
     } catch (err) {
-      console.error("Error deleting item:", err);
+      console.error(`❌ Error deleting ${field}:`, err);
     }
   };
+  
+  
 
 
   const handleRemoveHeader = async (index) => {
@@ -2276,7 +2294,7 @@ const EditComponent = () => {
                       />
                     </div>
                     <button
-                onClick={() => handleRemoveItem(index)}
+                onClick={() => handleRemove("images", index)}
                 className=" mt-2 w-1/2 bg-red-600 text-white py-1 px-2 rounded whitespace-nowrap text-[12px]"
               >
                 Remove
@@ -2614,7 +2632,7 @@ const EditComponent = () => {
               </div>
 
               <button
-                onClick={() => handleRemoveItem(index)}
+                onClick={() => handleRemove("items", index)}
                 className="w-1/3 bg-red-600 text-white py-1 px-4 rounded whitespace-nowrap text-[12px] mt-2"
               >
                 Remove Item
