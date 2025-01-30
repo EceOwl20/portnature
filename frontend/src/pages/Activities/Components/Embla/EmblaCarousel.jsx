@@ -40,10 +40,10 @@ const EmblaCarousel = ({ slides = [], options = {} }) => {
             >
               <div className="relative h-[750px] flex items-start justify-center overflow-visible">
                 {/* Dotted Border (Süs) */}
-                <div className="absolute h-[610px] inset-0 border-2 border-dotted translate-x-12 translate-y-10"></div>
+                <div className="absolute h-[411px] lg:h-[610px] inset-0 border-2 border-dotted translate-x-12 translate-y-10"></div>
 
                 {/* Resim Kutusu */}
-                <div className="h-[606px] w-full relative bg-gray-200 shadow-md overflow-hidden">
+                <div className="h-[411px] lg:h-[610px] w-full relative bg-gray-200 shadow-md overflow-hidden">
                   {/* Slide Resmi */}
                   <img
                     src={slide.firebaseUrl}

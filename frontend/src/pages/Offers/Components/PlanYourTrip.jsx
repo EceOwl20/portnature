@@ -88,14 +88,14 @@ const PlanYourTrip = ({image,header,text,span,button,images=[],restaurantItems=[
   }, [emblaApi]);
 
   return (
-    <div className="flex flex-col lg:flex-row w-screen items-center justify-center min-h-screen">
-      <div className="flex flex-col w-[45%] items-center justify-end text-center gap-[45px]">
+    <div className="flex flex-col md:flex-row w-screen items-start justify-center min-h-screen">
+      <div className="flex flex-col w-[100%] md:w-[55%] lg::w-[45%] items-center justify-center text-center gap-[45px]">
         {/* LEFT SIDE */}
-        <div className="flex flex-col w-[90%] lg:w-1/2 xl:w-[80%] bg-[#243039] pt-[84px] pb-[51px] lg:min-h-[627px] text-white justify-center items-center text-center">
-          <h3 className="text-[35px] font-normal uppercase font-lora leading-[50px]">
+        <div className="flex flex-col w-[100%] lg:w-1/2 xl:w-[80%] bg-[#243039] py-10 lg:pt-[84px] lg:pb-[51px] lg:min-h-[627px] text-white justify-center items-center text-center">
+          <h3 className="text-[25px] lg:text-[35px] font-normal uppercase font-lora leading-[50px]">
             {header}
           </h3>
-          <span className="text-[20px] font-monserrat font-bold leading-[30px]">
+          <span className="text-[16px] lg:text-[20px] font-monserrat font-bold leading-[30px]">
             {text}
           </span>
 
@@ -123,13 +123,13 @@ const PlanYourTrip = ({image,header,text,span,button,images=[],restaurantItems=[
           </div>
 
           {/* BOOKING FORM */}
-          <div className="flex w-[90%] flex-col items-center justify-center gap-[20px] mt-[93px] z-10">
+          <div className="flex w-[90%] flex-col items-center justify-center gap-[20px] mt-10 lg:mt-[93px] z-10 text-[14px]">
 
             {/* SELECT ROOM */}
             <div className="relative w-full">
               <button
                 onClick={toggleRoomDropdown}
-                className="flex px-[3vw] py-[1.2vh] w-full text-[#CFCFCF] focus:outline-none relative border-[0.7px] border-[#CFCFCF] text-start items-center justify-between "
+                className="flex px-[3vw] py-[1.2vh] w-full text-[#CFCFCF] focus:outline-none relative border-[0.7px] border-[#CFCFCF] text-start items-center justify-between"
               >
                 {selectRoom || "Select Room"}
                 <BsChevronDown className="flex" width={22.742} height={23.281}/>
@@ -269,12 +269,12 @@ const PlanYourTrip = ({image,header,text,span,button,images=[],restaurantItems=[
             </button>
           </div>
         </div>
-        <span className="text-[20px] font-monserrat text-[#AAA] leading-[30px] font-bold">{span}</span>
+        <span className="text-[17px] lg:text-[20px] font-monserrat text-[#AAA] leading-[30px] font-bold">{span}</span>
         {/* RIGHT SIDE (if any) */}
       </div>
 
-      <div className="flex flex-col w-[55%] h-full items-center justify-center">
-        <div className="flex ">
+      <div className="flex flex-col w-[90%] md:w-[55%] h-full items-center justify-center gap-2">
+        <div className="flex w-full justify-center items-center">
           <RoomsCarousel images={restaurantItems}/>
         </div>
 

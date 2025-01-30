@@ -16,10 +16,10 @@ const HomeCarousel = ({ images = [], header, autoplay, delay }) => {
 
   return (
     <section
-      className="flex w-full min-h-screen overflow-visible"
+      className="flex w-screen min-h-screen"
       aria-label="Home Carousel"
     >
-      <div className="relative flex w-full" ref={emblaRef}>
+      <div className="relative flex w-full overflow-hidden" ref={emblaRef}>
         <div className="flex grid-flow-col min-h-screen w-full">
           {images.map((image, index) => (
             <figure

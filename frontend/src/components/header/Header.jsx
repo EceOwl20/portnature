@@ -16,6 +16,8 @@ const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
 
+  const [roomsOpen, setRoomsOpen] = useState(false);
+
   const [headerImages, setHeaderImages] = useState([]);
 
   const { language: lang, setLanguage } = useLanguage(); // useLanguage'den setLanguage'i aldım
@@ -116,8 +118,8 @@ const Header = () => {
       <header
         className={`${
           isSticky
-            ? "bg-[#233038]/50 w-full h-[92px] flex items-center justify-center sticky top-0 z-[9999]"
-            : "bg-[#233038] w-full h-[92px] flex items-center justify-center sticky top-0 z-[9999]"
+            ? "bg-[#233038]/50 w-screen h-[92px] flex items-center justify-center sticky top-0 z-[9999]"
+            : "bg-[#233038] w-screen h-[92px] flex items-center justify-center sticky top-0 z-[9999]"
         }`}
       >
         <div className="flex items-center justify-between w-[92%] lg:w-[97%]">
@@ -425,7 +427,7 @@ const Header = () => {
 
       {/* Sidebar */}
       <div
-        className={`flex fixed top-0 left-0 w-[100%] h-screen z-[9999] bg-[#fff] text-[#233038] transition-all duration-300 ease-in-out ${
+        className={`flex fixed top-0 left-0 w-[100%] max-w-screen h-screen z-[9999] bg-[#fff] text-[#233038] transition-all duration-300 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -443,17 +445,17 @@ const Header = () => {
                 height={headerData?.image2.height}
               />
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-5">
               <PhoneSvg
                 width={19.889}
                 height={19.928}
                 color="#233038"
                 fill="#233038"
               />
-              <div className="flex items-center gap-[9px] justify-center">
+              <div className="flex items-center gap-[9px] justify-center ">
                 <select
                   id="selectBox"
-                  className="bg-[#233038] text-[16px]"
+                  className="text-[#233038] font-medium text-[17px]"
                   value={lang} // Seçili dili context'ten alıyoruz
                   onChange={handleLanguageChange}
                 >
@@ -468,38 +470,42 @@ const Header = () => {
           </div>
 
           <nav className="flex flex-col w-[75%] text-[16px] font-normal leading-normal uppercase font-monserrat text-start gap-[20px]">
-            <Link to="/" onClick={toggleSidebar}>
+          <div>
+            <button
+              className=" text-left"
+              onClick={() => setRoomsOpen(!roomsOpen)}
+            >
               ROOMS
-            </Link>
-            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-            <Link to="/" onClick={toggleSidebar}>
-              CHILDREN
-            </Link>
-            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-            <Link to="/" onClick={toggleSidebar}>
-              OFFERS 2023
-            </Link>
-            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-            <Link to="/" onClick={toggleSidebar}>
-              FOOD & DRINK
-            </Link>
-            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-            <Link to="/" onClick={toggleSidebar}>
-              ENTERTAINMENT
-            </Link>
-            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-            <Link to="/contacts" onClick={toggleSidebar}>
-              CONTACTS
-            </Link>
-            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-            <Link to="/spa-wellness" onClick={toggleSidebar}>
-              SPA
-            </Link>
-            <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-            <Link to="/" onClick={toggleSidebar}>
-              MEETING & CONGRESS
-            </Link>
-          </nav>
+            </button>
+            {roomsOpen && (
+              <div className="flex flex-col pl-4 gap-[10px] transition-all duration-300">
+                <Link to="/family-room" onClick={toggleSidebar}>
+                  Family Room
+                </Link>
+                <Link to="/standard-rooms" onClick={toggleSidebar}>
+                  Standard Room
+                </Link>
+                <Link to="/king-suite-room" onClick={toggleSidebar}>
+                  King Suite
+                </Link>
+              </div>
+            )}
+          </div>
+          <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+          <Link to="/kids-concept" onClick={toggleSidebar}>CHILDREN</Link>
+          <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+          <Link to="/offers" onClick={toggleSidebar}>OFFERS 2023</Link>
+          <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+          <Link to="/food-drinks" onClick={toggleSidebar}>FOOD & DRINK</Link>
+          <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+          <Link to="/entertainment" onClick={toggleSidebar}>ENTERTAINMENT</Link>
+          <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+          <Link to="/contacts" onClick={toggleSidebar}>CONTACTS</Link>
+          <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+          <Link to="/spa-wellness" onClick={toggleSidebar}>SPA</Link>
+          <div className="flex bg-[#DDD] h-[1px] w-full"></div>
+          <Link to="/meeting-congress" onClick={toggleSidebar}>MEETING & CONGRESS</Link>
+        </nav>
 
           <div className="flex w-[80%] items-center justify-between">
             <YoutubeSvg width={34} height={24} color="#233038cc" />

@@ -46,13 +46,13 @@ const ReviewCarousel = ({restaurantItems=[],header}) => {
 
 
   return (
-    <div className="flex flex-col w-full h-full font-montserrat items-center my-32 justify-center text-center">
+    <div className="flex flex-col w-screen h-full font-montserrat items-center my-32 justify-center text-center">
       <h2 className="text-[28px] font-lora leading-[42px] italic text-customGray font-medium mb-[57px]">{header}</h2>
-      <div className="w-full flex flex-col items-end justify-center">
-      <div className="overflow-hidden relative h-auto w-[95%] justify-end items-end flex flex-col" ref={emblaRef}>
+      <div className="w-full flex flex-col items-end md:items-end justify-center">
+      <div className="overflow-hidden relative h-auto w-[95%] justify-end items-start md:items-end flex flex-col" ref={emblaRef}>
           <div className="flex grid-flow-col">
             {restaurantItems.map((item, index) => (
-              <div className="flex-[0_0_auto] bg-[#F6FAFD] py-[20px] mx-1 md:mx-2 sm:w-[calc(50%-1rem)] md:w-[calc(33.3%-1rem)] lg:mx-4 lg:w-[calc(33.3%-1rem)] xl:w-[calc(27%-2rem)] w-11/12 flex justify-center relative group" key={index}>
+              <div className="flex-[0_0_auto] bg-[#F6FAFD] py-[20px] mx-1 md:mx-2 w-[calc(55%-1rem)] sm:w-[calc(55%-1rem)] md:w-[calc(33%-1rem)] lg:mx-4 lg:w-[calc(33.3%-1rem)] xl:w-[calc(27%-2rem)] flex justify-center relative group" key={index}>
                 <div className="flex flex-col w-[92%] items-start justify-center gap-[20px]">
                <div className="flex w-full items-center justify-start gap-[5%]">
                <img
@@ -62,12 +62,12 @@ const ReviewCarousel = ({restaurantItems=[],header}) => {
                   src={item.image.firebaseUrl}
                   alt={`Slide ${index + 1}`}
                 />
-                <div className="flex flex-col w-[66%] items-start justify-center gap-[18px]">
+                <div className="flex flex-col w-[66%] items-start justify-center gap-[18px] text-[15px] lg:text-[20px] font-semibold font-monserrat">
                     <span>{item.header}</span>
                     <StarsSvg className="flex" width={150} height={30}/>
                 </div>
                </div>
-               <p className="text-[14px] text-black font-normal font-monserrat leading-normal">{item.text}</p>
+               <p className="text-[12px] lg:text-[14px] text-black font-normal font-monserrat leading-normal">{item.text}</p>
                 </div>
                 
               </div>

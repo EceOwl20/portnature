@@ -4,7 +4,7 @@ const Section1 = ({header,text,image}) => {
 
   return (
     <div className='flex justify-center items-center'>
-        <div className='flex flex-col max-w-[1920px] h-[986px] items-center justify-center gap-10' style={{
+        <div className='flex flex-col max-w-[1920px] min-h-[600px] lg:h-[986px] items-center justify-center gap-10' style={{
             backgroundImage: `linear-gradient(#00000033, #00000033), url(${image.firebaseUrl})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -17,7 +17,7 @@ const Section1 = ({header,text,image}) => {
             <div className="bg-custom-gradient-reverse h-[1px] w-[50%]">
             </div>
             </div>
-            <p className='text-[#f5f5f5] text-center font-monserrat text-[20px] leading-7 font-bold'>{text}</p>
+            <p className='text-[#f5f5f5] text-center font-monserrat text-[17px] lg:text-[20px] leading-7 font-bold'>{text}</p>
         </div>
     </div>
   )

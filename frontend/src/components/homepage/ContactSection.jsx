@@ -25,7 +25,7 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
         <img src={image.firebaseUrl} alt='callcenter' width={317} height={283} className='hidden lg:flex w-[40%] max-w-[317px] max-h-[283px] '/>
 
         <div className='flex flex-col w-[100%] md:w-[60%] lg:w-[40%] items-center justify-center text-center lg:justify-start lg:items-start lg:text-start gap-[20px]'>
-          <h3 className='lg:text-[28px] text-[25px]  font-lora font-medium leading-[23px]'>{header}</h3>
+          <h3 className='lg:text-[28px] text-[21px]  font-lora font-medium leading-[23px] mt-3'>{header}</h3>
           <span className='lg:text-[20px] text-[12px] font-bold text-[#233038CC] leading-normal'>{text}</span>
           <div className='flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col w-[90%] items-center justify-center gap-[10px] sm:gap-[20px]'>
             <div className='flex items-center justify-center sm:justify-start w-[90%] gap-[7%]'>
@@ -42,7 +42,7 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
         </div>
 
         <div className='flex flex-col w-[95%] lg:w-[32%] items-center justify-center text-center lg:items-start lg:text-start gap-[15px]'>
-          <h3 className='text-[28px] font-lora font-medium leading-[32px]'>{header2}</h3>
+          <h3 className='text-[20px] lg:text-[28px] font-lora font-medium leading-[32px]'>{header2}</h3>
           <p className='text-[#233038CC] font-bold leading-normal lg:text-[20px] text-[12px] mb-[30px]'>{text2}</p>
           <form onSubmit={handleChange} className='flex flex-col w-full items-center lg:items-start justify-center text-[14px] leading-normal font-bold text-[#868686B3] gap-[20px]'>
           <div className='flex flex-col lg:flex-row w-full items-center lg:justify-between gap-[20px]'>
@@ -87,7 +87,7 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
           className="peer hidden"
         />
        <span
-    className="w-6 h-6 bg-gray-300 rounded-md mr-2 transition-colors duration-300 ease-in-out peer-checked:bg-blue-500 peer-hover:bg-gray-400 relative flex items-center justify-center"
+    className="w-4 lg:w-6 h-4 lg:h-6 bg-gray-300 rounded-md mr-2 transition-colors duration-300 ease-in-out peer-checked:bg-blue-500 peer-hover:bg-gray-400 relative flex items-center justify-center"
   >
     {/* Tik işareti */}
     <svg
@@ -101,7 +101,7 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
   </span>
-  <span>{checkboxText}</span>
+  <span className='text-[13px]'>{checkboxText}</span>
         {/* <span className=" w-[20px] h-[20px] rounded-[4px] mr-[8px] transition-colors ease-in-out duration-300 border border-[#CFCFCF] bg-white hover:bg-[#64A4FF]"></span>
           I accept the <a href="/" className="text-[#000000] underline"> Terms and Conditions</a> */}
           </label>
