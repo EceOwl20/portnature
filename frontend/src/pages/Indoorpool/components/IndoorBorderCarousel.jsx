@@ -24,12 +24,12 @@ const IndoorBorderCarousel = ({images=[],header,text}) => {
   }, [emblaApi, onSelect])
 
   return (
-    <section className="flex flex-col w-full my-24 justify-center items-center ">
+    <section className="flex flex-col w-full my-12 lg:my-24 justify-center items-center ">
       {header && text && (
-        <div className='flex flex-col gap-[30px] w-full justify-center items-center text-center'>
+        <div className='flex flex-col gap-[15px] lg:gap-[30px] w-full justify-center items-center text-center'>
           <h2 className='text-[40px] font-lora font-medium leading-normal text-customGray'>{header}</h2>
           <UnderLine/>
-          <p className='w-[33%] text-[20px] font-monserrat leading-[30px] font-bold text-customGray80'>{text}</p>
+          <p className='w-[50%] lg:w-[33%] text-[15px] lg:text-[20px] leading-normal font-monserrat lg:leading-[30px] font-semibold lg:font-bold text-customGray80'>{text}</p>
         </div>
       )}
       <div className="flex mb-11 md:w-3/4 justify-center items-center md:justify-center">

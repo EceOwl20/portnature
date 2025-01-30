@@ -49,16 +49,16 @@ const RestaurantMainSection = ({images=[], header,text, span,videoLink}) => {
 
 
   return (
-    <div className='flex flex-col max-w-[1920px] mx-3 my-5 items-center justify-center'>
+    <div className='flex flex-col max-w-[1920px] mb-5 lg:mt-5 items-center justify-center w-screen'>
     <div className='flex flex-col lg:flex-row w-full gap-5 justify-center items-center lg:h-[30vh] xl:h-[46vh]'>
         <div className='flex w-full lg:w-1/2 h-full'>
             <div className="overflow-hidden relative w-full h-auto" ref={emblaRef}>
         <div className="flex grid-flow-col">
           {images.map((img, index) => (
             <div className="flex-[0_0_auto] w-full flex justify-center relative group" key={index}>
-              <div className="flex flex-col relative z-10">
+              <div className="flex flex-col relative z-10 min-h-[360px]">
               <img
-                className="cursor-pointer overflow-hidden object-cover relative"
+                className="cursor-pointer overflow-hidden object-cover relative  min-h-[360px]"
                 height={img.height}
                 width={img.width}
                 src={img.firebaseUrl}
@@ -84,21 +84,38 @@ const RestaurantMainSection = ({images=[], header,text, span,videoLink}) => {
             ></iframe>
         </div>
     </div>
-    <div className='relative flex flex-row w-full justify-center my-24'>
-        <h1 className='flex w-1/3 justify-end text-[40px] font-lora font-medium leading-normal mr-32'>
+    <div className='relative flex flex-col lg:flex-row w-[85%] lg:w-full items-center text-start justify-center my-24 gap-[15px]'>
+        <h1 className='flex w-full lg:w-1/3 text-[28px] lg:text-[40px] font-lora font-medium leading-normal '>
             {header}
         </h1>
+
+        <div className="flex lg:hidden w-[100%] ">
+              <div className="bg-custom-gradient h-[1px] w-[50%]"></div>
+              <div className="bg-custom-gradient-reverse h-[1px] w-[50%]"></div>
+            </div>
         
-        <div className="absolute -bottom-10 left-1/2 flex flex-col w-1/3 h-auto">
+        <div className="absolute -bottom-10 left-1/2 hidden lg:flex flex-col w-1/3 h-auto">
             <LineVerticalSvg width={1} height={90}/>
             <LineVertical2Svg width={1} height={90}/>
         </div>
         
-        <p className='flex flex-col w-1/3 font-normal font-monserrat text-[15px] leading-6'>
+        <p className='flex flex-col w-[100%] lg:w-1/3 font-normal font-monserrat text-[12px] lg:text-[15px] leading-6'>
         {text}
             <span className='mt-2 font-monserrat text-[15px] font-bold leading-6'>{span}</span>
         </p>
+
     </div>
+    <div className='flex lg:hidden w-full h-auto '>
+            <iframe
+                src={videoLink}
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowFullScreen
+                className=' flex w-full min-h-[350px] object-cover rounded-none'
+                style={{ borderRadius: '0px', border: 'none' }}
+            ></iframe>
+        </div>
 
     <div className='flex lg:hidden w-full h-full'>
             {/* <iframe
@@ -115,51 +132,6 @@ const RestaurantMainSection = ({images=[], header,text, span,videoLink}) => {
         </div>
 
 </div>
-
-    //   <section className="flex w-screen h-[70vh] relative items-start justify-between bg-white">
-    //     <div className="flex flex-col w-full lg:w-[49%] items-center justify-center lg:gap-[20px] text-center lg:text-start ">
-    //       <div className="overflow-hidden relative w-full h-auto" ref={emblaRef}>
-    //     <div className="flex grid-flow-col">
-    //       {images.map((img, index) => (
-    //         <div className="flex-[0_0_auto] w-full flex justify-center relative group" key={index}>
-    //           <div className="flex flex-col relative z-10">
-    //           <img
-    //             className="cursor-pointer overflow-hidden object-cover relative"
-    //             height={img.height}
-    //             width={img.width}
-    //             src={img.firebaseUrl}
-    //             alt={img.altText}
-    //           />
-    //           </div>
-    //         </div>
-    //       ))}
-    //     </div>
-    // </div>
-          
-    //       <div className="flex w-[80%] lg:w-[70%] items-center justify-end gap-[28px] mt-[43px] text-center">
-    //        <h2 className="text-[40px] text-customGray font-lora leading-normal font-medium">{header}</h2>
-    //       </div>
-    //       <p className="flex lg:hidden text-[12px] w-[95%] text-black font-monserrat font-normal leading-normal">{text}</p>
-    //     </div>
-
-    //     <div className="hidden lg:flex flex-col w-[49%] items-center lg:items-center justify-center lg:gap-[20px] text-center lg:text-center">
-    //     <img
-    //         src={image.firebaseUrl}
-    //         alt={image.altText}
-    //         width={image.width}
-    //         height={image.height}
-    //       />
-    //       <p className="text-[15px] w-[90%] lg:w-[65%] text-black font-monserrat font-normal leading-[22.5px] lg:mt-[43px]">
-    //       {text}
-    //       </p>
-    //     </div>
-      
-    //   <div className="absolute -bottom-10 left-1/2 flex flex-col w-auto h-auto">
-    //   <LineVerticalSvg width={1} height={120}/>
-    //   <LineVertical2Svg width={1} height={120}/>
-    //   </div>
-    //   </section>
-     
    
   );
 };

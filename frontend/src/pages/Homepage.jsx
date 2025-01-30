@@ -209,7 +209,7 @@ const Homepage = () => {
       <HolidayImageSection  {...holidayImageSectionData} />
       <Accommodation {...accommodationData}/>
       <ChildrenSection {...childrenSectionData} />
-      {/* <ImageBackgroundSection {...backgroundSectionData} /> */}
+      <ImageBackgroundSection {...backgroundSectionData} />
       <SpecialOffersCarousel {...specialoffersData}/>
       <AlacarteSection {...alacarteSectionData} />
        <BarLoungeCarousel {...barLoungeData} />

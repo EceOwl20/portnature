@@ -3,7 +3,7 @@ import AquaparkSvg from '../../../svg/AquaparkSvg'
 
 const AquaParkSection2 = ({images=[],header,text,span, videoLink}) => {
   return (
-    <div className='flex flex-col max-w-[1880px] max-h-[4745px] mx-auto items-center gap-28'>
+    <div className='flex flex-col max-w-[1880px] max-h-[4745px] w-screen justify-center items-center gap-10 lg:gap-28 mt-12'>
         <h3 className='flex font-lora text-[40px] font-normal'>
           {header}
         </h3>
@@ -53,16 +53,17 @@ const AquaParkSection2 = ({images=[],header,text,span, videoLink}) => {
           </div>
         </div>
 
-        <div className='flex flex-row items-center gap-10 justify-center'>
+        <div className='flex flex-row items-center gap-10 justify-center text-start w-[80%]'>
             <AquaparkSvg width={45} height={49} />
-            <p className='flex font-monserrat text-black font-bold text-[20px] leading-[30px] w-full'>
+            <p className='flex font-monserrat text-black font-semibold lg:font-bold text-[16px] lg:text-[20px] leading-[22px] lg:leading-[30px] w-[95%]'>
                 {text}
             </p>
         </div>
 
-        <div className='w-full flex items-center justify-center gap-10 mx-auto'>
-          <div className='flex flex-col gap-8 relative' style={{width: '850px', height: '500px'}}>
+        <div className='w-full flex items-center justify-center gap-10 mx-auto '>
+          <div className='flex flex-col gap-8 relative w-full lg:w-[800px]'>
             <iframe 
+            className=' w-full h-auto min-h-[370px] lg:w-[800px] flex '
               width="800" 
               height="450" 
               src={videoLink}

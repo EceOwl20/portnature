@@ -5,7 +5,7 @@ const Section3 = ({image,header,text,buttonText,buttonLink}) => {
   return (
     <div className="flex flex-col justify-center items-center">
       <div
-        className="flex flex-col h-[752px] w-full items-start justify-center pl-16"
+        className="flex flex-col h-[45vh] lg:h-[752px] w-full items-start justify-center pl-16"
         style={{
           backgroundImage: `
                 linear-gradient(to top, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.00) 50%), 
