@@ -100,7 +100,7 @@ const IndoorpoolMainSection = ({images=[],header, text, span,
           {Array.isArray(images) && images.map((image, index) => (
             <div
               key={index}
-              className="flex-[0_0_60%] lg:flex-[0_0_50%] min-w-0 transform-gpu" // Genişlik %50'ye çıkarıldı
+              className="flex-[0_0_75%] md:flex-[0_0_70%] lg:flex-[0_0_50%] min-w-0 transform-gpu" // Genişlik %50'ye çıkarıldı
             >
               <div className="slide-number shadow-inner border-gray-300 flex items-center justify-center select-none overflow-hidden"> {/* Yükseklik artırıldı */}
                 <img 
@@ -117,9 +117,9 @@ const IndoorpoolMainSection = ({images=[],header, text, span,
 
 
 
-<section className="flex items-center justify-center max-w-[1920px] mx-auto mt-10 lg:mt-32 w-screen"> {/* Tüm section tam ortalandı */}
+<section className="flex  items-center justify-center max-w-[1920px] mx-auto mt-10 lg:mt-20 w-screen"> {/* Tüm section tam ortalandı */}
       <div className="flex flex-col gap-16 items-center justify-center w-full"> {/* İçerikler dikeyde ortalandı */}
-        <div className="flex flex-col items-center justify-center gap-3 mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
+        <div className="flex flex-col items-center justify-center gap-3 mt-2 lg:mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
           <h1 className="font-lora text-[30px] lg:text-[40px] leading-normal font-medium text-center">{header}</h1>
           <div className='flex w-screen mb-16'>
       <div className="bg-custom-gradient h-[1px] w-[50%]">
@@ -128,9 +128,9 @@ const IndoorpoolMainSection = ({images=[],header, text, span,
       </div>
       </div>
           {text && span && (
-            <div className='flex w-full items-center justify-center gap-[104px]'>
+            <div className='flex flex-col lg:flex-row w-full items-center justify-center gap-[30px] lg:gap-[104px]'>
             <div className='flex justify-center items-center py-[33px] px-[107.5px] border border-[#CFCFCF] gap-[15px] text-[28px] font-lora italic font-normal text-customGray80 leading-[42px]'>{span}</div>
-            <div className='flex items-center justify-start text-start w-[35%]'>
+            <div className='flex items-center justify-start text-center lg:text-start w-[80%] lg:w-[35%]'>
             <p className='text-[20px] text-customGray80 font-monserrat font-bold leading-[30px]'>{text}</p>
             </div>
           </div>

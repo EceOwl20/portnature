@@ -24,7 +24,7 @@ const IndoorBorderCarousel = ({images=[],header,text}) => {
   }, [emblaApi, onSelect])
 
   return (
-    <section className="flex flex-col w-full my-24 justify-center items-center ">
+    <section className="flex flex-col w-full my-12 lg:my-24 justify-center items-center ">
       {header && text && (
         <div className='flex flex-col gap-[15px] lg:gap-[30px] w-full justify-center items-center text-center'>
           <h2 className='text-[40px] font-lora font-medium leading-normal text-customGray'>{header}</h2>

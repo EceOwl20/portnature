@@ -343,7 +343,7 @@ const Header = () => {
             <div className="relative group">
               <Link to="/meeting-congress" className="flex items-center">
                 MEETING & CONGRESS
-                <svg className="ml-1 w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <svg className="ml-[2px] w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
                 </svg>
               </Link>
@@ -480,8 +480,7 @@ const Header = () => {
             <Link
             to="/rooms"
               className="w-full text-left flex items-center justify-start gap-2"
-              onClick={() => setRoomsOpen(!roomsOpen)}
-            >
+              onClick={() => setRoomsOpen(!roomsOpen)}>
               ROOMS
               <IoMdArrowDropright size={20}/>
             </Link>
@@ -502,7 +501,7 @@ const Header = () => {
             </div>
           </div>
           <div className="flex bg-[#DDD] h-[1px] w-full "></div>
-          <Link to="/children"  className="w-full text-left flex items-center justify-start gap-2" onClick={toggleSidebar}>KIDS CONCEPT <IoMdArrowDropright size={20}/></Link>
+          <Link to="/children"  className="w-full text-left flex items-center justify-start gap-2" onClick={() => setKidsOpen(!kidsOpen)}>KIDS CONCEPT <IoMdArrowDropright size={20}/></Link>
           <div
               className={`overflow-hidden transition-all duration-500 ease-in-out ${kidsOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
             >
@@ -519,28 +518,28 @@ const Header = () => {
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
           <Link to="/offers" onClick={toggleSidebar}>OFFERS 2025</Link>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/food-drink"  className="w-full text-left flex items-center justify-start gap-2" onClick={toggleSidebar}>FOOD & DRINK <IoMdArrowDropright size={20}/></Link>
+          <Link to="/food-drink"  className="w-full text-left flex items-center justify-start gap-2" onClick={() => setFoodOpen(!foodOpen)}>FOOD & DRINK <IoMdArrowDropright size={20}/></Link>
           <div
               className={`overflow-hidden transition-all duration-500 ease-in-out ${foodOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
             >
               <div className="flex flex-col pl-4 gap-[10px] text-[16px]">
-                <Link to="/aquapark" onClick={toggleSidebar}>
+                <Link to="/alacarte-restaurant" onClick={toggleSidebar}>
                   A'la Carte
                 </Link>
-                <Link to="/miniclub" onClick={toggleSidebar}>
+                <Link to="/bars-cafes" onClick={toggleSidebar}>
                   Bars & Cafes
                 </Link>
-                <Link to="/miniclub" onClick={toggleSidebar}>
+                <Link to="/main-restaurant" onClick={toggleSidebar}>
                   Main Restaurant
                 </Link>
-                <Link to="/miniclub" onClick={toggleSidebar}>
+                <Link to="/davidoff-cafe" onClick={toggleSidebar}>
                   Davidoff Cafe
                 </Link>
               
               </div>
             </div>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/entertainment"  className="w-full text-left flex items-center justify-start gap-2" onClick={toggleSidebar}>ENTERTAINMENT <IoMdArrowDropright size={20}/></Link>
+          <Link to="/entertainment"  className="w-full text-left flex items-center justify-start gap-2" onClick={() => setEntertainmentOpen(!entertainmentOpen)}>ENTERTAINMENT <IoMdArrowDropright size={20}/></Link>
           <div
               className={`overflow-hidden transition-all duration-500 ease-in-out ${entertainmentOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
             >
@@ -562,7 +561,7 @@ const Header = () => {
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
           <Link to="/contacts" onClick={toggleSidebar}>CONTACTS</Link>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/spa-wellness" className="w-full text-left flex items-center justify-start gap-2" onClick={toggleSidebar}>SPA <IoMdArrowDropright size={20}/></Link>
+          <Link to="/spa-wellness" className="w-full text-left flex items-center justify-start gap-2" onClick={() => setSpaOpen(!spaOpen)}>SPA <IoMdArrowDropright size={20}/></Link>
           <div
               className={`overflow-hidden transition-all duration-500 ease-in-out ${spaOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
             >
@@ -577,10 +576,8 @@ const Header = () => {
               </div>
             </div>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/meeting-congress"  className="w-full text-left flex items-center justify-start gap-2" onClick={toggleSidebar}>MEETING & CONGRESS  <IoMdArrowDropright size={20}/></Link>
-          <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${meetingOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
-            >
+          <Link to="/meeting-congress"  className="w-full text-left flex items-center justify-start gap-2" onClick={() => setMeetingOpen(!meetingOpen)}>MEETING & CONGRESS  <IoMdArrowDropright size={20}/></Link>
+          <div className={`overflow-hidden transition-all duration-500 ease-in-out ${meetingOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
               <div className="flex flex-col pl-4 gap-[10px] text-[16px]">
                 <Link to="/meeting-congress/thermesos" onClick={toggleSidebar}>
                   Thermesos
