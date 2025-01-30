@@ -18,7 +18,7 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
   };
 
   return (
-    <div className='flex w-screen items-center justify-center  py-[76px]'>
+    <div className='flex w-screen items-center justify-center py-[80px]'>
       <div className='flex flex-col lg:flex-row w-[95%] lg:w-[90%] xl:max-w-[1669px] items-center justify-center font-monserrat text-[#233038] gap-[20px] lg:gap-[0px]'>
         <div className='flex flex-col lg:flex-row-reverse w-[100%] lg:w-[64%] items-center justify-center '>
         <img src={image.firebaseUrl} alt='callcenter' width={image.width} height={image.height} className='flex lg:hidden w-[60%] h-auto  max-w-[317px] max-h-[283px]'/>
@@ -42,7 +42,7 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
         </div>
 
         <div className='flex flex-col w-[90%] lg:w-[32%] items-center justify-center text-center lg:items-start lg:text-start lg:gap-[15px]'>
-          <h3 className='text-[20px] lg:text-[28px] font-lora font-medium leading-[32px]'>{header2}</h3>
+          <h3 className='text-[20px] lg:text-[28px] font-lora font-medium leading-[32px] min-h-9'>{header2}</h3>
           <p className='text-[#233038CC] font-bold leading-normal lg:text-[20px] text-[12px] mb-[30px]'>{text2}</p>
           <form onSubmit={handleChange} className='flex flex-col w-full items-center lg:items-start justify-center text-[14px] leading-normal font-bold text-[#868686B3] gap-[20px]'>
           <div className='flex flex-col lg:flex-row w-full items-center lg:justify-between gap-[20px]'>

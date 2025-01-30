@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
+import UnderLine from '../../../svg/UnderLine/UnderLine'
 
 const TWEEN_FACTOR_BASE = 0.12
 
@@ -93,13 +94,13 @@ const IndoorpoolMainSection = ({images=[],header, text, span,
 
   return (
    <>
-    <div className="max-w-[1920px] mx-auto mt-10">
+    <div className="max-w-[1920px] mx-auto lg:mt-10">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex"> {/* Resimler arasındaki boşluk minimuma indirildi */}
           {Array.isArray(images) && images.map((image, index) => (
             <div
               key={index}
-              className="flex-[0_0_50%] min-w-0 transform-gpu" // Genişlik %50'ye çıkarıldı
+              className="flex-[0_0_60%] lg:flex-[0_0_50%] min-w-0 transform-gpu" // Genişlik %50'ye çıkarıldı
             >
               <div className="slide-number shadow-inner border-gray-300 flex items-center justify-center select-none overflow-hidden"> {/* Yükseklik artırıldı */}
                 <img 
@@ -116,10 +117,16 @@ const IndoorpoolMainSection = ({images=[],header, text, span,
 
 
 
-<section className="flex items-center justify-center max-w-[1920px] mx-auto mt-32"> {/* Tüm section tam ortalandı */}
+<section className="flex items-center justify-center max-w-[1920px] mx-auto mt-10 lg:mt-32 w-screen"> {/* Tüm section tam ortalandı */}
       <div className="flex flex-col gap-16 items-center justify-center w-full"> {/* İçerikler dikeyde ortalandı */}
-        <div className="flex flex-col items-center justify-center gap-8 mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
-          <h1 className="font-lora text-[40px] leading-normal font-medium text-center">{header}</h1>
+        <div className="flex flex-col items-center justify-center gap-3 mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
+          <h1 className="font-lora text-[30px] lg:text-[40px] leading-normal font-medium text-center">{header}</h1>
+          <div className='flex w-screen mb-16'>
+      <div className="bg-custom-gradient h-[1px] w-[50%]">
+      </div>
+      <div className="bg-custom-gradient-reverse h-[1px] w-[50%]">
+      </div>
+      </div>
           {text && span && (
             <div className='flex w-full items-center justify-center gap-[104px]'>
             <div className='flex justify-center items-center py-[33px] px-[107.5px] border border-[#CFCFCF] gap-[15px] text-[28px] font-lora italic font-normal text-customGray80 leading-[42px]'>{span}</div>

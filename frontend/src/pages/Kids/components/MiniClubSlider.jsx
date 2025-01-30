@@ -124,24 +124,34 @@ const MiniClubSlider = ({images=[],header, text, items=[],
       <div className="flex flex-col gap-16 items-center justify-center w-full"> 
       <div className="flex flex-row items-center justify-center gap-10 lg:gap-60 font-monserrat text-[14px] font-bold leading-normal ">
       {items.map((item, index) => (
-        <div className="flex flex-col items-center justify-center" key={index}>
+        <div className="flex flex-col items-center justify-center text-[12px] lg:text-[15px] text-center leading-[15px] lg:leading-normal gap-2 lg:gap-4" key={index}>
           <img
+            width={item.smallWidth || 24}
+            height={item.smallHeight || 24}
             src={item.firebaseUrl}
             alt={item.text}
-            className="w-[39px] h-[39px] mb-4"
+            className="flex lg:hidden"
+          />
+          <img
+            width={item.largeWidth || 30}
+            height={item.largeHeight || 30}
+            src={item.firebaseUrl}
+            alt={item.text}
+            className="hidden lg:flex"
           />
           {item.text}
+
         </div>
       ))}
     </div>
         <div className="flex flex-col md:flex-row items-center justify-center text-center lg:text-start gap-4 lg:gap-8 mt-2 lg:mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
-          <h1 className="font-lora lg:text-[40px] text-[25px] leading-normal font-medium text-center">{header}</h1>
+          <h1 className="font-lora lg:text-[40px] text-[25px] leading-normal font-medium text-center mb-2">{header}</h1>
           <div className="flex flex-col items-center justify-center">
             <Underline className="flex md:hidden"/>
             <LineVerticalSvg width={1} height={90} className="hidden md:flex"/>
             <LineVertical2Svg width={1} height={90} className="hidden md:flex"/>
           </div>
-          <p className="font-monserrat text-[13px] lg:text-[15px] font-normal leading-5 w-[90%] lg:w-7/12 ">
+          <p className="font-monserrat text-[13px] lg:text-[15px] font-normal leading-5 w-[88%] lg:w-7/12 ">
            {text}
           </p>
         </div>
