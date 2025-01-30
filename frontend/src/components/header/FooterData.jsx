@@ -30,13 +30,13 @@ const FooterData = ({image, image2}) => {
           <TrivagoSvg width={31.5} height={19.8} className="flex lg:hidden" color="white"/>
         </div>
         <div className='flex lg:hidden h-[1px] w-full bg-[#FFFFFF4D]'></div>
-        <img src={image2.firebaseUrl} alt={image2.altText} width={214} height={88} className='flex lg:hidden mt-[32px] mb-[16px] items-center justify-center'/>
+        <img src={image2.firebaseUrl} alt={image2.altText} width={214} height={88} className='flex lg:hidden mb-[16px] items-center justify-center'/>
         <img src={image2.firebaseUrl} alt='logo' width={image2.width} height={image2.height} className='hidden lg:flex items-center justify-center max-h-[110px] max-w-[277px]'/>
        </div>
 
 
        <div className='flex flex-col items-center justify-center w-full lg:w-[46%]'>
-       <div className='flex items-center justify-center w-[60%] lg:w-full gap-[6%]'>
+       <div className='flex items-center justify-center w-[100%] gap-[6%]'>
           <Location2Svg width={24} height={38}/>
           <p className='font-lora text-[20px] font-medium leading-normal'>Boğazkent Mevkii <br></br> <span className='font-monserrat text-[15px] leading-normal font-bold'>Belek . Antalya . Turkey</span></p>
         </div>
@@ -50,8 +50,8 @@ const FooterData = ({image, image2}) => {
        </div>
 
 
-        <div className='grid grid-cols-2 lg:grid-cols-4 items-start justify-between lg:justify-around w-[90%] lg:w-[68%] font-monserrat gap-[10%] lg:gap-[6%] my-[44px]'>
-          <div className='flex flex-col gap-[10px] text-center justify-center items-center lg:items-start'>
+        <div className='grid grid-cols-2 lg:grid-cols-4 items-start justify-between lg:justify-around w-[99%] lg:w-[68%] font-monserrat gap-[1%] lg:gap-[6%] my-[44px]'>
+          <div className='flex flex-col gap-[7px] text-center justify-center items-center lg:items-start mb-6 lg:mb-0'>
             <h4 className='uppercase text-[14px] lg:text-[20px] lg:leading-[42px] font-lora font-medium leading-[20px]'>ACCOMMODATION</h4>
            <FooterLineSvg className="flex lg:hidden" width={200} height={1}/>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Family Rooms</span>
@@ -59,7 +59,7 @@ const FooterData = ({image, image2}) => {
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Standard Rooms</span>
           </div>
 
-          <div className='flex flex-col gap-[10px] text-center justify-center items-center lg:items-start'>
+          <div className='flex flex-col gap-[7px] text-center justify-center items-center lg:items-start  mb-6 lg:mb-0'>
             <h4 className='uppercase text-[14px] lg:text-[20px] lg:leading-[42px] font-lora font-medium leading-[20px]'>FOOD & DRINKS</h4>
             <FooterLineSvg className="flex lg:hidden" width={200} height={1}/>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>A'la Carte</span>
@@ -68,21 +68,21 @@ const FooterData = ({image, image2}) => {
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Davidoff Cafe</span>
           </div>
 
-          <div className='flex flex-col gap-[10px] text-center justify-center items-center lg:items-start'>
+          <div className='flex flex-col gap-[10px] text-center justify-center items-center lg:items-start  mb-6 lg:mb-0'>
             <h4 className='uppercase text-[14px] lg:text-[20px] lg:leading-[42px] font-lora font-medium leading-[20px]'>ENTERTAINMENT</h4>
             <FooterLineSvg className="flex lg:hidden" width={200} height={1}/>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Concert</span>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Activities</span>
           </div>
 
-          <div className='flex flex-col gap-[10px] text-center justify-center items-center lg:items-start'>
+          <div className='flex flex-col gap-[7px] text-center justify-center items-center lg:items-start  mb-6 lg:mb-0'>
             <h4 className='uppercase text-[14px] lg:text-[20px] lg:leading-[42px] font-lora font-medium leading-[20px]'>KIDS CONCEPT</h4>
             <FooterLineSvg className="flex lg:hidden" width={200} height={1}/>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Mini A'la Carte</span>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Aquapark</span>
           </div>
 
-          <div className='flex flex-col gap-[10px] text-center justify-center items-center lg:items-start'>
+          <div className='flex flex-col gap-[7px] text-center justify-center items-center lg:items-start mb-6 lg:mb-0'>
             <h4 className='uppercase text-[14px] lg:text-[20px] lg:leading-[42px] font-lora font-medium leading-[20px]'>MEETING&CONGRESS</h4>
             <FooterLineSvg className="flex lg:hidden" width={200} height={1}/>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Perge</span>
@@ -90,7 +90,7 @@ const FooterData = ({image, image2}) => {
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Aspendos</span>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Thermesos</span>
           </div>
-          <div className='flex flex-col gap-[10px] text-center justify-center items-center lg:items-start'>
+          <div className='flex flex-col gap-[7px] text-center justify-center items-center lg:items-start mb-7 lg:mb-0'>
             <h4 className='uppercase text-[14px] lg:text-[20px] lg:leading-[42px] font-lora font-medium leading-[20px]'>CORPORATE</h4>
             <FooterLineSvg className="flex lg:hidden" width={200} height={1}/>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Blog</span>
@@ -98,12 +98,12 @@ const FooterData = ({image, image2}) => {
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Contacts</span>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Fact Sheets</span>
           </div>
-          <div className='flex flex-col gap-[10px] text-center justify-center items-center lg:items-start'>
+          <div className='flex flex-col gap-[7px] text-center justify-center items-center lg:items-start mb-6 lg:mb-0'>
             <h4 className='uppercase text-[14px] lg:text-[20px] lg:leading-[42px] font-lora font-medium leading-[20px]'>OFFERS 2023</h4>
             <FooterLineSvg className="flex lg:hidden" width={200} height={1}/>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Special Offers</span>
           </div>
-          <div className='flex flex-col gap-[10px] text-center justify-center items-center lg:items-start'>
+          <div className='flex flex-col gap-[7px] text-center justify-center items-center lg:items-start  mb-6 lg:mb-0'>
             <h4 className='uppercase text-[14px] lg:text-[20px] lg:leading-[42px] font-lora font-medium leading-[20px]'>SPA</h4>
             <FooterLineSvg className="flex lg:hidden" width={200} height={1}/>
             <span className='text-[13px] lg:text-[15px] font-medium leading-[15px]'>Indoor Pool</span>

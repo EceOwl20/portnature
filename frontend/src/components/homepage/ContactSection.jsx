@@ -52,7 +52,7 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full md:w-[60%] lg:w-[49%] py-[12px] px-[16px] border border-[#CFCFCF] "
+              className="w-[85%] md:w-[60%] lg:w-[49%] py-[8px] lg:py-[12px] px-[16px] border border-[#CFCFCF] "
               placeholder='Name / Surname'
               required
             />
@@ -63,7 +63,7 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full md:w-[60%] lg:w-[49%] py-[12px] px-[16px] border border-[#CFCFCF] "
+              className="w-[85%]  md:w-[60%] lg:w-[49%] py-[8px] lg:py-[12px] px-[16px] border border-[#CFCFCF] "
               placeholder='Email'
               required
             />
@@ -74,17 +74,17 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full md:w-[60%] lg:w-full py-[12px] px-[16px] border border-[#CFCFCF] "
+              className="w-[85%]  md:w-[60%] lg:w-full py-[8px] lg:py-[12px] px-[16px] border border-[#CFCFCF] "
               placeholder='Message'
               required
             />
 
-        <label className="items-start inline-flex relative cursor-pointer text-[16px] text-[#212529] font-normal leading-normal text-start w-full">
+        <label className="items-start inline-flex relative cursor-pointer text-[16px] text-[#212529] font-normal leading-normal text-start w-[85%] md:w-[60%] lg:w-[49%]">
         <input 
           type="checkbox" 
           checked={isChecked} 
           onChange={handleCheckboxChange} 
-          className="peer hidden"
+          className="peer hidden "
         />
        <span
     className="w-4 lg:w-6 h-4 lg:h-6 bg-gray-300 rounded-md mr-2 transition-colors duration-300 ease-in-out peer-checked:bg-blue-500 peer-hover:bg-gray-400 relative flex items-center justify-center"

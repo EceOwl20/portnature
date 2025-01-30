@@ -134,7 +134,7 @@ const MiniClubSlider = ({images=[],header, text, items=[],
         </div>
       ))}
     </div>
-        <div className="flex flex-col md:flex-row items-center justify-center text-center lg:text-start gap-4 lg:gap-8 mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
+        <div className="flex flex-col md:flex-row items-center justify-center text-center lg:text-start gap-4 lg:gap-8 mt-2 lg:mt-8"> {/* Başlık, çizgiler ve paragraf yanyana */}
           <h1 className="font-lora lg:text-[40px] text-[25px] leading-normal font-medium text-center">{header}</h1>
           <div className="flex flex-col items-center justify-center">
             <Underline className="flex md:hidden"/>

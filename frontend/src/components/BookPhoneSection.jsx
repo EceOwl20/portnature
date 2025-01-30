@@ -12,7 +12,7 @@ const BookPhoneSection = () => {
         <div className="absolute w-[51px] h-[51px] lg:w-[61px] lg:h-[61px] bg-transparent border border-[#f8f8f8] rounded-full animate-pulseRing"></div>
       </div>
 
-      <button className='absolute bottom-3 lg:bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-md z-[9999]  cursor-pointer bg-customGray text-[15px] font-bold text-[#F8F8F8] font-monserrat text-center py-[20px] w-[60vw]'>
+      <button className='absolute bottom-3 lg:bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center rounded-md z-[9999]  cursor-pointer bg-customGray text-[15px] font-bold text-[#F8F8F8] font-monserrat text-center py-[10px] lg:py-[20px] w-[55vw] lg:w-[60vw]'>
        Book Now
       </button>
 

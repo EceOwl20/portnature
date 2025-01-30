@@ -23,13 +23,13 @@ const OtherRestaurants = ({header, headers=[],images=[], links=[]}) => {
   }, [emblaApi, onSelect])
 
   return (
-    <section className="flex flex-col w-full my-24">
+    <section className="flex flex-col w-screen my-24">
       <div className="flex mb-11 md:w-3/4 md:ml-auto justify-center items-center md:justify-start">
         <h2 className="text-[28px] leading-10 italic font-lora font-normal text-black">
         {header}
         </h2>
       </div>
-      <div className="overflow-hidden relative w-5/6 ml-auto" ref={emblaRef}>
+      <div className="overflow-hidden relative w-5/6 ml-[4vw]" ref={emblaRef}>
         <div className="flex gap-x-4">
           {images.map((image, index) => (
             <Link 

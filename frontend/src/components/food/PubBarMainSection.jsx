@@ -76,7 +76,7 @@ const PubBarMainSection = ({images=[], subImages=[], iconImage, header, text}) =
 
   return (
     <section className="flex flex-col w-screen h-auto relative items-center justify-center bg-white my-10">
-      <h2 className="text-[40px] text-customGray font-lora font-medium leading-normal lg:mb-[60px]">
+      <h2 className="text-[25px] lg:text-[40px] text-customGray font-lora font-medium leading-normal mb-6 lg:mb-[60px]">
         {header}
       </h2>
 
@@ -128,7 +128,7 @@ const PubBarMainSection = ({images=[], subImages=[], iconImage, header, text}) =
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row w-full lg:w-[90%] items-center justify-center gap-[30px] lg:gap-[2.5%]">
+          <div className="flex flex-col lg:flex-row w-[93%] lg:w-[90%] items-center justify-center gap-[30px] lg:gap-[2.5%]">
             <img src={iconImage.firebaseUrl} width={iconImage.width} height={iconImage.height} />
             <p className="text-[15px] w-[75%] text-black font-monserrat font-normal leading-[22.5px] mb-10 lg:mb-0">
             {text}
