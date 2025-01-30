@@ -14,13 +14,18 @@ const FooterData = ({image, image2}) => {
       <div className='flex absolute inset-0 z-1 bg-black/50'></div>
       <div className='flex flex-col lg:flex-row w-[95%] lg:w-[100%]  z-10 items-center justify-center text-[#fff] lg:items-center gap-[3%]'>
 
-       <div className='flex flex-col w-full lg:w-[25%] items-center justify-center'>
+       <div className='flex flex-col w-full lg:w-[25%] items-center justify-center mb-[40px]'>
        <div className='flex items-center justify-center py-[36.5px] w-full gap-[9%] lg:gap-[6%]'>
-          <YoutubeSvg width={42} height={29} className="flex" color="white"/>
-          <FacebookSvg width={19} height={38} className="flex" color="white"/>
-          <InstagramSvg width={35} height={35} className="flex" color="white"/>
-          <WkSvg width={47} height={27} className="flex" color="white"/>
-          <TrivagoSvg width={43} height={27} className="flex" color="white"/>
+          <YoutubeSvg width={42} height={29} className="hidden lg:flex" color="white"/>
+          <YoutubeSvg width={30} height={21} className="flex lg:hidden" color="white"/>
+          <FacebookSvg width={19} height={38} className="hidden lg:flex" color="white"/>
+          <FacebookSvg width={13.5} height={28} className="flex lg:hidden" color="white"/>
+          <InstagramSvg width={35} height={35} className="hidden lg:flex" color="white"/>
+          <InstagramSvg width={27} height={27} className="flex lg:hidden " color="white"/>
+          <WkSvg width={47} height={27} className="hidden lg:flex" color="white"/>
+          <WkSvg width={36} height={20.7} className="flex lg:hidden" color="white"/>
+          <TrivagoSvg width={43} height={27} className="hidden lg:flex" color="white"/>
+          <TrivagoSvg width={31.5} height={19.8} className="flex lg:hidden" color="white"/>
         </div>
         <div className='flex lg:hidden h-[1px] w-full bg-[#FFFFFF4D]'></div>
         <img src={image2.firebaseUrl} alt={image2.altText} width={214} height={88} className='flex lg:hidden mt-[32px] mb-[16px] items-center justify-center'/>

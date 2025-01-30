@@ -24,9 +24,9 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
         <img src={image.firebaseUrl} alt='callcenter' width={image.width} height={image.height} className='flex lg:hidden w-[60%] h-auto  max-w-[317px] max-h-[283px]'/>
         <img src={image.firebaseUrl} alt='callcenter' width={317} height={283} className='hidden lg:flex w-[40%] max-w-[317px] max-h-[283px] '/>
 
-        <div className='flex flex-col w-[100%] md:w-[60%] lg:w-[40%] items-center justify-center text-center lg:justify-start lg:items-start lg:text-start gap-[20px]'>
-          <h3 className='lg:text-[28px] text-[21px]  font-lora font-medium leading-[23px] mt-3'>{header}</h3>
-          <span className='lg:text-[20px] text-[12px] font-bold text-[#233038CC] leading-normal'>{text}</span>
+        <div className='flex flex-col w-[100%] md:w-[60%] lg:w-[40%] items-center justify-center text-center lg:justify-start lg:items-start lg:text-start gap-[6px] lg:gap-[20px]'>
+          <h3 className='lg:text-[28px] text-[16px] md:text-[21px] font-lora font-medium leading-[23px] mt-3'>{header}</h3>
+          <span className='lg:text-[20px] text-[12px] font-bold text-[#233038CC] leading-normal mb-4'>{text}</span>
           <div className='flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col w-[90%] items-center justify-center gap-[10px] sm:gap-[20px]'>
             <div className='flex items-center justify-center sm:justify-start w-[90%] gap-[7%]'>
               <img src={iconImage.firebaseUrl} className="flex" width={iconImage.width} height={iconImage.height} color="#64A4FF" fill="none"/>
@@ -41,7 +41,7 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
         </div>
         </div>
 
-        <div className='flex flex-col w-[95%] lg:w-[32%] items-center justify-center text-center lg:items-start lg:text-start gap-[15px]'>
+        <div className='flex flex-col w-[90%] lg:w-[32%] items-center justify-center text-center lg:items-start lg:text-start lg:gap-[15px]'>
           <h3 className='text-[20px] lg:text-[28px] font-lora font-medium leading-[32px]'>{header2}</h3>
           <p className='text-[#233038CC] font-bold leading-normal lg:text-[20px] text-[12px] mb-[30px]'>{text2}</p>
           <form onSubmit={handleChange} className='flex flex-col w-full items-center lg:items-start justify-center text-[14px] leading-normal font-bold text-[#868686B3] gap-[20px]'>
