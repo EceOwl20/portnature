@@ -18,8 +18,8 @@ const MainBackgroundRooms = ({image,header, buttonText,buttonText2,buttonText3, 
 
   return (
     <>
-    <div className="flex flex-col w-screen h-[140vw] lg:h-[34vw] bg-cover bg-center items-enter justify-end text-center" style={{ backgroundImage: `url(${image.firebaseUrl})` }}>
-      <h2 className='text-[25px] leading-[37px] lg:text-[40px] font-lora text-white font-medium lg:leading-normal uppercase  text-shadow-custom'>{header}</h2>
+    <div className="flex flex-col w-screen h-[140vw] lg:h-[34vw] bg-cover bg-center items-center justify-end text-center" style={{ backgroundImage: `url(${image.firebaseUrl})` }}>
+      <h2 className='text-[25px] leading-[37px] lg:text-[40px] w-[85%] font-lora text-white font-medium lg:leading-normal uppercase  text-shadow-custom'>{header}</h2>
     </div>
     {buttonLink && buttonLink2 && buttonLink3 && (
     <div className='flex flex-col w-screen h-auto my-[50px] items-center justify-center'>

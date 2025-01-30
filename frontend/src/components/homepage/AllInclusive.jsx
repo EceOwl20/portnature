@@ -16,16 +16,11 @@ const AllInclusive = ({
 }) => {
   return (
     <main
-      className="flex flex-col w-screen h-auto font-lora items-center justify-center py-[150px]"
+      className="flex flex-col w-screen h-auto font-lora items-center justify-center py-20 lg:py-[150px]"
       
       aria-labelledby="all-inclusive-heading"
     >
-      
-      <h2 id="all-inclusive-heading" className="sr-only">
-        All Inclusive Section
-      </h2>
 
-      
       <div className="flex flex-col gap-[21px] items-center justify-center text-center w-[93%] lg:w-[70%] text-[#233038CC]">
         
         <h2 className="text-[25px] lg:text-[35px] italic font-medium leading-[34px] lg:leading-normal">
@@ -40,7 +35,7 @@ const AllInclusive = ({
 
       
         <div className="flex flex-col lg:flex-row w-[90%] lg:w-[70%] text-[#233038CC] text-[13px] lg:text-[15px] text-justify font-normal leading-[19px] lg:leading-[22.5px] gap-[30px] lg:gap-[4%]">
-          <p className="w-[100%] lg:w-[48%]">{text1}</p>
+          <p className="w-[100%] lg:w-[48%]">{text1} </p>
           <p className="w-[100%] lg:w-[48%]">{text2}</p>
         </div>
       </div>

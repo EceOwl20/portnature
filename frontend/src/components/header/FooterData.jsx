@@ -14,8 +14,10 @@ const FooterData = ({image, image2}) => {
       <div className='flex absolute inset-0 z-1 bg-black/50'></div>
       <div className='flex flex-col lg:flex-row w-[95%] lg:w-[100%]  z-10 items-center justify-center text-[#fff] lg:items-center gap-[3%]'>
 
-       <div className='flex flex-col w-full lg:w-[25%] items-center justify-center mb-[40px]'>
-       <div className='flex items-center justify-center py-[36.5px] w-full gap-[9%] lg:gap-[6%]'>
+       <div className="flex flex-col lg:flex-row-reverse w-[95%] lg:w-[48%] items-center justify-around">
+        
+       <div className='flex flex-col w-full lg:w-[52%] items-center justify-center gap-[50px]'>
+       <div className='flex items-center justify-center py-[36.5px] w-full gap-[9%] lg:gap-[10%]'>
           <YoutubeSvg width={42} height={29} className="hidden lg:flex" color="white"/>
           <YoutubeSvg width={30} height={21} className="flex lg:hidden" color="white"/>
           <FacebookSvg width={19} height={38} className="hidden lg:flex" color="white"/>
@@ -29,14 +31,14 @@ const FooterData = ({image, image2}) => {
         </div>
         <div className='flex lg:hidden h-[1px] w-full bg-[#FFFFFF4D]'></div>
         <img src={image2.firebaseUrl} alt={image2.altText} width={214} height={88} className='flex lg:hidden mt-[32px] mb-[16px] items-center justify-center'/>
-        <img src={image2.firebaseUrl} alt='logo' width={image2.width} height={image2.height} className='hidden lg:flex items-center justify-center'/>
+        <img src={image2.firebaseUrl} alt='logo' width={image2.width} height={image2.height} className='hidden lg:flex items-center justify-center max-h-[110px] max-w-[277px]'/>
        </div>
 
 
-       <div className='flex flex-col items-center justify-center w-full lg:w-[20%]'>
+       <div className='flex flex-col items-center justify-center w-full lg:w-[46%]'>
        <div className='flex items-center justify-center w-[60%] lg:w-full gap-[6%]'>
           <Location2Svg width={24} height={38}/>
-          <p className='font-lora text-[20px]  font-medium leading-normal'>Boğazkent Mevkii <br></br> <span className='font-monserrat text-[15px] leading-normal font-bold'>Belek . Antalya . Turkey</span></p>
+          <p className='font-lora text-[20px] font-medium leading-normal'>Boğazkent Mevkii <br></br> <span className='font-monserrat text-[15px] leading-normal font-bold'>Belek . Antalya . Turkey</span></p>
         </div>
 
         <div className='flex flex-col w-[90%] gap-[30px] mt-[40px] items-center justify-center'>
@@ -44,6 +46,7 @@ const FooterData = ({image, image2}) => {
           <button className='flex text-center items-center justify-center py-[14.95px] px-[32.64px] w-[213.27702px] bg-transparent text-[#fff] font-monserrat text-[14px] font-semibold leading-normal border border-white  hover:bg-white hover:text-[#233038]'>+90 (242) 731 07 07</button>
           <button className='flex text-center items-center justify-around py-[14.95px] px-[39.86px] w-[213.27702px] bg-transparent text-[#fff] font-monserrat text-[14px] font-semibold leading-normal border border-white  hover:bg-white hover:text-[#233038]'><WhatsappSvg width={17.939} height={17.939} color="#fff"/> Whatsapp</button>
         </div>
+       </div>
        </div>
 
 

@@ -35,14 +35,14 @@ const SubCarousel = ({images}) => {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className='flex flex-col my-[60px] lg:my-[82px]'>
+    <section className='flex flex-col my-[15px] lg:my-[82px]'>
       <div className='flex flex-col gap-[20px] items-center justify-center'>
         
         <div className="flex flex-col  w-full h-full relative justify-center lg:justify-start mt-[60px] items-center lg:items-start">
       <div className="flex overflow-hidden relative w-full h-full flex-col" ref={emblaRef}>
         <div className="flex grid-flow-col">
           {images.map((image, index) => (
-            <div className="relative flex md:w-[calc(90%-1rem)] mx-2 flex-[0_0_auto] border-[2px] h-[227px] lg:h-auto border-gray-100 shadow-lg xl:w-[calc(70%-1.4rem)] xl:mx-3 w-full" key={index}>
+            <div className="relative flex mx-2 flex-[0_0_auto] border-[2px] h-auto border-gray-100 shadow-lg xl:w-[calc(70%-1.4rem)] xl:mx-3 w-full" key={index}>
               <img
                 src={image.firebaseUrl}
                 layout="cover"
