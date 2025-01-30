@@ -12,11 +12,11 @@ const SpaMainSection = ({image, image2, header, text, span, buttonText, buttonLi
       </div>
     </div>
       <div className='flex flex-col lg:flex-row w-full items-center justify-center gap-12 lg:gap-[104px]'>
-        <div className='flex justify-center items-center py-[25px] lg:py-[34px] w-[45%] lg:w-[20%] lg:px-[107.5px] border border-[#CFCFCF] gap-[15px] text-[28px] font-lora italic font-normal text-customGray80 leading-[42px]'>
+        <div className='flex justify-center items-center py-[25px] lg:py-[34px] w-[45%] lg:w-[20%] lg:min-w-[260px] whitespace-nowrap lg:px-[107.5px] border border-[#CFCFCF] gap-[15px] text-[28px] font-lora italic font-normal text-customGray80 leading-[42px]'>
           
           {span}
           </div>
-        <div className='flex items-center justify-start text-center lg:text-start w-[70%] lg:w-[35%]'>
+        <div className='flex items-center justify-start text-center lg:text-start w-[70%] lg:w-[35%] lg:min-w-[450px]'>
         <p className='text-[15px] lg:text-[20px] text-customGray80 font-monserrat font-medium lg:font-bold leading-[26px] lg:leading-[30px]'>{text}</p>
         </div>
       </div>

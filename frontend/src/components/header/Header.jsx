@@ -10,6 +10,7 @@ import WkSvg from "../../svg/WkSvg";
 import TrivagoSvg from "../../svg/TrivagoSvg";
 import CrossSvg from "../../svg/CrossSvg";
 import { useLanguage } from "../../context/LanguageContext";
+import { IoMdArrowDropright } from "react-icons/io";
 
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -17,6 +18,11 @@ const Header = () => {
   const sidebarRef = useRef(null);
 
   const [roomsOpen, setRoomsOpen] = useState(false);
+  const [kidsOpen, setKidsOpen] = useState(false);
+  const [foodOpen, setFoodOpen] = useState(false);
+  const [entertainmentOpen, setEntertainmentOpen] = useState(false);
+  const [spaOpen, setSpaOpen] = useState(false);
+  const [meetingOpen, setMeetingOpen] = useState(false);
 
   const [headerImages, setHeaderImages] = useState([]);
 
@@ -469,16 +475,20 @@ const Header = () => {
             </div>
           </div>
 
-          <nav className="flex flex-col w-[75%] text-[16px] font-normal leading-normal uppercase font-monserrat text-start gap-[20px]">
+          <nav className="flex flex-col w-[75%] text-[18px] font-normal leading-normal capitalize font-monserrat text-start gap-[18px]">
           <div>
-            <button
-              className=" text-left"
+            <Link
+            to="/rooms"
+              className="w-full text-left flex items-center justify-start gap-2"
               onClick={() => setRoomsOpen(!roomsOpen)}
             >
               ROOMS
-            </button>
-            {roomsOpen && (
-              <div className="flex flex-col pl-4 gap-[10px] transition-all duration-300">
+              <IoMdArrowDropright size={20}/>
+            </Link>
+            <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${roomsOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
+            >
+              <div className="flex flex-col pl-4 gap-[10px] text-[16px]">
                 <Link to="/family-room" onClick={toggleSidebar}>
                   Family Room
                 </Link>
@@ -489,22 +499,104 @@ const Header = () => {
                   King Suite
                 </Link>
               </div>
-            )}
+            </div>
           </div>
+          <div className="flex bg-[#DDD] h-[1px] w-full "></div>
+          <Link to="/children"  className="w-full text-left flex items-center justify-start gap-2" onClick={toggleSidebar}>KIDS CONCEPT <IoMdArrowDropright size={20}/></Link>
+          <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${kidsOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
+            >
+              <div className="flex flex-col pl-4 gap-[10px] text-[16px]">
+                <Link to="/aquapark" onClick={toggleSidebar}>
+                  Aquapark
+                </Link>
+                <Link to="/miniclub" onClick={toggleSidebar}>
+                  Mini Club
+                </Link>
+              
+              </div>
+            </div>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/kids-concept" onClick={toggleSidebar}>CHILDREN</Link>
+          <Link to="/offers" onClick={toggleSidebar}>OFFERS 2025</Link>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/offers" onClick={toggleSidebar}>OFFERS 2023</Link>
+          <Link to="/food-drink"  className="w-full text-left flex items-center justify-start gap-2" onClick={toggleSidebar}>FOOD & DRINK <IoMdArrowDropright size={20}/></Link>
+          <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${foodOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
+            >
+              <div className="flex flex-col pl-4 gap-[10px] text-[16px]">
+                <Link to="/aquapark" onClick={toggleSidebar}>
+                  A'la Carte
+                </Link>
+                <Link to="/miniclub" onClick={toggleSidebar}>
+                  Bars & Cafes
+                </Link>
+                <Link to="/miniclub" onClick={toggleSidebar}>
+                  Main Restaurant
+                </Link>
+                <Link to="/miniclub" onClick={toggleSidebar}>
+                  Davidoff Cafe
+                </Link>
+              
+              </div>
+            </div>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/food-drinks" onClick={toggleSidebar}>FOOD & DRINK</Link>
-          <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/entertainment" onClick={toggleSidebar}>ENTERTAINMENT</Link>
+          <Link to="/entertainment"  className="w-full text-left flex items-center justify-start gap-2" onClick={toggleSidebar}>ENTERTAINMENT <IoMdArrowDropright size={20}/></Link>
+          <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${entertainmentOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
+            >
+              <div className="flex flex-col pl-4 gap-[10px] text-[16px]">
+                <Link to="/concert" onClick={toggleSidebar}>
+                  Concert
+                </Link>
+                <Link to="/activities" onClick={toggleSidebar}>
+                 Activities
+                </Link>
+                <Link to="/beach" onClick={toggleSidebar}>
+                  Beach
+                </Link>
+                
+              
+              </div>
+            </div>
+          
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
           <Link to="/contacts" onClick={toggleSidebar}>CONTACTS</Link>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/spa-wellness" onClick={toggleSidebar}>SPA</Link>
+          <Link to="/spa-wellness" className="w-full text-left flex items-center justify-start gap-2" onClick={toggleSidebar}>SPA <IoMdArrowDropright size={20}/></Link>
+          <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${spaOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
+            >
+              <div className="flex flex-col pl-4 gap-[10px] text-[16px]">
+                <Link to="/spa-wellness" onClick={toggleSidebar}>
+                  Spa & Wellness
+                </Link>
+                <Link to="/indoor-pool" onClick={toggleSidebar}>
+                 Indoor Pool
+                </Link>
+              
+              </div>
+            </div>
           <div className="flex bg-[#DDD] h-[1px] w-full"></div>
-          <Link to="/meeting-congress" onClick={toggleSidebar}>MEETING & CONGRESS</Link>
+          <Link to="/meeting-congress"  className="w-full text-left flex items-center justify-start gap-2" onClick={toggleSidebar}>MEETING & CONGRESS  <IoMdArrowDropright size={20}/></Link>
+          <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${meetingOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
+            >
+              <div className="flex flex-col pl-4 gap-[10px] text-[16px]">
+                <Link to="/meeting-congress/thermesos" onClick={toggleSidebar}>
+                  Thermesos
+                </Link>
+                <Link to="meeting-congress/aspendos" onClick={toggleSidebar}>
+                 Aspendos
+                </Link>
+                <Link to="meeting-congress/perge" onClick={toggleSidebar}>
+                  Perge
+                </Link>
+                <Link to="meeting-congress/olympos" onClick={toggleSidebar}>
+                  Olympos
+                </Link>
+              
+              </div>
+            </div>
         </nav>
 
           <div className="flex w-[80%] items-center justify-between">
