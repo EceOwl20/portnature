@@ -130,7 +130,7 @@ const Header = () => {
       >
         <div className="flex items-center justify-between w-[92%] lg:w-[97%]">
           <div className="flex items-center justify-center gap-[14.98px] sm:gap-[30px]">
-            <button className="flex lg:hidden" onClick={toggleSidebar}>
+            <button className="flex lgxl-custom:hidden" onClick={toggleSidebar}>
               <MenuBar
                 width={16}
                 height={14}
@@ -142,8 +142,8 @@ const Header = () => {
               <img
                 src={headerData?.image.firebaseUrl}
                 alt="Logo"
-                width={197.315}
-                height={111.838}
+                width={125}
+                height={50}
                 className="hidden xl:flex"
               />
               <img
@@ -155,7 +155,7 @@ const Header = () => {
               />
             </Link>
           </div>
-          <nav className="text-white hidden lgxl-custom:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[14px] text-center items-center justify-between w-[72%]">
+          <nav className="text-white hidden lgxl-custom:flex gap-[2%] h-[20px] font-monserrat lg:text-[12px] xl:text-[13px] text-center items-center justify-between w-[72%]">
             <div className="relative group">
               <Link to="/rooms" className="flex items-center">
                 ROOMS
@@ -343,7 +343,7 @@ const Header = () => {
             <div className="relative group">
               <Link to="/meeting-congress" className="flex items-center">
                 MEETING & CONGRESS
-                <svg className="ml-[2px] w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <svg className=" w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M5.25 7.75L10 12.5l4.75-4.75-1.5-1.5L10 9.5 6.75 6.25l-1.5 1.5z" />
                 </svg>
               </Link>
@@ -394,7 +394,7 @@ const Header = () => {
             </div>
             
           </nav>
-          <button className="hidden lgxl-custom:flex bg-white text-[#233038] font-bold w-[10%] h-[50px] text-center justify-center items-center">
+          <button className="hidden lgxl-custom:flex bg-white text-[#233038] font-bold w-[9%] h-[50px] text-center justify-center items-center">
             Book Now
           </button>
 
@@ -406,7 +406,7 @@ const Header = () => {
               {/* Dropdown button */}
               <button
                 onClick={handleToggle}
-                className="flex flex-row items-center justify-center gap-1 px-4 py-2 bg-inherit text-white rounded uppercase"
+                className="flex flex-row items-center justify-center gap-1 px-0 py-2 bg-inherit text-white rounded uppercase"
               >
                 {lang}
                 <ArrowSvg className="flex" width={9} height={4} />
