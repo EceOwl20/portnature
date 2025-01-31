@@ -98,6 +98,8 @@ const AlacarteSection = ({
                   style={{ objectFit: "cover" }}
                   alt={`Slide ${index + 1}`}
                   className="flex h-auto w-[65%]"
+                  width={resim.width}
+                  height={resim.height}
                 />
                 <div className="flex flex-col w-[30%] text-start items-start justify-center text-white gap-[15px]">
                   <h3 className=" text-[25px] font-lora leading-normal font-medium ">
@@ -109,7 +111,7 @@ const AlacarteSection = ({
                     <span className="text-[12px]">{resim.text1}</span>
                   </div>
                   <div className="flex items-center justify-start gap-[10px]">
-                    <img src={resim.image.firebaseUrl} width={resim.image.width} height={resim.image.height} />
+                    <img src={resim.image.firebaseUrl} width={resim.image.width} height={resim.image.height}   loading="lazy" />
                     <span className="text-[12px]">{resim.text2}</span>
                   </div>
                   <button className=" bottom-12 mt-[20px] bg-transparent text-[14px] button-shadow font-bold leading-normal font-montserrat text-center text-white border border-[#fff] py-[12px] px-[32px] hover:bg-white hover:text-[#233038]">

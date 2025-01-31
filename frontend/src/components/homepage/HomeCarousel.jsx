@@ -16,7 +16,7 @@ const HomeCarousel = ({ images = [], header, autoplay, delay }) => {
 
   return (
     <section
-      className="flex w-screen min-h-screen"
+      className="flex w-screen min-h-screen overflow-x-hidden"
       aria-label="Home Carousel"
     >
       <div className="relative flex w-full overflow-hidden" ref={emblaRef}>
