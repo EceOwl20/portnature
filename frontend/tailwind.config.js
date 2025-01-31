@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  mode: "jit", // Just-In-Time modunu aç, kullanılmayan CSS'leri otomatik temizler
   content: ["./index.html",
 "./src/**/*.{js,ts,jsx,tsx}",
 ],

@@ -19,7 +19,6 @@ import Rooms from "./pages/Accommodation/Rooms";
 import SubRooms from "./pages/Accommodation/SubRooms";
 
 import StandardRooms from "./pages/Accommodation/StandardRooms";
-import Dashboard from "./pages/PanelPages/Dashboard";
 import BlogEkle from "./pages/PanelPages/BlogEkle";
 import BlogPage from "./pages/BlogPage";
 import BlogDetails from "./pages/BlogDetails";
@@ -139,7 +138,7 @@ const App = () => {
             <Route path="/giris" element={<Login />} />
             <Route path="/kayit-ol" element={<Register />} />
             <Route path="/panel" element={<Panel />}>
-                <Route path="/panel/dashboard" element={<Dashboard />} />
+                {/* <Route path="/panel/dashboard" element={<Dashboard />} /> */}
                
                 <Route path="/panel/upload-image" element={<UploadImage />} />
                 <Route path="/panel/search-image" element={<SearchImage />} />
