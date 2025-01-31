@@ -1,4 +1,5 @@
 import express, { request } from "express";
+import compression from "compression";
 import mongo from "mongoose";
 import userRoute from "./routes/user.js";
 import loginRegister from "./routes/loginRegister.js";
@@ -32,6 +33,8 @@ connect()
 const exp = express();
 exp.use(express.json());
 exp.use(cors())
+
+exp.use(compression());
 
 exp.listen(3000, () => {
     console.log("Port Açıldı. Sorun yok");
