@@ -19,6 +19,7 @@ const AquaParkSection2 = ({images=[],header,text,span, videoLink}) => {
                     src={images[0].firebaseUrl}
                     alt={images[0].altText} 
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
+                     loading="lazy"
                   />
                 </div>
 
@@ -28,6 +29,7 @@ const AquaParkSection2 = ({images=[],header,text,span, videoLink}) => {
                     src={images[1].firebaseUrl}
                     alt={images[1].altText}
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
+                     loading="lazy"
                   />
                 </div>
 
@@ -37,6 +39,7 @@ const AquaParkSection2 = ({images=[],header,text,span, videoLink}) => {
                     src={images[1].firebaseUrl}
                     alt={images[1].altText} 
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
+                     loading="lazy"
                   />
                 </div>
 
@@ -46,6 +49,7 @@ const AquaParkSection2 = ({images=[],header,text,span, videoLink}) => {
                     src={images[1].firebaseUrl}
                     alt={images[1].altText} 
                     className='h-[600px] object-cover flex-shrink-0 relative z-10'
+                     loading="lazy"
                   />
                 </div>
               </React.Fragment>

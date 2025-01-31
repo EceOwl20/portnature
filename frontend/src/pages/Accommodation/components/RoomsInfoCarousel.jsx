@@ -52,19 +52,19 @@ const RoomsInfoCarousel = ({images=[],header, text, items=[], buttonText, button
               <div className="flex flex-col-reverse md:flex-col items-center justify-center w-full gap-[25px]">
                 <div className="flex flex-row w-full justify-between items-center">
                 <div className="flex items-center justify-center gap-2">
-                <img src={items[0].firebaseUrl} width={43} height={48} color="#3D515E" className="hidden lg:flex"/>
+                <img src={items[0].firebaseUrl} width={43} height={48} color="#3D515E" className="hidden lg:flex" loading="lazy" />
                     <Cross2Svg width={20} height={20} className="hidden lg:flex"/>
 
-                    <img src={items[0].firebaseUrl} width={26.52} height={29.61} color="#3D515E" className="flex lg:hidden"/>
+                    <img src={items[0].firebaseUrl} width={26.52} height={29.61} color="#3D515E" className="flex lg:hidden" loading="lazy" />
                     <Cross2Svg width={10} height={10} className="flex lg:hidden"/>
 
                    <span className="text-[15px] lg:text-[20px] font-lora font-medium leading-[42px] text-[#3D515E]"> {items[0].text}</span>
                 </div>
                 <div className="flex items-center justify-center gap-2">
-                <img src={items[1].firebaseUrl} width={29} height={48} color="#3D515E" className="hidden lg:flex"/>
+                <img src={items[1].firebaseUrl} width={29} height={48} color="#3D515E" className="hidden lg:flex" loading="lazy" />
                     <Cross2Svg width={20} height={20} className="hidden lg:flex"/>
 
-                    <img src={items[1].firebaseUrl} width={17.88} height={29.61} color="#3D515E" className="flex lg:hidden"/>
+                    <img src={items[1].firebaseUrl} width={17.88} height={29.61} color="#3D515E" className="flex lg:hidden" loading="lazy" />
                     <Cross2Svg width={10} height={10} className="flex lg:hidden"/>
                    <span className="text-[15px] lg:text-[20px] font-lora font-medium leading-[42px] text-[#3D515E]">{items[1].text}</span>
                 </div>
@@ -75,8 +75,8 @@ const RoomsInfoCarousel = ({images=[],header, text, items=[], buttonText, button
 
 
                 <div className="flex flex-row items-center justify-center gap-2 col-span-3 mt-8">
-                <img src={items[2].firebaseUrl} width={43} height={30} color="#233038" className="hidden lg:flex"/>
-                <img src={items[2].firebaseUrl} width={36} height={25} color="#233038" className="flex lg:hidden"/>
+                <img src={items[2].firebaseUrl} width={43} height={30} color="#233038" className="hidden lg:flex" loading="lazy" />
+                <img src={items[2].firebaseUrl} width={36} height={25} color="#233038" className="flex lg:hidden" loading="lazy" />
                    <span className="text-[15px] lg:text-[20px] font-lora font-medium leading-[42px] text-[#3D515E]"> {items[2].text}</span>
                 </div>
               </div>

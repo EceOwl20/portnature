@@ -70,6 +70,7 @@ import IndoorpoolPage from "./pages/Indoorpool/IndoorpoolPage";
 import MeetingPage from "./pages/Meeting/MeetingPage";
 import ContactPage from "./pages/Contact/ContactPage";
 import ConcertPage from "./pages/Concert/ConcertPage";
+import CookiePopup from "./components/CookiePopup";
 // import ThreeVisualizerPage from "./pages/ThreeVisualizerPage";
 
 const App = () => {
@@ -168,6 +169,7 @@ const App = () => {
           <div className="flex items-center w-screen justify-center mb-4">
           <ScrollToTopButton/>
           </div>
+          <CookiePopup/>
           <Footer/>
        </LanguageProvider>
         </BrowserRouter>

@@ -28,32 +28,19 @@ const HomeCarousel = ({ images = [], header, autoplay, delay }) => {
             >
               <img
                 src={image.firebaseUrl}
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "cover", aspectRatio: "16 / 9" }}
                 width={image.width}
                 height={image.height}
                 alt={
                   image.altText && image.altText["en"]
                 }
                 className="flex h-screen w-full"
+                loading="lazy" 
               />
               <figcaption className="absolute flex flex-col text-center top-[30%] -translate-y-1/2 left-[50%] transform -translate-x-1/2">
                 <h2 className="text-[28px] lg:text-[40px] leading-normal text-white uppercase font-medium font-lora mb-[10px] lg:mb-[20px]">
                   {header}
                 </h2>
-                {/* <img
-                  src={portlogo}
-                  alt="Port Logo"
-                  width={portlogo.width}
-                  height={portlogo.height}
-                  className="hidden lg:flex"
-                />
-                <img
-                  src={portlogo}
-                  alt="Port Logo"
-                  width={280.94}
-                  height={110.68}
-                  className="flex lg:hidden"
-                /> */}
               </figcaption>
             </figure>
           ))}

@@ -66,6 +66,7 @@ const Accommodation = ({images=[],header}) => {
                 width={343}
                 height={504}
                 className="object-cover w-10/12 h-[504px] relative z-20 mt-10 mr-1"
+                loading="lazy" 
               />
               <div className="absolute flex flex-col top-20 left-1/2  -translate-x-1/2 text-center items-center justify-center z-20">
                     <VipSvg width={54} height={40}/>

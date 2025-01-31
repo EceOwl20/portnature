@@ -65,6 +65,7 @@ const BorderCarousel2 = ({images}) => {
                   layout="responsive"
                   src={image.firebaseUrl}
                   alt={`Slide ${index + 1}`}
+                   loading="lazy"
                 />
                 <div className="flex w-full items-center justify-center">
                   <div className="flex text-start justify-start items-start pt-[3%] w-[80%]">

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const FindRestaurantCard = ({ header, text, link, image, icon}) => {
   return (
     <div className="flex flex-col min-h-content bg-[#F8F8F8] justify-center items-center p-2 w-[97%] gap-[12px] lg:gap-[30px]">
-      <img src={image.firebaseUrl} alt="Restaurant" className="w-full h-auto" width={image.width} height={image.height} />
+      <img src={image.firebaseUrl} alt="Restaurant" className="w-full h-auto" width={image.width} height={image.height}   loading="lazy"/>
      
       <div className="flex flex-col text-start items-center w-[92%] text-customGray80 gap-2">
         <div className="flex w-full items-center justify-start gap-2">
@@ -13,6 +13,7 @@ const FindRestaurantCard = ({ header, text, link, image, icon}) => {
         src={icon.firebaseUrl}
           width={icon.largeWidth}
           height={icon.largeHeight}
+           loading="lazy"
         />
       )}
           <h3 className="text-[15px] lg:text-[25px] font-medium font-lora leading-normal pl-1">

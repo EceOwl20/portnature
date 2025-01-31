@@ -15,6 +15,7 @@ const AquaParkSection1 = ({header,text, text2,image}) => {
           height={image.height}
           alt='Aquapark '
           className='max-w-screen lg:max-w-[997px] max-h-[868px] flex'
+           loading="lazy"
         />
         <div className='flex flex-col gap-4 lg:gap-10 items-center border-t border-r border-b border-dotted p-16 border-black relative z-10'>
           <h1 className='items-center justify-center text-center font-lora text-[25px] lg:text-[40px] font-medium leading-normal'>

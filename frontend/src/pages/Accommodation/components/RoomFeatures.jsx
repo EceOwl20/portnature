@@ -26,7 +26,7 @@ const RoomFeatures = ({header, items=[], buttonText, buttonText2}) => {
             key={index}
             className="flex items-center justify-start gap-3 w-full text-center"
           >
-            <img src={item.firebaseUrl} width={item.width} height={item.height} />
+            <img src={item.firebaseUrl} width={item.width} height={item.height} loading="lazy" />
             <span className="text-[#000] text-[15px] font-normal leading-[22.5px] font-monserrat">
               {item.text}
             </span>

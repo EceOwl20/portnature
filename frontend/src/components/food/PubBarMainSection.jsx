@@ -97,6 +97,7 @@ const PubBarMainSection = ({images=[], subImages=[], iconImage, header, text}) =
                       width={img2.width}
                       src={img2.firebaseUrl}
                       alt={`Slide2-${index + 1}`}
+                       loading="lazy"
                     />
                   </div>
                 </div>
@@ -121,6 +122,7 @@ const PubBarMainSection = ({images=[], subImages=[], iconImage, header, text}) =
                       width={img.width}
                       src={img.firebaseUrl}
                       alt={`Slide1-${index + 1}`}
+                       loading="lazy"
                     />
                   </div>
                 </div>
@@ -129,7 +131,7 @@ const PubBarMainSection = ({images=[], subImages=[], iconImage, header, text}) =
           </div>
 
           <div className="flex flex-col lg:flex-row w-[93%] lg:w-[90%] items-center justify-center gap-[30px] lg:gap-[2.5%]">
-            <img src={iconImage.firebaseUrl} width={iconImage.width} height={iconImage.height} />
+            <img src={iconImage.firebaseUrl} width={iconImage.width} height={iconImage.height}  loading="lazy"/>
             <p className="text-[15px] w-[75%] text-black font-monserrat font-normal leading-[22.5px] mb-10 lg:mb-0">
             {text}
             </p>

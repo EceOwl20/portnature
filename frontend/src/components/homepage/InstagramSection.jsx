@@ -55,6 +55,7 @@ export function InstagramSection({ images=[], image }) {
                   width={270}
                   src={image.firebaseUrl}
                   alt={`Slide ${index + 1}`}
+                  loading="lazy" 
                 />
 
                 <div className="absolute flex flex-col top-4 text-start items-center justify-center ">
@@ -66,7 +67,7 @@ export function InstagramSection({ images=[], image }) {
             ))}
           </div>
       </div>
-      <img src={image.firebaseUrl} alt="instagram" width={image.width} height={image.height} className="hidden md:flex absolute md:left-[50%] -translate-x-1/2 lg:-translate-x-0 lg:left-[18.5%]"/>
+      <img src={image.firebaseUrl} alt="instagram" width={image.width} height={image.height} className="hidden md:flex absolute md:left-[50%] -translate-x-1/2 lg:-translate-x-0 lg:left-[18.5%]" loading="lazy" />
     </div>
   );
 }

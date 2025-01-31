@@ -24,6 +24,7 @@ const BookOpportunities2 = ({ images = [], header }) => {
                   height={image.height}
                   className="flex max-w-[513px] max-h-[511px] w-[95%]"
                   alt="booking"
+                   loading="lazy"
                 />
                 <h3 className="text-[20px] lg:text-[30px] text-customGray font-semibold leading-[40px] capitalize w-[90%]">
                   {image.headers}

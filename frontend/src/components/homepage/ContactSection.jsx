@@ -21,19 +21,19 @@ const ContactSection = ({header,header2,text,text2,phone, email, image,buttonTex
     <div className='flex w-screen items-center justify-center py-[80px]'>
       <div className='flex flex-col lg:flex-row w-[95%] lg:w-[90%] xl:max-w-[1669px] items-center justify-center font-monserrat text-[#233038] gap-[20px] lg:gap-[0px]'>
         <div className='flex flex-col lg:flex-row-reverse w-[100%] lg:w-[64%] items-center justify-center '>
-        <img src={image.firebaseUrl} alt='callcenter' width={image.width} height={image.height} className='flex lg:hidden w-[60%] h-auto  max-w-[317px] max-h-[283px]'/>
-        <img src={image.firebaseUrl} alt='callcenter' width={317} height={283} className='hidden lg:flex w-[40%] max-w-[317px] max-h-[283px] '/>
+        <img src={image.firebaseUrl} alt='callcenter' width={image.width} height={image.height} className='flex lg:hidden w-[60%] h-auto  max-w-[317px] max-h-[283px]' loading="lazy" />
+        <img src={image.firebaseUrl} alt='callcenter' width={317} height={283} className='hidden lg:flex w-[40%] max-w-[317px] max-h-[283px]' loading="lazy" />
 
         <div className='flex flex-col w-[100%] md:w-[60%] lg:w-[40%] items-center justify-center text-center lg:justify-start lg:items-start lg:text-start gap-[6px] lg:gap-[20px]'>
           <h3 className='lg:text-[28px] text-[16px] md:text-[21px] font-lora font-medium leading-[23px] mt-3'>{header}</h3>
           <span className='lg:text-[20px] text-[12px] font-bold text-[#233038CC] leading-normal mb-4'>{text}</span>
           <div className='flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col w-[90%] items-center justify-center gap-[10px] sm:gap-[20px]'>
             <div className='flex items-center justify-center sm:justify-start w-[90%] gap-[7%]'>
-              <img src={iconImage.firebaseUrl} className="flex" width={iconImage.width} height={iconImage.height} color="#64A4FF" fill="none"/>
+              <img src={iconImage.firebaseUrl} className="flex" width={iconImage.width} height={iconImage.height} color="#64A4FF" fill="none" loading="lazy" />
               <p className='lg:text-[20px] text-[12px] font-normal leading-[30px]'>{phone}</p>
             </div>
             <div className='flex items-center  justify-center sm:justify-start w-[90%] gap-[7%]'>
-            <img src={iconImage2.firebaseUrl} className="flex" width={iconImage2.width} height={iconImage2.height}/>
+            <img src={iconImage2.firebaseUrl} className="flex" width={iconImage2.width} height={iconImage2.height} loading="lazy" />
               <p className='lg:text-[20px] text-[12px] font-normal leading-[30px]'>{email}</p>
             </div>
             

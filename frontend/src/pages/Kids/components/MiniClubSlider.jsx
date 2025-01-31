@@ -110,6 +110,7 @@ const MiniClubSlider = ({images=[],header, text, items=[],
                   src={image.firebaseUrl} 
                   alt={image.altText} 
                   className="w-full h-full object-cover min-h-[400px]" // Kenar kıvrımları kaldırıldı
+                   loading="lazy"
                 />
               </div>
             </div>
@@ -131,6 +132,7 @@ const MiniClubSlider = ({images=[],header, text, items=[],
             src={item.firebaseUrl}
             alt={item.text}
             className="flex lg:hidden"
+             loading="lazy"
           />
           <img
             width={item.largeWidth || 30}
@@ -138,6 +140,7 @@ const MiniClubSlider = ({images=[],header, text, items=[],
             src={item.firebaseUrl}
             alt={item.text}
             className="hidden lg:flex"
+             loading="lazy"
           />
           {item.text}
 

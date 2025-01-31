@@ -115,6 +115,7 @@ const PlanYourTrip = ({image,header,text,span,button,images=[],restaurantItems=[
                       height={34}
                       alt=""
                       className="cursor-pointer"
+                       loading="lazy"
                     />
                   </div>
                 ))}
@@ -279,7 +280,7 @@ const PlanYourTrip = ({image,header,text,span,button,images=[],restaurantItems=[
         </div>
 
         <div className="flex w-full items-center justify-center">
-          <img src={image.firebaseUrl} className="flex" width={841} height={238}/>
+          <img src={image.firebaseUrl} className="flex" width={841} height={238}  loading="lazy"/>
         </div>
       </div>
 

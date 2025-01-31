@@ -61,6 +61,7 @@ const ReviewCarousel = ({restaurantItems=[],header}) => {
                   width={item.image.width}
                   src={item.image.firebaseUrl}
                   alt={`Slide ${index + 1}`}
+                   loading="lazy"
                 />
                 <div className="flex flex-col w-[66%] items-start justify-center gap-[18px] text-[15px] lg:text-[20px] font-semibold font-monserrat">
                     <span>{item.header}</span>
