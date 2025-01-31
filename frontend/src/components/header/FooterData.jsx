@@ -14,7 +14,7 @@ const FooterData = ({ image, image2 }) => {
       className="flex flex-col w-full lg:min-h-[400px] xl:max-h-[490px] bg-center bg-cover relative items-center justify-start"
       style={{ backgroundImage: `url(${image.firebaseUrl})` }}
     >
-      <div className="flex absolute inset-0 z-1 bg-black/50"></div>
+      <div className="flex absolute inset-0 z-1 bg-black/50 lg:min-h-[400px] w-screen"></div>
       <div className="flex flex-col xl:flex-row w-[95%] lg:w-[100%]  z-10 items-center justify-center text-[#fff] lg:items-center gap-[3%] ">
         <div className="flex flex-col md:flex-row-reverse lg:flex-row-reverse w-[95%] xl:w-[48%] items-center justify-around">
           <div className="flex flex-col w-full lg:w-[32%] xl:w-[38%] items-center justify-center gap-[50px]">
