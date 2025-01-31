@@ -35,6 +35,7 @@ const FoodCarousel = ({images = [], text, header}) => {
                 width={image.width}
                 src={image.firebaseUrl}
                 alt={image.altText}
+                loading="lazy" 
               />
               <div className="absolute inset-0 w-full flex bg-black/30 "></div>
               <div className="flex flex-col absolute inset-0 w-full text-center text-white z-20 justify-start items-center top-1/2 -translate-y-1/2">

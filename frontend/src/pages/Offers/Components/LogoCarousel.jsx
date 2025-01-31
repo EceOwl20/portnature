@@ -43,6 +43,7 @@ const LogoCarousel = ({images=[]}) => {
               height={image.height}
               alt="index"
               className="cursor-pointer"
+               loading="lazy"
             />
           </div>
         ))}

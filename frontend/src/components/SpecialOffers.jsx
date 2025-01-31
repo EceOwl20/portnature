@@ -44,6 +44,7 @@ const SpecialOffers = ({header, headers=[],images=[], links=[]}) => {
                 src={image.firebaseUrl}
                 alt={image.altText}
                 className="object-cover w-10/12 h-[450px] relative z-20 mt-10 mr-1"
+                 loading="lazy"
               />
               <div className="absolute top-10 left-1/2 transform -translate-x-1/2  bg-opacity-70 text-white px-4 py-2 rounded z-30">
                 <p className="text-[25px] font-lora whitespace-nowrap font-medium text-start leading-normal">{headers[index]}</p>

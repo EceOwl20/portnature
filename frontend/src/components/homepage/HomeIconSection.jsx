@@ -23,6 +23,7 @@ const HomeIconSection = ({ items = [] }) => {
               width={item.largeWidth}
               height={item.largeHeight}
               alt={item.text ? item.text : "icon"}
+              loading="lazy" 
             />
             <img
               src={item.firebaseUrl}
@@ -30,6 +31,7 @@ const HomeIconSection = ({ items = [] }) => {
               width={item.smallWidth}
               height={item.smallHeight}
               alt={item.text ? item.text : "icon"}
+              loading="lazy" 
             />
             <p>{item.text}</p>
           </li>

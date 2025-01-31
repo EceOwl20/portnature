@@ -14,6 +14,7 @@ const MiniClubSection2 = ({clubItems}) => {
               src={clubItems[0].image.firebaseUrl}
               alt=""//{clubItems[0].image.text}
               className="w-full h-full object-cover" 
+               loading="lazy"
             />
           </div>
           <div className="flex flex-col text-center lg:text-start gap-2">
@@ -35,6 +36,7 @@ const MiniClubSection2 = ({clubItems}) => {
               src={clubItems[0].image.firebaseUrl}
               alt="Port Olympiad" 
               className="w-full h-full object-cover" 
+               loading="lazy"
             />
           </div>
           <div className="flex flex-col text-center lg:text-start gap-2">
@@ -55,7 +57,8 @@ const MiniClubSection2 = ({clubItems}) => {
             <img 
               src={clubItems[0].image.firebaseUrl}
               alt=""//{clubItems[0].image.text}
-              className="w-full h-full object-cover" 
+              className="w-full h-full object-cover"
+              loading="lazy" 
             />
           </div>
           <div className="flex flex-col text-center lg:text-start gap-2">
@@ -77,6 +80,7 @@ const MiniClubSection2 = ({clubItems}) => {
               src={clubItems[0].image.firebaseUrl}
               alt="Art Class" 
               className="w-full h-full object-cover" 
+               loading="lazy"
             />
           </div>
           <div className="flex flex-col text-center lg:text-start gap-2">

@@ -63,6 +63,7 @@ const AlacarteSection = ({
                 src={item.image.firebaseUrl}
                 width={item.image.width}
                 height={item.image.height}
+                loading="lazy" 
               />
               <div className="flex flex-col gap-[6px]">
                 <h3 className="text-[20px] font-lora italic leading-[42px] font-medium">

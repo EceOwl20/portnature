@@ -7,7 +7,7 @@ const RoomPlan = ({image, header, text, text2}) => {
   return (
     <div className='flex bg-[#f8f8f8] w-screen h-auto justify-center items-center '>
       <div className='flex flex-col justify-center items-center w-[90%] lg:w-[80%] my-[40px] gap-2'>
-      <img src={image.firebaseUrl} alt={image.altText} width={image.width} height={image.height}/>
+      <img src={image.firebaseUrl} alt={image.altText} width={image.width} height={image.height} loading="lazy" />
 
       <div className='flex flex-col justify-center items-center text-center w-[80%] gap-6'>
         <button onClick={() => setIsModalOpen(true)} >
@@ -26,6 +26,7 @@ const RoomPlan = ({image, header, text, text2}) => {
        <div className='flex h-[1px] w-[90%] bg-[#c5bfbf] mb-5'></div>
       <img src={image.firebaseUrl} alt={image.altText} width={image.width} height={image.height}
         className='rotate-90 lg:rotate-0 w-full h-auto lg:w-auto max-w-[943px] max-h-[400px] object-contain mx-auto mt-[30%] lg:mt-0'
+        loading="lazy" 
       />
     </div>
   </div>

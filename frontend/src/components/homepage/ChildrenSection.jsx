@@ -37,6 +37,7 @@ const ChildrenSection = ({ images = [], items = [], header, buttonText }) => {
                 className="hidden lg:flex"
                 width={item.largeWidth}
                 height={item.largeHeight}
+                loading="lazy" 
               />
               
               <img

@@ -13,6 +13,7 @@ const BeachSection2 = ({restaurantItems}) => {
             <img 
               src={restaurantItems[0].image.firebaseUrl}
               className="w-full h-full object-cover" 
+               loading="lazy"
             />
           </div>
           <div className="flex flex-col gap-2 w-[95%] items-center justify-center text-center lg:text-start">

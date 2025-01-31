@@ -115,6 +115,7 @@ const DavidoffCarousel = ({images = [], header, text, text2, image, options}) =>
                 className="w-full h-full object-cover"
                 src={img.firebaseUrl}
                 alt={`Slide ${index + 1}`}
+                 loading="lazy"
               />
               {(index === selectedIndex - 1 || index === selectedIndex + 1) && (
                 <div className="absolute inset-0 z-10 bg-white/30 flex flex-col items-end justify-center text-right text-white text-[28px] italic font-lora font-medium leading-[42px] pr-5">

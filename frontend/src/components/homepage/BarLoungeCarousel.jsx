@@ -35,6 +35,7 @@ const BarLoungeCarousel = ({ images=[], subImages=[]}) => {
                 height={image.height}
                 alt={image.altText}
                 className=" flex h-screen w-full"
+                loading="lazy" 
               />
               <div className="flex absolute inset-0 bg-black/50"></div>
 

@@ -50,6 +50,7 @@ const HolidayImageSection = ({
             className="flex"
             width={32}
             height={22}
+            loading="lazy" 
           />
           {buttonText}
         </button>

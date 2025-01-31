@@ -63,6 +63,7 @@ const RestaurantMainSection = ({images=[], header,text, span,videoLink}) => {
                 width={img.width}
                 src={img.firebaseUrl}
                 alt={img.altText}
+                 loading="lazy"
               />
               </div>
             </div>

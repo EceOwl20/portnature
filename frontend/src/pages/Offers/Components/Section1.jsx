@@ -9,6 +9,7 @@ const Section1 = ({image, image2, iconImage, iconImage2, header, text}) => {
           className="max-w-full h-[400px] object-cover lg:h-auto" 
           src={image.firebaseUrl}
           alt={image.altText} 
+           loading="lazy"
         />
       </div>
 
@@ -16,8 +17,8 @@ const Section1 = ({image, image2, iconImage, iconImage2, header, text}) => {
       <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-36 pb-16 relative">
         <div className="flex flex-col gap-8 w-[85%] lg:max-w-[378px] text-center lg:text-start">
           <div className='flex flex-col gap-12 h-16'>
-            <img src={iconImage.firebaseUrl} alt={iconImage.altText} className="w-[117px]" />
-            <img src={iconImage.firebaseUrl} alt={iconImage.altText} className="w-[78px] absolute -left-20 top-52" />
+            <img src={iconImage.firebaseUrl} alt={iconImage.altText} className="w-[117px]"  loading="lazy"/>
+            <img src={iconImage.firebaseUrl} alt={iconImage.altText} className="w-[78px] absolute -left-20 top-52"  loading="lazy"/>
           </div>
           <h1 className="text-center font-lora text-[40px] text-[#233038] font-medium leading-[50px]">
             {header}
@@ -34,6 +35,7 @@ const Section1 = ({image, image2, iconImage, iconImage2, header, text}) => {
           src={image2.firebaseUrl} 
           alt={image2.altText} 
           className="max-w-[800px] max-h-[738px] w-[95%]" 
+           loading="lazy"
         />
       </div>
     </div>
